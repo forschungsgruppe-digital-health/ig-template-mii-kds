@@ -1,0 +1,52 @@
+name: Bug report
+description: Something in the template renders wrong or breaks an IG build
+title: "fix: <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! Please search existing issues first.
+        For questions (not bugs), use the links on the "New issue" chooser instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What went wrong? Include error output or a screenshot of the rendered page if visual.
+      placeholder: The footer overlaps the page content when...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: The footer should stay below the content.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: How can we reproduce it?
+      description: Numbered steps, ideally against a minimal IG that references this template.
+      placeholder: |
+        1. Reference template version X.Y.Z in ig.ini
+        2. Run the IG Publisher
+        3. Open output/index.html
+    validations:
+      required: true
+  - type: input
+    id: template-version
+    attributes:
+      label: Template version
+      description: The version of `de.medizininformatikinitiative.template` your IG references.
+      placeholder: e.g. 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: publisher-version
+    attributes:
+      label: IG Publisher version
+      description: Shown at the start of every build log.
+      placeholder: e.g. 1.6.x
+    validations:
+      required: false

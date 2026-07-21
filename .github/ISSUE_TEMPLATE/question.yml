@@ -1,0 +1,26 @@
+name: Question
+description: Ask a question specific to this template repository
+title: "question: <short description>"
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Is your question about FHIR, profiling, or the IG Publisher in general?**
+        Those are answered faster in the community channels — see the links on the
+        "New issue" chooser (HL7 FHIR Zulip stream `german/mi-initiative`, MII Zulip
+        stream `MII-Kerndatensatz`). Use this form only for questions specific to
+        THIS template repository.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to achieve? What have you tried or read already?
+    validations:
+      required: false
