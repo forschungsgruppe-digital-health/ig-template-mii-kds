@@ -34,7 +34,7 @@ Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kei
   "title" : "Selbsttest-Palette",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T18:36:13+00:00",
+  "date" : "2026-07-22T18:52:15+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
