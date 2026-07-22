@@ -1,0 +1,157 @@
+# Stale GitHub Pages preview cleanup (§2.8 / Appendix A.9).
+#
+# Purpose:   remove branch previews under gh-pages/branches/<branch>/ whose
+#            branch no longer exists, so gh-pages does not grow without bound
+#            as short-lived feature branches come and go. Keyed on the
+#            .branch-name marker each preview drops (see ig-preview.yml).
+# Triggers:  weekly schedule (Sundays 00:00 UTC) + workflow_dispatch (with a
+#            dry_run input to list stale previews without deleting them).
+# Toggle:    vars.ENABLE_PREVIEW — the cleanup belongs to the preview pipeline;
+#            ON by default, set the repo variable to 'false' to skip it.
+# Human-gated: none, but it can NEVER touch the formal publication surface — the
+#            site root and any version-like path (X.Y.Z) are always preserved,
+#            as is any preview whose branch still exists.
+name: Cleanup stale IG previews
+
+on:
+  schedule:
+    - cron: "0 0 * * 0" # Sundays 00:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List stale previews without deleting them"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write # rewrite the gh-pages branch
+
+concurrency:
+  # Shared repo-global group with ig-preview.yml so gh-pages writes never race.
+  group: gh-pages-writes
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default (§2.13)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Remove only marker-backed stale previews
+        shell: bash
+        env:
+          DRY_RUN: ${{ inputs.dry_run || false }}
+          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          set -euo pipefail
+          remote_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+
+          # gh-pages may not exist yet (no preview has been published). That is
+          # not an error — there is simply nothing to clean up.
+          if ! git ls-remote --heads "${remote_url}" gh-pages | grep -q .; then
+            echo "::notice::No gh-pages branch yet — nothing to clean up."
+            exit 0
+          fi
+
+          rm -rf gh-pages
+          git clone --depth 1 --branch gh-pages "${remote_url}" gh-pages
+          cd gh-pages
+
+          # Active branches = every remote head except gh-pages itself.
+          mapfile -t active_branches < <(
+            git ls-remote --heads "${remote_url}" \
+              | awk '{ sub("refs/heads/", "", $2); if ($2 != "gh-pages") print $2 }'
+          )
+          # Every published preview drops a .branch-name marker.
+          mapfile -d '' -t markers < <(
+            find . -path './.git' -prune -o -type f -name '.branch-name' -print0
+          )
+
+          printf 'Active branches: %s\n' "${#active_branches[@]}"
+          printf 'Marked previews: %s\n' "${#markers[@]}"
+
+          branch_is_active() {
+            local candidate="$1" active
+            for active in "${active_branches[@]}"; do
+              [[ "${active}" == "${candidate}" ]] && return 0
+            done
+            return 1
+          }
+
+          stale_count=0
+          preserved_count=0
+          for marker in "${markers[@]}"; do
+            [[ -f "${marker}" ]] || continue # an ancestor may already be gone
+            deployment="$(dirname "${marker}")"
+            branch="$(tr -d '\r\n' < "${marker}")"
+
+            # The site root is the formal publication surface — never a candidate.
+            if [[ "${deployment}" == "." ]]; then
+              echo "Preserving formal publication root"
+              preserved_count=$((preserved_count + 1)); continue
+            fi
+            relative="${deployment#./}"
+            # Version-like paths (X.Y.Z[-pre]) are permanent formal publications.
+            if [[ "${relative}" =~ ^branches/[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ || "${relative}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ ]]; then
+              echo "Preserving version-like permanent path ${relative}/"
+              preserved_count=$((preserved_count + 1)); continue
+            fi
+            if [[ -z "${branch}" ]]; then
+              echo "::warning::Ignoring empty preview marker at ${marker}"
+              preserved_count=$((preserved_count + 1)); continue
+            fi
+            if branch_is_active "${branch}"; then
+              echo "Preserving ${relative}/ (${branch})"
+              preserved_count=$((preserved_count + 1)); continue
+            fi
+
+            # Branch names can contain slashes, so a stale preview may be the
+            # ancestor of an active one. Never delete an active descendant.
+            has_active_descendant=false
+            for other in "${markers[@]}"; do
+              [[ "${other}" == "${marker}" || "${other}" != "${deployment}/"* || ! -f "${other}" ]] && continue
+              other_branch="$(tr -d '\r\n' < "${other}")"
+              if branch_is_active "${other_branch}"; then
+                echo "::warning::Preserving stale ancestor ${relative}/ (${branch}) — it contains active preview ${other_branch}."
+                has_active_descendant=true; break
+              fi
+            done
+            if [[ "${has_active_descendant}" == "true" ]]; then
+              preserved_count=$((preserved_count + 1)); continue
+            fi
+
+            stale_count=$((stale_count + 1))
+            if [[ "${DRY_RUN}" == "true" ]]; then
+              echo "[dry run] Would remove ${relative}/ (${branch})"
+            else
+              echo "Removing ${relative}/ (${branch})"
+              rm -rf -- "${deployment}"
+            fi
+          done
+
+          changed=false
+          if [[ "${DRY_RUN}" != "true" ]]; then
+            git config user.name "${GIT_AUTHOR_NAME}"
+            git config user.email "${GIT_AUTHOR_EMAIL}"
+            git add --all
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: remove ${stale_count} stale Pages preview(s)"
+              git push origin gh-pages
+              changed=true
+            fi
+          fi
+
+          {
+            echo "### GitHub Pages preview cleanup"
+            echo ""
+            echo "- Dry run: ${DRY_RUN}"
+            echo "- Preserved: ${preserved_count}"
+            echo "- Stale: ${stale_count}"
+            echo "- Changed: ${changed}"
+          } >> "${GITHUB_STEP_SUMMARY}"
