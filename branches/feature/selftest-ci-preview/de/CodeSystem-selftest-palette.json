@@ -1,0 +1,45 @@
+{
+  "resourceType" : "CodeSystem",
+  "id" : "selftest-palette",
+  "language" : "de",
+  "text" : {
+    "status" : "generated",
+    "div" : "<div xml:lang=\"de\" lang=\"de\"><hr/><p><b>German</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem selftest-palette</b></p><a name=\"selftest-palette\"> </a><a name=\"hcselftest-palette\"> </a><p>This case-sensitive code system <code>https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">primary<a name=\"selftest-palette-primary\"> </a></td><td>Primary</td><td>Stands in for the template's primary brand colour slot.</td></tr><tr><td style=\"white-space:nowrap\">accent<a name=\"selftest-palette-accent\"> </a></td><td>Accent</td><td>Stands in for the template's accent colour slot.</td></tr></table></div>"
+  },
+  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette",
+  "version" : "0.1.0",
+  "name" : "SelfTestPalette",
+  "title" : "Self-Test Palette",
+  "status" : "draft",
+  "experimental" : true,
+  "date" : "2026-07-22T18:08:50+00:00",
+  "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
+  "contact" : [{
+    "name" : "Forschungsgruppe Digital Health, TU Dresden",
+    "telecom" : [{
+      "system" : "url",
+      "value" : "https://github.com/forschungsgruppe-digital-health"
+    }]
+  }],
+  "description" : "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact.",
+  "jurisdiction" : [{
+    "coding" : [{
+      "system" : "urn:iso:std:iso:3166",
+      "code" : "DE",
+      "display" : "Germany"
+    }]
+  }],
+  "caseSensitive" : true,
+  "content" : "complete",
+  "count" : 2,
+  "concept" : [{
+    "code" : "primary",
+    "display" : "Primary",
+    "definition" : "Stands in for the template's primary brand colour slot."
+  },
+  {
+    "code" : "accent",
+    "display" : "Accent",
+    "definition" : "Stands in for the template's accent colour slot."
+  }]
+}
