@@ -36,6 +36,7 @@ exactly one pin (one bump per PR — keep diffs reviewable):
 | IG Publisher | `PUBLISHER_VERSION` env in the CI build workflow **+ the jar SHA-256 (step 4)** |
 | SUSHI / Jekyll | `SUSHI_VERSION` / `JEKYLL_VERSION` env in the CI build workflow |
 | GitHub Action | the commit SHA in the `uses:` line **and** its `# vX.Y.Z` comment (Dependabot PRs do this for you) |
+| Dev container (base-image digest, feature versions) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest is bumped manually (see the dev-container limits in [`docs/MAINTENANCE.md`](../MAINTENANCE.md)) |
 
 ## 4. IG Publisher only: recompute the jar SHA-256
 
