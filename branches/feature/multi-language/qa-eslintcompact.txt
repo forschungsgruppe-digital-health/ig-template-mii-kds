@@ -1,0 +1,18 @@
+MIIKDSTemplateSelfTest
+=========================================
+
+Generic: line 0, col 0, Warning - An HTML fragment from the set [ip-statements.xhtml, ip-statements.xhtml] is not included anywhere in the produced implementation guide (NOTFOUND)
+Generic: line 0, col 0, Warning - An HTML fragment from the set [cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml, cross-version-analysis.xhtml, cross-version-analysis-inline.xhtml] is not included anywhere in the produced implementation guide (NOTFOUND)
+Generic: line 0, col 0, Warning - An HTML fragment from the set [dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml, dependency-table.xhtml, dependency-table-short.xhtml, dependency-table-nontech.xhtml] is not included anywhere in the produced implementation guide (NOTFOUND)
+Generic: line 0, col 0, Warning - An HTML fragment from the set [globals-table.xhtml, globals-table.xhtml] is not included anywhere in the produced implementation guide (NOTFOUND)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 1, col 2923, Info - There are no valid display names found for the code urn:iso:std:iso:3166#DE for language(s) 'de'. The display is 'Germany' which is a valid display for the default language (INVALID)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 0, col 0, Warning - The resource CodeSystem/selftest-palette should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root) (BUSINESSRULE)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 0, col 0, Info - Unused 'en' translation 'Primärfarbe' -> 'Primary colour' (INFORMATIONAL)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 0, col 0, Info - Unused 'en' translation 'Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage.' -> 'Placeholder for the template's primary brand-colour slot.' (INFORMATIONAL)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 0, col 0, Info - Unused 'en' translation 'Akzentfarbe' -> 'Accent colour' (INFORMATIONAL)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/CodeSystem-selftest-palette.json: line 0, col 0, Info - Unused 'en' translation 'Platzhalter für den Steckplatz der Akzentfarbe der Vorlage.' -> 'Placeholder for the template's accent-colour slot.' (INFORMATIONAL)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest.json: line 1, col 3128, Info - There are no valid display names found for the code urn:iso:std:iso:3166#DE for language(s) 'de'. The display is 'Germany' which is a valid display for the default language (INVALID)
+/home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest.json: line 0, col 0, Info - The resource ImplementationGuide/de.medizininformatikinitiative.template.selftest could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root) (BUSINESSRULE)
+
+err = 0, warn = 5, info = 7
+IG Publisher Version: 2.2.11
