@@ -9,7 +9,7 @@
 
 ### CodeSystems
 
-* [Self-Test Palette](CodeSystem-selftest-palette.md)
+* [Selbsttest-Palette](CodeSystem-selftest-palette.md)
 
 ### ImplementationGuides
 

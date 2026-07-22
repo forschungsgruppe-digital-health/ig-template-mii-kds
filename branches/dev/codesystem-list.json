@@ -4,7 +4,7 @@
     "version" : "0.1.0",
     "status" : "draft",
     "name" : "SelfTestPalette",
-    "title" : "Self-Test Palette",
-    "description" : "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."
+    "title" : "Selbsttest-Palette",
+    "description" : "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."
   }]
 }

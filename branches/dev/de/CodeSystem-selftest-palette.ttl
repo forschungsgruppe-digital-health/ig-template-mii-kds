@@ -11,15 +11,15 @@
   fhir:Resource.language [ fhir:value "de"] ;
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ] ;
-     fhir:Narrative.div "<div xml:lang=\"de\" lang=\"de\"><hr/><p><b>German</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem selftest-palette</b></p><a name=\"selftest-palette\"> </a><a name=\"hcselftest-palette\"> </a><p>This case-sensitive code system <code>https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">primary<a name=\"selftest-palette-primary\"> </a></td><td>Primary</td><td>Stands in for the template's primary brand colour slot.</td></tr><tr><td style=\"white-space:nowrap\">accent<a name=\"selftest-palette-accent\"> </a></td><td>Accent</td><td>Stands in for the template's accent colour slot.</td></tr></table></div>"
+     fhir:Narrative.div "<div xml:lang=\"de\" lang=\"de\"><hr/><p><b>German</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: CodeSystem selftest-palette</b></p><a name=\"selftest-palette\"> </a><a name=\"hcselftest-palette\"> </a><p>This case-sensitive code system <code>https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette</code> defines the following codes:</p><table class=\"codes\"><tr><td style=\"white-space:nowrap\"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style=\"white-space:nowrap\">primary<a name=\"selftest-palette-primary\"> </a></td><td>Primärfarbe</td><td>Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage.</td></tr><tr><td style=\"white-space:nowrap\">accent<a name=\"selftest-palette-accent\"> </a></td><td>Akzentfarbe</td><td>Platzhalter für den Steckplatz der Akzentfarbe der Vorlage.</td></tr></table></div>"
   ] ;
   fhir:CodeSystem.url [ fhir:value "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette"] ;
   fhir:CodeSystem.version [ fhir:value "0.1.0"] ;
   fhir:CodeSystem.name [ fhir:value "SelfTestPalette"] ;
-  fhir:CodeSystem.title [ fhir:value "Self-Test Palette"] ;
+  fhir:CodeSystem.title [ fhir:value "Selbsttest-Palette"] ;
   fhir:CodeSystem.status [ fhir:value "draft"] ;
   fhir:CodeSystem.experimental [ fhir:value "true"^^xsd:boolean] ;
-  fhir:CodeSystem.date [ fhir:value "2026-07-22T18:16:44+00:00"^^xsd:dateTime] ;
+  fhir:CodeSystem.date [ fhir:value "2026-07-22T18:56:05+00:00"^^xsd:dateTime] ;
   fhir:CodeSystem.publisher [ fhir:value "Forschungsgruppe Digital Health, TU Dresden"] ;
   fhir:CodeSystem.contact [
      fhir:index -1 ;
@@ -30,7 +30,7 @@
        fhir:ContactPoint.value [ fhir:value "https://github.com/forschungsgruppe-digital-health" ]
      ]
   ] ;
-  fhir:CodeSystem.description [ fhir:value "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."] ;
+  fhir:CodeSystem.description [ fhir:value "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."] ;
   fhir:CodeSystem.jurisdiction [
      fhir:index -1 ;
      fhir:CodeableConcept.coding [
@@ -46,13 +46,13 @@
   fhir:CodeSystem.concept [
      fhir:index -1 ;
      fhir:CodeSystem.concept.code [ fhir:value "primary" ] ;
-     fhir:CodeSystem.concept.display [ fhir:value "Primary" ] ;
-     fhir:CodeSystem.concept.definition [ fhir:value "Stands in for the template's primary brand colour slot." ]
+     fhir:CodeSystem.concept.display [ fhir:value "Primärfarbe" ] ;
+     fhir:CodeSystem.concept.definition [ fhir:value "Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage." ]
   ], [
      fhir:index -1 ;
      fhir:CodeSystem.concept.code [ fhir:value "accent" ] ;
-     fhir:CodeSystem.concept.display [ fhir:value "Accent" ] ;
-     fhir:CodeSystem.concept.definition [ fhir:value "Stands in for the template's accent colour slot." ]
+     fhir:CodeSystem.concept.display [ fhir:value "Akzentfarbe" ] ;
+     fhir:CodeSystem.concept.definition [ fhir:value "Platzhalter für den Steckplatz der Akzentfarbe der Vorlage." ]
   ] .
 
 # - ontology header ------------------------------------------------------------

@@ -4,15 +4,15 @@
   <id value="selftest-palette"/>
   <language value="de"/>
   <text>
-    <status value="generated"/><div xml:lang="de" lang="de"><hr/><p><b>German</b></p><hr/><p class="res-header-id"><b>Generated Narrative: CodeSystem selftest-palette</b></p><a name="selftest-palette"> </a><a name="hcselftest-palette"> </a><p>This case-sensitive code system <code>https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette</code> defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style="white-space:nowrap">primary<a name="selftest-palette-primary"> </a></td><td>Primary</td><td>Stands in for the template's primary brand colour slot.</td></tr><tr><td style="white-space:nowrap">accent<a name="selftest-palette-accent"> </a></td><td>Accent</td><td>Stands in for the template's accent colour slot.</td></tr></table></div>
+    <status value="generated"/><div xml:lang="de" lang="de"><hr/><p><b>German</b></p><hr/><p class="res-header-id"><b>Generated Narrative: CodeSystem selftest-palette</b></p><a name="selftest-palette"> </a><a name="hcselftest-palette"> </a><p>This case-sensitive code system <code>https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette</code> defines the following codes:</p><table class="codes"><tr><td style="white-space:nowrap"><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td style="white-space:nowrap">primary<a name="selftest-palette-primary"> </a></td><td>Primärfarbe</td><td>Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage.</td></tr><tr><td style="white-space:nowrap">accent<a name="selftest-palette-accent"> </a></td><td>Akzentfarbe</td><td>Platzhalter für den Steckplatz der Akzentfarbe der Vorlage.</td></tr></table></div>
   </text>
   <url value="https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette"/>
   <version value="0.1.0"/>
   <name value="SelfTestPalette"/>
-  <title value="Self-Test Palette"/>
+  <title value="Selbsttest-Palette"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2026-07-22T18:16:44+00:00"/>
+  <date value="2026-07-22T18:56:05+00:00"/>
   <publisher value="Forschungsgruppe Digital Health, TU Dresden"/>
   <contact>
     <name value="Forschungsgruppe Digital Health, TU Dresden"/>
@@ -21,7 +21,7 @@
       <value value="https://github.com/forschungsgruppe-digital-health"/>
     </telecom>
   </contact>
-  <description value="Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."/>
+  <description value="Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -34,12 +34,12 @@
   <count value="2"/>
   <concept>
     <code value="primary"/>
-    <display value="Primary"/>
-    <definition value="Stands in for the template's primary brand colour slot."/>
+    <display value="Primärfarbe"/>
+    <definition value="Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage."/>
   </concept>
   <concept>
     <code value="accent"/>
-    <display value="Accent"/>
-    <definition value="Stands in for the template's accent colour slot."/>
+    <display value="Akzentfarbe"/>
+    <definition value="Platzhalter für den Steckplatz der Akzentfarbe der Vorlage."/>
   </concept>
 </CodeSystem>

@@ -1,10 +1,10 @@
-# Self-Test Palette - MII KDS IG Template — Self-Test v0.1.0
+# Selbsttest-Palette - MII KDS IG Template — Self-Test v0.1.0
 
 * [**Table of Contents**](toc.md)
 * [**Artifacts Summary**](artifacts.md)
-* **Self-Test Palette**
+* **Selbsttest-Palette**
 
-## CodeSystem: Self-Test Palette () 
+## CodeSystem: Selbsttest-Palette () 
 
 | | |
 | :--- | :--- |
@@ -12,7 +12,7 @@
 | Draft | **:SelfTestPalette |
 
  
-Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact. 
+Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt. 
 
 * This CodeSystem is not used here; it may be used elsewhere (e.g. specifications and/or implementations that use this content)
 
@@ -31,10 +31,10 @@ Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII ar
   "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette",
   "version" : "0.1.0",
   "name" : "SelfTestPalette",
-  "title" : "Self-Test Palette",
+  "title" : "Selbsttest-Palette",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T18:16:44+00:00",
+  "date" : "2026-07-22T18:56:05+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
@@ -43,7 +43,20 @@ Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII ar
       "value" : "https://github.com/forschungsgruppe-digital-health"
     }]
   }],
-  "description" : "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact.",
+  "description" : "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt.",
+  "_description" : {
+    "extension" : [{
+      "extension" : [{
+        "url" : "lang",
+        "valueCode" : "en"
+      },
+      {
+        "url" : "content",
+        "valueString" : "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/translation"
+    }]
+  },
   "jurisdiction" : [{
     "coding" : [{
       "system" : "urn:iso:std:iso:3166",
@@ -56,13 +69,13 @@ Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII ar
   "count" : 2,
   "concept" : [{
     "code" : "primary",
-    "display" : "Primary",
-    "definition" : "Stands in for the template's primary brand colour slot."
+    "display" : "Primärfarbe",
+    "definition" : "Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage."
   },
   {
     "code" : "accent",
-    "display" : "Accent",
-    "definition" : "Stands in for the template's accent colour slot."
+    "display" : "Akzentfarbe",
+    "definition" : "Platzhalter für den Steckplatz der Akzentfarbe der Vorlage."
   }]
 }
 

@@ -15,5 +15,5 @@ These define new code systems used by systems conforming to this implementation 
 
 | | |
 | :--- | :--- |
-| [ Self-Test Palette  ](CodeSystem-selftest-palette.md) | Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact. |
+| [ Selbsttest-Palette  ](CodeSystem-selftest-palette.md) | Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt. |
 

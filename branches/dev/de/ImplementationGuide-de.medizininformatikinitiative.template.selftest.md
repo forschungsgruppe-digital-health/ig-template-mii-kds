@@ -14,7 +14,7 @@
   "name" : "MIIKDSTemplateSelfTest",
   "title" : "MII KDS IG Template — Self-Test",
   "status" : "draft",
-  "date" : "2026-07-22T18:16:44+00:00",
+  "date" : "2026-07-22T18:56:05+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
@@ -96,6 +96,17 @@
       {
         "url" : "value",
         "valueString" : "en"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
+        "valueString" : "translation-sources"
+      },
+      {
+        "url" : "value",
+        "valueString" : "input/translations/en"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -403,6 +414,17 @@
     {
       "extension" : [{
         "url" : "code",
+        "valueCode" : "translation-sources"
+      },
+      {
+        "url" : "value",
+        "valueString" : "input/translations/en"
+      }],
+      "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
+    },
+    {
+      "extension" : [{
+        "url" : "code",
         "valueCode" : "autoload-resources"
       },
       {
@@ -665,8 +687,8 @@
       "reference" : {
         "reference" : "CodeSystem/selftest-palette"
       },
-      "name" : "Self-Test Palette",
-      "description" : "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact.",
+      "name" : "Selbsttest-Palette",
+      "description" : "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt.",
       "exampleBoolean" : false
     }],
     "page" : {

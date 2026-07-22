@@ -13,7 +13,7 @@
   <name value="MIIKDSTemplateSelfTest"/>
   <title value="MII KDS IG Template — Self-Test"/>
   <status value="draft"/>
-  <date value="2026-07-22T18:16:44+00:00"/>
+  <date value="2026-07-22T18:56:05+00:00"/>
   <publisher value="Forschungsgruppe Digital Health, TU Dresden"/>
   <contact>
     <name value="Forschungsgruppe Digital Health, TU Dresden"/>
@@ -80,6 +80,14 @@
       </extension>
       <extension url="value">
         <valueString value="en"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="translation-sources"/>
+      </extension>
+      <extension url="value">
+        <valueString value="input/translations/en"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -303,6 +311,14 @@
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
       <extension url="code">
+        <valueCode value="translation-sources"/>
+      </extension>
+      <extension url="value">
+        <valueString value="input/translations/en"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
         <valueCode value="autoload-resources"/>
       </extension>
       <extension url="value">
@@ -492,8 +508,8 @@
       <reference>
         <reference value="CodeSystem/selftest-palette"/>
       </reference>
-      <name value="Self-Test Palette"/>
-      <description value="Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."/>
+      <name value="Selbsttest-Palette"/>
+      <description value="Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."/>
       <exampleBoolean value="false"/>
     </resource>
     <page>
