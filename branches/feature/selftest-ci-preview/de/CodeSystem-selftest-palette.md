@@ -34,7 +34,7 @@ Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII ar
   "title" : "Self-Test Palette",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T18:08:50+00:00",
+  "date" : "2026-07-22T18:13:08+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
