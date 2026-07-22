@@ -1,0 +1,19 @@
+# Artifacts Summary - MII KDS IG Template — Self-Test v0.1.0
+
+* [**Table of Contents**](toc.md)
+* **Artifacts Summary**
+
+## Artifacts Summary
+
+ There is no translation page available for the current page, so it has been rendered in the default language 
+
+This page provides a list of the FHIR artifacts defined as part of this implementation guide.
+
+### Terminology: Code Systems 
+
+These define new code systems used by systems conforming to this implementation guide.
+
+| | |
+| :--- | :--- |
+| [ Self-Test Palette  ](CodeSystem-selftest-palette.md) | Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact. |
+
