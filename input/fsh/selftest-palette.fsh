@@ -10,9 +10,11 @@
 // Multi-language (§3.4): the human-readable text below is authored in GERMAN,
 // the default IG language. Its English rendering is supplied by the translation
 // supplement input/translations/en/CodeSystem-selftest-palette.po. A CodeSystem
-// is chosen deliberately: the IG Publisher renders translation supplements for
-// StructureDefinition, CodeSystem and Questionnaire, so this artifact is one the
-// toolchain actually translates (see skills/ig-translate and
+// is chosen deliberately: it is in the toolchain's translatable set
+// (StructureDefinition / CodeSystem / Questionnaire). Verified in the self-test
+// build (IG Publisher 2.2.11): the `description` renders in English on /en/. The
+// concept displays/definitions and the title stay German (concept-level fields
+// are not applied from a plain supplement on this toolchain — see
 // docs/recipes/add-translation.md). The code values (#primary, #accent) are FHIR
 // identifiers and stay unchanged in every language.
 CodeSystem: SelfTestPalette

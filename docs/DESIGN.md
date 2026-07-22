@@ -191,15 +191,19 @@ The override appends to (never replaces) the base footer content:
   `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
   2026-07-22; German was added to `HL7/ig-template-base2` `main` after `0.1.0`).
-  The master `stringsBase.json` carries only the English values, so for a
-  language with no `.po` catalog the Publisher falls back to the English source
-  string (gettext `msgid`). **Consequence:** on a German-default IG built with
-  this template, the base's own chrome renders in English even on the `/de/`
-  pages for any key whose German differs from English — e.g. `TableOfContents`
-  shows "Table of Contents" instead of "Inhaltsverzeichnis", `QAReport` shows
-  "QA Report" instead of "QA-Bericht" (`Links` is coincidentally identical). It
-  is a graceful, **non-fatal** fallback: the build stays green; only the base
-  chrome labels are affected, not this template's overrides or the module's
+  The master `stringsBase.json` carries only the English values, so
+  `site.data.stringsBase['de']` is **empty**. **Consequence (observed in the
+  self-test build, PR #10 preview):** every base UI string this footer resolves
+  through `{{site.data.stringsBase['de']['<Key>']}}` returns **nothing on the
+  `/de/` pages** — the footer's `Links` label is blank and its "Table of
+  Contents"/"QA Report" links render as empty, textless links to `toc.html` /
+  `qa.html`. (The IG Publisher's Java-generated breadcrumb resolves the same key
+  differently and shows the English fallback "Table of Contents".) The `/en/`
+  footer is fully correct. So on the **default** language the base chrome labels
+  are missing — worse than an English fallback. It is still **non-fatal**: the
+  build stays green (QA errors = 0) and only base-provided labels are affected,
+  not this template's own additions (the MII imprint links, which are
+  language-neutral bare URLs, render correctly in both languages) or the module's
   translated content.
   > **Why we do not fix it by shipping the German `.po` here:** a child template
   > cannot add `translations/` without the fork hazard of §2 (the `.json` string

@@ -60,12 +60,15 @@ parameters:
 
 This is the single most important thing to understand before you spend time
 translating: **most of an IG does not translate yet.** The table is empirically
-verified (IG Publisher 2.2.7 / 2.2.8 with `fhir2.base.template`; re-verify on any
-toolchain bump — see the note at the end).
+verified against this template's self-test build (IG Publisher **2.2.11** with
+`fhir2.base.template#0.1.0`; the sample IG first verified it on 2.2.7 / 2.2.8).
+Re-verify on any toolchain bump — see the note at the end.
 
 | Content | Renders translated today? | How |
 |---|---|---|
-| Texts of **StructureDefinition, CodeSystem, Questionnaire** (`description`, element `definition` / `comment` / `requirements`, binding descriptions, CodeSystem `concept.display` / `definition` / `designation`) | **Yes** | A translation supplement `input/translations/<lang>/<Type>-<id>.po` (step 4) |
+| **Resource-level text** of **StructureDefinition, CodeSystem, Questionnaire** — `description`, and for StructureDefinition the element `definition` / `comment` / `requirements` and binding descriptions | **Yes** | A translation supplement `input/translations/<lang>/<Type>-<id>.po` (step 4) |
+| **CodeSystem `concept.display` / `concept.definition`** | **No — not from a plain `.po` supplement** (verified 2.2.11: they stayed German on `/en/`, at data *and* narrative level). Localize a concept the FHIR-native way, with a language-tagged **`designation`** authored in the resource. | `designation[].language` in the FSH/resource, not a `.po` |
+| **Resource `title`** (any type) | **No** | Not applied from a supplement — leave it German |
 | **ValueSet** texts, **ImplementationGuide** title/description, the **menu** | **No** | Not supported by the Publisher — a supplement for these is silently ignored. Leave them German. |
 | **Narrative pages** (`input/pagecontent/*.md`) | **Not yet** | The `input/pagecontent/<name>-<lang>.md` sibling convention (step 5) is prepared but not yet consumed; `/en/` shows the German page with the note "There is no translation page available …" |
 
@@ -107,8 +110,11 @@ msgstr "<English translation>"
 ```
 
 - `#:` is the FHIRPath of the field (`CodeSystem.description`,
-  `CodeSystem.concept[0].display`, `StructureDefinition.description`,
-  `StructureDefinition.snapshot.element[3].definition`, …).
+  `StructureDefinition.description`,
+  `StructureDefinition.snapshot.element[3].definition`, …). It is a gettext
+  reference comment; matching is by `msgid`. Only fields the toolchain applies
+  (step 3) take effect — a `concept[0].display` entry, for example, is accepted
+  into the catalog but does **not** change the rendered concept.
 - **`msgid` must match the German source byte for byte**, umlauts included. Get
   it from the generated JSON, not from the `.fsh` — SUSHI may normalise text:
 
@@ -134,9 +140,9 @@ supplement. Only human-readable text is translated.
 [`input/translations/en/CodeSystem-selftest-palette.po`](../../input/translations/en/CodeSystem-selftest-palette.po),
 for the German-authored CodeSystem
 [`input/fsh/selftest-palette.fsh`](../../input/fsh/selftest-palette.fsh). On the
-`/en/` CodeSystem page its `description` and concept displays render in English,
-while its `title` stays German (title is not in the translatable set) — a live,
-inspectable illustration of the table in step 3.
+`/en/` CodeSystem page its `description` renders in **English**, while its
+concept displays and `title` stay German — a live, inspectable illustration of
+the table in step 3 (only the `description` translated on Publisher 2.2.11).
 
 ### Harvest instead of hand-writing (optional)
 
@@ -190,9 +196,9 @@ Expected result:
 
 - The build stays green (QA errors = 0). A translation supplement never *breaks*
   a build — at worst it is ignored.
-- Open `output/en/CodeSystem-<id>.html`: the `description` and concept texts you
-  translated appear in **English**; untranslated fields and the title stay
-  German.
+- Open `output/en/CodeSystem-<id>.html`: the `description` you translated appears
+  in **English**; concept displays, the title, and untranslated fields stay
+  German (step 3).
 - Open `output/de/…`: unchanged German — translation work is additive.
 - Narrative pages under `/en/` still show German plus "There is no translation
   page available …" — expected (step 3).
@@ -205,7 +211,7 @@ Expected result:
 |---|---|---|
 | The `/en/` artifact page still shows German text | `msgid` does not match the German source exactly (quote style, umlaut, trailing period), or the field is not a translatable one | Copy the `msgid` from `fsh-generated/resources/<Type>-<id>.json`; check it is a supported field (step 3) |
 | A supplement seems to do nothing at all | File name is not `<ResourceType>-<id>.po`, or the type is unsupported (ValueSet/IG/menu) | Rename to the exact generated `resourceType`+`id`; drop supplements for unsupported types |
-| `/en/` **chrome** (menu, "Table of Contents", section headings) is in **English on the German site too** | The pinned base template `fhir2.base.template#0.1.0` ships **no German UI-string catalog** (`stringsBase-de.po` was added upstream only after 0.1.0) — see [`docs/DESIGN.md`](../DESIGN.md) §6 | Not a module bug and not fixable in the module. It resolves when the base template is bumped to a version that carries German; the dependency checker watches `fhir2.base.template` and proposes that bump ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). |
+| On the **German** (`/de/`) pages the base **chrome** labels are **blank** — e.g. the footer shows empty, textless links to `toc.html`/`qa.html` (and the breadcrumb shows the English "Table of Contents") | The pinned base template `fhir2.base.template#0.1.0` ships **no German UI-string catalog** (`stringsBase-de.po` was added upstream only after 0.1.0), so `site.data.stringsBase['de']` is empty and the Liquid label lookups return nothing — see [`docs/DESIGN.md`](../DESIGN.md) §6 | Not a module bug and not fixable in the module. It resolves when the base template is bumped to a version that carries German; the dependency checker watches `fhir2.base.template` and proposes that bump ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). |
 | Your `index-en.md` does not appear on `/en/` | Narrative-page translation is not yet consumed by the toolchain (step 3) | Expected; keep the file — it renders once support lands |
 | The language-switcher flag is broken/missing | `fhir2.base.template#0.1.0` does not ship the ISO-639-3 flag SVGs the current Publisher expects | Known base-version gap; harmless (see `input/ignoreWarnings.txt`) |
 
