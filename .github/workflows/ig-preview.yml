@@ -233,7 +233,9 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upsert PR comment with the preview URL
-        if: ${{ github.event_name == 'push' }}
+        # Runs whenever a preview was published (push, manual re-run, dispatch);
+        # the script self-skips when the branch has no open PR.
+        if: ${{ steps.publish.outputs.url != '' }}
         continue-on-error: true
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
         env:
