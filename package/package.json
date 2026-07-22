@@ -4,7 +4,7 @@
   "license": "CC0-1.0",
   "description": "MII IG template for Medizininformatik-Initiative KDS module Implementation Guides, derived from fhir2.base.template. fhir2.base.template is deliberately pinned to the fixed release 0.1.0 (never #current) for long-term reproducibility; version bumps arrive as reviewable PRs via the scheduled dependency checker.",
   "author": "Forschungsgruppe Digital Health, TU Dresden",
-  "canonical": "TODO(human): set the canonical URL for this template package - none is established yet (packages.fhir.org/de.medizininformatikinitiative.template returned 404 on 2026-07-21); options: the GitHub repo URL https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds (gematik idiom) or a registered http://fhir.org/templates/... URL (HL7 idiom)",
+  "canonical": "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds",
   "base": "fhir2.base.template",
   "dependencies": {
     "fhir2.base.template": "0.1.0"
