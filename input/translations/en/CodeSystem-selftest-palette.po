@@ -1,0 +1,30 @@
+# English translation supplement for the self-test CodeSystem.
+#
+# This file demonstrates a translation the IG Publisher ACTUALLY renders: the
+# `description` of a CodeSystem (a resource type in the toolchain's translatable
+# set — StructureDefinition / CodeSystem / Questionnaire). Verified in the
+# self-test build (IG Publisher 2.2.11): on the /en/ CodeSystem page the
+# description below appears in English; on /de/ it stays German.
+#
+# Naming (mandatory): input/translations/<lang>/<ResourceType>-<id>.po, wired via
+# the `translation-sources` parameter in sushi-config.yaml. A wrong name (e.g.
+# ValueSet-... or menu.po) is silently IGNORED by the Publisher.
+#
+# The msgid MUST match, byte for byte, the German source text in
+# fsh-generated/resources/CodeSystem-selftest-palette.json (regenerate with
+# `sushi .` and copy the exact string, umlauts included). msgstr is the English
+# rendering. The German source is never edited by translation work — the
+# supplement is purely additive.
+#
+# SCOPE NOTE (empirically verified on Publisher 2.2.11 — see docs/DESIGN.md and
+# docs/recipes/add-translation.md): a plain `.po` supplement applied here to the
+# resource-level `description`, but NOT to concept-level fields
+# (`concept[n].display` / `concept[n].definition`) — those stayed German on /en/
+# at both data and narrative level. CodeSystem.title likewise did not translate.
+# Concept displays are localized the FHIR-native way, via a language-tagged
+# `designation` in the resource, not via this supplement. Only the entry that
+# actually renders is kept here, so the self-test stays an honest demonstration.
+
+#: CodeSystem.description
+msgid "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."
+msgstr "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."
