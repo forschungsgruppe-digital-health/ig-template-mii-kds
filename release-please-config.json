@@ -1,0 +1,16 @@
+{
+  "release-type": "simple",
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "package/package.json",
+          "jsonpath": "$.version"
+        },
+        "package-list.json"
+      ]
+    }
+  }
+}
