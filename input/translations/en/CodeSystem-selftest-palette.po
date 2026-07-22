@@ -1,0 +1,42 @@
+# English translation supplement for the self-test CodeSystem.
+#
+# This file demonstrates a translation the IG Publisher ACTUALLY renders: a
+# supplement for a CodeSystem (one of StructureDefinition / CodeSystem /
+# Questionnaire — the only resource types the toolchain translates today; see
+# skills/ig-translate/SKILL.md and docs/recipes/add-translation.md).
+#
+# Naming (mandatory): input/translations/<lang>/<ResourceType>-<id>.po, wired via
+# the `translation-sources` parameter in sushi-config.yaml. A wrong name (e.g.
+# ValueSet-... or menu.po) is silently IGNORED by the Publisher.
+#
+# Each msgid MUST match, byte for byte, the German source text in
+# fsh-generated/resources/CodeSystem-selftest-palette.json (regenerate with
+# `sushi .` and copy the exact string, umlauts included). msgstr is the English
+# rendering shown on the /en/ CodeSystem page. The German source is never edited
+# by translation work — the supplement is purely additive.
+#
+# Note: CodeSystem.title ("Selbsttest-Palette") is deliberately NOT translated
+# here — `title` is not in the toolchain's translatable set, so a supplement for
+# it would be ignored. The title therefore stays German on /en/, while the
+# description and concept texts below do switch to English — exactly what the
+# rendering table predicts.
+
+#: CodeSystem.description
+msgid "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt."
+msgstr "Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact."
+
+#: CodeSystem.concept[0].display
+msgid "Primärfarbe"
+msgstr "Primary colour"
+
+#: CodeSystem.concept[0].definition
+msgid "Platzhalter für den Steckplatz der primären Markenfarbe der Vorlage."
+msgstr "Placeholder for the template's primary brand-colour slot."
+
+#: CodeSystem.concept[1].display
+msgid "Akzentfarbe"
+msgstr "Accent colour"
+
+#: CodeSystem.concept[1].definition
+msgid "Platzhalter für den Steckplatz der Akzentfarbe der Vorlage."
+msgstr "Placeholder for the template's accent-colour slot."

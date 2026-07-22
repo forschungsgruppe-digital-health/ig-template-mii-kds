@@ -32,14 +32,24 @@ publisher:
   url: https://github.com/forschungsgruppe-digital-health
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
-# Multi-language: German default, English recommended (§3.4). Kept minimal —
-# just the two IG Publisher language parameters so the language-aware base
-# template renders both language variants of the chrome. No translation-sources
-# yet (the multi-language task adds input/translations/en and the recipe).
+# Multi-language: German default, English recommended (§3.4). German is the
+# authoritative language; English is the recommended additional rendering.
+#   i18n-default-lang: de       -> German is the leading/default rendered language
+#   i18n-lang: [en]             -> English is the additional rendered language
+#   translation-sources: [...]  -> folder(s) holding the per-language translation
+#                                  supplements (input/translations/<lang>/<Type>-<id>.po)
+# The self-test ships one supplement (input/translations/en/CodeSystem-selftest-palette.po)
+# so the /en/ CodeSystem page actually shows translated text — a demonstration of
+# the mechanism a module maintainer follows (docs/recipes/add-translation.md).
+# What the toolchain does and does NOT translate is the rendering table in
+# skills/ig-translate/SKILL.md (StructureDefinition/CodeSystem/Questionnaire: yes;
+# ValueSet/IG title/menu/narrative pages: no).
 parameters:
   i18n-default-lang: de
   i18n-lang:
     - en
+  translation-sources:
+    - input/translations/en
 
 # One home page (German-default content) + the auto-generated artifact index.
 pages:

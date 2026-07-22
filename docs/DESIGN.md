@@ -26,7 +26,7 @@ live sources on 2026-07-22:
 | Both MII reference repos use `fhir2.base.template` | `medizininformatik-initiative/kerndatensatz-basis` `ig.ini` (main @ `310ad1e`, 2026-07-21): `template = fhir2.base.template#current`. Same in `forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell` `ig.ini`. |
 | `fhir.base.template` is avoided because of reported security issues | Recorded verbatim in the sample IG's `ig.ini`: `# Template: fhir2.base.template (fhir.base.template wegen gemeldeter Security-Issues nicht genutzt).` |
 | `hl7.fhir.template` is inappropriate for MII | Its repo `HL7/ig-template-fhir` describes itself as "Template used for most HL7-defined FHIR implementation guides … **Adds HL7 logos**" — HL7 branding on an MII guide would be wrong. |
-| `fhir2.base.template` is the language-aware base | Its `package.json` description: "FHIR IG **Translated** Base Template — foundational for use by anyone"; it ships `translations/*.po` (incl. German) and `multilanguage-format: true`. Required for the German-default/English-second setup (spec §3.4). |
+| `fhir2.base.template` is the language-aware base | Its `package.json` description: "FHIR IG **Translated** Base Template — foundational for use by anyone"; it declares `multilanguage-format: true` (in `config.json`) and ships per-language `translations/stringsBase-<lang>.po` / `stringsArtifacts-<lang>.po` catalogs. Required for the German-default/English-second setup (spec §3.4). **Caveat — the pinned `0.1.0` ships NO German catalog** (only `ar`, `es`, `fr`, `nl`, `pt`, `ru`; verified 2026-07-22 by extracting `packages.simplifier.net/fhir2.base.template/0.1.0`). German UI-string catalogs were added upstream (`HL7/ig-template-base2` `main`) only *after* `0.1.0` was cut, so they are not in the pinned build — consequence in §6. |
 | The `0.1.0` pin resolves | FHIR package registry `packages.fhir.org/fhir2.base.template`: single published version `0.1.0`, dist-tag `latest`. Note: the GitHub repo `HL7/ig-template-base2` has **no git tags** — `0.1.0` exists only as the published template package; its `main` (`4c20cf6`, studied for this design) also declares `"version": "0.1.0"`. |
 
 > **Why this matters here:** the branding below only works because the base is
@@ -184,8 +184,34 @@ The override appends to (never replaces) the base footer content:
 
 - All base-provided visible strings in the overridden footer come from the
   base's own mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`
-  (`Links`, `TableOfContents`, `QAReport`) — translated by the base's `.po`
-  files (German included), no re-implementation.
+  (`Links`, `TableOfContents`, `QAReport`) — resolved by the base's own string
+  catalogs, no re-implementation. This override adds **no** UI strings of its
+  own, so it is correct in every language the base supports.
+- **Finding — the pinned base ships no German UI-string catalog (i18n gap).**
+  `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
+  catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
+  2026-07-22; German was added to `HL7/ig-template-base2` `main` after `0.1.0`).
+  The master `stringsBase.json` carries only the English values, so for a
+  language with no `.po` catalog the Publisher falls back to the English source
+  string (gettext `msgid`). **Consequence:** on a German-default IG built with
+  this template, the base's own chrome renders in English even on the `/de/`
+  pages for any key whose German differs from English — e.g. `TableOfContents`
+  shows "Table of Contents" instead of "Inhaltsverzeichnis", `QAReport` shows
+  "QA Report" instead of "QA-Bericht" (`Links` is coincidentally identical). It
+  is a graceful, **non-fatal** fallback: the build stays green; only the base
+  chrome labels are affected, not this template's overrides or the module's
+  translated content.
+  > **Why we do not fix it by shipping the German `.po` here:** a child template
+  > cannot add `translations/` without the fork hazard of §2 (the `.json` string
+  > table is replaced, not merged). The clean fix is upstream: bump the base to a
+  > release that carries the German catalog. The scheduled dependency checker
+  > already watches `fhir2.base.template`, so that bump arrives as a reviewable
+  > PR. **TODO(human):** decide whether to (a) wait for a base release with
+  > German, or (b) vendor `stringsBase-de.po` + `stringsArtifacts-de.po` (CC0,
+  > from `HL7/ig-template-base2`) into a template `translations/` override —
+  > verifying first that a `.po`-only add does not replace the base `.json`
+  > table. The same over-optimistic "German included" wording also appears in
+  > `skills/ig-translate/SKILL.md` (obligation 2) and should be corrected there.
 - **No new visible strings are hard-coded.** The only literal texts added are
   (a) bare URLs (not translated in any language) and (b) `alt` texts that quote
   the proper name/wordmark of the logo variant being shown
