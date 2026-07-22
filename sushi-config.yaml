@@ -1,0 +1,51 @@
+# sushi-config.yaml — self-test IG for the de.medizininformatikinitiative.template
+# IG template.
+# ============================================================================
+# This is NOT an MII Core Dataset module. It is the smallest possible IG that
+# the IG Publisher can render, and it exists ONLY so a `sushi . && publisher`
+# run produces real pages that exercise this template's branding overrides
+# (header, footer, CSS, logo) — see ig.ini and includes/.
+#
+# It is referenced by ig.ini (template = #.) and is never published to a
+# package registry; the package id below is intentionally distinct from any
+# KDS module id and ends in `.selftest`.
+#
+# Multi-language is kept MINIMAL on purpose: German is the default language and
+# English is the one additional language, so the language-aware header/footer
+# render in BOTH languages. The full de→en translation workflow (translation
+# sources, harvesting) is added by the multi-language task, not here.
+
+id: de.medizininformatikinitiative.template.selftest
+packageId: de.medizininformatikinitiative.template.selftest
+canonical: https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds
+name: MIIKDSTemplateSelfTest
+title: "MII KDS IG Template — Self-Test"
+description: "Minimal self-test IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."
+status: draft
+version: 0.1.0
+releaseLabel: ci-build
+fhirVersion: 4.0.1
+license: CC0-1.0
+copyrightYear: 2026+
+publisher:
+  name: Forschungsgruppe Digital Health, TU Dresden
+  url: https://github.com/forschungsgruppe-digital-health
+jurisdiction: urn:iso:std:iso:3166#DE "Germany"
+
+# Multi-language: German default, English recommended (§3.4). Kept minimal —
+# just the two IG Publisher language parameters so the language-aware base
+# template renders both language variants of the chrome. No translation-sources
+# yet (the multi-language task adds input/translations/en and the recipe).
+parameters:
+  i18n-default-lang: de
+  i18n-lang:
+    - en
+
+# One home page (German-default content) + the auto-generated artifact index.
+pages:
+  index.md:
+    title: "Home"
+
+menu:
+  Home: index.html
+  Artifacts: artifacts.html
