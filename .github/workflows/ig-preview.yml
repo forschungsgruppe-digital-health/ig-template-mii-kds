@@ -50,10 +50,10 @@ env:
   # without the other (docs/recipes/review-a-dependency-update.md).
   PUBLISHER_SHA256: "a981af86bca3f3a22ee15b9d4ee3c97d63219b7a14e49d0a525e10bbfc71a911"
   SUSHI_VERSION: "3.20.0"
-  # Jekyll is pinned for the dev container and tracked by the dependency
-  # checker; the IG Publisher renders the site itself, so nothing in THIS
-  # workflow invokes Jekyll. The pin is kept here only so the checker can read
-  # it — do not add a `gem install jekyll` step for the build.
+  # The fhir2.base.template renders the site via Jekyll, so the IG Publisher
+  # shells out to `jekyll` — it MUST be installed (see the "Set up Ruby +
+  # Jekyll" step). This pin is both used by the build AND read by the
+  # dependency checker; bump it in one place.
   JEKYLL_VERSION: "4.4.1"
 
 jobs:
@@ -77,6 +77,14 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
+
+      - name: Set up Ruby (for Jekyll)
+        uses: ruby/setup-ruby@d5126b9b3579e429dd52e51e68624dda2e05be25 # v1.267.0
+        with:
+          ruby-version: "3.3"
+
+      - name: Install Jekyll (pinned — the fhir2.base.template renders via Jekyll)
+        run: gem install jekyll -v "${JEKYLL_VERSION}"
 
       - name: Select terminology server (SU-TermServ if client cert present, else HL7 fallback)
         id: tx
