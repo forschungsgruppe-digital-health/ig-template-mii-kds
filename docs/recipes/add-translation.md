@@ -58,11 +58,10 @@ parameters:
 
 ## 3. What the toolchain will — and will NOT — translate
 
-This is the single most important thing to understand before you spend time
-translating: **most of an IG does not translate yet.** The table is empirically
-verified against this template's self-test build (IG Publisher **2.2.11** with
-`fhir2.base.template#0.1.0`; the sample IG first verified it on 2.2.7 / 2.2.8).
-Re-verify on any toolchain bump — see the note at the end.
+Narrative pages and the menu DO translate; several resource-internal fields do
+not. The table is empirically verified against this template's self-test build
+(IG Publisher **2.2.11** with `fhir2.base.template#0.1.0`). Re-verify on any
+toolchain bump — see the note at the end.
 
 | Content | Renders translated today? | How |
 |---|---|---|
@@ -70,7 +69,8 @@ Re-verify on any toolchain bump — see the note at the end.
 | **CodeSystem `concept.display` / `concept.definition`** | **No — not from a plain `.po` supplement** (verified 2.2.11: they stayed German on `/en/`, at data *and* narrative level). Localize a concept the FHIR-native way, with a language-tagged **`designation`** authored in the resource. | `designation[].language` in the FSH/resource, not a `.po` |
 | **Resource `title`** (any type) | **No** | Not applied from a supplement — leave it German |
 | **ValueSet** texts, **ImplementationGuide** title/description, the **menu** | **No** | Not supported by the Publisher — a supplement for these is silently ignored. Leave them German. |
-| **Narrative pages** (`input/pagecontent/*.md`) | **Not yet** | The `input/pagecontent/<name>-<lang>.md` sibling convention (step 5) is prepared but not yet consumed; `/en/` shows the German page with the note "There is no translation page available …" |
+| **Narrative pages** (`input/pagecontent/<name>.md`) | **Yes** | Put the translated page at `input/translations/<lang>/pagecontent/<same-filename>` (step 5). Verified 2.2.11: `/en/index.html` renders in English. A page with no translation file falls back to the German source. |
+| **Menu** (`input/includes/menu.xml`) | **Yes** | A per-language copy at `input/translations/<lang>/includes/menu.xml` |
 
 > **Why bother translating at all, given the gaps:** conformance resources
 > (profiles, code systems, questionnaires) are the machine-readable core a
@@ -161,26 +161,30 @@ it after `sushi .`, because it reads `fsh-generated/resources/`.
 
 ---
 
-## 5. Prepare a narrative-page translation (future-proof)
+## 5. Translate a narrative page
 
-Narrative pages do not translate yet (step 3), but author the English version
-now so it renders automatically once the toolchain adds support. The convention
-is a **sibling file**, next to the German page:
+Narrative pages DO translate. Put the translated page in the translation-source
+folder, under `pagecontent/`, with the **same file name** as the German page:
 
 ```
-input/pagecontent/index.md        # German (leading)
-input/pagecontent/index-en.md      # English translation (not yet rendered)
+input/pagecontent/index.md                     # German (leading / default)
+input/translations/en/pagecontent/index.md     # English — renders on /en/
 ```
 
 - Keep the structure, headings, and links 1:1 with the German page.
 - Leave internal artifact links (`CodeSystem-<id>.html`, …) and FHIR identifiers
   unchanged.
-- These siblings live in `input/pagecontent/`, **not** in
-  `input/translations/en/` — that folder is only for resource supplements.
+- The file goes under `input/translations/<lang>/pagecontent/`, **not** as a
+  `<name>-<lang>.md` sibling in `input/pagecontent/` (the toolchain would treat a
+  sibling as a separate page, not a translation — this is exactly the mistake to
+  avoid). This mirrors the HL7 reference
+  [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig).
+- A page with no translation file simply falls back to the German source on
+  `/en/` — that is fine; translate the pages that matter most first.
 
-This repo carries one such sibling,
-[`input/pagecontent/index-en.md`](../../input/pagecontent/index-en.md), for
-illustration.
+This repo carries one such translation,
+[`input/translations/en/pagecontent/index.md`](../../input/translations/en/pagecontent/index.md),
+and `/en/index.html` renders it in English.
 
 ---
 
@@ -212,7 +216,7 @@ Expected result:
 | The `/en/` artifact page still shows German text | `msgid` does not match the German source exactly (quote style, umlaut, trailing period), or the field is not a translatable one | Copy the `msgid` from `fsh-generated/resources/<Type>-<id>.json`; check it is a supported field (step 3) |
 | A supplement seems to do nothing at all | File name is not `<ResourceType>-<id>.po`, or the type is unsupported (ValueSet/IG/menu) | Rename to the exact generated `resourceType`+`id`; drop supplements for unsupported types |
 | On the **German** (`/de/`) pages the base **chrome** labels are **blank** — e.g. the footer shows empty, textless links to `toc.html`/`qa.html` (and the breadcrumb shows the English "Table of Contents") | The pinned base template `fhir2.base.template#0.1.0` ships **no German UI-string catalog** (`stringsBase-de.po` was added upstream only after 0.1.0), so `site.data.stringsBase['de']` is empty and the Liquid label lookups return nothing — see [`docs/DESIGN.md`](../DESIGN.md) §6 | Not a module bug and not fixable in the module. It resolves when the base template is bumped to a version that carries German; the dependency checker watches `fhir2.base.template` and proposes that bump ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). |
-| Your `index-en.md` does not appear on `/en/` | Narrative-page translation is not yet consumed by the toolchain (step 3) | Expected; keep the file — it renders once support lands |
+| Your translated page does not appear on `/en/` | The file is in the wrong place — e.g. a `<name>-en.md` sibling in `input/pagecontent/`, or a wrong file name | Put it at `input/translations/en/pagecontent/<same-filename-as-the-German-page>` and rebuild |
 | The language-switcher flag is broken/missing | `fhir2.base.template#0.1.0` does not ship the ISO-639-3 flag SVGs the current Publisher expects | Known base-version gap; harmless (see `input/ignoreWarnings.txt`) |
 
 ---
