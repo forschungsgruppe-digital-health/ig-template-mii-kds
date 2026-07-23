@@ -10,23 +10,19 @@ prüfen.
 Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md`
 des Repositorys.
 
-### Zielgruppen-Boxen (Demo der Highlight-Farben)
+### Highlight-Boxen (Demo der Hintergrundfarben)
 
-Die Vorlage stellt wiederverwendbare CSS-Klassen für die „Für wen ist das?"-Boxen
-bereit (Klassen `mii-audience mii-audience-implementers` bzw.
-`mii-audience-researchers`). Ein Modul nutzt sie auf seiner Startseite:
+Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben
+von Inhalten bereit (Klassen `mii-highlight mii-highlight-blue` bzw.
+`mii-highlight-green`). Es handelt sich um reines Styling — welche Bedeutung eine
+Farbe hat, entscheidet das jeweilige Modul.
 
-<div class="mii-audience mii-audience-implementers">
-<h5>Implementierende</h5>
-<p>Datenintegrationszentren (DIZ), Software-Entwickelnde und System-Architekt:innen, die FHIR-basierte Lösungen umsetzen.</p>
+<div class="mii-highlight mii-highlight-blue">
+<h5>Blaue Highlight-Box</h5>
+<p>Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).</p>
 </div>
 
-<div class="mii-audience mii-audience-researchers">
-<h5>Forschende</h5>
-<p>Wissenschaftler:innen, die MII-Daten für die medizinische Forschung nutzen.</p>
+<div class="mii-highlight mii-highlight-green">
+<h5>Grüne Highlight-Box</h5>
+<p>Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).</p>
 </div>
-
-### Artefakte
-
-Das enthaltene [Self-Test Palette](CodeSystem-selftest-palette.html) CodeSystem
-existiert nur, damit eine echte Artefakt-Seite erzeugt wird.
