@@ -55,13 +55,18 @@ parameters:
   translation-sources:
     - input/translations/en
 
-# One home page (German-default content) + the auto-generated artifact index.
+# One home page (German-default content) + the auto-generated artifact index +
+# the Module Structure page that renders the canonical MII module page structure
+# this template owns (Option B — see structure/).
 pages:
   index.md:
     title: "Home"
+  module-structure.md:
+    title: "Module Structure"
 
 menu:
   Home: index.html
+  Module Structure: module-structure.html
   Artifacts: artifacts.html
 
 # ╔══════════════════════════════════════════════════════════════════════════╗

@@ -1,0 +1,25 @@
+# Canonical MII KDS module IG page set — the authoritative list of pages a module
+# ships (each needs a matching input/pagecontent/<name>.md in the module). Mirror
+# it in the module's sushi-config.yaml `pages:` tree. Source of truth for Option B.
+pages:
+  index.md: { title: Home }
+  guidance.md: { title: Guidance }
+  researcher-guidance.md: { title: Guidance for Researchers }
+  implementer-guidance.md: { title: Guidance for Implementers }
+  datasets-and-descriptions.md: { title: Datasets and Descriptions }
+  uml-diagrams.md: { title: UML Diagrams }
+  conformance.md: { title: Conformance }
+  general-requirements.md: { title: General Requirements }
+  must-support.md: { title: Must Support }
+  missing-data.md: { title: Handling Missing Data }
+  profiles-and-extensions.md: { title: Profiles and Extensions }
+  terminology.md: { title: Terminology }
+  capability-statements.md: { title: Capability Statements }
+  search-parameters-and-operations.md: { title: Search Parameters and Operations }
+  logical-models.md: { title: Logical Models }
+  examples.md: { title: Examples }
+  downloads.md: { title: Downloads }
+  version-history.md: { title: Versioning }
+  changes.md: { title: Changelog }
+  translationinfo.md: { title: Translation Information }
+  metadata.md: { title: Metadata Overview }
