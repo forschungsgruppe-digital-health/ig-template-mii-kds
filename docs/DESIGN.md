@@ -1,13 +1,20 @@
 # DESIGN — MII branding for `de.medizininformatikinitiative.template`
 
-> ## ⚠️ Gate B — derived suggestion
+> ## ✅ Gate B — CONFIRMED (2026-07-24)
 >
-> **This entire design (logo + palette) is a DERIVED SUGGESTION, not a confirmed
-> corporate design.** It was reverse-engineered on 2026-07-22 from the assets the
-> MII itself publishes (see the source table below) so that a human can react to a
-> concrete, rendered proposal instead of a blocking "go find the official assets"
-> request. It may live on `dev` and in non-release previews.
-> **TODO(human): confirm or replace logo + palette before any release.**
+> **The MII corporate design of this template (logo + palette + layout) is
+> CONFIRMED by the maintainer** and may go into a release. The design was derived
+> on 2026-07-22 from the assets the MII itself publishes (see the source table
+> below) and reviewed on the rendered self-test preview before confirmation.
+> Changes since the derived suggestion: the page header background is **white**
+> (matching the white logo background and the white content area), and the
+> highlight boxes are purpose-neutral (`mii-highlight-blue` / `mii-highlight-green`).
+>
+> Remaining non-blocking follow-ups (do not gate a release):
+> - The main MII logo is shipped as PNG; no official SVG of it exists publicly.
+> - The MII logo is a trademark; shipping it in this CC0 repo relies on MII
+>   permission (precedent: `kerndatensatz-basis` ships MII logo files). Confirm
+>   redistribution rights with the MII before wide distribution.
 
 This document records every branding decision of this template, each with its
 rationale and its exact upstream source. Nothing here is invented: every color,
@@ -192,30 +199,24 @@ The override appends to (never replaces) the base footer content:
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
   2026-07-22; German was added to `HL7/ig-template-base2` `main` after `0.1.0`).
   The master `stringsBase.json` carries only the English values, so
-  `site.data.stringsBase['de']` is **empty**. **Consequence (observed in the
-  self-test build, PR #10 preview):** every base UI string this footer resolves
+  `site.data.stringsBase['de']` is **empty**, so any base UI string resolved
   through `{{site.data.stringsBase['de']['<Key>']}}` returns **nothing on the
-  `/de/` pages** — the footer's `Links` label is blank and its "Table of
-  Contents"/"QA Report" links render as empty, textless links to `toc.html` /
-  `qa.html`. (The IG Publisher's Java-generated breadcrumb resolves the same key
-  differently and shows the English fallback "Table of Contents".) The `/en/`
-  footer is fully correct. So on the **default** language the base chrome labels
-  are missing — worse than an English fallback. It is still **non-fatal**: the
-  build stays green (QA errors = 0) and only base-provided labels are affected,
-  not this template's own additions (the MII imprint links, which are
-  language-neutral bare URLs, render correctly in both languages) or the module's
-  translated content.
-  > **Why we do not fix it by shipping the German `.po` here:** a child template
-  > cannot add `translations/` without the fork hazard of §2 (the `.json` string
-  > table is replaced, not merged). The clean fix is upstream: bump the base to a
-  > release that carries the German catalog. The scheduled dependency checker
-  > already watches `fhir2.base.template`, so that bump arrives as a reviewable
-  > PR. **TODO(human):** decide whether to (a) wait for a base release with
-  > German, or (b) vendor `stringsBase-de.po` + `stringsArtifacts-de.po` (CC0,
-  > from `HL7/ig-template-base2`) into a template `translations/` override —
-  > verifying first that a `.po`-only add does not replace the base `.json`
-  > table. The same over-optimistic "German included" wording also appears in
-  > `skills/ig-translate/SKILL.md` (obligation 2) and should be corrected there.
+  `/de/` pages**. Originally this left the footer's `Links` label blank and the
+  "Table of Contents"/"QA Report" links textless on German pages.
+  **Fix applied (2026-07-24):** `includes/fragment-footer.html` no longer relies
+  on `stringsBase` for its labels — it hard-codes language-aware labels
+  (`Links` / `Inhaltsverzeichnis` / `QA-Bericht` / `Impressum` on `/de/`,
+  `Links` / `Table of Contents` / `QA Report` / `Legal notice` on `/en/`), so the
+  footer now renders real text in **both** languages. Verified on the self-test
+  preview. This is a footer-only override; other base chrome that still resolves
+  through `stringsBase` would remain affected until the base ships a German
+  catalog.
+  > **Upstream fix still preferred for the rest of the base chrome:** bump the
+  > base to a release that carries the German catalog (the dependency checker
+  > watches `fhir2.base.template`, so the bump arrives as a reviewable PR).
+  > Vendoring `stringsBase-de.po` into a template `translations/` override is the
+  > alternative, but a child template's `translations/` replaces the base `.json`
+  > table rather than merging (the fork hazard of §2), so it is not done here.
 - **No new visible strings are hard-coded.** The only literal texts added are
   (a) bare URLs (not translated in any language) and (b) `alt` texts that quote
   the proper name/wordmark of the logo variant being shown

@@ -43,11 +43,11 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 #     (e.g. input/translations/en/pagecontent/index.md) — the whole page is
 #     rendered in that language on /<lang>/.
 #   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
-#     (e.g. .../en/CodeSystem-selftest-palette.po) — msgid/msgstr entries
-#     translate resource fields (description etc.).
-# The self-test ships both (this page in en + the CodeSystem .po) so /en/ renders
-# in English — the mechanism a module maintainer follows
-# (docs/recipes/add-translation.md).
+#     (msgid/msgstr entries translate resource fields such as description).
+# The self-test ships the English home page (input/translations/en/pagecontent/
+# index.md) so /en/ renders in English — the mechanism a module maintainer
+# follows (docs/recipes/add-translation.md). The self-test carries no conformance
+# resources; a module adds its own FSH + the matching .po files.
 parameters:
   i18n-default-lang: de
   i18n-lang:

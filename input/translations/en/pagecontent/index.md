@@ -10,23 +10,18 @@ check the language-aware header and footer.
 What the template is and how a module uses it is described in the repository's
 `README.md`.
 
-### Target-audience boxes (highlight-colour demo)
+### Highlight boxes (background-colour demo)
 
-The template ships reusable CSS classes for the "who is this for?" boxes (classes
-`mii-audience mii-audience-implementers` / `mii-audience-researchers`). A module
-uses them on its home page:
+The template ships reusable, purpose-neutral CSS classes for calling out content
+(classes `mii-highlight mii-highlight-blue` / `mii-highlight-green`). These are
+styling only — a module decides what each colour means.
 
-<div class="mii-audience mii-audience-implementers">
-<h5>Implementers</h5>
-<p>Data Integration Centers (DIC), software developers and system architects implementing FHIR-based solutions.</p>
+<div class="mii-highlight mii-highlight-blue">
+<h5>Blue highlight box</h5>
+<p>Example of the blue background highlight (`mii-highlight-blue`).</p>
 </div>
 
-<div class="mii-audience mii-audience-researchers">
-<h5>Researchers</h5>
-<p>Scientists using MII data for medical research.</p>
+<div class="mii-highlight mii-highlight-green">
+<h5>Green highlight box</h5>
+<p>Example of the green background highlight (`mii-highlight-green`).</p>
 </div>
-
-### Artifacts
-
-The included [Self-Test Palette](CodeSystem-selftest-palette.html) CodeSystem
-exists only so that a real artifact page is produced.
