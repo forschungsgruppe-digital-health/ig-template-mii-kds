@@ -10,15 +10,15 @@
 | *Official URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest | *Version*:0.1.0 |
 | Draft as of 2026-07-23 | *Computable Name*:MIIKDSTemplateSelfTest |
 
- There is no translation page available for the current page, so it has been rendered in the default language 
+ This page includes translations from the original source language in which the guide was authored. Information on these translations and instructions on how to provide feedback on the translations can be found [here](translationinfo.html). 
 
-Diese Seite dient ausschließlich dem **Selbsttest** der IG-Template-Vorlage `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
+This page exists solely for the **self-test** of the `de.medizininformatikinitiative.template` IG template. It is **not** an MII Core Dataset module.
 
-Der Selbsttest baut die Vorlage eigenständig, damit Branding-Änderungen (Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können, bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch (Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu prüfen.
+The self-test builds the template standalone so that branding changes (header, footer, CSS, logo) can be reviewed in a rendered IG before a template version is released. The build renders in German (the default language) and English, to check the language-aware header and footer.
 
-Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md` des Repositorys.
+What the template is and how a module uses it is described in the repository's `README.md`.
 
-### Artefakte
+### Artifacts
 
-Das enthaltene [Self-Test Palette](CodeSystem-selftest-palette.md) CodeSystem existiert nur, damit eine echte Artefakt-Seite erzeugt wird.
+The included [Self-Test Palette](CodeSystem-selftest-palette.md) CodeSystem exists only so that a real artifact page is produced.
 

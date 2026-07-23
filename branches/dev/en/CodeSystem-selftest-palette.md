@@ -36,7 +36,7 @@ This Code system is referenced in the definition of the following value sets:
   "title" : "Selbsttest-Palette",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-23T04:54:47+00:00",
+  "date" : "2026-07-23T09:06:16+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
