@@ -14,7 +14,7 @@
   "name" : "MIIKDSTemplateSelfTest",
   "title" : "MII KDS IG Template — Self-Test",
   "status" : "draft",
-  "date" : "2026-07-23T09:06:16+00:00",
+  "date" : "2026-07-23T11:07:49+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
