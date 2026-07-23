@@ -63,3 +63,10 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 > `CONTRIBUTING.md`, `MAINTENANCE.md` and six workflow files. Post-2026 a new
 > maintainer needs one place that says "this is how this repo builds, previews and
 > releases."
+
+## Secrets & enabling the gated features
+
+All builds and releases work without secrets. To enable the optional gated
+features — SU-TermServ terminology (Gate F) and the Zulip release announcement
+(Gate G) — see [docs/SECRETS.md](SECRETS.md) for the exact `gh secret set`
+commands. The workflows are already wired; adding the secret is the only step.
