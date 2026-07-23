@@ -12,7 +12,29 @@ This repository is an [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR
 
 ## Quickstart
 
-TODO: completed by the docs task (A8).
+You do **not** need this Quickstart to *use* the template in a module — for that,
+see [recipes/consume-this-template-in-a-module.md](docs/recipes/consume-this-template-in-a-module.md).
+This Quickstart is for *maintaining* the template: build its self-test, see the
+rendered branding, change something, and release.
+
+1. **Clone** and open in the dev container (installs the whole toolchain for you):
+   `git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds && cd ig-template-mii-kds`, then in VS Code run **"Reopen in Container"**. Details: [recipes/first-build-in-devcontainer.md](docs/recipes/first-build-in-devcontainer.md).
+2. **Build the self-test IG** (the template applied to a tiny sample so you can see
+   it render): `sushi . && curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar && java -jar publisher.jar -ig ig.ini`.
+3. **Open** `output/index.html` in a browser — you now see the MII header, footer,
+   colours and logo applied.
+4. **Or just push a branch:** every push to a `feature/*` branch builds the
+   self-test in CI and posts a **preview URL** on the PR (see [docs/WORKFLOWS.md](docs/WORKFLOWS.md)).
+   The current `dev` preview is at
+   `https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/`.
+5. **Change the brand colour** in `content/assets/css/mii.css` (override a CSS
+   variable — one line): [recipes/change-the-brand-color.md](docs/recipes/change-the-brand-color.md).
+   Rebuild (step 2) and see it.
+6. **Cut a release** when your change is ready: merge `dev → main`; Release Please
+   opens a SemVer release PR: [recipes/cut-a-template-release.md](docs/recipes/cut-a-template-release.md).
+
+New to any of the words above? Start with the [Glossary](docs/GLOSSARY.md) and
+[Concepts](docs/CONCEPTS.md).
 
 ## How this repo is structured
 
