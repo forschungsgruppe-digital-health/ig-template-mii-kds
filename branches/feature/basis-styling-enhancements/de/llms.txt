@@ -1,0 +1,16 @@
+# de.medizininformatikinitiative.template.selftest#0.1.0: MII KDS IG Template — Self-Test(de)
+
+## Pages
+
+* [Home](index.md)
+* [Artifacts Summary](artifacts.md)
+
+## Resources
+
+### CodeSystems
+
+* [Selbsttest-Palette](CodeSystem-selftest-palette.md)
+
+### ImplementationGuides
+
+* [MII KDS IG Template — Self-Test](ImplementationGuide-de.medizininformatikinitiative.template.selftest.md)
