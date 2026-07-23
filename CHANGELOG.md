@@ -1,0 +1,21 @@
+# Changelog
+
+## [0.2.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.1.0...v0.2.0) (2026-07-23)
+
+
+### Features
+
+* adopt kerndatensatz-basis styling into the IG template ([#16](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/16)) ([178fca6](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/178fca67fe81e7eebc9e733f6e900e97df3254b2))
+* dev container ([#4](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/4)) ([21698a3](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/21698a3ba3364030f09960e087ed012862f4f637))
+* MII branding overrides (derived suggestion — Gate B) ([#8](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/8)) ([90021ef](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/90021efa4233cdb469f278b148f8aa0c81a9274d))
+* multi-language support + translation recipe ([#10](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/10)) ([f2fba6e](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/f2fba6e1e57942a7675f0e84665bcd7ee2192f6e))
+* self-test harness + CI build + dev Pages preview ([#9](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/9)) ([ddac820](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/ddac8203fa9fe259386a1199a5e9e74f90e8a1b0))
+* template package manifest ([#3](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/3)) ([59f09a0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/59f09a09baef395c6e32e14a6f881aa51ccc532a))
+* vendor-agnostic agent skills ([#5](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/5)) ([820c7db](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/820c7dbf507f9096a2acd5b1afd0a74e9bd4ceba))
+* white header, generic highlight boxes, remove CodeSystem, confirm Gate B ([#17](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/17)) ([b54bfcd](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/b54bfcd2f6fe8565f9fe6c55925c8aa0b56f7126))
+
+
+### Bug Fixes
+
+* language redirect landing page + English page translation ([#13](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/13)) ([ab82b65](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/ab82b65d0781bb1be60727a3047ec05e68f7f896))
+* set the template package canonical URL ([#6](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/6)) ([9977eae](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/9977eae41a024293cea90f7c190e0f121c271c75))
