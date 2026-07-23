@@ -16,6 +16,18 @@ Der Selbsttest baut die Vorlage eigenständig, damit Branding-Änderungen (Kopfz
 
 Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md` des Repositorys.
 
+### Zielgruppen-Boxen (Demo der Highlight-Farben)
+
+Die Vorlage stellt wiederverwendbare CSS-Klassen für die „Für wen ist das?"-Boxen bereit (Klassen `mii-audience mii-audience-implementers` bzw. `mii-audience-researchers`). Ein Modul nutzt sie auf seiner Startseite:
+
+##### Implementierende
+
+Datenintegrationszentren (DIZ), Software-Entwickelnde und System-Architekt:innen, die FHIR-basierte Lösungen umsetzen.
+
+##### Forschende
+
+Wissenschaftler:innen, die MII-Daten für die medizinische Forschung nutzen.
+
 ### Artefakte
 
 Das enthaltene [Self-Test Palette](CodeSystem-selftest-palette.md) CodeSystem existiert nur, damit eine echte Artefakt-Seite erzeugt wird.
