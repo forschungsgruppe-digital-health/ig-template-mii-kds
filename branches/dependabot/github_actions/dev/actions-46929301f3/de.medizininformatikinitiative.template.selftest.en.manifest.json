@@ -1,0 +1,7 @@
+{
+  "version" : "0.1.0",
+  "fhirVersion" : ["4.0.1"],
+  "date" : "20260723234514",
+  "name" : "de.medizininformatikinitiative.template.selftest",
+  "jurisdiction" : "urn:iso:std:iso:3166#DE"
+}
