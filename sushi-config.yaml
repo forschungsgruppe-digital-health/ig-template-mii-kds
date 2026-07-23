@@ -36,14 +36,18 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 # authoritative language; English is the recommended additional rendering.
 #   i18n-default-lang: de       -> German is the leading/default rendered language
 #   i18n-lang: [en]             -> English is the additional rendered language
-#   translation-sources: [...]  -> folder(s) holding the per-language translation
-#                                  supplements (input/translations/<lang>/<Type>-<id>.po)
-# The self-test ships one supplement (input/translations/en/CodeSystem-selftest-palette.po)
-# so the /en/ CodeSystem page actually shows translated text — a demonstration of
-# the mechanism a module maintainer follows (docs/recipes/add-translation.md).
-# What the toolchain does and does NOT translate is the rendering table in
-# skills/ig-translate/SKILL.md (StructureDefinition/CodeSystem/Questionnaire: yes;
-# ValueSet/IG title/menu/narrative pages: no).
+#   translation-sources: [...]  -> folder(s) holding the per-language translations
+# Two translation mechanisms live under a translation-source folder
+# (mirroring FHIR/multi-lang-test-ig, the HL7 reference IG):
+#   - NARRATIVE PAGES: input/translations/<lang>/pagecontent/<same-filename>
+#     (e.g. input/translations/en/pagecontent/index.md) — the whole page is
+#     rendered in that language on /<lang>/.
+#   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
+#     (e.g. .../en/CodeSystem-selftest-palette.po) — msgid/msgstr entries
+#     translate resource fields (description etc.).
+# The self-test ships both (this page in en + the CodeSystem .po) so /en/ renders
+# in English — the mechanism a module maintainer follows
+# (docs/recipes/add-translation.md).
 parameters:
   i18n-default-lang: de
   i18n-lang:

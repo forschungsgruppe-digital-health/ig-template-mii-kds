@@ -1,15 +1,3 @@
-<!--
-  Future-proof English translation of the German source page index.md.
-
-  Narrative-page translation uses the sibling-file convention
-  input/pagecontent/<name>-<lang>.md (NOT input/translations/en, which is only
-  for resource supplements). Per the rendering table in skills/ig-translate, the
-  current IG Publisher + fhir2.base.template do NOT yet consume these siblings:
-  the /en/ page tree still shows this page's German source with the base note
-  "There is no translation page available ...". The file is kept in the correct
-  scheme so it renders automatically once the toolchain implements page
-  translation. See docs/recipes/add-translation.md.
--->
 This page exists solely for the **self-test** of the
 `de.medizininformatikinitiative.template` IG template. It is **not** an MII Core
 Dataset module.
