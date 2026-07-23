@@ -14,7 +14,7 @@
   "name" : "MIIKDSTemplateSelfTest",
   "title" : "MII KDS IG Template — Self-Test",
   "status" : "draft",
-  "date" : "2026-07-23T22:28:29+00:00",
+  "date" : "2026-07-23T23:21:01+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
@@ -678,17 +678,17 @@
     "resource" : [{
       "extension" : [{
         "url" : "http://hl7.org/fhir/tools/StructureDefinition/resource-information",
-        "valueString" : "CodeSystem"
+        "valueString" : "StructureDefinition:logical"
       },
       {
         "url" : "http://hl7.org/fhir/StructureDefinition/implementationguide-page",
-        "valueUri" : "CodeSystem-selftest-palette.html"
+        "valueUri" : "StructureDefinition-selftest-model.html"
       }],
       "reference" : {
-        "reference" : "CodeSystem/selftest-palette"
+        "reference" : "StructureDefinition/selftest-model"
       },
-      "name" : "Selbsttest-Palette",
-      "description" : "Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt.",
+      "name" : "Self-Test Model",
+      "description" : "Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact.",
       "exampleBoolean" : false
     }],
     "page" : {

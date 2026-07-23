@@ -1,14 +1,14 @@
 [{
-  "id" : "selftest-palette",
-  "type" : "CodeSystem",
-  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette",
-  "version" : "0.1.0",
-  "name" : "SelfTestPalette"
-},
-{
   "id" : "de.medizininformatikinitiative.template.selftest",
   "type" : "ImplementationGuide",
   "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest",
   "version" : "0.1.0",
   "name" : "MIIKDSTemplateSelfTest"
+},
+{
+  "id" : "selftest-model",
+  "type" : "StructureDefinition",
+  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model",
+  "version" : "0.1.0",
+  "name" : "SelfTestModel"
 }]

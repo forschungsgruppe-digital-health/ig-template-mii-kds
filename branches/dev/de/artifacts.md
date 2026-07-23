@@ -9,5 +9,5 @@
 
 | | |
 | :--- | :--- |
-| [ Selbsttest-Palette  ](CodeSystem-selftest-palette.md) | Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt. |
+| [ Self-Test Model  ](StructureDefinition-selftest-model.md) | Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact. |
 

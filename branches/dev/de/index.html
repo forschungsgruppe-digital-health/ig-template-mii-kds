@@ -22,7 +22,7 @@
       <!-- MII branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
      in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     Gate B - derived suggestion. TODO(human): confirm or replace logo + palette before any release. -->
+     MII corporate design confirmed (Gate B, 2026-07-24). -->
 <link rel="stylesheet" href="assets/css/mii.css"/>
 
 
@@ -55,7 +55,7 @@
           <!-- MII branding override for the fhir2.base.template header placeholder
      (base ships includes/fragment-header.html as a single comment; it is included
      inside "#segment-header > .container", before the #ig-status block).
-     Gate B - derived suggestion. TODO(human): confirm or replace logo + palette before any release.
+     MII corporate design confirmed (Gate B, 2026-07-24).
      Language handling: only the asset and its descriptive alt text switch on
      include.lang (the pattern kerndatensatz-basis uses); no translatable UI
      strings are hard-coded.
@@ -224,13 +224,10 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p>  <!-- white space is critical inside of capture --></p>
-<div class="markdown-toc">
-<ul id="markdown-toc">
-  <li><a href="#zielgruppen-boxen-demo-der-highlight-farben" id="markdown-toc-zielgruppen-boxen-demo-der-highlight-farben">Zielgruppen-Boxen (Demo der Highlight-Farben)</a></li>
-  <li><a href="#artefakte" id="markdown-toc-artefakte">Artefakte</a></li>
-</ul>
-
+<div>
+  <!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown. -->
 </div>
+
 <p>Diese Seite dient ausschließlich dem <strong>Selbsttest</strong> der IG-Template-Vorlage
 <code class="language-plaintext highlighter-rouge">de.medizininformatikinitiative.template</code>. Sie ist <strong>kein</strong> MII-Kerndatensatz-Modul.</p>
 
@@ -243,26 +240,22 @@ prüfen.</p>
 <p>Was die Vorlage ist und wie ein Modul sie verwendet, steht in der <code class="language-plaintext highlighter-rouge">README.md</code>
 des Repositorys.</p>
 
-<h3 id="zielgruppen-boxen-demo-der-highlight-farben">Zielgruppen-Boxen (Demo der Highlight-Farben)</h3>
+<h3 id="highlight-boxen-demo-der-hintergrundfarben">Highlight-Boxen (Demo der Hintergrundfarben)</h3>
 
-<p>Die Vorlage stellt wiederverwendbare CSS-Klassen für die „Für wen ist das?"-Boxen
-bereit (Klassen <code class="language-plaintext highlighter-rouge">mii-audience mii-audience-implementers</code> bzw.
-<code class="language-plaintext highlighter-rouge">mii-audience-researchers</code>). Ein Modul nutzt sie auf seiner Startseite:</p>
+<p>Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben
+von Inhalten bereit (Klassen <code class="language-plaintext highlighter-rouge">mii-highlight mii-highlight-blue</code> bzw.
+<code class="language-plaintext highlighter-rouge">mii-highlight-green</code>). Es handelt sich um reines Styling — welche Bedeutung eine
+Farbe hat, entscheidet das jeweilige Modul.</p>
 
-<div class="mii-audience mii-audience-implementers">
-<h5>Implementierende</h5>
-<p>Datenintegrationszentren (DIZ), Software-Entwickelnde und System-Architekt:innen, die FHIR-basierte Lösungen umsetzen.</p>
+<div class="mii-highlight mii-highlight-blue">
+<h5>Blaue Highlight-Box</h5>
+<p>Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).</p>
 </div>
 
-<div class="mii-audience mii-audience-researchers">
-<h5>Forschende</h5>
-<p>Wissenschaftler:innen, die MII-Daten für die medizinische Forschung nutzen.</p>
+<div class="mii-highlight mii-highlight-green">
+<h5>Grüne Highlight-Box</h5>
+<p>Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).</p>
 </div>
-
-<h3 id="artefakte">Artefakte</h3>
-
-<p>Das enthaltene <a href="CodeSystem-selftest-palette.html">Self-Test Palette</a> CodeSystem
-existiert nur, damit eine echte Artefakt-Seite erzeugt wird.</p>
 
 
 
@@ -301,7 +294,7 @@ existiert nur, damit eine echte Artefakt-Seite erzeugt wird.</p>
      language-aware labels (de/en) so the footer shows real text in both languages,
      preserves the base links (TOC, QA, feedback dashboards), and appends the MII
      information links.
-     Gate B - derived suggestion. TODO(human): confirm or replace before any release.
+     MII corporate design confirmed (Gate B, 2026-07-24).
      Imprint: the MII website has separate German (/de/impressum) and English
      (/en/legal-notice) imprint pages (both verified HTTP 200 on 2026-07-22). -->
 

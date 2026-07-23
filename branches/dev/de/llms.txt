@@ -7,9 +7,9 @@
 
 ## Resources
 
-### CodeSystems
+### Logicals
 
-* [Selbsttest-Palette](CodeSystem-selftest-palette.md)
+* [Self-Test Model](StructureDefinition-selftest-model.md)
 
 ### ImplementationGuides
 

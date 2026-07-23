@@ -22,7 +22,7 @@
       <!-- MII branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
      in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     Gate B - derived suggestion. TODO(human): confirm or replace logo + palette before any release. -->
+     MII corporate design confirmed (Gate B, 2026-07-24). -->
 <link rel="stylesheet" href="assets/css/mii.css"/>
 
 
@@ -55,7 +55,7 @@
           <!-- MII branding override for the fhir2.base.template header placeholder
      (base ships includes/fragment-header.html as a single comment; it is included
      inside "#segment-header > .container", before the #ig-status block).
-     Gate B - derived suggestion. TODO(human): confirm or replace logo + palette before any release.
+     MII corporate design confirmed (Gate B, 2026-07-24).
      Language handling: only the asset and its descriptive alt text switch on
      include.lang (the pattern kerndatensatz-basis uses); no translatable UI
      strings are hard-coded.
@@ -226,13 +226,16 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p>  <!-- white space is critical inside of capture --></p>
-<div class="markdown-toc">
-<ul id="markdown-toc">
-  <li><a href="#target-audience-boxes-highlight-colour-demo" id="markdown-toc-target-audience-boxes-highlight-colour-demo">Target-audience boxes (highlight-colour demo)</a></li>
-  <li><a href="#artifacts" id="markdown-toc-artifacts">Artifacts</a></li>
-</ul>
-
+<div>
+  <!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown. -->
 </div>
+
+<p style="border:var(--translation-box-border);background-color:var(--translation-background-color);padding: 5px 5px 5px 5px;">
+
+This page includes translations from the original source language in which the guide was authored.  Information on these translations and instructions on how to provide feedback on the translations can be found [here](translationinfo.html).
+
+</p>
+
 <p>This page exists solely for the <strong>self-test</strong> of the
 <code class="language-plaintext highlighter-rouge">de.medizininformatikinitiative.template</code> IG template. It is <strong>not</strong> an MII Core
 Dataset module.</p>
@@ -245,26 +248,21 @@ check the language-aware header and footer.</p>
 <p>What the template is and how a module uses it is described in the repository's
 <code class="language-plaintext highlighter-rouge">README.md</code>.</p>
 
-<h3 id="target-audience-boxes-highlight-colour-demo">Target-audience boxes (highlight-colour demo)</h3>
+<h3 id="highlight-boxes-background-colour-demo">Highlight boxes (background-colour demo)</h3>
 
-<p>The template ships reusable CSS classes for the "who is this for?" boxes (classes
-<code class="language-plaintext highlighter-rouge">mii-audience mii-audience-implementers</code> / <code class="language-plaintext highlighter-rouge">mii-audience-researchers</code>). A module
-uses them on its home page:</p>
+<p>The template ships reusable, purpose-neutral CSS classes for calling out content
+(classes <code class="language-plaintext highlighter-rouge">mii-highlight mii-highlight-blue</code> / <code class="language-plaintext highlighter-rouge">mii-highlight-green</code>). These are
+styling only — a module decides what each colour means.</p>
 
-<div class="mii-audience mii-audience-implementers">
-<h5>Implementers</h5>
-<p>Data Integration Centers (DIC), software developers and system architects implementing FHIR-based solutions.</p>
+<div class="mii-highlight mii-highlight-blue">
+<h5>Blue highlight box</h5>
+<p>Example of the blue background highlight (`mii-highlight-blue`).</p>
 </div>
 
-<div class="mii-audience mii-audience-researchers">
-<h5>Researchers</h5>
-<p>Scientists using MII data for medical research.</p>
+<div class="mii-highlight mii-highlight-green">
+<h5>Green highlight box</h5>
+<p>Example of the green background highlight (`mii-highlight-green`).</p>
 </div>
-
-<h3 id="artifacts">Artifacts</h3>
-
-<p>The included <a href="CodeSystem-selftest-palette.html">Self-Test Palette</a> CodeSystem
-exists only so that a real artifact page is produced.</p>
 
 
 
@@ -291,7 +289,7 @@ exists only so that a real artifact page is produced.</p>
 
           IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
           Package de.medizininformatikinitiative.template.selftest#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Generated <span title="Thu, Jul 23, 2026 22:28+0000">2026-07-23</span>
+          Generated <span title="Thu, Jul 23, 2026 23:21+0000">2026-07-23</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
               <!-- MII branding override for the fhir2.base.template footer fragment.
@@ -303,7 +301,7 @@ exists only so that a real artifact page is produced.</p>
      language-aware labels (de/en) so the footer shows real text in both languages,
      preserves the base links (TOC, QA, feedback dashboards), and appends the MII
      information links.
-     Gate B - derived suggestion. TODO(human): confirm or replace before any release.
+     MII corporate design confirmed (Gate B, 2026-07-24).
      Imprint: the MII website has separate German (/de/impressum) and English
      (/en/legal-notice) imprint pages (both verified HTTP 200 on 2026-07-22). -->
 

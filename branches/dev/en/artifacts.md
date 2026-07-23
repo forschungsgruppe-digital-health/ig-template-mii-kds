@@ -9,11 +9,11 @@
 
 This page provides a list of the FHIR artifacts defined as part of this implementation guide.
 
-### Terminology: Code Systems 
+### Structures: Logical Models 
 
-These define new code systems used by systems conforming to this implementation guide.
+These define data models that represent the domain covered by this implementation guide in more business-friendly terms than the underlying FHIR resources.
 
 | | |
 | :--- | :--- |
-| [ Selbsttest-Palette  ](CodeSystem-selftest-palette.md) | Zwei beliebige Codes, damit die Selbsttest-IG eine CodeSystem-Seite rendert; kein MII-Artefakt. |
+| [ Self-Test Model  ](StructureDefinition-selftest-model.md) | Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact. |
 
