@@ -1,0 +1,18 @@
+# Issue chooser configuration.
+# blank_issues_enabled: false forces the structured forms above, which keep
+# reports triageable; general questions are redirected to the community
+# channels below (spec §2.11) instead of piling up as issues.
+blank_issues_enabled: false
+contact_links:
+  - name: FHIR / IG / profiling questions — HL7 FHIR community Zulip
+    url: https://chat.fhir.org
+    about: >-
+      Join the stream "german/mi-initiative" — the channel the MII KDS IGs
+      direct questions to. Anyone can create a free account. Search existing
+      threads first.
+  - name: MII KDS coordination — MII Zulip organization
+    url: https://mii.zulipchat.com/
+    about: >-
+      Join the stream "MII-Kerndatensatz" for initiative-internal KDS
+      coordination. If access must be granted, request it from the MII
+      Geschäftsstelle (office@medizininformatik-initiative.de).

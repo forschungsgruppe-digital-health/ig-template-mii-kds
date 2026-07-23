@@ -1,0 +1,281 @@
+# IG build + GitHub Pages preview (§2.8 / Appendix A.9).
+#
+# Purpose:   on every push to a working branch, build the self-test IG
+#            (SUSHI + IG Publisher) and deploy the rendered result to the
+#            gh-pages branch under branches/<branch>/, so branding changes
+#            (header, footer, CSS, logo) are visually reviewable without a
+#            local build. For Repo A the preview IS the template's self-test IG.
+# Triggers:  push to any branch except main / gh-pages / fsh-generated, plus
+#            workflow_dispatch.
+# Toggle:    vars.ENABLE_PREVIEW — ON by default; set the repo variable to
+#            'false' to skip the job (it then shows as "skipped", not failed).
+# Terminology: auto-selected, NOT a toggle (§2.10) — SU-TermServ via a local
+#            client-cert nginx proxy when the SU_TERMSERV_CLIENT_CERT secret is
+#            present, otherwise the HL7 tx.fhir.org fallback with a ::notice.
+#            The build never hard-fails for lack of the credential (Gate F).
+# Human-gated: nothing here publishes formally. The site root and version-like
+#            paths on gh-pages are RESERVED for the gated -go-publish output;
+#            this workflow only ever writes under branches/<branch>/.
+name: IG preview
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+      - "!gh-pages"
+      - "!fsh-generated"
+  workflow_dispatch:
+
+permissions:
+  contents: write # push previews to the gh-pages branch
+  pull-requests: write # upsert the preview-URL comment on an open PR
+  issues: write # PR comments are issue comments
+
+concurrency:
+  # Repo-global group name: serialize with cleanup-gh-pages.yml so gh-pages
+  # writes never race. Do not cancel in-progress — a cancelled push mid-write
+  # could leave gh-pages half-updated.
+  group: gh-pages-writes
+  cancel-in-progress: false
+
+# Toolchain pins. The names PUBLISHER_VERSION, SUSHI_VERSION and JEKYLL_VERSION
+# are read VERBATIM by scripts/check-updates.mjs (parseWorkflowEnvPin), so the
+# scheduled dependency monitor stays in sync with what the build actually uses.
+# Bump a version here and the checker compares the new pin against upstream.
+env:
+  PUBLISHER_VERSION: "2.2.11"
+  # SHA-256 of publisher.jar for PUBLISHER_VERSION (verified by download,
+  # 2026-07-22). ALWAYS bump this together with PUBLISHER_VERSION — never one
+  # without the other (docs/recipes/review-a-dependency-update.md).
+  PUBLISHER_SHA256: "a981af86bca3f3a22ee15b9d4ee3c97d63219b7a14e49d0a525e10bbfc71a911"
+  SUSHI_VERSION: "3.20.0"
+  # The fhir2.base.template renders the site via Jekyll, so the IG Publisher
+  # shells out to `jekyll` — it MUST be installed (see the "Set up Ruby +
+  # Jekyll" step). This pin is both used by the build AND read by the
+  # dependency checker; bump it in one place.
+  JEKYLL_VERSION: "4.4.1"
+
+jobs:
+  build-and-preview:
+    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default (§2.13)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Set up Node.js (for SUSHI)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      - name: Set up Java (for the IG Publisher)
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Ruby (for Jekyll)
+        uses: ruby/setup-ruby@d5126b9b3579e429dd52e51e68624dda2e05be25 # v1.267.0
+        with:
+          ruby-version: "3.3"
+
+      - name: Install Jekyll (pinned — the fhir2.base.template renders via Jekyll)
+        run: gem install jekyll -v "${JEKYLL_VERSION}"
+
+      - name: Select terminology server (SU-TermServ if client cert present, else HL7 fallback)
+        id: tx
+        env:
+          SU_TERMSERV_CLIENT_CERT: ${{ secrets.SU_TERMSERV_CLIENT_CERT }}
+          SU_TERMSERV_CLIENT_KEY: ${{ secrets.SU_TERMSERV_CLIENT_KEY }}
+          SU_TERMSERV_CLIENT_PASSWORD: ${{ secrets.SU_TERMSERV_CLIENT_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -n "${SU_TERMSERV_CLIENT_CERT:-}" ]; then
+            echo "SU-TermServ client certificate present — starting a local client-cert nginx proxy."
+            mkdir -p nginx/certs
+            # Pinned proxy config (kerndatensatz-meta@1db2e534): forwards to
+            # https://ontoserver.mii-termserv.de with the client certificate.
+            curl -sSL -o nginx/nginx.conf \
+              https://raw.githubusercontent.com/medizininformatik-initiative/kerndatensatz-meta/1db2e534/.github/workflows/nginx.conf
+            echo "${SU_TERMSERV_CLIENT_CERT}" | base64 -d > nginx/certs/client-cert.pem
+            echo "${SU_TERMSERV_CLIENT_KEY}"  | base64 -d > nginx/certs/client-key-encrypted.key
+            openssl rsa -in nginx/certs/client-key-encrypted.key \
+              -out nginx/certs/client-key.key -passin env:SU_TERMSERV_CLIENT_PASSWORD
+            docker run -d --name su-termserv-proxy \
+              -v "$PWD/nginx/nginx.conf:/etc/nginx/nginx.conf:ro" \
+              -v "$PWD/nginx/certs:/etc/nginx/certs:ro" \
+              -p 8090:80 \
+              nginx:1.30.4-alpine
+            for i in $(seq 1 10); do
+              if curl --head --silent --fail http://127.0.0.1:8090; then break; fi
+              sleep 2
+              if [ "$i" -eq 10 ]; then
+                echo "::error::SU-TermServ proxy did not come up"; docker logs su-termserv-proxy || true; exit 1
+              fi
+            done
+            echo "tx=http://127.0.0.1:8090/fhir" >> "$GITHUB_OUTPUT"
+            echo "mode=SU-TermServ (ontoserver.mii-termserv.de via local proxy)" >> "$GITHUB_OUTPUT"
+          else
+            echo "tx=https://tx.fhir.org" >> "$GITHUB_OUTPUT"
+            echo "mode=HL7 fallback (tx.fhir.org)" >> "$GITHUB_OUTPUT"
+            echo "::notice::No SU-TermServ credential — falling back to HL7 tx.fhir.org. Some MII-specific value sets may not fully expand. Supply SU_TERMSERV_CLIENT_CERT / _KEY / _PASSWORD to route terminology to SU-TermServ (Gate F)."
+          fi
+
+      - name: Build the self-test IG (SUSHI + IG Publisher)
+        env:
+          TX: ${{ steps.tx.outputs.tx }}
+        run: |
+          set -euo pipefail
+          npm install -g "fsh-sushi@${SUSHI_VERSION}"
+          sushi .
+          curl -sSL -o publisher.jar \
+            "https://github.com/HL7/fhir-ig-publisher/releases/download/${PUBLISHER_VERSION}/publisher.jar"
+          # Fail hard if the downloaded jar is not the pinned, verified artifact.
+          echo "${PUBLISHER_SHA256}  publisher.jar" | sha256sum --check
+          java -Xmx6g -jar publisher.jar -ig ig.ini -tx "${TX}"
+
+      - name: Enforce QA gate (errors must be 0)
+        run: |
+          set -euo pipefail
+          test -s output/index.html
+          jq empty output/qa.json
+          errs="$(jq -r '.errs // 0' output/qa.json)"
+          echo "IG Publisher reported ${errs} error(s) (terminology: ${{ steps.tx.outputs.mode }})."
+          if [ "${errs}" -ne 0 ]; then
+            echo "::error::Self-test build has ${errs} QA error(s). See the qa artifact and output/qa.html."
+            exit 1
+          fi
+
+      - name: Stop terminology proxy
+        if: always()
+        run: docker rm -f su-termserv-proxy >/dev/null 2>&1 || true
+
+      - name: Upload build output (qa report + rendered site)
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ig-output
+          path: |
+            output/qa.json
+            output/qa.html
+            output/index.html
+          if-no-files-found: warn
+
+      - name: Publish preview under gh-pages/branches/<branch>/
+        id: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          set -euo pipefail
+          remote_url="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+
+          rm -rf gh-pages
+          if git ls-remote --heads "${remote_url}" gh-pages | grep -q .; then
+            git clone --depth 1 --branch gh-pages "${remote_url}" gh-pages
+          else
+            # Orphan-init gh-pages on first use.
+            git clone "${remote_url}" gh-pages
+            cd gh-pages
+            git config user.name "${GIT_AUTHOR_NAME}"
+            git config user.email "${GIT_AUTHOR_EMAIL}"
+            git checkout --orphan gh-pages
+            git rm -rf . >/dev/null 2>&1 || true
+            touch .nojekyll
+            git add .nojekyll
+            git commit -m "chore: initialize gh-pages"
+            git push --set-upstream origin gh-pages
+            cd ..
+          fi
+
+          # The root and version-like paths are RESERVED for the formal
+          # -go-publish output. Every CI preview lives under branches/<branch>/.
+          branch_dir="gh-pages/branches/${BRANCH}"
+          rm -rf "${branch_dir}"
+          mkdir -p "${branch_dir}"
+          cp -R output/. "${branch_dir}/"
+          # Marker for the stale-preview cleanup (cleanup-gh-pages.yml).
+          printf '%s\n' "${BRANCH}" > "${branch_dir}/.branch-name"
+          # Serve the IG output verbatim — never let Pages re-run Jekyll on it.
+          touch gh-pages/.nojekyll
+
+          cd gh-pages
+          # Size guard: GitHub Pages officially supports up to 1 GB.
+          bytes="$(du --bytes --summarize --exclude=.git . | cut -f1)"
+          if [ "${bytes}" -gt 1000000000 ]; then
+            echo "::warning::Staged Pages site is ${bytes} bytes, above the 1 GB GitHub Pages support limit; deployment may not be guaranteed."
+          fi
+
+          git config user.name "${GIT_AUTHOR_NAME}"
+          git config user.email "${GIT_AUTHOR_EMAIL}"
+          git add --all
+          if git diff --cached --quiet; then
+            echo "No preview changes to publish."
+          else
+            git commit -m "chore: preview ${BRANCH}"
+            git push origin gh-pages
+          fi
+
+          url="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO#*/}/branches/${BRANCH}/"
+          echo "url=${url}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### IG preview"
+            echo "[Open the rendered self-test IG for branch \`${BRANCH}\`](${url})"
+            echo ""
+            echo "_Terminology: ${{ steps.tx.outputs.mode }}_"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upsert PR comment with the preview URL
+        # Runs whenever a preview was published (push, manual re-run, dispatch);
+        # the script self-skips when the branch has no open PR.
+        if: ${{ steps.publish.outputs.url != '' }}
+        continue-on-error: true
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+          PREVIEW_URL: ${{ steps.publish.outputs.url }}
+          TX_MODE: ${{ steps.tx.outputs.mode }}
+        with:
+          script: |
+            const branch = process.env.BRANCH_NAME;
+            const url = process.env.PREVIEW_URL;
+            const txMode = process.env.TX_MODE;
+            const { owner, repo } = context.repo;
+            const marker = '<!-- ig-preview-url -->';
+            const body = `${marker}\n### IG preview\n[Open the rendered self-test IG for branch \`${branch}\`](${url})\n\n_Terminology: ${txMode}_`;
+
+            const { data: prs } = await github.rest.pulls.list({
+              owner, repo, state: 'open', per_page: 100,
+            });
+            const pr = prs.find((p) => p.head && p.head.ref === branch);
+            if (!pr) {
+              core.info(`No open PR for branch ${branch}; skipping PR comment.`);
+              return;
+            }
+            const { data: comments } = await github.rest.issues.listComments({
+              owner, repo, issue_number: pr.number, per_page: 100,
+            });
+            const existing = comments.find(
+              (c) => typeof c.body === 'string' && c.body.includes(marker),
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+              core.info(`Updated preview comment on PR #${pr.number}`);
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number: pr.number, body });
+              core.info(`Created preview comment on PR #${pr.number}`);
+            }
+
+      - name: Preview URL (always-visible fallback)
+        if: ${{ always() && steps.publish.outputs.url != '' }}
+        env:
+          PREVIEW_URL: ${{ steps.publish.outputs.url }}
+        run: |
+          echo "Preview URL: ${PREVIEW_URL}"

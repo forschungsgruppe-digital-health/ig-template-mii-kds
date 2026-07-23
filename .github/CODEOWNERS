@@ -1,0 +1,4 @@
+# Code owners are requested for review automatically on every PR.
+* @msusky
+# TODO(human): should an org team (e.g. @forschungsgruppe-digital-health/<team>)
+# own reviews after 2026 instead of the single maintainer @msusky?

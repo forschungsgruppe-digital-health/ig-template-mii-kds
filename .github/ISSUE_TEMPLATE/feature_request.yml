@@ -1,0 +1,42 @@
+name: Feature request
+description: Propose an improvement to the template (layout, branding, tooling)
+title: "feat: <short description>"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search existing issues first — your idea may already be discussed.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the gap or pain point, not (yet) the solution.
+      placeholder: Module IGs currently have no way to...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should the template do instead? Mockups/screenshots welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you thought about, and why they fall short.
+    validations:
+      required: false
+  - type: dropdown
+    id: breaking
+    attributes:
+      label: Would this change how existing module IGs render?
+      description: Helps us judge whether the change needs a MAJOR version.
+      options:
+        - "No — purely additive"
+        - "Yes — existing guides would look/behave differently"
+        - "Not sure"
+    validations:
+      required: true

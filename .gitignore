@@ -1,0 +1,23 @@
+# --- IG-Publisher / SUSHI build artifacts -----------------------------------
+# These appear when a test IG build runs against this template locally.
+# The generated website of a build:
+output/
+# Publisher working/scratch directory:
+temp/
+# Where the IG Publisher unpacks the applied template during a build
+# (NOT a source directory of this repo — sources live in package/, includes/,
+# content/):
+template/
+# Publisher package/terminology cache:
+input-cache/
+# SUSHI-generated FHIR artifacts from FSH sources:
+fsh-generated/
+# Locally downloaded IG Publisher binary (pinned + fetched, never committed):
+publisher.jar
+
+# --- Tooling ----------------------------------------------------------------
+node_modules/
+
+# --- OS / editor noise ------------------------------------------------------
+.DS_Store
+*.log

@@ -1,0 +1,15 @@
+{
+  "package-id": "de.medizininformatikinitiative.template",
+  "title": "MII template for KDS module Implementation Guides",
+  "canonical": "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds",
+  "introduction": "IG-Publisher template carrying the Medizininformatik-Initiative corporate design, derived from fhir2.base.template (pinned to the fixed release 0.1.0)",
+  "list": [
+    {
+      "version": "0.1.0",
+      "desc": "Initial version - in development, not yet released; source at https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds",
+      "path": "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds",
+      "status": "ci-build",
+      "current": true
+    }
+  ]
+}
