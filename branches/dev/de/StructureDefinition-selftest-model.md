@@ -53,7 +53,7 @@ You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir
   "name" : "SelfTestModel",
   "title" : "Self-Test Model",
   "status" : "draft",
-  "date" : "2026-07-23T23:35:23+00:00",
+  "date" : "2026-07-23T23:49:03+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
