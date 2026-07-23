@@ -41,7 +41,7 @@ Other representations of profile: [CSV](../StructureDefinition-selftest-model.cs
   "name" : "SelfTestModel",
   "title" : "Self-Test Model",
   "status" : "draft",
-  "date" : "2026-07-23T23:21:01+00:00",
+  "date" : "2026-07-23T23:35:23+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
