@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette | *Version*:0.1.0 |
-| Draft as of 2026-07-22 | *Computable Name*:SelfTestPalette |
+| Draft as of 2026-07-23 | *Computable Name*:SelfTestPalette |
 
  
 Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact. 
@@ -36,7 +36,7 @@ This Code system is referenced in the definition of the following value sets:
   "title" : "Selbsttest-Palette",
   "status" : "draft",
   "experimental" : true,
-  "date" : "2026-07-22T18:56:05+00:00",
+  "date" : "2026-07-23T04:43:54+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",

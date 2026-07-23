@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest | *Version*:0.1.0 |
-| Draft as of 2026-07-22 | *Computable Name*:MIIKDSTemplateSelfTest |
+| Draft as of 2026-07-23 | *Computable Name*:MIIKDSTemplateSelfTest |
 
  There is no translation page available for the current page, so it has been rendered in the default language 
 
