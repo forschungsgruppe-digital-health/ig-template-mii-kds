@@ -10,6 +10,12 @@ This repository is an [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR
 
 > **Why by version and not by branch:** a module IG build must be reproducible. Referencing a released version of this package (instead of a moving branch) guarantees the same input produces the same rendered guide.
 
+> **Status: PROTOTYPE.** This repository and the module template are prototypes
+> pending discussion in the MII Taskforce Kerndatensatz. They are released and
+> fully usable, but the template is deliberately **not** registered in
+> `FHIR/ig-registry` and the repos must not be moved to another organisation
+> until that is explicitly decided — see [docs/PROJECT-STATUS.md](docs/PROJECT-STATUS.md).
+
 ## Quickstart
 
 You do **not** need this Quickstart to *use* the template in a module — for that,

@@ -58,7 +58,9 @@ before a release (see [WORKFLOWS.md](WORKFLOWS.md)).
 - **[`FHIR/ig-registry`](https://github.com/FHIR/ig-registry)** — HL7's public
   index; its `templates.json` lists IG **templates** so the Publisher can resolve
   this one by id. Getting listed there is a deliberate, gated step (a human
-  decision about the post-2026 owner — see the project's Gate D).
+  decision about the post-2026 owner — see the project's Gate D). **This
+  template is deliberately NOT registered yet:** it is a prototype pending
+  discussion in the MII Taskforce KDS — see [PROJECT-STATUS.md](PROJECT-STATUS.md).
 - **Simplifier** — an alternative FHIR registry platform; not required here.
 
 ## 5. The MII governance context
