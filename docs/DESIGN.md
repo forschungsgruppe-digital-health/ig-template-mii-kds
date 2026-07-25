@@ -194,7 +194,7 @@ The override appends to (never replaces) the base footer content:
   mechanism renders those labels **blank** on the German default pages (next
   bullet). Every visible footer string is therefore correct in both `de` and
   `en`; adding a third language means extending this fragment's label branch.
-- **Finding — the pinned base ships no German UI-string catalog (i18n gap).**
+- **Finding — the pinned base ships no German UI-string catalog (i18n gap; RESOLVED 2026-07-25 by vendoring, see end of this bullet).**
   `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
   2026-07-22; German was added to `HL7/ig-template-base2` `main` after `0.1.0`).
@@ -215,8 +215,18 @@ The override appends to (never replaces) the base footer content:
   > base to a release that carries the German catalog (the dependency checker
   > watches `fhir2.base.template`, so the bump arrives as a reviewable PR).
   > Vendoring `stringsBase-de.po` into a template `translations/` override is the
-  > alternative, but a child template's `translations/` replaces the base `.json`
-  > table rather than merging (the fork hazard of §2), so it is not done here.
+  > alternative for the `.json` table, which replaces rather than merges (the
+  > fork hazard of §2).
+  >
+  > **RESOLVED (2026-07-25).** The `.po` catalogs are *additive*, unlike the
+  > `.json` table: template files layer base-then-child, so a **new** filename
+  > supplements the base's catalogs instead of replacing them. This template
+  > therefore vendors the base's own German catalogs — `stringsBase-de.po` and
+  > `stringsArtifacts-de.po` (CC0, from `HL7/ig-template-base2` `main`) — into
+  > `translations/`. Verified on the rendered self-test: the German footer now
+  > shows the full metadata (`IG © 2026+ …`, `Package … basiert auf FHIR 4.0.1`,
+  > `Erstellt <date>`), matching English. Delete `translations/` once the pinned
+  > base ships `de` itself; see `translations/README.md`.
 - **No new visible strings are hard-coded.** The only literal texts added are
   (a) bare URLs (not translated in any language) and (b) `alt` texts that quote
   the proper name/wordmark of the logo variant being shown
