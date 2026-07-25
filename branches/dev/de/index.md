@@ -7,8 +7,8 @@
 
 | | |
 | :--- | :--- |
-| **:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest | **:0.1.0 |
-| Draft | **:MIIKDSTemplateSelfTest |
+| *Offizielle URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest | *Version*:0.1.0 |
+| Draft Stand: 2026-07-25 | *Maschinenlesbarer Name*:MIIKDSTemplateSelfTest |
 
 Diese Seite dient ausschließlich dem **Selbsttest** der IG-Template-Vorlage `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
 

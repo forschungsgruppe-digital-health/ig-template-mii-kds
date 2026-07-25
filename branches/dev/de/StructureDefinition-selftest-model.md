@@ -1,15 +1,15 @@
 # Self-Test Model - MII KDS IG Template — Self-Test v0.1.0
 
 * [**Table of Contents**](toc.md)
-* [**Artifacts Summary**](artifacts.md)
+* [**Artefaktübersicht**](artifacts.md)
 * **Self-Test Model**
 
-## : Self-Test Model 
+## Logisches Modell: Self-Test Model 
 
 | | |
 | :--- | :--- |
-| **:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model | **:0.1.0 |
-| Draft | **:SelfTestModel |
+| *Offizielle URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model | *Version*:0.1.0 |
+| Draft Stand: 2026-07-25 | *Maschinenlesbarer Name*:SelfTestModel |
 
  
 Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact. 
@@ -20,25 +20,37 @@ Minimal logical model that exists only so the template self-test IG builds and i
 
 You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir.org/xig/resource/de.medizininformatikinitiative.template.selftest|current/StructureDefinition/StructureDefinition-selftest-model.json)
 
-### 
+### Formale Ansichten des Profilinhalts
 
- . 
+ [Beschreibung von Profilen, Differentials, Snapshots und deren Repräsentationen](http://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#structure-definitions). 
 
-*   
-*   
-*   
-*   
-*   
+*  [Schlüsselelemente-Tabelle](#tabs-key) 
+*  [Differential-Tabelle](#tabs-diff) 
+*  [Snapshot-Tabelle](#tabs-snap) 
+*  [Statistiken/Referenzen](#tabs-summ) 
+*  [Alle](#tabs-all) 
+
+Diese Struktur ist abgeleitet von [Base](http://build.fhir.org/types.html#Base) 
+
+Diese Struktur ist abgeleitet von [Base](http://build.fhir.org/types.html#Base) 
 
 ** Summary **
 
- **View** 
+ **Schlüsselelemente-Ansicht** 
+
+ **Differential-Ansicht** 
+
+Diese Struktur ist abgeleitet von [Base](http://build.fhir.org/types.html#Base) 
+
+ **Snapshot-AnsichtView** 
+
+Diese Struktur ist abgeleitet von [Base](http://build.fhir.org/types.html#Base) 
 
 ** Summary **
 
  
 
- ,  
+Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-selftest-model.csv), [Excel](../StructureDefinition-selftest-model.xlsx) 
 
 
 
@@ -53,7 +65,7 @@ You can also check for [usages in the FHIR IG Statistics](https://packages2.fhir
   "name" : "SelfTestModel",
   "title" : "Self-Test Model",
   "status" : "draft",
-  "date" : "2026-07-25T21:53:45+00:00",
+  "date" : "2026-07-25T22:03:00+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",

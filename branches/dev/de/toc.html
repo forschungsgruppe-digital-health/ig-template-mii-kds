@@ -84,7 +84,7 @@
 
 
 
-  <img src="assets/images/deu.svg" alt="Germany " title="Germany" height="16"/>
+  <img src="assets/images/deu.svg" alt="Germany Flagge" title="Germany" height="16"/>
 
 
             </span>
@@ -109,16 +109,17 @@
             </button>
             <a href="http://hl7.org/fhir/R4/index.html" class="navbar-brand hidden">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-                <!-- menu.xml -->
-
+                <!-- Menu in the IG's DEFAULT language (German).
+     The IG Publisher renders the menu from this file. To translate it, ship a
+     per-language copy at input/translations/<lang>/includes/menu.xml — this is
+     the mechanism the HL7 reference IG FHIR/multi-lang-test-ig uses, and it is
+     the ONLY way to get a translated menu: the `menu:` property in
+     sushi-config.yaml generates a single menu.xml and cannot be translated. -->
 <ul class="nav navbar-nav">
-  <li>
-    <a href="index.html">Home</a>
-  </li>
-  <li>
-    <a href="artifacts.html">Artifacts</a>
-  </li>
+  <li><a href="index.html">Startseite</a></li>
+  <li><a href="artifacts.html">Artefakte</a></li>
 </ul>
+
             </div>    <!-- /.nav-collapse -->
 
               
@@ -195,9 +196,9 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
 
-           <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
-          
-          
+          IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
+          Package de.medizininformatikinitiative.template.selftest#0.1.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
+          Erstellt <span title="Sat, Jul 25, 2026 22:03+0000">2026-07-25</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
               <!-- MII branding override for the fhir2.base.template footer fragment.

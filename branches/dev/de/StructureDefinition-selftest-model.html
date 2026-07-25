@@ -84,7 +84,7 @@
 
 
 
-  <img src="assets/images/deu.svg" alt="Germany " title="Germany" height="16"/>
+  <img src="assets/images/deu.svg" alt="Germany Flagge" title="Germany" height="16"/>
 
 
             </span>
@@ -109,16 +109,17 @@
             </button>
             <a href="http://hl7.org/fhir/R4/index.html" class="navbar-brand hidden">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-                <!-- menu.xml -->
-
+                <!-- Menu in the IG's DEFAULT language (German).
+     The IG Publisher renders the menu from this file. To translate it, ship a
+     per-language copy at input/translations/<lang>/includes/menu.xml — this is
+     the mechanism the HL7 reference IG FHIR/multi-lang-test-ig uses, and it is
+     the ONLY way to get a translated menu: the `menu:` property in
+     sushi-config.yaml generates a single menu.xml and cannot be translated. -->
 <ul class="nav navbar-nav">
-  <li>
-    <a href="index.html">Home</a>
-  </li>
-  <li>
-    <a href="artifacts.html">Artifacts</a>
-  </li>
+  <li><a href="index.html">Startseite</a></li>
+  <li><a href="artifacts.html">Artefakte</a></li>
 </ul>
+
             </div>    <!-- /.nav-collapse -->
 
               
@@ -148,7 +149,7 @@
     <div id="segment-breadcrumb" class="segment">    <!-- segment-breadcrumb -->
       <div class="container">    <!-- container -->
         <ul class="breadcrumb">
-          <li><a href="toc.html"><b>Table of Contents</b></a></li><li><a href="artifacts.html"><b>Artifacts Summary</b></a></li><li><b>Self-Test Model</b></li>
+          <li><a href="toc.html"><b>Table of Contents</b></a></li><li><a href="artifacts.html"><b>Artefaktübersicht</b></a></li><li><b>Self-Test Model</b></li>
 
         </ul>
       </div>    <!-- /container -->
@@ -179,20 +180,20 @@
 <ul class="nav nav-tabs">
 
   <li class="active">
-    <a href="#"></a>
+    <a href="#">Inhalt</a>
   </li>
 
 
 
   <li>
-    <a href="StructureDefinition-selftest-model-definitions.html"></a>
+    <a href="StructureDefinition-selftest-model-definitions.html">Detaillierte Beschreibungen</a>
   </li>
 
 
 
   
     <li>
-      <a href="StructureDefinition-selftest-model-mappings.html"></a>
+      <a href="StructureDefinition-selftest-model-mappings.html">Mappings</a>
     </li>
   
 
@@ -204,21 +205,21 @@
 
   
     <li>
-      <a href="StructureDefinition-selftest-model.profile.xml.html"></a>
+      <a href="StructureDefinition-selftest-model.profile.xml.html">XML</a>
     </li>
   
 
 
   
     <li>
-      <a href="StructureDefinition-selftest-model.profile.json.html"></a>
+      <a href="StructureDefinition-selftest-model.profile.json.html">JSON</a>
     </li>
   
 
 
   
     <li>
-      <a href="StructureDefinition-selftest-model.profile.ttl.html"></a>
+      <a href="StructureDefinition-selftest-model.profile.ttl.html">TTL</a>
     </li>
   
 
@@ -228,7 +229,7 @@
 
   <a name="root"> </a>
 
-  <h2 id="root">:
+  <h2 id="root">Logisches Modell:
 
 Self-Test Model
 
@@ -241,10 +242,10 @@ Self-Test Model
   <table class="colsd">
 
     <tr>
-      <td colspan="4"><i></i>: <span class="copy-text">https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model<button data-clipboard-text="https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model" title="null" class="btn-copy"></button></span>
+      <td colspan="4"><i>Offizielle URL</i>: <span class="copy-text">https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model<button data-clipboard-text="https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model" title="Klicken zum Kopieren der URL" class="btn-copy"></button></span>
       </td>
-      <td><i></i>:
-      <span class="copy-text">0.1.0<button data-clipboard-text="https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model|0.1.0" title="null" class="btn-copy"></button></span>
+      <td><i>Version</i>:
+      <span class="copy-text">0.1.0<button data-clipboard-text="https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model|0.1.0" title="Klicken zum Kopieren der versionierten URL" class="btn-copy"></button></span>
       </td>
     </tr>
 
@@ -261,14 +262,16 @@ Self-Test Model
           Draft
           
 
-            
+            Stand: 
+2026-07-25
+
           
         
       </td>
 
 
 
-      <td><i></i>: <span style="font-family: monospace;">SelfTestModel</span></td>
+      <td><i>Maschinenlesbarer Name</i>: <span style="font-family: monospace;">SelfTestModel</span></td>
     </tr>
 
 
@@ -296,44 +299,44 @@ Self-Test Model
 
     <!-- no uri -->
   <a name="profile"> </a>
-  <h3 id="profile"></h3>
+  <h3 id="profile">Formale Ansichten des Profilinhalts</h3>
   <p>
-    <a href="http://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#structure-definitions"></a>.
+    <a href="http://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#structure-definitions">Beschreibung von Profilen, Differentials, Snapshots und deren Repräsentationen</a>.
   </p>
   <div id="tabs">
     <ul>
       <li>
-        <a href="#tabs-key"></a>
+        <a href="#tabs-key">Schlüsselelemente-Tabelle</a>
       </li>
       <li>
-        <a href="#tabs-diff"></a>
+        <a href="#tabs-diff">Differential-Tabelle</a>
       </li>
       <li>
-        <a href="#tabs-snap"></a>
+        <a href="#tabs-snap">Snapshot-Tabelle</a>
       </li>
 
 
 
 
   <!-- <li>
-        <a href="#tabs-xml"></a>
+        <a href="#tabs-xml">Pseudo-XML</a>
       </li> -->
 
 
   <!-- <li>
-        <a href="#tabs-json"></a>
+        <a href="#tabs-json">Pseudo-JSON</a>
       </li> -->
 
 
         <!-- <li>
-        <a href="#tabs-ttl"></a>
+        <a href="#tabs-ttl">Pseudo-TTL</a>
       </li> -->
 
       <li>
-        <a href="#tabs-summ"></a>
+        <a href="#tabs-summ">Statistiken/Referenzen</a>
       </li>
       <li>
-        <a href="#tabs-all"></a>
+        <a href="#tabs-all">Alle</a>
       </li>
     </ul>
     <a name="tabs-key"> </a>
@@ -351,7 +354,7 @@ Self-Test Model
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelK-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelK'), 'binding', document.getElementById('cbselftest-modelK-binding').checked, document.getElementById('ppselftest-modelK'));
 document.getElementById('cbselftest-modelK-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -373,7 +376,9 @@ filterDesc(document.getElementById('selftest-modelK'), 'obligation', document.ge
     <a name="tabs-diff"> </a>
     <div id="tabs-diff">
       <div id="tbl-diff">
-        <p></p>
+        <p>Diese Struktur ist abgeleitet von 
+  <a href="http://build.fhir.org/types.html#Base">Base</a>
+</p>
         <div id="tbl-diff-inner">
           <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="selftest-modelD" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" onInput="filterTree(document.getElementById('selftest-modelD'), event.target.value)" type="text"/> <img onClick="showPanel(event.target, document.getElementById('selftest-modelD'), document.getElementById('ppselftest-modelD'))" src="tree-filter.png" alt="Filters"/><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="ppselftest-modelD">Bindings <input onClick="filterDesc(document.getElementById('selftest-modelD'), 'binding',event.target.checked, document.getElementById('ppselftest-modelD'))" size="1" name="binding" checked="true" id="cbselftest-modelD-binding" type="checkbox"/><br/>Constraints <input onClick="filterDesc(document.getElementById('selftest-modelD'), 'constraint',event.target.checked, document.getElementById('ppselftest-modelD'))" size="1" name="constraint" checked="true" id="cbselftest-modelD-constraint" type="checkbox"/><br/>Obligations <input onClick="filterDesc(document.getElementById('selftest-modelD'), 'obligation',event.target.checked, document.getElementById('ppselftest-modelD'))" size="1" name="obligation" checked="true" id="cbselftest-modelD-obligation" type="checkbox"/><br/></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onLoad="fhirTableInit(this)" style="background-color: inherit"/></a></span></th></tr>
 <tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="a" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy"/><img src="icon_element.gif" alt="." style="background-color: white; background-color: inherit" title="Element" class="hierarchy"/> <a no-external="true" href="StructureDefinition-selftest-model-definitions.html#selftest-model" title="Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact." data-no-external="true">selftest-model</a><a name="selftest-model"> </a></td>
@@ -386,7 +391,7 @@ filterDesc(document.getElementById('selftest-modelK'), 'obligation', document.ge
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelD-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelD'), 'binding', document.getElementById('cbselftest-modelD-binding').checked, document.getElementById('ppselftest-modelD'));
 document.getElementById('cbselftest-modelD-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -422,7 +427,7 @@ filterDesc(document.getElementById('selftest-modelD'), 'obligation', document.ge
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelS-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelS'), 'binding', document.getElementById('cbselftest-modelS-binding').checked, document.getElementById('ppselftest-modelS'));
 document.getElementById('cbselftest-modelS-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -485,7 +490,9 @@ filterDesc(document.getElementById('selftest-modelS'), 'obligation', document.ge
     <a name="tabs-summ"> </a>
     <div id="tabs-summ">
       <div id="tbl-summ">
-        <p></p>
+        <p>Diese Struktur ist abgeleitet von 
+  <a href="http://build.fhir.org/types.html#Base">Base</a>
+</p>
         <div id="tbl-summ-inner">
           <a name="summary"> </a>
           <a name="s-summary"> </a>
@@ -500,7 +507,7 @@ Summary
     <div id="tabs-all">
       <div id="all-tbl-key">
         <p>
-          <b></b>
+          <b>Schlüsselelemente-Ansicht</b>
         </p>
         <div id="all-tbl-key-inner">
           <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="selftest-modelKA" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" onInput="filterTree(document.getElementById('selftest-modelKA'), event.target.value)" type="text"/> <img onClick="showPanel(event.target, document.getElementById('selftest-modelKA'), document.getElementById('ppselftest-modelKA'))" src="tree-filter.png" alt="Filters"/><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="ppselftest-modelKA">Bindings <input onClick="filterDesc(document.getElementById('selftest-modelKA'), 'binding',event.target.checked, document.getElementById('ppselftest-modelKA'))" size="1" name="binding" checked="true" id="cbselftest-modelKA-binding" type="checkbox"/><br/>Constraints <input onClick="filterDesc(document.getElementById('selftest-modelKA'), 'constraint',event.target.checked, document.getElementById('ppselftest-modelKA'))" size="1" name="constraint" checked="true" id="cbselftest-modelKA-constraint" type="checkbox"/><br/>Obligations <input onClick="filterDesc(document.getElementById('selftest-modelKA'), 'obligation',event.target.checked, document.getElementById('ppselftest-modelKA'))" size="1" name="obligation" checked="true" id="cbselftest-modelKA-obligation" type="checkbox"/><br/></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onLoad="fhirTableInit(this)" style="background-color: inherit"/></a></span></th></tr>
@@ -514,7 +521,7 @@ Summary
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelKA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelKA'), 'binding', document.getElementById('cbselftest-modelKA-binding').checked, document.getElementById('ppselftest-modelKA'));
 document.getElementById('cbselftest-modelKA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -533,9 +540,11 @@ filterDesc(document.getElementById('selftest-modelKA'), 'obligation', document.g
       </div>
       <div id="all-tbl-diff">
         <p>
-          <b></b>
+          <b>Differential-Ansicht</b>
         </p>
-        <p></p>
+        <p>Diese Struktur ist abgeleitet von 
+  <a href="http://build.fhir.org/types.html#Base">Base</a>
+</p>
         <div id="all-tbl-diff-inner">
           <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="selftest-modelDA" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" onInput="filterTree(document.getElementById('selftest-modelDA'), event.target.value)" type="text"/> <img onClick="showPanel(event.target, document.getElementById('selftest-modelDA'), document.getElementById('ppselftest-modelDA'))" src="tree-filter.png" alt="Filters"/><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="ppselftest-modelDA">Bindings <input onClick="filterDesc(document.getElementById('selftest-modelDA'), 'binding',event.target.checked, document.getElementById('ppselftest-modelDA'))" size="1" name="binding" checked="true" id="cbselftest-modelDA-binding" type="checkbox"/><br/>Constraints <input onClick="filterDesc(document.getElementById('selftest-modelDA'), 'constraint',event.target.checked, document.getElementById('ppselftest-modelDA'))" size="1" name="constraint" checked="true" id="cbselftest-modelDA-constraint" type="checkbox"/><br/>Obligations <input onClick="filterDesc(document.getElementById('selftest-modelDA'), 'obligation',event.target.checked, document.getElementById('ppselftest-modelDA'))" size="1" name="obligation" checked="true" id="cbselftest-modelDA-obligation" type="checkbox"/><br/></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onLoad="fhirTableInit(this)" style="background-color: inherit"/></a></span></th></tr>
 <tr fhir="generated-heirarchy" style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white" id="a" data-fhir="generated-heirarchy"><td style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(tbl_bck1.png)" class="hierarchy"><img src="tbl_spacer.png" alt="." style="background-color: inherit" class="hierarchy"/><img src="icon_element.gif" alt="." style="background-color: white; background-color: inherit" title="Element" class="hierarchy"/> <a no-external="true" href="StructureDefinition-selftest-model-definitions.html#selftest-model" title="Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact." data-no-external="true">selftest-model</a><a name="a-selftest-model"> </a></td>
@@ -548,7 +557,7 @@ filterDesc(document.getElementById('selftest-modelKA'), 'obligation', document.g
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelDA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelDA'), 'binding', document.getElementById('cbselftest-modelDA-binding').checked, document.getElementById('ppselftest-modelDA'));
 document.getElementById('cbselftest-modelDA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -567,7 +576,7 @@ filterDesc(document.getElementById('selftest-modelDA'), 'obligation', document.g
       </div>
       <div id="all-tbl-snap">
         <p>
-          <b>View</b>
+          <b>Snapshot-AnsichtView</b>
         </p>
         <div id="all-tbl-snap-inner">
           <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0" style="border: 0px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top;" id="selftest-modelSA" data-fhir="generated-heirarchy"><tr fhir="generated-heirarchy" style="border: 1px #F0F0F0 solid; font-size: 11px; font-family: verdana; vertical-align: top" data-fhir="generated-heirarchy"><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="The logical name of the element" data-no-external="true">Name</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Information about the use of the element" data-no-external="true">Flags</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Minimum and Maximum # of times the element can appear in the instance" data-no-external="true">Card.</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px; width: 100px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Reference to the type of the element" data-no-external="true">Type</a></th><th style="vertical-align: top; text-align : var(--ig-left,left); background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; padding-top: 3px; padding-bottom: 3px" class="hierarchy"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Additional information about the element" data-no-external="true">Description &amp; Constraints</a>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal">Filter: <input size="10" name="filter" style="border: 1px #F0F0F0 solid; background-color: rgb(254, 254, 231);" onInput="filterTree(document.getElementById('selftest-modelSA'), event.target.value)" type="text"/> <img onClick="showPanel(event.target, document.getElementById('selftest-modelSA'), document.getElementById('ppselftest-modelSA'))" src="tree-filter.png" alt="Filters"/><div style="display: none; position: fixed; opacity : 1.0; background-color: rgb(254, 254, 231); border: 1px solid #ccc; padding: 10px; boxShadow: 0 2px 5px rgba(0,0,0,0.2); zIndex: 1000; borderRadius: 4px" id="ppselftest-modelSA">Bindings <input onClick="filterDesc(document.getElementById('selftest-modelSA'), 'binding',event.target.checked, document.getElementById('ppselftest-modelSA'))" size="1" name="binding" checked="true" id="cbselftest-modelSA-binding" type="checkbox"/><br/>Constraints <input onClick="filterDesc(document.getElementById('selftest-modelSA'), 'constraint',event.target.checked, document.getElementById('ppselftest-modelSA'))" size="1" name="constraint" checked="true" id="cbselftest-modelSA-constraint" type="checkbox"/><br/>Obligations <input onClick="filterDesc(document.getElementById('selftest-modelSA'), 'obligation',event.target.checked, document.getElementById('ppselftest-modelSA'))" size="1" name="obligation" checked="true" id="cbselftest-modelSA-obligation" type="checkbox"/><br/></div></span><span style="float: right"><a no-external="true" href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format" data-no-external="true"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" onLoad="fhirTableInit(this)" style="background-color: inherit"/></a></span></th></tr>
@@ -581,7 +590,7 @@ filterDesc(document.getElementById('selftest-modelDA'), 'obligation', document.g
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // a70e5931-2d9b-4d78-b3e9-05989a21e645
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // 4d8de6b1-6bfc-4714-ba77-6339d19721cb
 document.getElementById('cbselftest-modelSA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('selftest-modelSA'), 'binding', document.getElementById('cbselftest-modelSA-binding').checked, document.getElementById('ppselftest-modelSA'));
 document.getElementById('cbselftest-modelSA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -604,7 +613,7 @@ filterDesc(document.getElementById('selftest-modelSA'), 'obligation', document.g
 
         <!-- <div id="all-xml">
         <p>
-          <b></b>
+          <b>XML-Template</b>
         </p>
         <div id="all-xml-inner">
           <p><span style="color: maroon; font-weight: bold">yet to be done: Xml template</span></p>
@@ -615,7 +624,7 @@ filterDesc(document.getElementById('selftest-modelSA'), 'obligation', document.g
 
         <!-- <div id="all-json">
         <p>
-          <b></b>
+          <b>JSON-Template</b>
         </p>
         <div id="all-json-inner">
            // <span style="color: navy; opacity: 0.8">Self-Test Model</span>
@@ -630,7 +639,7 @@ filterDesc(document.getElementById('selftest-modelSA'), 'obligation', document.g
 
         <!-- <div id="all-ttl">
         <p>
-          <b></b>
+          <b>TTL-Template</b>
         </p>
         <div id="all-ttl-inner">
           <p><span style="color: maroon; font-weight: bold">yet to be done: Turtle template</span></p>
@@ -639,7 +648,9 @@ filterDesc(document.getElementById('selftest-modelSA'), 'obligation', document.g
       </div> -->
 
       <div id="all-summ">
-        <p></p>
+        <p>Diese Struktur ist abgeleitet von 
+  <a href="http://build.fhir.org/types.html#Base">Base</a>
+</p>
         
         <div id="all-summ-inner">
           <a name="a-summary"> </a>
@@ -652,7 +663,7 @@ Summary
     </div>
   </div>
   <p>&nbsp;</p>
-  <p> <a href="../StructureDefinition-selftest-model.csv"></a>, <a href="../StructureDefinition-selftest-model.xlsx"></a> 
+  <p>Weitere Repräsentationen des Profils: <a href="../StructureDefinition-selftest-model.csv">CSV</a>, <a href="../StructureDefinition-selftest-model.xlsx">Excel</a> 
   </p>
 
   
@@ -685,9 +696,9 @@ Summary
 
 
 
-           <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
-          
-          
+          IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
+          Package de.medizininformatikinitiative.template.selftest#0.1.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
+          Erstellt <span title="Sat, Jul 25, 2026 22:03+0000">2026-07-25</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
               <!-- MII branding override for the fhir2.base.template footer fragment.

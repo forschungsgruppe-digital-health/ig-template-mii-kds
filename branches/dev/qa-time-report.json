@@ -1,5 +1,5 @@
 {
-  "date" : "Sat, 25 Jul, 2026 21:53:45 +0000",
+  "date" : "Sat, 25 Jul, 2026 22:03:00 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest.json",
@@ -12,22 +12,17 @@
     {
       "activity" : "checkR4R4B",
       "start" : 30,
-      "length" : 16
+      "length" : 13
     },
     {
       "activity" : "generateNarratives",
       "start" : 30,
-      "length" : 398
+      "length" : 226
     },
     {
       "activity" : "validate",
-      "start" : 35,
-      "length" : 4465
-    },
-    {
-      "activity" : "scanForUsageStats",
-      "start" : 39,
-      "length" : 1
+      "start" : 34,
+      "length" : 4521
     },
     {
       "activity" : "translate",
@@ -37,12 +32,12 @@
     {
       "activity" : "generate1",
       "start" : 39,
-      "length" : 130
+      "length" : 135
     },
     {
       "activity" : "generate2",
       "start" : 41,
-      "length" : 151
+      "length" : 137
     },
     {
       "activity" : "generateValidationPack",
@@ -51,8 +46,8 @@
     },
     {
       "activity" : "scanExamplesForR5",
-      "start" : 62,
-      "length" : 2
+      "start" : 61,
+      "length" : 1
     }]
   },
   {
@@ -66,12 +61,12 @@
     {
       "activity" : "load",
       "start" : 30,
-      "length" : 9
+      "length" : 8
     },
     {
       "activity" : "generateSnapshots",
       "start" : 30,
-      "length" : 7
+      "length" : 5
     },
     {
       "activity" : "load-configure",
@@ -79,19 +74,14 @@
       "length" : 1
     },
     {
-      "activity" : "scan",
-      "start" : 30,
-      "length" : 1
-    },
-    {
       "activity" : "generateNarratives",
-      "start" : 31,
-      "length" : 736
+      "start" : 30,
+      "length" : 826
     },
     {
       "activity" : "validate",
       "start" : 31,
-      "length" : 3346
+      "length" : 3372
     },
     {
       "activity" : "checkConformanceResources",
@@ -105,18 +95,23 @@
     },
     {
       "activity" : "generate1",
-      "start" : 40,
-      "length" : 50
+      "start" : 39,
+      "length" : 55
+    },
+    {
+      "activity" : "generate2",
+      "start" : 41,
+      "length" : 688
     },
     {
       "activity" : "generate2",
       "start" : 42,
-      "length" : 763
+      "length" : 2217
     },
     {
-      "activity" : "generate2",
-      "start" : 42,
-      "length" : 2029
+      "activity" : "generateLogicals",
+      "start" : 48,
+      "length" : 1
     },
     {
       "activity" : "generateValidationPack",
@@ -125,8 +120,8 @@
     }]
   },
   {
-    "name" : "/fsh-generated/includes/menu.xml",
-    "size" : 1043,
+    "name" : "/input/includes/menu.xml",
+    "size" : 607,
     "processes" : [{
       "activity" : "generate2",
       "start" : 42,
@@ -148,12 +143,7 @@
   },
   {
     "name" : "/template/config",
-    "size" : 0,
-    "processes" : [{
-      "activity" : "scan",
-      "start" : 30,
-      "length" : 1
-    }]
+    "size" : 0
   },
   {
     "name" : "/template/config/_config.yml",

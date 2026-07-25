@@ -17,7 +17,7 @@
   fhir:StructureDefinition.name [ fhir:value "SelfTestModel"] ;
   fhir:StructureDefinition.title [ fhir:value "Self-Test Model"] ;
   fhir:StructureDefinition.status [ fhir:value "draft"] ;
-  fhir:StructureDefinition.date [ fhir:value "2026-07-25T21:53:45+00:00"^^xsd:dateTime] ;
+  fhir:StructureDefinition.date [ fhir:value "2026-07-25T22:03:00+00:00"^^xsd:dateTime] ;
   fhir:StructureDefinition.publisher [ fhir:value "Forschungsgruppe Digital Health, TU Dresden"] ;
   fhir:StructureDefinition.contact [
      fhir:index 0 ;

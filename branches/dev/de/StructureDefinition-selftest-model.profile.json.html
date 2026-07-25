@@ -84,7 +84,7 @@
 
 
 
-  <img src="assets/images/deu.svg" alt="Germany " title="Germany" height="16"/>
+  <img src="assets/images/deu.svg" alt="Germany Flagge" title="Germany" height="16"/>
 
 
             </span>
@@ -109,16 +109,17 @@
             </button>
             <a href="http://hl7.org/fhir/R4/index.html" class="navbar-brand hidden">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-                <!-- menu.xml -->
-
+                <!-- Menu in the IG's DEFAULT language (German).
+     The IG Publisher renders the menu from this file. To translate it, ship a
+     per-language copy at input/translations/<lang>/includes/menu.xml — this is
+     the mechanism the HL7 reference IG FHIR/multi-lang-test-ig uses, and it is
+     the ONLY way to get a translated menu: the `menu:` property in
+     sushi-config.yaml generates a single menu.xml and cannot be translated. -->
 <ul class="nav navbar-nav">
-  <li>
-    <a href="index.html">Home</a>
-  </li>
-  <li>
-    <a href="artifacts.html">Artifacts</a>
-  </li>
+  <li><a href="index.html">Startseite</a></li>
+  <li><a href="artifacts.html">Artefakte</a></li>
 </ul>
+
             </div>    <!-- /.nav-collapse -->
 
               
@@ -148,7 +149,7 @@
     <div id="segment-breadcrumb" class="segment">    <!-- segment-breadcrumb -->
       <div class="container">    <!-- container -->
         <ul class="breadcrumb">
-          <li><a href="toc.html"><b>Table of Contents</b></a></li><li><a href="artifacts.html"><b>Artifacts Summary</b></a></li><li><b>Self-Test Model</b></li>
+          <li><a href="toc.html"><b>Table of Contents</b></a></li><li><a href="artifacts.html"><b>Artefaktübersicht</b></a></li><li><b>Self-Test Model</b></li>
 
         </ul>
       </div>    <!-- /container -->
@@ -178,20 +179,20 @@
 <ul class="nav nav-tabs">
 
   <li>
-    <a href="StructureDefinition-selftest-model.html"></a>
+    <a href="StructureDefinition-selftest-model.html">Inhalt</a>
   </li>
 
 
 
   <li>
-    <a href="StructureDefinition-selftest-model-definitions.html"></a>
+    <a href="StructureDefinition-selftest-model-definitions.html">Detaillierte Beschreibungen</a>
   </li>
 
 
 
   
     <li>
-      <a href="StructureDefinition-selftest-model-mappings.html"></a>
+      <a href="StructureDefinition-selftest-model-mappings.html">Mappings</a>
     </li>
   
 
@@ -203,21 +204,21 @@
 
   
     <li>
-      <a href="StructureDefinition-selftest-model.profile.xml.html"></a>
+      <a href="StructureDefinition-selftest-model.profile.xml.html">XML</a>
     </li>
   
 
 
   
     <li class="active">
-      <a href="#"></a>
+      <a href="#">JSON</a>
     </li>
   
 
 
   
     <li>
-      <a href="StructureDefinition-selftest-model.profile.ttl.html"></a>
+      <a href="StructureDefinition-selftest-model.profile.ttl.html">TTL</a>
     </li>
   
 
@@ -228,7 +229,7 @@
 <a name="root"> </a>
 
 
-<h2 id="root">: Self-Test Model - </h2>
+<h2 id="root">Logisches Modell: Self-Test Model - JSON-Profil</h2>
 
   <table class="colsd">
     <tr>
@@ -238,7 +239,9 @@
           Draft
           
 
-            
+            Stand: 
+2026-07-25
+
           
         
       </td>
@@ -248,7 +251,7 @@
 
 
 
-<p></p>
+<p>JSON-Darstellung des selftest-model logisches modell.</p>
 
 <p><a href="StructureDefinition-selftest-model.json" no-download="true">Raw json</a> | <a download="null" href="StructureDefinition-selftest-model.json">Download</a></p>
 
@@ -270,7 +273,7 @@
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.name">name</a>" : "SelfTestModel",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.title">title</a>" : "Self-Test Model",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.status">status</a>" : "draft",
-  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a>" : "2026-07-25T21:53:45+00:00",
+  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a>" : "2026-07-25T22:03:00+00:00",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.publisher">publisher</a>" : "Forschungsgruppe Digital Health, TU Dresden",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.contact">contact</a>" : [
     {
@@ -397,9 +400,9 @@
 
 
 
-           <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
-          
-          
+          IG &copy; 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/forschungsgruppe-digital-health">Forschungsgruppe Digital Health, TU Dresden</a>.  
+          Package de.medizininformatikinitiative.template.selftest#0.1.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
+          Erstellt <span title="Sat, Jul 25, 2026 22:03+0000">2026-07-25</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
               <!-- MII branding override for the fhir2.base.template footer fragment.

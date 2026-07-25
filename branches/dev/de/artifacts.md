@@ -1,11 +1,15 @@
-# Artifacts Summary - MII KDS IG Template — Self-Test v0.1.0
+# Artefaktübersicht - MII KDS IG Template — Self-Test v0.1.0
 
 * [**Table of Contents**](toc.md)
-* **Artifacts Summary**
+* **Artefaktübersicht**
 
-## Artifacts Summary
+## Artefaktübersicht
 
-###  
+Diese Seite bietet eine Liste der FHIR-Artefakte, die in diesem Implementierungsleitfaden definiert sind.
+
+### Strukturen: Logische Modelle 
+
+Diese definieren Datenmodelle, die den von diesem Implementierungsleitfaden abgedeckten Bereich in geschäftsfreundlicheren Begriffen darstellen als die zugrunde liegenden FHIR-Ressourcen.
 
 | | |
 | :--- | :--- |

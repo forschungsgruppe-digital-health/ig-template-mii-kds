@@ -3,7 +3,7 @@
 ## Pages
 
 * [Home](de/index.md)
-* [Artifacts Summary](de/artifacts.md)
+* [Artefaktübersicht](de/artifacts.md)
 
 ## Resources
 
