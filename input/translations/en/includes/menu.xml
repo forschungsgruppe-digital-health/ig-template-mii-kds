@@ -1,0 +1,6 @@
+<!-- English translation of input/includes/menu.xml.
+     Keep the href targets IDENTICAL to the source menu; translate only labels. -->
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="artifacts.html">Artifacts</a></li>
+</ul>
