@@ -73,9 +73,7 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 
 ---
 
-## 3. Derived palette (Gate B suggestion)
-
-**TODO(human): confirm or replace this palette before any release.**
+## 3. Palette (CONFIRMED, Gate B 2026-07-24)
 
 Derivation order followed spec §6-B: (1) `kerndatensatz-basis` repo assets,
 (2) the MII website as fallback. The basis repo carries **no CSS and no palette**
@@ -127,9 +125,7 @@ dragon (29–30), translation box (31–32).
 
 ---
 
-## 4. Logo & favicon (Gate B suggestion)
-
-**TODO(human): confirm or replace logo + palette before any release.**
+## 4. Logo & favicon (CONFIRMED, Gate B 2026-07-24)
 
 | Shipped file | Source (retrieved 2026-07-22) | SHA-256 |
 | --- | --- | --- |
@@ -137,7 +133,7 @@ dragon (29–30), translation box (31–32).
 | `content/assets/images/mii-logo-en.png` (466×270, RGB) | `…/assets/img/Logo_MII_270px_Hoehe_en.png` — the logo the English MII homepage displays (wordmark "MEDICAL INFORMATICS INITIATIVE GERMANY") | `f205ba1b4d489208a70c30dd953b9f64c26eb9bb3c8cd8713878befcad15a6ac` |
 | `content/assets/ico/favicon.png` (48×48, converted from the 48px layer of the official `favicon.ico`) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/favicon/favicon.ico` (`f6351d085694a766ae799f73fdb7dd11bf89329d78484312364ee737ef6c0d62`) | `1c470d08136c6c243990d8574b9b73951379fe0d131b727fe311d3d485652667` |
 
-- **TODO(human): provide an official SVG of the main MII logo.** Only PNG is
+- **Follow-up (non-blocking): an official SVG of the main MII logo would be preferable.** Only PNG is
   obtainable: the sole SVG logo on the MII website
   (`Logo_MII_second.svg`) is the **"10 Jahre MII" anniversary logo** (verified by
   rendering it), not the brand logo, and `kerndatensatz-basis` ships only JPGs
@@ -158,7 +154,7 @@ dragon (29–30), translation box (31–32).
   do **not** add the FHIR-family logo on the right (basis does at IG level):
   the template stays minimal, and a module can add it via its own
   `input/includes/fragment-header.html`, which overrides ours per IG.
-- **Licensing note — TODO(human): confirm MII permission to redistribute the
+- **Licensing note — follow-up (non-blocking): confirm MII permission to redistribute the
   logo.** The logo and wordmark are marks of the Medizininformatik-Initiative
   (TMF e.V. coordination). This repo is CC0-1.0, but CC0 cannot and does not
   cover third-party trademarks; precedent: `kerndatensatz-basis` (CC-BY-4.0)
@@ -177,23 +173,27 @@ The override appends to (never replaces) the base footer content:
    (`/en/imprint` is 404; `/en/legal-notice` is what the MII site's own footer
    links).
 
-> **Why bare-URL link labels:** the base offers no `stringsBase` key for
-> "Imprint"/"Impressum", and a child template cannot add keys (§6). A URL is
-> language-neutral by nature, so the labels are the URLs themselves (scheme
-> stripped via Liquid `remove`). If translated labels are preferred,
-> **TODO(human): decide whether an `include.lang`-branched label pair
-> ("Impressum"/"Legal notice") is acceptable** — it would hard-code visible
-> strings per language, which this design avoids.
+> **Why language-branched labels (decision taken 2026-07-24):** the base offers
+> no `stringsBase` key for "Imprint"/"Impressum", and a child template cannot add
+> keys (§6). The footer therefore hard-codes an `include.lang`-branched label pair
+> — `Impressum` on `/de/`, `Legal notice` on `/en/`. This deliberately accepts
+> per-language visible strings in this one fragment, because the alternative
+> (bare-URL labels) reads poorly and, more importantly, the base's own labels
+> render **blank** on German pages (§6), so the fragment had to supply its own
+> text anyway.
 
 ---
 
 ## 6. Language neutrality (spec §3.4)
 
-- All base-provided visible strings in the overridden footer come from the
-  base's own mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`
-  (`Links`, `TableOfContents`, `QAReport`) — resolved by the base's own string
-  catalogs, no re-implementation. This override adds **no** UI strings of its
-  own, so it is correct in every language the base supports.
+- The overridden footer **supplies its own language-branched labels**
+  (`Links`, `Inhaltsverzeichnis`/`Table of Contents`, `QA-Bericht`/`QA Report`,
+  `Impressum`/`Legal notice`) rather than resolving them through the base
+  mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`. This is a
+  deliberate deviation: the pinned base ships no German catalog, so the base
+  mechanism renders those labels **blank** on the German default pages (next
+  bullet). Every visible footer string is therefore correct in both `de` and
+  `en`; adding a third language means extending this fragment's label branch.
 - **Finding — the pinned base ships no German UI-string catalog (i18n gap).**
   `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
@@ -266,9 +266,9 @@ Notes and deliberate deviations:
   the surrounding footer text (exactly like the MII site footer) and the base
   applies no underline to footer links; they are distinguishable only on hover.
   Fixing this would require a rule override (`#segment-footer a { text-decoration:
-  underline }`), which this variables-only design forbids. **TODO(human): decide
-  at Gate B whether to accept this (site-faithful) or allow one rule override
-  for underlined footer links.**
+  underline }`), which this variables-only design forbids. **Decision (Gate B, 2026-07-24): accepted as-is** —
+  the site-faithful appearance was confirmed. Revisit if an accessibility review
+  requires underlined footer links (one rule override would be needed).
 - **Language selector legibility:** the base language dropdown reads
   `var(--btn-text-color)` on `var(--navbar-bg-color)` → white on `#3473aa`,
   5.03:1 (AA) — improved over the base default pairing (4.03:1).
@@ -291,10 +291,12 @@ Notes and deliberate deviations:
    `mii.css` / the PNGs in `content/assets/images/` — no other file needs to
    change.
 
-**Open TODO(human) items (all Gate B):**
+**Gate B is CONFIRMED (2026-07-24).** The palette, logo and layout above are the
+agreed MII corporate design of this template and shipped in v0.2.0.
 
-1. Confirm or replace logo + palette before any release.
-2. Provide an official SVG of the main MII logo (only PNG obtainable; the site's only SVG is the anniversary logo).
+**Remaining follow-ups — non-blocking, none gate a release:**
+
+1. Provide an official SVG of the main MII logo (only PNG obtainable; the site's only SVG is the anniversary logo).
 3. Confirm MII permission to redistribute the logo files in this CC0 repo.
 4. Decide whether translated imprint-link labels (lang-branched strings) are preferred over the language-neutral bare-URL labels.
 5. Decide whether to accept footer links being the same white as the surrounding footer text (site-faithful, but WCAG 1.4.1-relevant) or allow one underline rule override.
