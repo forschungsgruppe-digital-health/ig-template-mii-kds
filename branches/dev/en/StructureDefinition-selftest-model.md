@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model | *Version*:0.1.0 |
-| Draft as of 2026-07-23 | *Computable Name*:SelfTestModel |
+| Draft as of 2026-07-25 | *Computable Name*:SelfTestModel |
 
  
 Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact. 
@@ -41,7 +41,7 @@ Other representations of profile: [CSV](../StructureDefinition-selftest-model.cs
   "name" : "SelfTestModel",
   "title" : "Self-Test Model",
   "status" : "draft",
-  "date" : "2026-07-23T23:49:03+00:00",
+  "date" : "2026-07-25T21:53:45+00:00",
   "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
   "contact" : [{
     "name" : "Forschungsgruppe Digital Health, TU Dresden",
