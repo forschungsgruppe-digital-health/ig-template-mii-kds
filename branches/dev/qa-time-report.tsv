@@ -1,6 +1,6 @@
 Source File	Size	loadResources	load	generateSnapshots	load-configure	scan	loadDepInfo	loadInfo	checkR4R4B	generateNarratives	validate	loadLists	checkConformanceResources	checkConformanceResources2	checkConformanceResources3	generateLogicalMaps	validateExpressions	scanForUsageStats	checkURLsUnique	processProvenanceDetails	translate	generate1	generate2	generateLogicals	makeDependencies	generateExampleZip	generateValidationPack	scanProfilesForR5	scanExamplesForR5
-/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest.json	2301	-	0	0	0	0	0	0	13	226	0	0	0	0	0	0	0	0	0	0	8	135	137	0	0	0	2	0	1
-fsh-generated/resources/StructureDefinition-selftest-model.json	1354	4	0	5	1	0	0	0	0	826	0	0	1	0	0	0	0	0	0	0	1	55	688	0	0	0	1	0	0
+/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest.json	2301	-	0	0	0	0	0	0	13	271	0	0	0	0	1	0	0	0	0	0	11	127	127	0	0	0	3	0	2
+fsh-generated/resources/StructureDefinition-selftest-model.json	1354	4	0	6	1	0	0	0	0	1018	0	0	0	0	0	0	0	0	0	0	1	50	705	0	0	0	1	0	1
 /input/includes/menu.xml	607	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	0	0
 /fsh-generated/includes/fsh-link-references.md	56	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 /input/pagecontent/index.md	1244	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
