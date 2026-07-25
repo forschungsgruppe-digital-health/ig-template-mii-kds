@@ -60,9 +60,11 @@ pages:
   index.md:
     title: "Home"
 
-menu:
-  Home: index.html
-  Artifacts: artifacts.html
+# NOTE: no `menu:` property here — the menu is maintained as
+# input/includes/menu.xml (German, the default language) plus a per-language
+# translation at input/translations/en/includes/menu.xml. That is the ONLY way to
+# get a TRANSLATED menu (the `menu:` property generates one untranslatable
+# menu.xml); it mirrors the HL7 reference IG FHIR/multi-lang-test-ig.
 
 # ╔══════════════════════════════════════════════════════════════════════════╗
 # ║  SUSHI configuration reference — every remaining option, commented          ║
