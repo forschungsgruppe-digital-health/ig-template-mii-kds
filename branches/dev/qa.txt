@@ -3,7 +3,7 @@ MIIKDSTemplateSelfTest : Validation Results
 
 err = 0, warn = 8, info = 4
 IG Publisher Version: 2.2.11
-Generated Sat Jul 25 22:21:34 UTC 2026. FHIR version 4.0.1 for de.medizininformatikinitiative.template.selftest#0.1.0 (canonical = https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds)
+Generated Sat Jul 25 22:28:57 UTC 2026. FHIR version 4.0.1 for de.medizininformatikinitiative.template.selftest#0.1.0 (canonical = https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds)
  Build Errors : 0 / 4 / 0
  /home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.selftest : 0 / 0 / 3
  /home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/StructureDefinition-selftest-model : 0 / 4 / 3
