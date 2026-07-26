@@ -118,6 +118,23 @@ IG-Publisher semantic signals, not brand surfaces): publish box (15–16), TOC b
 MII site header), footer-nav strip (23), footer text (24, already white),
 dragon (29–30), translation box (31–32).
 
+> **Known consequence — the publish box's "Directory of published versions" link
+> is dead in the preview.** Every rendered page carries that link, and in the
+> preview it points at
+> `https://github.com/medizininformatik-initiative/ig-template-mii-kds/history.html`,
+> which 404s. The link is the IG's `canonical` with `history.html` appended
+> (observed on both builds: this preview → the repo URL, the module template's
+> `https://www.medizininformatik-initiative.de/fhir/modul-template` → …
+> `/history.html`; the behaviour is not spelled out in the HL7 ig-guidance).
+> Here the canonical *is* the GitHub repository URL — a deliberate decision,
+> because the template package is not published to a registry
+> ([project-status.md](project-status.md)) — and the preview IG is never
+> published at all, so there is no version directory to point at. **Accepted as
+> inert, preview-only chrome:** it is not a branding surface, a module IG's real
+> canonical yields a working link, and pointing the preview's canonical at the
+> GitHub Pages root would only make the dead link look plausible (that root has
+> no `history.html` either).
+
 > **Why variables-only:** spec §3.3 — the base exposes its palette as CSS custom
 > properties precisely so children re-color without touching rules; a later
 > human override (Gate B outcome) is then a one-file change with no cascade
