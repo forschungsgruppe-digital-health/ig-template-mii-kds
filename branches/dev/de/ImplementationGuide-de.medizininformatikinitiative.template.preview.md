@@ -14,13 +14,13 @@
   "name" : "MIIKDSTemplatePreview",
   "title" : "MII KDS IG Template — Preview",
   "status" : "draft",
-  "date" : "2026-07-26T06:58:13+00:00",
-  "publisher" : "Forschungsgruppe Digital Health, TU Dresden",
+  "date" : "2026-07-26T07:51:37+00:00",
+  "publisher" : "Medical Informatics Initiative (MII)",
   "contact" : [{
-    "name" : "Forschungsgruppe Digital Health, TU Dresden",
+    "name" : "Medical Informatics Initiative (MII)",
     "telecom" : [{
       "system" : "url",
-      "value" : "https://github.com/medizininformatik-initiative"
+      "value" : "https://www.medizininformatik-initiative.de/en"
     }]
   }],
   "description" : "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module.",
