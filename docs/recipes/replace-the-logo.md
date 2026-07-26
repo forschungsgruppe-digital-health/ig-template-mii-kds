@@ -8,8 +8,8 @@ preview.
 ## Steps
 
 1. The logo assets live in `content/assets/images/`:
-   - `mii-logo.svg` — shown on German (default-language) pages.
-   - `mii-logo-en.svg` — shown on English pages (the wordmark differs).
+   - `logo-de.svg` — shown on German (default-language) pages.
+   - `logo-en.svg` — shown on English pages (the wordmark differs).
    The favicon is `content/assets/ico/favicon.png`.
 2. Replace the file(s) **keeping the same file names**, or, if you use new names,
    update the `<img src="…">` in `includes/fragment-header.html` to match.
@@ -31,7 +31,7 @@ The header shows your logo in both languages; the browser tab shows your favicon
 | --- | --- | --- |
 | Broken image icon | File name changed but `fragment-header.html` still points at the old name | Match the `src` to the actual file name |
 | Logo huge/tiny | No width constraint | The header fragment/CSS sizes the logo; keep the image's aspect ratio, or adjust the sizing rule in `mii.css` |
-| Wrong logo on `/en/` | Only replaced `mii-logo.svg` | Replace `mii-logo-en.svg` too |
+| Wrong logo on `/en/` | Only replaced `logo-de.svg` | Replace `logo-en.svg` too |
 
 > **Licensing note:** the MII logo is a trademark. Shipping it in this CC0 repo
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII

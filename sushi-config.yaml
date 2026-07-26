@@ -22,7 +22,7 @@ name: MIIKDSTemplatePreview
 title: "MII KDS IG Template — Preview"
 description: "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."
 status: draft
-version: 0.1.0
+version: 0.2.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
