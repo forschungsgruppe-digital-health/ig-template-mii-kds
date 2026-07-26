@@ -1,13 +1,13 @@
 {
-  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest",
-  "name" : "MIIKDSTemplateSelfTest",
-  "title" : "MII KDS IG Template — Self-Test",
-  "description" : "Minimal self-test IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module.",
+  "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
+  "name" : "MIIKDSTemplatePreview",
+  "title" : "MII KDS IG Template — Preview",
+  "description" : "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module.",
   "status" : "draft",
-  "package-id" : "de.medizininformatikinitiative.template.selftest",
+  "package-id" : "de.medizininformatikinitiative.template.preview",
   "ig-ver" : "0.1.0",
-  "date" : "Sat, 25 Jul, 2026 22:27:53 +0000",
-  "dateISO8601" : "2026-07-25T22:27:53+00:00",
+  "date" : "Sun, 26 Jul, 2026 06:58:13 +0000",
+  "dateISO8601" : "2026-07-26T06:58:13+00:00",
   "errs" : 0,
   "warnings" : 8,
   "hints" : 4,
@@ -15,5 +15,5 @@
   "suppressed-warnings" : 0,
   "version" : "4.0.1",
   "tool" : "5.0.0 (3)",
-  "maxMemory" : 769094792
+  "maxMemory" : 770470112
 }

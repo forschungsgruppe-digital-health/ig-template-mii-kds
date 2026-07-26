@@ -1,4 +1,4 @@
-# de.medizininformatikinitiative.template.selftest#0.1.0: MII KDS IG Template — Self-Test(de)
+# de.medizininformatikinitiative.template.preview#0.1.0: MII KDS IG Template — Preview(de)
 
 ## Pages
 
@@ -9,8 +9,8 @@
 
 ### Logicals
 
-* [Self-Test Model](StructureDefinition-selftest-model.md)
+* [Preview Model](StructureDefinition-preview-model.md)
 
 ### ImplementationGuides
 
-* [MII KDS IG Template — Self-Test](ImplementationGuide-de.medizininformatikinitiative.template.selftest.md)
+* [MII KDS IG Template — Preview](ImplementationGuide-de.medizininformatikinitiative.template.preview.md)

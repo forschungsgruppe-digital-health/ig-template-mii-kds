@@ -1,14 +1,14 @@
 [{
-  "id" : "de.medizininformatikinitiative.template.selftest",
+  "id" : "de.medizininformatikinitiative.template.preview",
   "type" : "ImplementationGuide",
-  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest",
+  "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
   "version" : "0.1.0",
-  "name" : "MIIKDSTemplateSelfTest"
+  "name" : "MIIKDSTemplatePreview"
 },
 {
-  "id" : "selftest-model",
+  "id" : "preview-model",
   "type" : "StructureDefinition",
-  "url" : "https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/StructureDefinition/selftest-model",
+  "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model",
   "version" : "0.1.0",
-  "name" : "SelfTestModel"
+  "name" : "PreviewModel"
 }]

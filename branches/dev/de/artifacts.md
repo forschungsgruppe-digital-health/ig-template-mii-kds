@@ -1,4 +1,4 @@
-# Artefaktübersicht - MII KDS IG Template — Self-Test v0.1.0
+# Artefaktübersicht - MII KDS IG Template — Preview v0.1.0
 
 * [**Table of Contents**](toc.md)
 * **Artefaktübersicht**
@@ -13,5 +13,5 @@ Diese definieren Datenmodelle, die den von diesem Implementierungsleitfaden abge
 
 | | |
 | :--- | :--- |
-| [ Self-Test Model  ](StructureDefinition-selftest-model.md) | Minimal logical model that exists only so the template self-test IG builds and its artifact layout renders; not an MII artifact. |
+| [ Preview Model  ](StructureDefinition-preview-model.md) | Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact. |
 

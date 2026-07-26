@@ -1,5 +1,5 @@
 {
-  "package": "de.medizininformatikinitiative.template.selftest",
+  "package": "de.medizininformatikinitiative.template.preview",
   "version": "0.1.0",
   "fhirVersion": "4.0.1",
   "jurisdiction": "DE",

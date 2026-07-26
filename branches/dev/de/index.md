@@ -1,4 +1,4 @@
-# Home - MII KDS IG Template — Self-Test v0.1.0
+# Home - MII KDS IG Template — Preview v0.1.0
 
 * [**Table of Contents**](toc.md)
 * **Home**
@@ -7,12 +7,12 @@
 
 | | |
 | :--- | :--- |
-| *Offizielle URL*:https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.selftest | *Version*:0.1.0 |
-| Draft Stand: 2026-07-25 | *Maschinenlesbarer Name*:MIIKDSTemplateSelfTest |
+| *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.1.0 |
+| Draft Stand: 2026-07-26 | *Maschinenlesbarer Name*:MIIKDSTemplatePreview |
 
-Diese Seite dient ausschließlich dem **Selbsttest** der IG-Template-Vorlage `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
+Diese Seite dient ausschließlich dem **Vorschau** der IG-Template-Vorlage `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
 
-Der Selbsttest baut die Vorlage eigenständig, damit Branding-Änderungen (Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können, bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch (Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu prüfen.
+Der Vorschau baut die Vorlage eigenständig, damit Branding-Änderungen (Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können, bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch (Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu prüfen.
 
 Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md` des Repositorys.
 
