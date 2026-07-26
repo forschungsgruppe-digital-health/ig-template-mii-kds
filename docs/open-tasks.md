@@ -24,10 +24,16 @@ say "go" — none should be done by an agent.
 
 ## Needs an official asset
 
+<!-- Issue links need three `..`. A docs/ page renders under
+     /OWNER/REPO/blob/<ref>/docs/, so `../../../issues/N` is the form that lands
+     on /OWNER/REPO/issues/N; a root-level file such as README.md needs two.
+     Kept relative so the pending move to `medizininformatik-initiative` does not
+     have to touch them. -->
+
 | Task | Issue | Note |
 | --- | --- | --- |
-| Replace the traced logos with official MII SVGs | [#25](../../issues/25) | `content/assets/images/logo-de.svg` and `logo-en.svg` are traced from the official PNGs with `scripts/trace-logo.sh`. They render correctly; they are not the vendor's own vector files. |
-| Confirm trademark permission for the MII logo and wordmark | [#26](../../issues/26) | Needed before any use beyond this prototype. |
+| Replace the traced logos with official MII SVGs | [#25](../../../issues/25) | `content/assets/images/logo-de.svg` and `logo-en.svg` are traced from the official PNGs with `scripts/trace-logo.sh`. They render correctly; they are not the vendor's own vector files. |
+| Confirm trademark permission for the MII logo and wordmark | [#26](../../../issues/26) | Needed before any use beyond this prototype. |
 
 ## To raise upstream
 
