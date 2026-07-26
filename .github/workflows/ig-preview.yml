@@ -4,7 +4,7 @@
 #            (SUSHI + IG Publisher) and deploy the rendered result to the
 #            gh-pages branch under branches/<branch>/, so branding changes
 #            (header, footer, CSS, logo) are visually reviewable without a
-#            local build. For Repo A the preview IS the template's preview IG.
+#            local build. Here the preview IS the template's own preview IG.
 # Triggers:  push to any branch except main / gh-pages / fsh-generated, plus
 #            workflow_dispatch.
 # Toggle:    vars.ENABLE_PREVIEW — ON by default; set the repo variable to
