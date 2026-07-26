@@ -4,8 +4,8 @@
   <id value="de.medizininformatikinitiative.template.preview"/>
   <language value="en"/>
   <text>
-    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ImplementationGuide de.medizininformatikinitiative.template.preview</b></p><a name="de.medizininformatikinitiative.template.preview"> </a><a name="hcde.medizininformatikinitiative.template.preview"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><h2>MIIKDSTemplatePreview</h2><p>The official URL for this implementation guide is: </p><pre>https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview</pre><div><p>Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module.</p>
-</div></div><div xml:lang="de" lang="de"><hr/><p><b>German</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ImplementationGuide de.medizininformatikinitiative.template.preview</b></p><a name="de-de.medizininformatikinitiative.template.preview"> </a><a name="de-hcde.medizininformatikinitiative.template.preview"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><h2>MIIKDSTemplatePreview</h2><p>The official URL for this implementation guide is: </p><pre>https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview</pre><div><p>Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module.</p>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><div xml:lang="en" lang="en"><hr/><p><b>English</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ImplementationGuide de.medizininformatikinitiative.template.preview</b></p><a name="de.medizininformatikinitiative.template.preview"> </a><a name="hcde.medizininformatikinitiative.template.preview"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><h2>MIIKDSTemplatePreview</h2><p>The official URL for this implementation guide is: </p><pre>https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview</pre><div><p>Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module.</p>
+</div></div><div xml:lang="de" lang="de"><hr/><p><b>German</b></p><hr/><p class="res-header-id"><b>Generated Narrative: ImplementationGuide de.medizininformatikinitiative.template.preview</b></p><a name="de-de.medizininformatikinitiative.template.preview"> </a><a name="de-hcde.medizininformatikinitiative.template.preview"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px">Language: en</p></div><h2>MIIKDSTemplatePreview</h2><p>The official URL for this implementation guide is: </p><pre>https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview</pre><div><p>Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module.</p>
 </div></div></div>
   </text>
   <url value="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/>
@@ -13,7 +13,7 @@
   <name value="MIIKDSTemplatePreview"/>
   <title value="MII KDS IG Template — Preview"/>
   <status value="draft"/>
-  <date value="2026-07-26T14:55:55+00:00"/>
+  <date value="2026-07-26T18:22:21+00:00"/>
   <publisher value="Medical Informatics Initiative (MII)"/>
   <contact>
     <name value="Medical Informatics Initiative (MII)"/>
@@ -22,7 +22,7 @@
       <value value="https://www.medizininformatik-initiative.de/en"/>
     </telecom>
   </contact>
-  <description value="Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."/>
+  <description value="Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module."/>
   <jurisdiction>
     <coding>
       <system value="urn:iso:std:iso:3166"/>
@@ -525,6 +525,14 @@
         </extension>
         <nameUrl value="index.html"/>
         <title value="Home"/>
+        <generation value="markdown"/>
+      </page>
+      <page>
+        <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
+          <valueUrl value="translationinfo.html"/>
+        </extension>
+        <nameUrl value="translationinfo.html"/>
+        <title value="Translation information"/>
         <generation value="markdown"/>
       </page>
     </page>

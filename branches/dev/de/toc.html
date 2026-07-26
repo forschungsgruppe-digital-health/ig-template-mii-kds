@@ -25,7 +25,7 @@
     <!-- MII branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
      in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     MII corporate design confirmed (Gate B, 2026-07-24). -->
+     MII corporate design confirmed by the maintainer, 2026-07-24. -->
 <link href="assets/css/mii.css" rel="stylesheet"/>
 
 
@@ -58,7 +58,7 @@
         <!-- MII branding override for the fhir2.base.template header placeholder
      (base ships includes/fragment-header.html as a single comment; it is included
      inside "#segment-header > .container", before the #ig-status block).
-     MII corporate design confirmed (Gate B, 2026-07-24).
+     MII corporate design confirmed by the maintainer, 2026-07-24.
      Language handling: only the asset and its descriptive alt text switch on
      include.lang (the pattern kerndatensatz-basis uses); no translatable UI
      strings are hard-coded.
@@ -112,12 +112,8 @@
             </button>
             <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-              <!-- Menu in the IG's DEFAULT language (German).
-     The IG Publisher renders the menu from this file. To translate it, ship a
-     per-language copy at input/translations/<lang>/includes/menu.xml — this is
-     the mechanism the HL7 reference IG FHIR/multi-lang-test-ig uses, and it is
-     the ONLY way to get a translated menu: the `menu:` property in
-     sushi-config.yaml generates a single menu.xml and cannot be translated. -->
+              <!-- German translation of input/includes/menu.xml.
+     Keep the href targets IDENTICAL to the source menu; translate only labels. -->
 <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
   <li><a href="index.html">Startseite</a></li>
   <li><a href="artifacts.html">Artefakte</a></li>
@@ -184,7 +180,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
   
   
   
-  <?xml version="1.0" encoding="UTF-8"?><div style="col-12"><table style="border:0px;font-size:11px;font-family:verdana;vertical-align:top;" cellpadding="0" border="0" cellspacing="0"><tbody><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page-child.gif"/><a title="Table of Contents" href="toc.html"> 0 Table of Contents</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!&quot;"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_vjoin.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page.gif"/><a title="Home" href="index.html"> 1 Home</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!#"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img onClick="tableRowAction(this)" src="tbl_vjoin_end-open.png" alt="." style="background-color: inherit" class="hierarchy"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page-child.gif"/><a title="Artifacts Summary" href="artifacts.html"> 2 Artifacts Summary</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!#&quot;"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_blank.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_vjoin_end.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page.gif"/><a title="Preview Model" href="StructureDefinition-preview-model.html"> 2.1 Preview Model</a></td></tr></tbody></table></div>
+  <?xml version="1.0" encoding="UTF-8"?><div style="col-12"><table style="border:0px;font-size:11px;font-family:verdana;vertical-align:top;" cellpadding="0" border="0" cellspacing="0"><tbody><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page-child.gif"/><a title="Table of Contents" href="toc.html"> 0 Table of Contents</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!&quot;"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_vjoin.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page.gif"/><a title="Home" href="index.html"> 1 Home</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!#"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_vjoin.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page.gif"/><a title="Translation information" href="translationinfo.html"> 2 Translation information</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!$"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img onClick="tableRowAction(this)" src="tbl_vjoin_end-open.png" alt="." style="background-color: inherit" class="hierarchy"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page-child.gif"/><a title="Artifacts Summary" href="artifacts.html"> 3 Artifacts Summary</a></td></tr><tr style="border:0px;padding:0px;vertical-align:top;background-color:inherit;" id="!$&quot;"><td style="vertical-align:top;text-align:var(--ig-left,left);background-color:inherit;padding:0px 4px 0px 4px;white-space:nowrap;background-image:url(tbl_bck0.png)" class="hierarchy"><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_spacer.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_blank.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="tbl_vjoin_end.png"/><img style="background-color:inherit" alt="." class="hierarchy" src="icon_page.gif"/><a title="Preview Model" href="StructureDefinition-preview-model.html"> 3.1 Preview Model</a></td></tr></tbody></table></div>
 </div>
         </div>  <!-- /inner-wrapper -->
       </div>  <!-- /row -->
@@ -207,19 +203,19 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de/en">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.2.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Erstellt <span title="Sun, Jul 26, 2026 14:55+0000">2026-07-26</span>
+          Erstellt <span title="Sun, Jul 26, 2026 18:22+0000">2026-07-26</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- MII branding override for the fhir2.base.template footer fragment.
      Unlike header/css, the base footer fragment is NOT an empty placeholder: it
      renders "Links: Table of Contents | QA Report [| feedback dashboards]".
      The base uses site.data.stringsBase[include.lang][...] for the labels, but
-     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the German
-     (default) pages those labels render BLANK. This override therefore hard-codes
+     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the
+     German /de/ pages those labels render BLANK. This override therefore hard-codes
      language-aware labels (de/en) so the footer shows real text in both languages,
      preserves the base links (TOC, QA, feedback dashboards), and appends the MII
      information links.
-     MII corporate design confirmed (Gate B, 2026-07-24).
+     MII corporate design confirmed by the maintainer, 2026-07-24.
      Imprint: the MII website has separate German (/de/impressum) and English
      (/en/legal-notice) imprint pages (both verified HTTP 200 on 2026-07-22). -->
 

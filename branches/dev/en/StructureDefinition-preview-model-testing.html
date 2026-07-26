@@ -26,7 +26,7 @@
     <!-- MII branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
      in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     MII corporate design confirmed (Gate B, 2026-07-24). -->
+     MII corporate design confirmed by the maintainer, 2026-07-24. -->
 <link href="assets/css/mii.css" rel="stylesheet"/>
 
 
@@ -51,15 +51,15 @@
 	  <script src="assets/js/prism.js"></script>
     <script type="text/javascript" src="assets/js/mermaid.js"></script>
     <script type="text/javascript" src="assets/js/mermaid-init.js"></script>
-    <style type="text/css">h2{--heading-prefix:"2.1"}
-    h3,h4,h5,h6{--heading-prefix:"2.1"}</style>
+    <style type="text/css">h2{--heading-prefix:"3.1"}
+    h3,h4,h5,h6{--heading-prefix:"3.1"}</style>
     <div id="segment-header" class="segment">  <!-- segment-header -->
       <div class="container">  <!-- container -->
 
         <!-- MII branding override for the fhir2.base.template header placeholder
      (base ships includes/fragment-header.html as a single comment; it is included
      inside "#segment-header > .container", before the #ig-status block).
-     MII corporate design confirmed (Gate B, 2026-07-24).
+     MII corporate design confirmed by the maintainer, 2026-07-24.
      Language handling: only the asset and its descriptive alt text switch on
      include.lang (the pattern kerndatensatz-basis uses); no translatable UI
      strings are hard-coded.
@@ -113,8 +113,12 @@
             </button>
             <a class="navbar-brand hidden" href="http://hl7.org/fhir/R4/index.html">FHIR</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
-              <!-- English translation of input/includes/menu.xml.
-     Keep the href targets IDENTICAL to the source menu; translate only labels. -->
+              <!-- Menu in the IG's DEFAULT language (English).
+     The IG Publisher renders the menu from this file. To translate it, ship a
+     per-language copy at input/translations/<lang>/includes/menu.xml — this is
+     the mechanism the HL7 reference IG FHIR/multi-lang-test-ig uses, and it is
+     the ONLY way to get a translated menu: the `menu:` property in
+     sushi-config.yaml generates a single menu.xml and cannot be translated. -->
 <ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
   <li><a href="index.html">Home</a></li>
   <li><a href="artifacts.html">Artifacts</a></li>
@@ -297,19 +301,19 @@
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de/en">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.2.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Generated <span title="Sun, Jul 26, 2026 14:55+0000">2026-07-26</span>
+          Generated <span title="Sun, Jul 26, 2026 18:22+0000">2026-07-26</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- MII branding override for the fhir2.base.template footer fragment.
      Unlike header/css, the base footer fragment is NOT an empty placeholder: it
      renders "Links: Table of Contents | QA Report [| feedback dashboards]".
      The base uses site.data.stringsBase[include.lang][...] for the labels, but
-     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the German
-     (default) pages those labels render BLANK. This override therefore hard-codes
+     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the
+     German /de/ pages those labels render BLANK. This override therefore hard-codes
      language-aware labels (de/en) so the footer shows real text in both languages,
      preserves the base links (TOC, QA, feedback dashboards), and appends the MII
      information links.
-     MII corporate design confirmed (Gate B, 2026-07-24).
+     MII corporate design confirmed by the maintainer, 2026-07-24.
      Imprint: the MII website has separate German (/de/impressum) and English
      (/en/legal-notice) imprint pages (both verified HTTP 200 on 2026-07-22). -->
 
