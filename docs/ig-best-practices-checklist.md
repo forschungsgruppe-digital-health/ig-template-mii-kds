@@ -54,7 +54,7 @@ mechanism) · ➖ not applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/design.md`](design.md) §3 |
-| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted at Gate B) |
+| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted in the design review) |
 | Consistent page chrome (no mixed white/grey surfaces) | ✅ | Header sides and container are both white, matching the logo background and the content area |
 | Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/design.md`](design.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
 | Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning |
@@ -79,7 +79,7 @@ enables or obstructs them. This is what the scaffold provides:
 
 | Check | State | Evidence |
 |---|---|---|
-| Publication uses the IG Publisher's `-go-publish` mode | ✅ | In the module scaffold: `go-publish.yml`, `workflow_dispatch`-only and dry-run by default (Gate E) |
+| Publication uses the IG Publisher's `-go-publish` mode | ✅ | In the module scaffold: `go-publish.yml`, `workflow_dispatch`-only and dry-run by default, so publishing is always a human step |
 | The template itself is versioned and released so modules can pin it | ✅ | SemVer via Release Please; `package-list.json` tracks the versions |
 | Consumers can pin a template version | ✅ | `template = de.medizininformatikinitiative.template#<version>` in a module's `ig.ini` — today via the vendored mirror, since the package is not registry-published ([`docs/project-status.md`](project-status.md)) |
 | Registry publication is a deliberate, human decision | ✅ | Deferred by decision — see [`docs/project-status.md`](project-status.md) |

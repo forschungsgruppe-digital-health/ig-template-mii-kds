@@ -1,7 +1,7 @@
 # Issue chooser configuration.
 # blank_issues_enabled: false forces the structured forms above, which keep
 # reports triageable; general questions are redirected to the community
-# channels below (spec §2.11) instead of piling up as issues.
+# channels below instead of piling up as issues.
 blank_issues_enabled: false
 contact_links:
   - name: FHIR / IG / profiling questions — HL7 FHIR community Zulip

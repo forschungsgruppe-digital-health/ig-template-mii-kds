@@ -35,7 +35,7 @@ publisher:
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
-# Multi-language: English default, German the additional rendering (§3.4) — the
+# Multi-language: English default, German the additional rendering — the
 # same model as kerndatensatz-basis.
 #   i18n-default-lang: en       -> English is the leading/default rendered language
 #   i18n-lang: [de]             -> German is the additional rendered language

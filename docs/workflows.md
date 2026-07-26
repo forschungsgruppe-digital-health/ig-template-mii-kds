@@ -38,8 +38,7 @@ Notes:
   switched by its config presence and the repo's Dependabot setting.
 - **Terminology** is not an on/off pipeline: `ig-preview.yml` auto-selects
   **SU-TermServ** when the client-cert secrets are present, else falls back to HL7
-  `tx.fhir.org` with a notice (see §2.10 of the build spec and
-  [maintenance.md](maintenance.md)).
+  `tx.fhir.org` with a notice (see [maintenance.md](maintenance.md)).
 - Each workflow file starts with a comment block (purpose · triggers · toggle ·
   gated steps) so the explanation lives next to the code.
 - **The `language-model` job** is content hygiene, not a scanner:
@@ -78,6 +77,5 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 ## Secrets & enabling the gated features
 
 All builds and releases work without secrets. To enable the optional gated
-features — SU-TermServ terminology (Gate F) and the Zulip release announcement
-(Gate G) — see [docs/secrets.md](secrets.md) for the exact `gh secret set`
-commands. The workflows are already wired; adding the secret is the only step.
+features — SU-TermServ terminology and the Zulip release announcement — see
+[docs/secrets.md](secrets.md) for the exact `gh secret set` commands. The workflows are already wired; adding the secret is the only step.

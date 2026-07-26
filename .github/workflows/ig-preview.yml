@@ -1,4 +1,4 @@
-# IG build + GitHub Pages preview (§2.8 / Appendix A.9).
+# IG build + GitHub Pages preview.
 #
 # Purpose:   on every push to a working branch, build the preview IG
 #            (SUSHI + IG Publisher) and deploy the rendered result to the
@@ -9,10 +9,10 @@
 #            workflow_dispatch.
 # Toggle:    vars.ENABLE_PREVIEW — ON by default; set the repo variable to
 #            'false' to skip the job (it then shows as "skipped", not failed).
-# Terminology: auto-selected, NOT a toggle (§2.10) — SU-TermServ via a local
+# Terminology: auto-selected, NOT a toggle — SU-TermServ via a local
 #            client-cert nginx proxy when the SU_TERMSERV_CLIENT_CERT secret is
 #            present, otherwise the HL7 tx.fhir.org fallback with a ::notice.
-#            The build never hard-fails for lack of the credential (Gate F).
+#            The build never hard-fails for lack of the credential.
 # Human-gated: nothing here publishes formally. The site root and version-like
 #            paths on gh-pages are RESERVED for the gated -go-publish output;
 #            this workflow only ever writes under branches/<branch>/.
@@ -58,7 +58,7 @@ env:
 
 jobs:
   build-and-preview:
-    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default (§2.13)
+    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -122,7 +122,7 @@ jobs:
           else
             echo "tx=https://tx.fhir.org" >> "$GITHUB_OUTPUT"
             echo "mode=HL7 fallback (tx.fhir.org)" >> "$GITHUB_OUTPUT"
-            echo "::notice::No SU-TermServ credential — falling back to HL7 tx.fhir.org. Some MII-specific value sets may not fully expand. Supply SU_TERMSERV_CLIENT_CERT / _KEY / _PASSWORD to route terminology to SU-TermServ (Gate F)."
+            echo "::notice::No SU-TermServ credential — falling back to HL7 tx.fhir.org. Some MII-specific value sets may not fully expand. Supply SU_TERMSERV_CLIENT_CERT / _KEY / _PASSWORD to route terminology to SU-TermServ."
           fi
 
       - name: Build the preview IG (SUSHI + IG Publisher)

@@ -1,6 +1,6 @@
 # DESIGN — MII branding for `de.medizininformatikinitiative.template`
 
-> ## ✅ Gate B — CONFIRMED (2026-07-24)
+> ## ✅ MII corporate design — CONFIRMED (2026-07-24)
 >
 > **The MII corporate design of this template (logo + palette + layout) is
 > CONFIRMED by the maintainer** and may go into a release. The design was derived
@@ -62,8 +62,7 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 > **Why no `config.json`:** the IG Publisher **replaces** (does not merge) a
 > child template's `config.json` over the base's. Shipping one would fork the
 > whole base configuration (scripts, extraTemplates, path patterns) and silently
-> detach us from base updates. We inherit the base `config.json` untouched
-> (spec §3.2).
+> detach us from base updates. We inherit the base `config.json` untouched.
 
 > **Why no `layouts/`, `liquid/`, `scripts/`, `translations/`:** same reasoning
 > — inherit everything; every copied file is future drift. In particular
@@ -73,10 +72,10 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 
 ---
 
-## 3. Palette (CONFIRMED, Gate B 2026-07-24)
+## 3. Palette (CONFIRMED 2026-07-24)
 
-Derivation order followed spec §6-B: (1) `kerndatensatz-basis` repo assets,
-(2) the MII website as fallback. The basis repo carries **no CSS and no palette**
+Derivation order: (1) `kerndatensatz-basis` repo assets, (2) the MII website as
+fallback. The basis repo carries **no CSS and no palette**
 — its only branding assets are the two logo JPGs (`input/images/MII_Logo_rgb.jpg`,
 `MII_Logo_engl_rgb.jpg`, Photoshop 2017) and an IG-level `fragment-header.html`
 that displays them. So the colors below come from the MII **logo the site ships
@@ -135,14 +134,13 @@ dragon (29–30), translation box (31–32).
 > GitHub Pages root would only make the dead link look plausible (that root has
 > no `history.html` either).
 
-> **Why variables-only:** spec §3.3 — the base exposes its palette as CSS custom
-> properties precisely so children re-color without touching rules; a later
-> human override (Gate B outcome) is then a one-file change with no cascade
-> surprises.
+> **Why variables-only:** the base exposes its palette as CSS custom properties
+> precisely so children re-color without touching rules; a later human override
+> is then a one-file change with no cascade surprises.
 
 ---
 
-## 4. Logo & favicon (CONFIRMED, Gate B 2026-07-24)
+## 4. Logo & favicon (CONFIRMED 2026-07-24)
 
 The logo ships as **SVG, traced from the official PNGs** (see below). The source
 PNGs and their checksums are recorded for provenance.
@@ -242,7 +240,7 @@ The override appends to (never replaces) the base footer content:
 
 ---
 
-## 6. Language neutrality (spec §3.4)
+## 6. Language neutrality
 
 - The overridden footer **supplies its own language-branched labels**
   (`Links`, `Inhaltsverzeichnis`/`Table of Contents`, `QA-Bericht`/`QA Report`,
@@ -318,7 +316,7 @@ The override appends to (never replaces) the base footer content:
 
 ---
 
-## 7. Accessibility & contrast (spec §3.3)
+## 7. Accessibility & contrast
 
 WCAG 2.1 relative-luminance contrast ratios, computed for every text-bearing
 override (AA: ≥ 4.5:1 normal text, ≥ 3:1 large/bold ≥ 18.66 px bold or 24 px):
@@ -350,7 +348,7 @@ Notes and deliberate deviations:
   the surrounding footer text (exactly like the MII site footer) and the base
   applies no underline to footer links; they are distinguishable only on hover.
   Fixing this would require a rule override (`#segment-footer a { text-decoration:
-  underline }`), which this variables-only design forbids. **Decision (Gate B, 2026-07-24): accepted as-is** —
+  underline }`), which this variables-only design forbids. **Decision (2026-07-24): accepted as-is** —
   the site-faithful appearance was confirmed. Revisit if an accessibility review
   requires underlined footer links (one rule override would be needed).
 - **Language selector legibility:** the base language dropdown reads
@@ -362,7 +360,7 @@ Notes and deliberate deviations:
 
 ---
 
-## 8. How to review this design (Gate B)
+## 8. How to review this design
 
 1. Wait for the preview build (task A4: `ig.ini` + CI + `dev` Pages preview)
    or run the IG Publisher locally on any IG with `ig.ini` →
@@ -370,13 +368,13 @@ Notes and deliberate deviations:
 2. Compare the rendered header/footer/navbar against
    `https://www.medizininformatik-initiative.de/` and against a
    `kerndatensatz-basis` build.
-3. Then either **confirm** logo + palette (remove the Gate B banners here, in
-   `mii.css`, and in the three fragments) or **replace** the hex values in
+3. Then either **confirm** logo + palette (remove the confirmation banners
+   here, in `mii.css`, and in the three fragments) or **replace** the hex values in
    `mii.css` / the PNGs in `content/assets/images/` — no other file needs to
    change.
 
-**Gate B is CONFIRMED (2026-07-24).** The palette, logo and layout above are the
-agreed MII corporate design of this template and shipped in v0.2.0.
+**The design is CONFIRMED (2026-07-24).** The palette, logo and layout above are
+the agreed MII corporate design of this template and shipped in v0.2.0.
 
 **Remaining follow-ups — non-blocking, none gate a release:**
 
