@@ -132,10 +132,22 @@ PNGs and their checksums are recorded for provenance.
 
 | Shipped file | Traced from (retrieved 2026-07-22) | Source SHA-256 |
 | --- | --- | --- |
-| `content/assets/images/mii-logo.svg` (viewBox 900×540) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/img/Logo_MII_270px_Hoehe_de.png` — the logo the MII homepage header displays | `d316838e392595c726e635202f2605eb794f9d61157743ee3300ef385141ce04` |
-| `content/assets/images/mii-logo-en.svg` (viewBox 932×540) | `…/assets/img/Logo_MII_270px_Hoehe_en.png` — the English variant ("MEDICAL INFORMATICS INITIATIVE GERMANY") | `f205ba1b4d489208a70c30dd953b9f64c26eb9bb3c8cd8713878befcad15a6ac` |
+| `content/assets/images/logo-de.svg` (viewBox 900×540) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/img/Logo_MII_270px_Hoehe_de.png` — the logo the MII homepage header displays | `d316838e392595c726e635202f2605eb794f9d61157743ee3300ef385141ce04` |
+| `content/assets/images/logo-en.svg` (viewBox 932×540) | `…/assets/img/Logo_MII_270px_Hoehe_en.png` — the English variant ("MEDICAL INFORMATICS INITIATIVE GERMANY") | `f205ba1b4d489208a70c30dd953b9f64c26eb9bb3c8cd8713878befcad15a6ac` |
 | `content/assets/ico/favicon.png` (48×48, from the 48px layer of the official `favicon.ico`) | `…/assets/favicon/favicon.ico` (`f6351d085694a766ae799f73fdb7dd11bf89329d78484312364ee737ef6c0d62`) | `1c470d08136c6c243990d8574b9b73951379fe0d131b727fe311d3d485652667` |
 | `content/assets/images/deu.svg` (16px flag) | the flag asset the IG Publisher itself emits at the output root | — |
+
+> **Why the flag file is called `deu.svg` and must not be renamed:** the file name
+> is not ours to choose. The IG Publisher derives it from the IG's `jurisdiction`
+> (`urn:iso:std:iso:3166#DE`) and emits `<img src="assets/images/deu.svg">` —
+> `DEU` is the **ISO 3166-1 alpha-3 code for Germany**, i.e. the official
+> jurisdiction identifier already. Renaming the file would simply break the
+> reference again. If the jurisdiction changes, the expected file name changes
+> with it (e.g. `aut.svg` for Austria).
+
+**Asset naming.** Language-specific assets use `<name>-<lang>.<ext>`
+(`logo-de.svg`, `logo-en.svg`). Names dictated by another tool keep that tool's
+spelling: `favicon.png` (browser convention) and `deu.svg` (IG Publisher).
 
 ### Why the logo is a trace, and how to reproduce it
 
@@ -156,11 +168,11 @@ into one layer.
 The exact commands that produced the shipped files:
 
 ```sh
-tools/trace-logo.sh mii-de.png mii-logo.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
+tools/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
   slate:#7a8495:#7a8495 blue:#3473aa:#3473aa teal:#548b9b:#548b9b \
   sage:#74a86f:#74a86f green:#72b802:#72b802 lime:#99cc4a:#99cc4a
 
-tools/trace-logo.sh mii-en.png mii-logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
+tools/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
   "slate:#6d7887,#848c9a,#798693:#7a8495" "blue:#6a89ba:#3473aa" "teal:#93a5ad:#548b9b" \
   "sage:#9ebd89:#74a86f" "green:#afcf01,#a4c80d:#72b802"
 ```

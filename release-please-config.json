@@ -9,7 +9,16 @@
           "path": "package/package.json",
           "jsonpath": "$.version"
         },
-        "package-list.json"
+        {
+          "type": "yaml",
+          "path": "sushi-config.yaml",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "package-list.json",
+          "jsonpath": "$.list[0].version"
+        }
       ]
     }
   }
