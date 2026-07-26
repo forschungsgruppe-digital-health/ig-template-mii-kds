@@ -56,6 +56,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 | `translations/` | German UI-string catalogs for the base template |
 | `input/`, `ig.ini` | The bundled preview IG (so branding changes are reviewable) |
 | `docs/` | Guides and step-by-step recipes |
+| `scripts/` | Helper scripts: dependency check, language-model guard, logo trace, secret upload — see [`scripts/README.md`](scripts/README.md) |
 | `skills/` | Vendor-neutral agent skills for maintenance tasks |
 | `.github/workflows/` | CI: preview build, release, monitoring |
 
