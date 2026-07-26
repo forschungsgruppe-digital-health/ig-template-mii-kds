@@ -17,12 +17,14 @@ von Inhalten bereit (Klassen `mii-highlight mii-highlight-blue` bzw.
 `mii-highlight-green`). Es handelt sich um reines Styling — welche Bedeutung eine
 Farbe hat, entscheidet das jeweilige Modul.
 
+<!-- Raw HTML block: the page processor does NOT run markdown inside it, so the
+     class names have to be marked up as <code>, not with backticks. -->
 <div class="mii-highlight mii-highlight-blue">
 <h5>Blaue Highlight-Box</h5>
-<p>Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).</p>
+<p>Beispiel für die blaue Hintergrund-Hervorhebung (<code>mii-highlight-blue</code>).</p>
 </div>
 
 <div class="mii-highlight mii-highlight-green">
 <h5>Grüne Highlight-Box</h5>
-<p>Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).</p>
+<p>Beispiel für die grüne Hintergrund-Hervorhebung (<code>mii-highlight-green</code>).</p>
 </div>
