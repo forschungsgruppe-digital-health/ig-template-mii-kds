@@ -14,7 +14,7 @@ SU-TermServ client cert in this environment).
 
 **Module scale exercised.** 8 profiles, 3 extensions, 14 value sets, 4 code systems
 → 63 generated conformance resources. This is a substantially larger and more
-realistic surface than the template's own self-test.
+realistic surface than the template's own preview.
 
 ## Results
 
@@ -29,9 +29,9 @@ realistic surface than the template's own self-test.
 
 The template's **full IG Publisher render** — the step that actually applies the
 header, footer, CSS and logo — is proven green in CI, on every push, by this repo's
-**self-test IG** (`ig-preview.yml`): it runs SUSHI **and** the pinned IG Publisher
+**preview IG** (`ig-preview.yml`): it runs SUSHI **and** the pinned IG Publisher
 2.2.11 with Jekyll, asserts QA errors = 0, and publishes a live bilingual preview at
-`https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/`.
+`https://medizininformatik-initiative.github.io/ig-template-mii-kds/branches/dev/`.
 The module scaffold's demo build (`mii-kds-module-template`) renders the same
 template green as well. So the branding **renders** correctly; what this report adds
 is that the template also **resolves and assembles cleanly against a real,
@@ -58,7 +58,7 @@ java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
 > terminology QA notes for MII-specific value sets (SNOMED/ICD-10-GM/OPS) that the
 > public server does not fully expand — those are **basis's** terminology needs, not
 > template defects, and resolve when SU-TermServ is configured. The template's own
-> contribution (layout/branding) is the part proven by the self-test render.
+> contribution (layout/branding) is the part proven by the preview render.
 
 ## Conclusion
 

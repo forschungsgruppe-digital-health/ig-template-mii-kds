@@ -7,7 +7,7 @@ vulnerability reporting:
 
 1. Open the repository's **Security** tab.
 2. Choose **Report a vulnerability** (this opens a draft security advisory at
-   `https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/security/advisories/new`).
+   `https://github.com/medizininformatik-initiative/ig-template-mii-kds/security/advisories/new`).
 3. Describe the issue, affected files/versions, and reproduction steps.
 
 Do **not** open a public issue for security problems.

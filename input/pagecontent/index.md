@@ -1,7 +1,7 @@
-Diese Seite dient ausschließlich dem **Selbsttest** der IG-Template-Vorlage
+Diese Seite dient ausschließlich dem **Vorschau** der IG-Template-Vorlage
 `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
 
-Der Selbsttest baut die Vorlage eigenständig, damit Branding-Änderungen
+Der Vorschau baut die Vorlage eigenständig, damit Branding-Änderungen
 (Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können,
 bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch
 (Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu
