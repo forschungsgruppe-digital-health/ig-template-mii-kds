@@ -42,14 +42,18 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
 **German is the default IG language; English is the recommended second
 language.**
 
-- `i18n-default-lang: de` — German is authoritative/binding.
-- `i18n-lang: [en]` — English is the recommended additional rendering.
-- English is a translation aid, never the normative text.
+- `i18n-default-lang: en` — the guide leads in English.
+- `i18n-lang: [de]` — German is the additional rendering.
+- Conformance-resource `description`/`name`/`title` stay **German** in the FSH
+  (the MII naming conventions prefer German there), surfaced in the English
+  guide via a Translation extension.
 
-> **Why de-default:** project decision for these repositories. This
-> deliberately differs from `kerndatensatz-basis` (en-default) — do not
-> "correct" it back. The MII meta wiki's naming conventions also state German
-> as the preferred documentation language, with a translation extension for
+> **Why en-default:** the same model as `kerndatensatz-basis`. The MII meta
+> wiki's naming conventions prefer German for a conformance resource's
+> description/name/title but require a translation extension whose content is
+> shown "im englischsprachigen Implementierungsleitfaden" — i.e. they assume the
+> guide is English. Note this reverses an earlier project decision; do not
+> "correct" it back to German-default. Translation extension details for
 > the English guide.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
@@ -84,9 +88,9 @@ The template supports — and the module scaffold pre-configures — this
 
 ```yaml
 parameters:
-  i18n-default-lang: de          # leading language
+  i18n-default-lang: en          # leading language
   i18n-lang:
-    - en                         # additional rendered language(s)
+    - de                         # additional rendered language(s)
   translation-sources:
     - input/translations/en      # folder holding the supplements
 ```

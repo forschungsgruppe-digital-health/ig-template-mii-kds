@@ -62,7 +62,7 @@ source of truth; consult them before doing the corresponding task by hand.
   — **the single convention checker**: repo ↔ MII meta wiki drift plus the
   hard module-metadata contract; report-only, PRs target `dev`.
 - [`skills/ig-translate/`](skills/ig-translate/SKILL.md) — multi-language
-  support in template-owner scope: de-default/en-recommended policy, the
+  support in template-owner scope: en-default with a German translation, the
   verified rendering table, i18n conventions, language-neutrality rules for
   the template's overrides. The module-facing translate/harvest workflow
   lives in `mii-kds-module-template`.

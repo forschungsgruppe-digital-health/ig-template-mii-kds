@@ -8,8 +8,8 @@ preview.
 ## Steps
 
 1. The logo assets live in `content/assets/images/`:
-   - `logo-de.svg` — shown on German (default-language) pages.
-   - `logo-en.svg` — shown on English pages (the wordmark differs).
+   - `logo-en.svg` — shown on English (default-language) pages.
+   - `logo-de.svg` — shown on German pages (the wordmark differs).
    The favicon is `content/assets/ico/favicon.png`.
 2. Replace the file(s) **keeping the same file names**, or, if you use new names,
    update the `<img src="…">` in `includes/fragment-header.html` to match.
