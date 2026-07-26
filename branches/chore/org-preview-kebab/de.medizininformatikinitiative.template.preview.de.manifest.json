@@ -1,7 +1,7 @@
 {
   "version" : "0.1.0",
   "fhirVersion" : ["4.0.1"],
-  "date" : "20260726064133",
+  "date" : "20260726065045",
   "name" : "de.medizininformatikinitiative.template.preview",
   "jurisdiction" : "urn:iso:std:iso:3166#DE"
 }
