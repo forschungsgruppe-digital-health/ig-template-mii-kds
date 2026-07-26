@@ -1,2 +1,0 @@
-URL,Version,Status,OIDs,Name,Title,Description,Used
-https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/CodeSystem/selftest-palette,0.1.0,draft,,SelfTestPalette,Self-Test Palette,"Two arbitrary codes so the self-test IG renders a CodeSystem page; not an MII artifact.",
