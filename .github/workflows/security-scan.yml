@@ -25,7 +25,8 @@
 # guard tools/check-language-model.sh and the unit tests for
 # scripts/check-updates.mjs ride along instead of adding a workflow each.
 # Neither is covered by vars.ENABLE_SECURITY_SCAN — they check content and
-# tooling, not vulnerabilities, and must run on every pull request.
+# tooling, not vulnerabilities, and must run on every pull request into `dev`
+# (the trigger below), which is where changes land.
 name: Security scan
 
 on:

@@ -53,7 +53,8 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
 > shown "im englischsprachigen Implementierungsleitfaden" — i.e. they assume the
 > guide is English. This reverses an earlier draft decision of this project; do
 > not flip it back. `.github/workflows/security-scan.yml` runs a language-model
-> guard on every pull request that fails the build if the old wording reappears.
+> guard on every pull request into `dev` that fails the build if the old
+> wording reappears.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
