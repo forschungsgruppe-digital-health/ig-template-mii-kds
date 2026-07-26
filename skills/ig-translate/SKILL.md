@@ -15,7 +15,7 @@ license: CC-BY-4.0
 
 # ig-translate — multi-language support (template-owner scope)
 
-Adapted from the `ig-translate` skill of the FGDH sample IG
+Adapted from the `ig-translate` skill of the MII KDS sample IG
 ([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), trimmed to what the **template** owns.
 

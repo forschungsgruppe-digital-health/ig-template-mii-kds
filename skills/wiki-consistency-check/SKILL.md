@@ -22,7 +22,7 @@ second linter next to it.
 > maintainer about which is authoritative. One check run, one source of truth,
 > covering both wiki drift and the metadata contract.
 
-Adapted from the skill of the same name in the FGDH sample IG
+Adapted from the skill of the same name in the MII KDS sample IG
 ([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), generalized for the template repositories and module IGs.
 

@@ -86,9 +86,9 @@ export function parseWorkflowEnvPin(yamlText, key) {
 
 /**
  * Parse the `dependencies:` block of a sushi-config.yaml into { id: version }.
- * Taken over from the FGDH sample IG's tools/check-updates.py: only pinned
+ * Taken over from the MII KDS sample IG's tools/check-updates.py: only pinned
  * (version starts with a digit), non-commented entries count; the block ends
- * at the first non-indented line. Repo A ships no sushi-config.yaml — this
+ * at the first non-indented line. the IG template repo ships no sushi-config.yaml — this
  * exists so the checker also works unchanged in a module repo.
  */
 export function parseSushiDependencies(yamlText) {
@@ -168,7 +168,7 @@ async function fetchJson(url, { github = false } = {}) {
   const headers = { "user-agent": "mii-ig-template-update-check" };
   if (github && GITHUB_TOKEN) {
     // Authenticated GitHub API calls avoid the anonymous rate limit
-    // (lesson from the FGDH sample IG checker).
+    // (lesson from the MII KDS sample IG checker).
     headers.authorization = `Bearer ${GITHUB_TOKEN}`;
     headers.accept = "application/vnd.github+json";
   }
@@ -304,7 +304,7 @@ export async function collectRows() {
   });
 
   // FHIR package dependencies from sushi-config.yaml, when present (module
-  // repos; Repo A itself ships none — the block then contributes no rows).
+  // repos; the IG template repo itself ships none — the block then contributes no rows).
   const sushiConfig = readFileIfExists("sushi-config.yaml");
   if (sushiConfig != null) {
     for (const [id, pinned] of Object.entries(parseSushiDependencies(sushiConfig))) {
