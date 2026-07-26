@@ -109,7 +109,7 @@ jobs:
               -v "$PWD/nginx/nginx.conf:/etc/nginx/nginx.conf:ro" \
               -v "$PWD/nginx/certs:/etc/nginx/certs:ro" \
               -p 8090:80 \
-              nginx:1.30.4-alpine
+              nginx:1.30.4-alpine@sha256:97d490c12ba55b4946b01546d1c3ed324e8d41ab1c9fcb2a616aa470620e5b46
             for i in $(seq 1 10); do
               if curl --head --silent --fail http://127.0.0.1:8090; then break; fi
               sleep 2
