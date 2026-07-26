@@ -66,10 +66,11 @@ workaround can eventually be deleted.
   repository URL. Recorded in [design](design.md).
 - **`scripts/check-language-model.sh` is curated, not exhaustive.** It matches
   line by line, so a claim split across a line break passes — which is exactly
-  how one survived a commit whose subject was "align every language statement
-  with the English-default model". It was tested against 20 phrasings and
-  catches every wording that has actually occurred here. If you add a phrasing,
-  add the pattern; do not weaken the existing ones.
+  how the comment in `includes/fragment-footer.html` survived `ce3a914`,
+  "align the preview IG with the module template's language model": it read
+  "the German" / "(default) pages" across two lines. It was tested against 20
+  phrasings and catches every wording that has actually occurred here. If you
+  add a phrasing, add the pattern; do not weaken the existing ones.
 
 ## Cross-repo consistency — decided, not pending
 
