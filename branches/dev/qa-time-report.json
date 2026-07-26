@@ -1,5 +1,5 @@
 {
-  "date" : "Sun, 26 Jul, 2026 12:57:49 +0000",
+  "date" : "Sun, 26 Jul, 2026 14:55:55 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json",
@@ -12,36 +12,41 @@
     {
       "activity" : "checkR4R4B",
       "start" : 32,
-      "length" : 14
+      "length" : 13
     },
     {
       "activity" : "generateNarratives",
       "start" : 32,
-      "length" : 186
+      "length" : 216
     },
     {
       "activity" : "validate",
-      "start" : 38,
-      "length" : 7004
+      "start" : 37,
+      "length" : 6882
+    },
+    {
+      "activity" : "checkConformanceResources3",
+      "start" : 44,
+      "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 45,
-      "length" : 9
+      "start" : 44,
+      "length" : 8
     },
     {
       "activity" : "generate1",
-      "start" : 45,
-      "length" : 124
+      "start" : 44,
+      "length" : 126
     },
     {
       "activity" : "generate2",
       "start" : 48,
-      "length" : 125
+      "length" : 132
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 59,
+      "start" : 58,
       "length" : 3
     },
     {
@@ -56,17 +61,17 @@
     "processes" : [{
       "activity" : "loadResources",
       "start" : 31,
-      "length" : 3
+      "length" : 4
     },
     {
       "activity" : "load",
       "start" : 31,
-      "length" : 8
+      "length" : 9
     },
     {
       "activity" : "generateSnapshots",
       "start" : 31,
-      "length" : 5
+      "length" : 6
     },
     {
       "activity" : "load-configure",
@@ -74,49 +79,44 @@
       "length" : 1
     },
     {
-      "activity" : "loadDepInfo",
-      "start" : 32,
-      "length" : 1
-    },
-    {
       "activity" : "generateNarratives",
       "start" : 32,
-      "length" : 515
+      "length" : 654
     },
     {
       "activity" : "validate",
       "start" : 32,
-      "length" : 5166
+      "length" : 4923
     },
     {
       "activity" : "checkConformanceResources",
-      "start" : 45,
+      "start" : 44,
       "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 45,
+      "start" : 44,
       "length" : 1
     },
     {
       "activity" : "generate1",
       "start" : 45,
-      "length" : 42
+      "length" : 53
     },
     {
       "activity" : "generate2",
       "start" : 48,
-      "length" : 687
+      "length" : 648
     },
     {
       "activity" : "generate2",
       "start" : 49,
-      "length" : 898
+      "length" : 833
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 59,
-      "length" : 2
+      "start" : 58,
+      "length" : 1
     }]
   },
   {
@@ -130,32 +130,42 @@
   },
   {
     "name" : "/fsh-generated/includes/fsh-link-references.md",
-    "size" : 54
+    "size" : 54,
+    "processes" : [{
+      "activity" : "generate2",
+      "start" : 49,
+      "length" : 1
+    },
+    {
+      "activity" : "makeDependencies",
+      "start" : 54,
+      "length" : 1
+    }]
   },
   {
     "name" : "/input/pagecontent/index.md",
-    "size" : 1101,
-    "processes" : [{
-      "activity" : "generate2",
-      "start" : 49,
-      "length" : 1
-    }]
+    "size" : 1101
   },
   {
     "name" : "/template/config",
-    "size" : 0
+    "size" : 0,
+    "processes" : [{
+      "activity" : "load-configure",
+      "start" : 32,
+      "length" : 1
+    }]
   },
   {
     "name" : "/template/config/_config.yml",
-    "size" : 140
-  },
-  {
-    "name" : "/temp/pages/_includes/artifacts.xml",
-    "size" : 1675,
+    "size" : 140,
     "processes" : [{
       "activity" : "generate2",
       "start" : 49,
       "length" : 1
     }]
+  },
+  {
+    "name" : "/temp/pages/_includes/artifacts.xml",
+    "size" : 1675
   }]
 }
