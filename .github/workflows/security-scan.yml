@@ -19,6 +19,12 @@
 # FHIR content packages or the IG Publisher jar (not in vulnerability
 # databases). For those, the dependency version check (layer B) is the
 # available safeguard.
+#
+# ALSO HERE (not a scanner): the `language-model` job. This is the repo's only
+# pull-request-triggered workflow, so the cheap repo-hygiene guard
+# tools/check-language-model.sh rides along instead of adding a second workflow
+# for one grep. It is NOT covered by vars.ENABLE_SECURITY_SCAN — it checks
+# content, not vulnerabilities, and must run on every pull request.
 name: Security scan
 
 on:
@@ -34,6 +40,19 @@ permissions:
   actions: read # required by codeql-action/upload-sarif on private repos
 
 jobs:
+  # Guards the IG's language model: English-default with a German translation
+  # under input/translations/de/. The wording once survived the commit that
+  # flipped the config, so a grep is cheaper than the next audit.
+  language-model:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Language-model guard
+        run: bash tools/check-language-model.sh
+
   osv:
     if: ${{ vars.ENABLE_SECURITY_SCAN != 'false' }} # toggle: ON by default (§2.13)
     runs-on: ubuntu-latest
