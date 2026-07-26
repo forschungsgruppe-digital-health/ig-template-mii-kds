@@ -30,8 +30,8 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
-| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
-| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`tools/check-language-model.sh`) | SARIF in the Security tab; red job on language-model drift | `ENABLE_SECURITY_SCAN` (ON) — the `language-model` job is not gated | no |
+| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the checker's unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
+| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`tools/check-language-model.sh`) and the `tooling-tests` job (`node --test scripts/check-updates.test.mjs`) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
 Notes:
 - **Dependabot** (`.github/dependabot.yml`) is not a job you gate with `if:` — it is
@@ -48,6 +48,11 @@ Notes:
   English-default with a German translation under `input/translations/de/` —
   see [add-translation.md](recipes/add-translation.md). The job lives in
   `security-scan.yml` because that is the only pull-request-triggered workflow.
+- **The `tooling-tests` job** runs the unit tests of `scripts/check-updates.mjs`
+  (`node --test scripts/check-updates.test.mjs`, offline, no `npm install`). It
+  rides in `security-scan.yml` for the same reason as the language-model guard.
+  `dependency-check.yml` runs the same suite as a pre-flight, so the weekly
+  check fails loudly instead of filing a garbled tracking issue.
 
 ## 3. Release
 

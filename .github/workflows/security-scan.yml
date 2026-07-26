@@ -20,11 +20,12 @@
 # databases). For those, the dependency version check (layer B) is the
 # available safeguard.
 #
-# ALSO HERE (not a scanner): the `language-model` job. This is the repo's only
-# pull-request-triggered workflow, so the cheap repo-hygiene guard
-# tools/check-language-model.sh rides along instead of adding a second workflow
-# for one grep. It is NOT covered by vars.ENABLE_SECURITY_SCAN — it checks
-# content, not vulnerabilities, and must run on every pull request.
+# ALSO HERE (not scanners): the `language-model` and `tooling-tests` jobs. This
+# is the repo's only pull-request-triggered workflow, so the cheap repo-hygiene
+# guard tools/check-language-model.sh and the unit tests for
+# scripts/check-updates.mjs ride along instead of adding a workflow each.
+# Neither is covered by vars.ENABLE_SECURITY_SCAN — they check content and
+# tooling, not vulnerabilities, and must run on every pull request.
 name: Security scan
 
 on:
@@ -52,6 +53,24 @@ jobs:
 
       - name: Language-model guard
         run: bash tools/check-language-model.sh
+
+  # The dependency checker's own unit tests (version parsing, status
+  # classification, table rendering). Without them in CI a regression in
+  # scripts/check-updates.mjs would show up only as a garbled weekly tracking
+  # issue. Offline, no npm install, well under a second.
+  tooling-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      - name: Unit tests
+        run: node --test scripts/check-updates.test.mjs
 
   osv:
     if: ${{ vars.ENABLE_SECURITY_SCAN != 'false' }} # toggle: ON by default (§2.13)
