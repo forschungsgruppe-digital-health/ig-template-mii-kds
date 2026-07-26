@@ -57,6 +57,11 @@ Planned layout — the directories are added by the ongoing build-out pull reque
 
 > **Why the split mirrors the base template:** the IG Publisher's template mechanism resolves files by well-known paths (`package/`, `includes/`, `content/`); keeping the upstream layout makes the diff against `fhir2.base.template` reviewable and upgrades mechanical.
 
+
+## Quality bar
+
+- [IG best-practices checklist](docs/ig-best-practices-checklist.md) — how this template meets the official HL7 IG guidance, item by item.
+
 ## Where to get help
 
 - **HL7 FHIR community Zulip** — <https://chat.fhir.org>, stream **`german/mi-initiative`**. The channel the MII KDS IGs themselves direct questions to; anyone can create a free account and join. Best for FHIR, IG-Publisher, and profiling questions.
