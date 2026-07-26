@@ -62,18 +62,24 @@ dependency checker watches `fhir2.base.template` and proposes the bump.
 
 ### 2. The preview IG's own pages and menu
 
-The preview ships one page and one menu per language, purely so branding changes
-are reviewable in both renderings:
+The preview ships two pages and one menu per language, purely so branding
+changes are reviewable in both renderings:
 
 ```text
-input/pagecontent/index.md                     # English (default)
-input/translations/de/pagecontent/index.md     # German — same file name
-input/includes/menu.xml                        # English
-input/translations/de/includes/menu.xml        # German
+input/pagecontent/index.md                              # English (default)
+input/translations/de/pagecontent/index.md              # German — same file name
+input/pagecontent/translationinfo.md                    # English (default)
+input/translations/de/pagecontent/translationinfo.md    # German — same file name
+input/includes/menu.xml                                 # English
+input/translations/de/includes/menu.xml                 # German
 ```
 
-Keep both in step when you change either. A page with no translation falls back
-to the default language.
+Keep each pair in step when you change either half. A page with no translation
+falls back to the default language.
+
+> **Why `translationinfo.md` is not optional:** the base template puts a notice
+> at the top of every translated page linking to `translationinfo.html`. Without
+> the page, that link 404s on the whole German tree.
 
 ## Expected result
 
