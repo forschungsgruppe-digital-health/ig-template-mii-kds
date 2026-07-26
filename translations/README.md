@@ -8,7 +8,7 @@ from [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) `main`
 > **0.1.0** for reproducibility, and that release ships catalogs for
 > `ar`/`es`/`fr`/`nl`/`pt`/`ru` — **but not `de`**. German was added upstream only
 > *after* 0.1.0 was cut. Without a German catalog, every base-provided UI string
-> (`site.data.stringsBase['de'][…]`) renders **blank** on the German default
+> (`site.data.stringsBase['de'][…]`) renders **blank** on the German `/de/`
 > pages — visibly: the footer loses its copyright, package and generated-date
 > lines, and other base chrome loses its labels.
 >
