@@ -38,8 +38,10 @@ publisher:
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
-# Multi-language: English default, German the additional rendering — the
-# same model as kerndatensatz-basis.
+# Multi-language: English default, German the additional rendering. This is the
+# model the MII KDS modules use — for example kerndatensatz-basis, whose
+# sushi-config.yaml sets `i18n-default-lang: en`, `i18n-lang: [de]` and
+# `translation-sources: [input/translations/de]` (verified against `main`).
 #   i18n-default-lang: en       -> English is the leading/default rendered language
 #   i18n-lang: [de]             -> German is the additional rendered language
 #   translation-sources: [...]  -> folder(s) holding the per-language translations
