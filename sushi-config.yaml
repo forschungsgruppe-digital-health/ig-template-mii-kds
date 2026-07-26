@@ -28,8 +28,11 @@ fhirVersion: 4.0.1
 license: CC0-1.0
 copyrightYear: 2026+
 publisher:
-  name: Forschungsgruppe Digital Health, TU Dresden
-  url: https://github.com/medizininformatik-initiative
+  # The template (and this preview of it) is an MII artifact; ownership stays
+  # with the Medizininformatik-Initiative. Matches the module template's
+  # publisher so every MII KDS IG shows the same responsible organisation.
+  name: Medical Informatics Initiative (MII)
+  url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
 # Multi-language: German default, English recommended (§3.4). German is the

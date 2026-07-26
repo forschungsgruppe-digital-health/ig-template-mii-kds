@@ -22,13 +22,40 @@ The preview build resolves terminology against the **public HL7 server
 sets — supply the client certificate. Access is client-certificate-gated and
 granted only to entities in Germany (request it from the SU-TermServ).
 
-The values are **base64-encoded** (the workflow decodes them with `base64 -d`):
+### Recommended: use the helper script
+
+It validates the material **before** uploading anything — that the certificate is
+a readable PEM and not expired, that the key decrypts with your password, and
+that certificate and key actually belong together (matching modulus). Those three
+mistakes otherwise surface as an opaque TLS failure deep inside a CI run.
 
 ```sh
-base64 -i client-cert.pem            | gh secret set SU_TERMSERV_CLIENT_CERT     --repo medizininformatik-initiative/ig-template-mii-kds
-base64 -i client-key-encrypted.key   | gh secret set SU_TERMSERV_CLIENT_KEY      --repo medizininformatik-initiative/ig-template-mii-kds
-printf '%s' 'THE_KEY_PASSWORD'       | gh secret set SU_TERMSERV_CLIENT_PASSWORD --repo medizininformatik-initiative/ig-template-mii-kds
+tools/set-su-termserv-secrets.sh --cert client-cert.pem --key client-key.pem \
+  --repo <owner>/ig-template-mii-kds
+# dry run — validate locally, upload nothing:
+tools/set-su-termserv-secrets.sh --cert client-cert.pem --key client-key.pem --check-only
 ```
+
+The key password is prompted for interactively, so it never lands in your shell
+history or the process list. The certificate never leaves your machine except as
+a GitHub secret.
+
+### Or set the three secrets by hand
+
+The two files are **base64-encoded, single-line** (the workflow decodes them with
+`base64 -d`); the password is plain text. The key must be the **encrypted** PEM —
+the workflow decrypts it with `openssl rsa -passin env:SU_TERMSERV_CLIENT_PASSWORD`.
+
+```sh
+R=<owner>/ig-template-mii-kds
+base64 < client-cert.pem | tr -d '\n' | gh secret set SU_TERMSERV_CLIENT_CERT     --repo "$R"
+base64 < client-key.pem  | tr -d '\n' | gh secret set SU_TERMSERV_CLIENT_KEY      --repo "$R"
+printf '%s' 'THE_KEY_PASSWORD'         | gh secret set SU_TERMSERV_CLIENT_PASSWORD --repo "$R"
+```
+
+> **Why single-line base64:** the workflow runs `echo "$SECRET" | base64 -d`.
+> macOS `base64` wraps output at 76 characters by default, which breaks that —
+> hence `tr -d '\n'` (GNU `base64 -w0` does the same).
 
 When present, `ig-preview.yml` starts a client-cert nginx proxy (pinned
 `kerndatensatz-meta` config) and points the IG Publisher at it; when absent it
