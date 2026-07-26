@@ -67,6 +67,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 - [Workflows](docs/workflows.md) — what the CI does, and how releases work
 - [IG best-practices checklist](docs/ig-best-practices-checklist.md) — how this template meets the official HL7 guidance
 - [Secrets](docs/secrets.md) — optional: MII terminology server, release announcements
+- [Open tasks](docs/open-tasks.md) — what is unfinished, and why
 
 ## Getting help
 
