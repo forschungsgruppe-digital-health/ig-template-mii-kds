@@ -30,7 +30,7 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
-| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream; opens a tracking issue/PR | `dependencies` issue/PR | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never auto-merges |
+| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
 | `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`tools/check-language-model.sh`) | SARIF in the Security tab; red job on language-model drift | `ENABLE_SECURITY_SCAN` (ON) — the `language-model` job is not gated | no |
 
 Notes:
