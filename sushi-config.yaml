@@ -37,8 +37,8 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
 # Multi-language: German default, English recommended (§3.4). German is the
 # authoritative language; English is the recommended additional rendering.
-#   i18n-default-lang: de       -> German is the leading/default rendered language
-#   i18n-lang: [en]             -> English is the additional rendered language
+#   i18n-default-lang: en       -> English is the leading/default rendered language
+#   i18n-lang: [de]             -> German is the additional rendered language
 #   translation-sources: [...]  -> folder(s) holding the per-language translations
 # Two translation mechanisms live under a translation-source folder
 # (mirroring FHIR/multi-lang-test-ig, the HL7 reference IG):
@@ -52,13 +52,13 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 # follows (docs/recipes/add-translation.md). The preview carries no conformance
 # resources; a module adds its own FSH + the matching .po files.
 parameters:
-  i18n-default-lang: de
+  i18n-default-lang: en
   i18n-lang:
-    - en
+    - de
   translation-sources:
-    - input/translations/en
+    - input/translations/de
 
-# One home page (German-default content) + the auto-generated artifact index.
+# One home page (English default, German translation) + the auto-generated artifact index.
 pages:
   index.md:
     title: "Home"

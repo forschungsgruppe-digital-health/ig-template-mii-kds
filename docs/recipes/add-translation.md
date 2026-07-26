@@ -4,11 +4,19 @@
 navigation **menu**, the **footer / base UI chrome**, the **narrative content**,
 and the **conformance resources**.
 
-**Language policy.** These repositories are **German-default,
-English-recommended**: German is the authoritative content language
-(`i18n-default-lang: de`), English the recommended second rendering
-(`i18n-lang: [en]`). Everything below works the same for a further language —
-replace `en` with that language code.
+**Language policy.** These repositories are **English-default with a German
+translation**, the same model as
+[kerndatensatz-basis](https://github.com/medizininformatik-initiative/kerndatensatz-basis):
+`i18n-default-lang: en`, `i18n-lang: [de]`. Everything below works the same for a
+further language — replace `de` with that language code.
+
+> **Why English leads the guide:** the MII meta wiki
+> ([Namenskonventionen für FHIR-Ressourcen in der MII](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Namenskonventionen-für-FHIR‐Ressourcen-in-der-MII),
+> § Sprache) prefers German for a conformance resource's `description`/`name`/
+> `title`, but then requires a Translation extension whose content is shown "im
+> englischsprachigen Implementierungsleitfaden" — it assumes the guide itself is
+> English. Resource *descriptions* therefore stay German in the FSH, while the
+> narrative guide leads in English.
 
 > **Why translation is *additive*:** you never edit the German source to
 > translate it. Each language gets its own file beside the source, and a part
@@ -42,23 +50,23 @@ every module inherits it.
 ## 1. Narrative content (pages)
 
 Put the translated page in the translation-source folder under `pagecontent/`,
-with the **same file name** as the German page:
+with the **same file name** as the English page:
 
 ```text
-input/pagecontent/index.md                     # German — the source
-input/translations/en/pagecontent/index.md     # English — renders on /en/
+input/pagecontent/index.md                     # English — the source (default)
+input/translations/de/pagecontent/index.md     # German — renders on /de/
 ```
 
 - Keep structure, headings and links 1:1 with the German page.
 - Leave internal artifact links (`StructureDefinition-<id>.html`, …) and FHIR
   identifiers unchanged — translate prose, not identifiers.
-- A page with no translation file falls back to the German source on `/en/`,
+- A page with no translation file falls back to the English source on `/de/`,
   with a "no translation available" note. That is fine — translate the pages
   that matter most first.
 
-> **The mistake to avoid:** a `<name>-en.md` sibling inside `input/pagecontent/`
+> **The mistake to avoid:** a `<name>-de.md` sibling inside `input/pagecontent/`
 > is **not** a translation. The toolchain treats it as a *separate page*, so
-> `/en/` keeps showing German. It must live under
+> `/de/` keeps showing English. It must live under
 > `input/translations/<lang>/pagecontent/`. This mirrors the HL7 reference IG
 > [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig).
 
@@ -69,8 +77,8 @@ input/translations/en/pagecontent/index.md     # English — renders on /en/
 The menu **is** translatable, but only if it is maintained as a **file**:
 
 ```text
-input/includes/menu.xml                      # German — the source menu
-input/translations/en/includes/menu.xml      # English translation
+input/includes/menu.xml                      # English — the source menu (default)
+input/translations/de/includes/menu.xml      # German translation
 ```
 
 Rules:
@@ -139,7 +147,7 @@ For each resource whose text you want in English, add one supplement named
 exactly `<ResourceType>-<id>.po`:
 
 ```text
-input/translations/en/StructureDefinition-example-patient.po
+input/translations/de/StructureDefinition-example-patient.po
 ```
 
 Format (`msgid` = the German source, `msgstr` = the translation):
@@ -200,7 +208,7 @@ The build must stay green (QA errors = 0).
 | Menu stays in one language on every rendering | The `menu:` property is still in `sushi-config.yaml`, or `input/translations/<lang>/includes/menu.xml` is missing | Remove the property; add the per-language menu file (§2) |
 | Menu QA error about `href="#"` | A dropdown parent has no real target | Point it at a real page (§2) |
 | On `/de/` the footer/base labels are **blank** | No German UI-string catalog for the pinned base | Vendor `stringsBase-de.po` + `stringsArtifacts-de.po` into the template's `translations/` (§3) |
-| A translated page does not appear on `/en/` | It is a `<name>-en.md` sibling in `input/pagecontent/`, or its file name differs from the German page | Move it to `input/translations/en/pagecontent/<same-filename>` (§1) |
+| A translated page does not appear on `/de/` | It is a `<name>-de.md` sibling in `input/pagecontent/`, or its file name differs from the English page | Move it to `input/translations/de/pagecontent/<same-filename>` (§1) |
 | A resource supplement seems to do nothing | `msgid` does not match the generated German byte-for-byte, the file name is not `<ResourceType>-<id>.po`, or the field is not translatable | Copy the `msgid` from `fsh-generated/resources/…`; check the table in §4 |
 | The language-switcher flag image is missing | The pinned base does not ship the ISO-639-3 flag SVGs the current Publisher expects | Known base-version gap; suppressed in `input/ignoreWarnings.txt` |
 
