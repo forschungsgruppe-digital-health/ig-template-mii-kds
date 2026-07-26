@@ -10,17 +10,17 @@
 # package registry; the package id below is intentionally distinct from any
 # KDS module id and ends in `.preview`.
 #
-# Multi-language is kept MINIMAL on purpose: German is the default language and
-# English is the one additional language, so the language-aware header/footer
-# render in BOTH languages. The full de→en translation workflow (translation
-# sources, harvesting) is added by the multi-language task, not here.
+# Multi-language is kept MINIMAL on purpose: English is the default language and
+# German is the one additional language, so the language-aware header/footer
+# render in BOTH languages. The preview carries one translated page and one
+# translated menu; the full en→de workflow is in docs/recipes/add-translation.md.
 
 id: de.medizininformatikinitiative.template.preview
 packageId: de.medizininformatikinitiative.template.preview
 canonical: https://github.com/medizininformatik-initiative/ig-template-mii-kds
 name: MIIKDSTemplatePreview
 title: "MII KDS IG Template — Preview"
-description: "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."
+description: "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module."
 status: draft
 version: 0.2.0
 releaseLabel: ci-build
@@ -35,20 +35,20 @@ publisher:
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
-# Multi-language: German default, English recommended (§3.4). German is the
-# authoritative language; English is the recommended additional rendering.
+# Multi-language: English default, German the additional rendering (§3.4) — the
+# same model as kerndatensatz-basis.
 #   i18n-default-lang: en       -> English is the leading/default rendered language
 #   i18n-lang: [de]             -> German is the additional rendered language
 #   translation-sources: [...]  -> folder(s) holding the per-language translations
 # Two translation mechanisms live under a translation-source folder
 # (mirroring FHIR/multi-lang-test-ig, the HL7 reference IG):
 #   - NARRATIVE PAGES: input/translations/<lang>/pagecontent/<same-filename>
-#     (e.g. input/translations/en/pagecontent/index.md) — the whole page is
+#     (e.g. input/translations/de/pagecontent/index.md) — the whole page is
 #     rendered in that language on /<lang>/.
 #   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
 #     (msgid/msgstr entries translate resource fields such as description).
-# The preview ships the English home page (input/translations/en/pagecontent/
-# index.md) so /en/ renders in English — the mechanism a module maintainer
+# The preview ships the German home page (input/translations/de/pagecontent/
+# index.md) so /de/ renders in German — the mechanism a module maintainer
 # follows (docs/recipes/add-translation.md). The preview carries no conformance
 # resources; a module adds its own FSH + the matching .po files.
 parameters:
@@ -64,8 +64,8 @@ pages:
     title: "Home"
 
 # NOTE: no `menu:` property here — the menu is maintained as
-# input/includes/menu.xml (German, the default language) plus a per-language
-# translation at input/translations/en/includes/menu.xml. That is the ONLY way to
+# input/includes/menu.xml (English, the default language) plus a per-language
+# translation at input/translations/de/includes/menu.xml. That is the ONLY way to
 # get a TRANSLATED menu (the `menu:` property generates one untranslatable
 # menu.xml); it mirrors the HL7 reference IG FHIR/multi-lang-test-ig.
 

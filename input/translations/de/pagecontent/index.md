@@ -3,8 +3,8 @@ Diese Seite dient ausschließlich dem **Vorschau** der IG-Template-Vorlage
 
 Der Vorschau baut die Vorlage eigenständig, damit Branding-Änderungen
 (Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können,
-bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch
-(Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu
+bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Englisch
+(Standardsprache) und Deutsch, um die sprachabhängige Kopf- und Fußzeile zu
 prüfen.
 
 Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md`
