@@ -53,12 +53,36 @@ announce non-prerelease releases to `chat.fhir.org` stream `german/mi-initiative
 set **both**:
 
 ```sh
-gh variable set ANNOUNCE_PUBLIC_ZULIP --repo medizininformatik-initiative/ig-template-mii-kds --body true
-printf '%s' 'THE_CHAT_FHIR_ORG_BOT_API_KEY' | gh secret set FHIR_ZULIP_API_KEY --repo medizininformatik-initiative/ig-template-mii-kds
+R=medizininformatik-initiative/ig-template-mii-kds
+gh variable set ANNOUNCE_PUBLIC_ZULIP --repo "$R" --body true
+gh variable set FHIR_ZULIP_BOT_EMAIL  --repo "$R" --body 'your-bot@chat.fhir.org'
+printf '%s' 'THE_CHAT_FHIR_ORG_BOT_API_KEY' | gh secret set FHIR_ZULIP_API_KEY --repo "$R"
 ```
 
-and set the bot email in `notify-zulip.yml` (the `TODO(human)` placeholder). Post
-sparingly — it is a community server the MII does not own.
+If the key or the bot address is missing, the job **skips with a notice** instead
+of posting with an invalid sender. **No workflow file has to be edited** to enable
+either channel. Post sparingly — it is a community server the MII does not own.
+
+The MII bot address defaults to `kds-github-bot@mii.zulipchat.com`; override it
+with the `MII_ZULIP_BOT_EMAIL` variable if your bot differs.
+
+## Verifying a gate after you enable it
+
+Both gates are *wired and fall back safely*, but until the credential exists the
+"enabled" code path has never executed. Verify each once, right after enabling:
+
+**Gate F (SU-TermServ).** Push any branch (or re-run the IG preview) and open the
+log of the terminology step. Enabled and working looks like
+`SU-TermServ client certificate present — starting a local client-cert nginx proxy`
+followed by a green build; not configured looks like
+`No SU-TermServ credential — falling back to the public HL7 terminology server`.
+If the proxy fails to start, the step fails loudly rather than silently
+mis-expanding value sets — re-check that the cert/key are **base64-encoded** and
+that the key password is correct.
+
+**Gate G (Zulip).** The announcement runs on `release: published`. Verify on the
+next release by opening the `Announce release` run: it prints either the delivered
+message or an explicit skip notice naming exactly what is missing.
 
 ## CI toggles (variables — all default correctly when unset)
 
@@ -68,6 +92,8 @@ sparingly — it is a community server the MII does not own.
 | `ENABLE_RELEASE_PLEASE` | on | SemVer release automation |
 | `ENABLE_ZULIP_ANNOUNCE` | on | MII Zulip announcement (skips without the key) |
 | `ANNOUNCE_PUBLIC_ZULIP` | off | public FHIR Zulip announcement |
+| `FHIR_ZULIP_BOT_EMAIL` | unset | sender for the public FHIR Zulip; required for that channel |
+| `MII_ZULIP_BOT_EMAIL` | `kds-github-bot@mii.zulipchat.com` | sender for the MII Zulip |
 | `ENABLE_DEPENDENCY_CHECK` | on | weekly version-drift check |
 | `ENABLE_SECURITY_SCAN` | on | OSV + Trivy |
 
