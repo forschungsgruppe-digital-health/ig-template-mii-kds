@@ -252,6 +252,22 @@ The override appends to (never replaces) the base footer content:
   mechanism renders those labels **blank** on the German `/de/` pages (next
   bullet). Every visible footer string is therefore correct in both `de` and
   `en`; adding a third language means extending this fragment's label branch.
+- **Known limit — the organisation name and link in the copyright line are the
+  same in every language.** On `/de/` the footer reads `IG © 2026+ Medical
+  Informatics Initiative (MII)`, linking to `…medizininformatik-initiative.de/en`,
+  right next to the German `Impressum` link this fragment *does* branch. It
+  cannot be branched here: the **base** emits that link in
+  `fragment-pageend.html` —
+  `<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher | escape}}</a>`
+  — *before* it includes our `fragment-footer.html`, and both values come from
+  the single-valued `publisher` block in `sushi-config.yaml` (SUSHI maps
+  `publisher.url` onto `contact[0].telecom[0]`). **Accepted as-is:** that block
+  is deliberately identical to `kerndatensatz-basis` and the module template so
+  every MII KDS IG names the same responsible organisation, and there is no
+  language-neutral MII URL to switch to — the site root `301`s to `/de/start`,
+  so changing it would only mirror the mismatch onto the English pages. Fixing
+  it properly needs either per-language IG metadata (not available) or an
+  override of `fragment-pageend.html`, which would fork base behaviour (§2).
 - **Finding — the pinned base ships no German UI-string catalog (i18n gap; RESOLVED 2026-07-25 by vendoring, see end of this bullet).**
   `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
