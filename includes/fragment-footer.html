@@ -2,8 +2,8 @@
      Unlike header/css, the base footer fragment is NOT an empty placeholder: it
      renders "Links: Table of Contents | QA Report [| feedback dashboards]".
      The base uses site.data.stringsBase[include.lang][...] for the labels, but
-     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the German
-     (default) pages those labels render BLANK. This override therefore hard-codes
+     fhir2.base.template 0.1.0 ships NO German UI-string catalog, so on the
+     German /de/ pages those labels render BLANK. This override therefore hard-codes
      language-aware labels (de/en) so the footer shows real text in both languages,
      preserves the base links (TOC, QA, feedback dashboards), and appends the MII
      information links.

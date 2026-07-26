@@ -17,6 +17,9 @@
 #   only true under the old model (see PATTERNS). The patterns match the WRONG
 #   claim, not the language pair — "English default, German translation" and
 #   "the German /de/ pages" are correct statements and must not match.
+#   The check is line-based: a claim broken across a line break (as one comment
+#   in includes/fragment-footer.html once was) slips through, so a reviewer is
+#   still the second line of defence.
 #
 # WHEN IT FIRES
 #   Fix the wording. If a hit is genuinely legitimate, add it to the explicit
@@ -24,7 +27,8 @@
 #
 # USAGE
 #   bash tools/check-language-model.sh          # from anywhere in the checkout
-#   Runs in CI on every pull request (.github/workflows/security-scan.yml).
+#   Runs in CI on every pull request into `dev`, where changes land
+#   (.github/workflows/security-scan.yml).
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 
@@ -35,7 +39,7 @@ PATTERNS=(
   'german( is| stays| remains| as)( the)? (default|leading|authoritative|binding|source|original)'
   'german is the [^.]{0,12}(default|leading) language'
   'de-default'
-  'german \(the default'
+  'german \((the )?default'
   '\(german, the default'
   'language \(german\)'
   '(default|leading) (ig |content )?language (is|=) german'
@@ -43,7 +47,7 @@ PATTERNS=(
   'leave it german'
   'german by default'
   'deutsch \(standardsprache\)'
-  'german — the (source|original)'
+  'german (—|-) the (source|original)'
   'translations/en[^a-z]'
   'translations/en$'
 )
