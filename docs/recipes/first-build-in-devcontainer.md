@@ -1,8 +1,6 @@
 # Recipe: first build in the dev container
 
-## Goal
-
-Go from "I just cloned this repository" to a working, fully equipped FHIR IG
+**Goal.** Go from "I just cloned this repository" to a working, fully equipped FHIR IG
 toolchain — Java 17, Node 22, SUSHI, Ruby/Jekyll, Graphviz — without
 installing any of those tools on your own machine. Everything runs inside a
 container that VS Code builds for you.
@@ -13,9 +11,8 @@ container that VS Code builds for you.
 > **Reopen in Container**. This follows the MII meta wiki page
 > ["Dev Container ‐ IG Publisher"](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Dev-Container-%E2%80%90-IG-Publisher).
 
-## Prerequisites
-
-You need exactly three things on your machine:
+**Prerequisites.** Three things on your machine — plus `git` and network
+access (the first build downloads the base image and tools):
 
 1. **Docker** — [Docker Desktop](https://www.docker.com/products/docker-desktop/)
    (Windows/macOS) or any Docker engine (Linux). Must be running.
@@ -23,9 +20,6 @@ You need exactly three things on your machine:
 3. The VS Code extension **Dev Containers**
    (`ms-vscode-remote.remote-containers`). Install it from the Extensions
    view in VS Code.
-
-You also need `git` and network access (the first build downloads the base
-image and tools).
 
 ## Steps
 
@@ -98,7 +92,7 @@ image and tools).
 - Once the preview harness is merged: the preview IG builds cleanly and
   produces an `output/` folder with the rendered pages.
 
-## Common errors and fixes
+## Common errors & fixes
 
 | Symptom | Cause | Fix |
 |---|---|---|

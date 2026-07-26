@@ -8,7 +8,11 @@
 There are two ways to reference the template. Use **published** once this template
 has a release; use **vendored** during bring-up before that.
 
-## A. Published (the normal case)
+## Steps
+
+Pick the variant that matches where the template stands today.
+
+### A. Published (the normal case)
 
 1. In the module's `ig.ini`, set:
    `template = de.medizininformatikinitiative.template#<version>` (e.g. `#0.1.0`).
@@ -17,7 +21,7 @@ has a release; use **vendored** during bring-up before that.
 2. Rebuild the module (`sushi . && java -jar publisher.jar -ig ig.ini`).
 3. To adopt a newer template release later, bump the version and rebuild.
 
-## B. Vendored (bring-up, before this template is published)
+### B. Vendored (bring-up, before this template is published)
 
 1. Copy this template's content (`package/`, `includes/`, `content/`) into an
    `ig-template/` folder in the module repo.
