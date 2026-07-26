@@ -30,17 +30,23 @@ CC-BY-4.0), generalized for the template repositories and module IGs.
 
 - Before a release of this repository, or periodically, to catch drift against
   the authoritative MII meta wiki early.
-- As the repository's convention-check CI job (one job covers both check
-  classes).
 - On demand, when a maintainer asks whether the repo still matches the MII
   conventions.
+
+> **Run it by hand here.** This repository has **no** mechanical convention-check
+> CI job. The checker that automates the hard assertions
+> (`tools/convention-check.mjs` and its workflow) lives in
+> `mii-kds-module-template`, where a module's substituted `sushi-config.yaml`
+> gives it something to assert against. In this repository the assertions are
+> evaluated and reported by whoever runs the skill.
 
 ## Two check classes
 
 1. **Hard assertions — the module-metadata contract.** A small, fixed set of
    metadata rules (see the clearly marked section in
    [`references/check-matrix.md`](references/check-matrix.md)). A violation is
-   a **failure** (in CI: non-zero exit). The matrix states per assertion
+   a **failure** — non-zero exit where the mechanical checker runs (the module
+   scaffold), a reported failed assertion here. The matrix states per assertion
    whether it applies to **template repositories** or to **module IGs** — only
    the template-relevant subset applies to this repository.
 2. **Advisory wiki-drift findings.** Everything compared against the current
@@ -73,9 +79,10 @@ remembered wiki content.
    artifact against the wiki statement (list in
    [`references/check-matrix.md`](references/check-matrix.md)).
 4. **Report.** Output a table: area · repo state · expected (wiki/contract) ·
-   `OK`/`DEVIATION`/`UNCLEAR` · recommendation. In CI, put the table into the
-   job summary/log. Hard-assertion failures make the run fail; advisory
-   findings do not.
+   `OK`/`DEVIATION`/`UNCLEAR` · recommendation. Where the checker runs in CI,
+   the table goes into the job summary and hard-assertion failures fail the job;
+   advisory findings never do. Here the run is manual, so report the failures in
+   the run's output and block the release on them.
 5. **Never change anything on its own.** Report and propose only. Corrections
    are made by humans, or after explicit approval — and always as a pull
    request **targeting `dev`** (never `main`, never an auto-merge).
