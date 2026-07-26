@@ -11,7 +11,7 @@
 > highlight boxes are purpose-neutral (`mii-highlight-blue` / `mii-highlight-green`).
 >
 > Remaining non-blocking follow-ups (do not gate a release):
-> - The main MII logo is shipped as PNG; no official SVG of it exists publicly.
+> - The logo is a **trace** of the official PNG (no official SVG exists); replace it if the MII publishes one.
 > - The MII logo is a trademark; shipping it in this CC0 repo relies on MII
 >   permission (precedent: `kerndatensatz-basis` ships MII logo files). Confirm
 >   redistribution rights with the MII before wide distribution.
@@ -127,18 +127,47 @@ dragon (29–30), translation box (31–32).
 
 ## 4. Logo & favicon (CONFIRMED, Gate B 2026-07-24)
 
-| Shipped file | Source (retrieved 2026-07-22) | SHA-256 |
-| --- | --- | --- |
-| `content/assets/images/mii-logo.png` (450×270, RGBA) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/img/Logo_MII_270px_Hoehe_de.png` — the logo the MII homepage header itself displays | `d316838e392595c726e635202f2605eb794f9d61157743ee3300ef385141ce04` |
-| `content/assets/images/mii-logo-en.png` (466×270, RGB) | `…/assets/img/Logo_MII_270px_Hoehe_en.png` — the logo the English MII homepage displays (wordmark "MEDICAL INFORMATICS INITIATIVE GERMANY") | `f205ba1b4d489208a70c30dd953b9f64c26eb9bb3c8cd8713878befcad15a6ac` |
-| `content/assets/ico/favicon.png` (48×48, converted from the 48px layer of the official `favicon.ico`) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/favicon/favicon.ico` (`f6351d085694a766ae799f73fdb7dd11bf89329d78484312364ee737ef6c0d62`) | `1c470d08136c6c243990d8574b9b73951379fe0d131b727fe311d3d485652667` |
+The logo ships as **SVG, traced from the official PNGs** (see below). The source
+PNGs and their checksums are recorded for provenance.
 
-- **Follow-up (non-blocking): an official SVG of the main MII logo would be preferable.** Only PNG is
-  obtainable: the sole SVG logo on the MII website
-  (`Logo_MII_second.svg`) is the **"10 Jahre MII" anniversary logo** (verified by
-  rendering it), not the brand logo, and `kerndatensatz-basis` ships only JPGs
-  from 2017. Per the fallback rule, we ship `mii-logo.png` (the current official
-  PNG) instead of a fabricated vector redraw.
+| Shipped file | Traced from (retrieved 2026-07-22) | Source SHA-256 |
+| --- | --- | --- |
+| `content/assets/images/mii-logo.svg` (viewBox 900×540) | `https://www.medizininformatik-initiative.de/themes/custom/mii/assets/img/Logo_MII_270px_Hoehe_de.png` — the logo the MII homepage header displays | `d316838e392595c726e635202f2605eb794f9d61157743ee3300ef385141ce04` |
+| `content/assets/images/mii-logo-en.svg` (viewBox 932×540) | `…/assets/img/Logo_MII_270px_Hoehe_en.png` — the English variant ("MEDICAL INFORMATICS INITIATIVE GERMANY") | `f205ba1b4d489208a70c30dd953b9f64c26eb9bb3c8cd8713878befcad15a6ac` |
+| `content/assets/ico/favicon.png` (48×48, from the 48px layer of the official `favicon.ico`) | `…/assets/favicon/favicon.ico` (`f6351d085694a766ae799f73fdb7dd11bf89329d78484312364ee737ef6c0d62`) | `1c470d08136c6c243990d8574b9b73951379fe0d131b727fe311d3d485652667` |
+| `content/assets/images/deu.svg` (16px flag) | the flag asset the IG Publisher itself emits at the output root | — |
+
+### Why the logo is a trace, and how to reproduce it
+
+The MII publishes its logo **only as PNG** — the sole SVG on the MII website
+(`Logo_MII_second.svg`) is the **"10 Jahre MII" anniversary mark**, verified by
+rendering it, not the brand logo. A vector is wanted so the logo stays crisp at
+any size, so the PNGs are traced with `tools/trace-logo.sh`
+(ImageMagick + potrace). **This is a conversion, not an official asset** —
+replace both files the day the MII publishes a real SVG.
+
+The logo is flat colour, so it is separated into one layer per brand colour and
+each layer traced. Layers are *segmented* on the colours present in the source
+PNG but *painted* with the brand colours, so both language variants come out
+identically branded — the published English PNG is a washed-out export whose
+greys also split across two tones, which is why its wordmark colours are merged
+into one layer.
+
+The exact commands that produced the shipped files:
+
+```sh
+tools/trace-logo.sh mii-de.png mii-logo.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
+  slate:#7a8495:#7a8495 blue:#3473aa:#3473aa teal:#548b9b:#548b9b \
+  sage:#74a86f:#74a86f green:#72b802:#72b802 lime:#99cc4a:#99cc4a
+
+tools/trace-logo.sh mii-en.png mii-logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
+  "slate:#6d7887,#848c9a,#798693:#7a8495" "blue:#6a89ba:#3473aa" "teal:#93a5ad:#548b9b" \
+  "sage:#9ebd89:#74a86f" "green:#afcf01,#a4c80d:#72b802"
+```
+
+Verified by rendering the SVG next to the source PNG at logo size and at 3×
+zoom: indistinguishable at display size, clean vector edges when enlarged.
+
 - **Two language variants** because the wordmark differs materially
   (DE: "MEDIZIN INFORMATIK INITIATIVE"; EN: "MEDICAL INFORMATICS INITIATIVE
   GERMANY"). `fragment-header.html` switches on `include.lang == 'de'` — the
@@ -306,7 +335,7 @@ agreed MII corporate design of this template and shipped in v0.2.0.
 
 **Remaining follow-ups — non-blocking, none gate a release:**
 
-1. Provide an official SVG of the main MII logo (only PNG obtainable; the site's only SVG is the anniversary logo).
+1. Replace the traced logo with an official SVG if the MII publishes one (the site's only SVG is the anniversary mark). The shipped SVG is a faithful trace, so this is a provenance improvement, not a visual one.
 3. Confirm MII permission to redistribute the logo files in this CC0 repo.
 4. Decide whether translated imprint-link labels (lang-branched strings) are preferred over the language-neutral bare-URL labels.
 5. Decide whether to accept footer links being the same white as the surrounding footer text (site-faithful, but WCAG 1.4.1-relevant) or allow one underline rule override.
