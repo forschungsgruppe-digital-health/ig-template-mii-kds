@@ -58,10 +58,15 @@ parameters:
   translation-sources:
     - input/translations/de
 
-# One home page (English default, German translation) + the auto-generated artifact index.
+# Two pages (English source, German translation each) + the auto-generated
+# artifact index. `translationinfo.md` is not optional: the base template's
+# translation notice links to translationinfo.html from EVERY translated page,
+# so without this page the German tree carries a dead link.
 pages:
   index.md:
     title: "Home"
+  translationinfo.md:
+    title: "Translation information"
 
 # NOTE: no `menu:` property here — the menu is maintained as
 # input/includes/menu.xml (English, the default language) plus a per-language

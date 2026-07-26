@@ -18,8 +18,21 @@ from [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) `main`
 **Upkeep:** when the pinned base is bumped to a release that ships `de` itself,
 delete this folder — the base's own catalogs then apply. The scheduled dependency
 checker watches `fhir2.base.template`, so that bump arrives as a reviewable PR.
+Re-apply the one change listed below, or check first whether the bumped base has
+made it unnecessary.
 
-Source files (unmodified copies):
+Source files:
 
-- `stringsBase-de.po`
-- `stringsArtifacts-de.po`
+- `stringsArtifacts-de.po` — unmodified copy.
+- `stringsBase-de.po` — one deliberate change, marked with a comment in the
+  file: the `TRANS_HLP` link is written as HTML (`<a href='…'>hier</a>`) instead
+  of markdown. The pinned base inserts this string without `| markdownify`, so
+  markdown link syntax reached the rendered page verbatim and every German page
+  showed a literal `[hier](translationinfo.html)`. HTML renders as a link both
+  on the pinned base and on the newer upstream one that does apply
+  `markdownify`.
+
+> **Upstream:** the missing `markdownify` is a defect of the pinned base, not of
+> the German text — HL7's own reference IG `FHIR/multi-lang-test-ig` shows the
+> same literal brackets in every translated language. Worth raising against
+> `HL7/ig-template-base2`.

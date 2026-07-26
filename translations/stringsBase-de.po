@@ -9,9 +9,21 @@ msgid "There is no translation page available for the current page, so it has be
 msgstr "Für die aktuelle Seite ist keine Übersetzung verfügbar, daher wurde sie in der Standardsprache dargestellt."
 
 # TRANS_HLP
+# DIVERGES FROM UPSTREAM (the only change in this vendored file): the link is
+# written as HTML, not as markdown. The pinned base emits this string with
+# `{{site.data.stringsBase[lang]['TRANS_HLP']}}` and NO `| markdownify`
+# (fhir2.base.template#0.1.0, includes/template-page-md.html:35), so markdown
+# link syntax reaches the page verbatim and readers see literal `[hier](...)`.
+# Liquid does not escape the value, so an <a> element renders as a real link;
+# upstream `main` has since added `| markdownify`, which passes HTML through
+# unchanged, so this form keeps working after a base bump. The same defect is
+# visible in HL7's own reference IG (FHIR/multi-lang-test-ig) and should be
+# raised upstream against HL7/ig-template-base2. The href is single-quoted on
+# purpose: no upstream catalog contains an escaped `\"`, so the reader's
+# handling of it is unproven, and single quotes need no escaping in a .po file.
 #: TRANS_HLP
 msgid "This page includes translations from the original source language in which the guide was authored.  Information on these translations and instructions on how to provide feedback on the translations can be found [here](translationinfo.html)."
-msgstr "Diese Seite enthält Übersetzungen aus der Originalsprache, in der der Leitfaden verfasst wurde.  Informationen zu diesen Übersetzungen und Anweisungen zum Abgeben von Feedback zu den Übersetzungen finden Sie [hier](translationinfo.html)."
+msgstr "Diese Seite enthält Übersetzungen aus der Originalsprache, in der der Leitfaden verfasst wurde.  Informationen zu diesen Übersetzungen und Anweisungen zum Abgeben von Feedback zu den Übersetzungen finden Sie <a href='translationinfo.html'>hier</a>."
 
 # Experimental
 #: Experimental
