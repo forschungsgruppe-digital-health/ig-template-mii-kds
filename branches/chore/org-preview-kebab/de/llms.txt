@@ -1,0 +1,16 @@
+# de.medizininformatikinitiative.template.preview#0.1.0: MII KDS IG Template — Preview(de)
+
+## Pages
+
+* [Home](index.md)
+* [Artefaktübersicht](artifacts.md)
+
+## Resources
+
+### Logicals
+
+* [Preview Model](StructureDefinition-preview-model.md)
+
+### ImplementationGuides
+
+* [MII KDS IG Template — Preview](ImplementationGuide-de.medizininformatikinitiative.template.preview.md)
