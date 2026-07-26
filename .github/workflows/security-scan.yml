@@ -22,7 +22,7 @@
 #
 # ALSO HERE (not scanners): the `language-model` and `tooling-tests` jobs. This
 # is the repo's only pull-request-triggered workflow, so the cheap repo-hygiene
-# guard tools/check-language-model.sh and the unit tests for
+# guard scripts/check-language-model.sh and the unit tests for
 # scripts/check-updates.mjs ride along instead of adding a workflow each.
 # Neither is covered by vars.ENABLE_SECURITY_SCAN — they check content and
 # tooling, not vulnerabilities, and must run on every pull request into `dev`
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Language-model guard
-        run: bash tools/check-language-model.sh
+        run: bash scripts/check-language-model.sh
 
   # The dependency checker's own unit tests (version parsing, status
   # classification, table rendering). Without them in CI a regression in

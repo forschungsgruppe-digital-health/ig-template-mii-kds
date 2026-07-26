@@ -49,7 +49,7 @@ them (access is granted to entities in Germany).
 
 ### Recommended: use the helper script
 
-`tools/set-su-termserv-secrets.sh` validates everything **before** uploading, and
+`scripts/set-su-termserv-secrets.sh` validates everything **before** uploading, and
 can prove the certificate against the live server first.
 
 ```sh
@@ -57,11 +57,11 @@ D=/path/to/certificate
 R=<owner>/ig-template-mii-kds
 
 # 1. Prove it works — validates locally AND does a real mTLS call. Uploads nothing.
-tools/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
+scripts/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
   --test --check-only
 
 # 2. Upload
-tools/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
+scripts/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
   --repo "$R"
 ```
 

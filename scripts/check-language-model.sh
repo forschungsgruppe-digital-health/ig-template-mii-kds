@@ -26,7 +26,7 @@
 #   exception list below with a one-line reason — never loosen a pattern.
 #
 # USAGE
-#   bash tools/check-language-model.sh          # from anywhere in the checkout
+#   bash scripts/check-language-model.sh          # from anywhere in the checkout
 #   Runs in CI on every pull request into `dev`, where changes land
 #   (.github/workflows/security-scan.yml).
 set -euo pipefail
@@ -56,7 +56,7 @@ PATTERNS=(
 #   - this script, because it defines them.
 # Add a path here only with a reason; do not loosen a pattern instead.
 EXCLUDES=(
-  ':(exclude)tools/check-language-model.sh'
+  ':(exclude)scripts/check-language-model.sh'
 )
 
 args=()

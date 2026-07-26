@@ -17,7 +17,7 @@ or both.
 > linter — this matrix is the single source of truth.
 >
 > **Where a violation fails a build:** in `mii-kds-module-template` and the
-> modules created from it, where `tools/convention-check.mjs` runs in CI. This
+> modules created from it, where `scripts/convention-check.mjs` runs in CI. This
 > repository has no such job, so here a violation is reported by the run and
 > blocks a release by human decision.
 

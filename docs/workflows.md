@@ -31,7 +31,7 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
 | `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the checker's unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
-| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`tools/check-language-model.sh`) and the `tooling-tests` job (`node --test scripts/check-updates.test.mjs`) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
+| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`scripts/check-language-model.sh`) and the `tooling-tests` job (`node --test scripts/check-updates.test.mjs`) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
 Notes:
 - **Dependabot** (`.github/dependabot.yml`) is not a job you gate with `if:` — it is
@@ -42,7 +42,7 @@ Notes:
 - Each workflow file starts with a comment block (purpose · triggers · toggle ·
   gated steps) so the explanation lives next to the code.
 - **The `language-model` job** is content hygiene, not a scanner:
-  `tools/check-language-model.sh` fails the pull request when a file re-asserts
+  `scripts/check-language-model.sh` fails the pull request when a file re-asserts
   the abandoned language model (the script lists the exact phrases). The IG is
   English-default with a German translation under `input/translations/de/` —
   see [add-translation.md](recipes/add-translation.md). The job lives in

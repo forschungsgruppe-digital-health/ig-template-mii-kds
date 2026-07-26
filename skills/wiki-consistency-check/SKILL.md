@@ -35,7 +35,7 @@ CC-BY-4.0), generalized for the template repositories and module IGs.
 
 > **Run it by hand here.** This repository has **no** mechanical convention-check
 > CI job. The checker that automates the hard assertions
-> (`tools/convention-check.mjs` and its workflow) lives in
+> (`scripts/convention-check.mjs` and its workflow) lives in
 > `mii-kds-module-template`, where a module's substituted `sushi-config.yaml`
 > gives it something to assert against. In this repository the assertions are
 > evaluated and reported by whoever runs the skill.

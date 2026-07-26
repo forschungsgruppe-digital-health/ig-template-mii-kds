@@ -169,7 +169,7 @@ spelling: `favicon.png` (browser convention) and `deu.svg` (IG Publisher).
 The MII publishes its logo **only as PNG** — the sole SVG on the MII website
 (`Logo_MII_second.svg`) is the **"10 Jahre MII" anniversary mark**, verified by
 rendering it, not the brand logo. A vector is wanted so the logo stays crisp at
-any size, so the PNGs are traced with `tools/trace-logo.sh`
+any size, so the PNGs are traced with `scripts/trace-logo.sh`
 (ImageMagick + potrace). **This is a conversion, not an official asset** —
 replace both files the day the MII publishes a real SVG.
 
@@ -183,11 +183,11 @@ into one layer.
 The exact commands that produced the shipped files:
 
 ```sh
-tools/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
+scripts/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
   slate:#7a8495:#7a8495 blue:#3473aa:#3473aa teal:#548b9b:#548b9b \
   sage:#74a86f:#74a86f green:#72b802:#72b802 lime:#99cc4a:#99cc4a
 
-tools/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
+scripts/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
   "slate:#6d7887,#848c9a,#798693:#7a8495" "blue:#6a89ba:#3473aa" "teal:#93a5ad:#548b9b" \
   "sage:#9ebd89:#74a86f" "green:#afcf01,#a4c80d:#72b802"
 ```
