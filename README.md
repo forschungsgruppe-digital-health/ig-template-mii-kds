@@ -30,6 +30,7 @@ This is for changing the template itself.
 2. **Build the preview** — a small IG bundled here so you can see the branding
    render: `sushi .`, then the IG Publisher, then open `output/index.html`.
    Pushing a branch does the same in CI and comments the preview URL on your PR.
+   → [the exact commands, including how to get `publisher.jar`](docs/recipes/first-build-in-devcontainer.md)
 3. **Change something** — e.g. a brand colour is one CSS variable in
    `content/assets/css/mii.css`.
    → [change the brand colour](docs/recipes/change-the-brand-color.md) ·

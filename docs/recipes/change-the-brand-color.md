@@ -22,8 +22,10 @@ easiest via the [dev container](first-build-in-devcontainer.md).
 4. **Check contrast.** If text sits on the surface you changed, keep it at WCAG AA
    (≥ 4.5:1 for normal text, ≥ 3:1 for large/bold). `docs/design.md` shows how the
    current values were computed.
-5. Rebuild the preview (`sushi . && java -jar publisher.jar -ig ig.ini`) or push
-   a `feature/*` branch and open the CI preview.
+5. Rebuild the preview (`sushi . && java -Xmx6g -jar publisher.jar -ig ig.ini`)
+   or push a `feature/*` branch and open the CI preview. If you do not have
+   `publisher.jar` yet, step 6 of the
+   [dev-container recipe](first-build-in-devcontainer.md) downloads it.
 6. Open `output/index.html` (or the preview URL) and confirm the colour.
 
 ## Expected result
