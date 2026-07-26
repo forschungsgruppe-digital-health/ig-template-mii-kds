@@ -1,6 +1,6 @@
 # Template validation against a real module (kerndatensatz-basis) — 2026-07-23
 
-Acceptance test (spec §3.5): validate `de.medizininformatikinitiative.template`
+Acceptance test: validate `de.medizininformatikinitiative.template`
 against the latest **real** MII KDS module by building
 [`kerndatensatz-basis`](https://github.com/medizininformatik-initiative/kerndatensatz-basis)
 (`main`, version `2026.0.1`) with its `ig.ini` pointing at **this** template
