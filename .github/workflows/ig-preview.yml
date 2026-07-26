@@ -1,10 +1,10 @@
 # IG build + GitHub Pages preview (§2.8 / Appendix A.9).
 #
-# Purpose:   on every push to a working branch, build the self-test IG
+# Purpose:   on every push to a working branch, build the preview IG
 #            (SUSHI + IG Publisher) and deploy the rendered result to the
 #            gh-pages branch under branches/<branch>/, so branding changes
 #            (header, footer, CSS, logo) are visually reviewable without a
-#            local build. For Repo A the preview IS the template's self-test IG.
+#            local build. For Repo A the preview IS the template's preview IG.
 # Triggers:  push to any branch except main / gh-pages / fsh-generated, plus
 #            workflow_dispatch.
 # Toggle:    vars.ENABLE_PREVIEW — ON by default; set the repo variable to
@@ -125,7 +125,7 @@ jobs:
             echo "::notice::No SU-TermServ credential — falling back to HL7 tx.fhir.org. Some MII-specific value sets may not fully expand. Supply SU_TERMSERV_CLIENT_CERT / _KEY / _PASSWORD to route terminology to SU-TermServ (Gate F)."
           fi
 
-      - name: Build the self-test IG (SUSHI + IG Publisher)
+      - name: Build the preview IG (SUSHI + IG Publisher)
         env:
           TX: ${{ steps.tx.outputs.tx }}
         run: |
@@ -146,7 +146,7 @@ jobs:
           errs="$(jq -r '.errs // 0' output/qa.json)"
           echo "IG Publisher reported ${errs} error(s) (terminology: ${{ steps.tx.outputs.mode }})."
           if [ "${errs}" -ne 0 ]; then
-            echo "::error::Self-test build has ${errs} QA error(s). See the qa artifact and output/qa.html."
+            echo "::error::Preview build has ${errs} QA error(s). See the qa artifact and output/qa.html."
             exit 1
           fi
 
@@ -227,7 +227,7 @@ jobs:
           echo "url=${url}" >> "$GITHUB_OUTPUT"
           {
             echo "### IG preview"
-            echo "[Open the rendered self-test IG for branch \`${BRANCH}\`](${url})"
+            echo "[Open the rendered preview IG for branch \`${BRANCH}\`](${url})"
             echo ""
             echo "_Terminology: ${{ steps.tx.outputs.mode }}_"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -249,7 +249,7 @@ jobs:
             const txMode = process.env.TX_MODE;
             const { owner, repo } = context.repo;
             const marker = '<!-- ig-preview-url -->';
-            const body = `${marker}\n### IG preview\n[Open the rendered self-test IG for branch \`${branch}\`](${url})\n\n_Terminology: ${txMode}_`;
+            const body = `${marker}\n### IG preview\n[Open the rendered preview IG for branch \`${branch}\`](${url})\n\n_Terminology: ${txMode}_`;
 
             const { data: prs } = await github.rest.pulls.list({
               owner, repo, state: 'open', per_page: 100,

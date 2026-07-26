@@ -5,7 +5,7 @@ You received a Dependabot PR, a checker PR, or a row in the
 you from "a bump is proposed" to "the bump is merged — or consciously not".
 
 > **Why a recipe:** updates are proposals, never automatic
-> ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). The human in the loop is you.
+> ([`docs/maintenance.md`](../maintenance.md)). The human in the loop is you.
 
 ## 1. Read the proposal
 
@@ -22,7 +22,7 @@ Open the linked release notes and answer two questions:
 2. Does anything in the notes affect **how this template builds IGs** (template
    parameters, Jekyll/liquid behavior, publisher CLI flags)?
 
-If unsure, prefer bumping in a working branch and letting the self-test build
+If unsure, prefer bumping in a working branch and letting the preview build
 answer.
 
 ## 3. Apply the bump in the pin's real location
@@ -36,7 +36,7 @@ exactly one pin (one bump per PR — keep diffs reviewable):
 | IG Publisher | `PUBLISHER_VERSION` env in the CI build workflow **+ the jar SHA-256 (step 4)** |
 | SUSHI / Jekyll | `SUSHI_VERSION` / `JEKYLL_VERSION` env in the CI build workflow |
 | GitHub Action | the commit SHA in the `uses:` line **and** its `# vX.Y.Z` comment (Dependabot PRs do this for you) |
-| Dev container (base-image digest, feature versions) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest is bumped manually (see the dev-container limits in [`docs/MAINTENANCE.md`](../MAINTENANCE.md)) |
+| Dev container (base-image digest, feature versions) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest is bumped manually (see the dev-container limits in [`docs/maintenance.md`](../maintenance.md)) |
 
 ## 4. IG Publisher only: recompute the jar SHA-256
 
@@ -57,12 +57,12 @@ the checksum is there to catch.
 
 ## 5. Build and verify
 
-Run the template's self-test build (the PR CI does the same). The bump is only
+Run the template's preview build (the PR CI does the same). The bump is only
 good if the build is clean:
 
 - lint/tests for the touched tooling (`node --test scripts/check-updates.test.mjs`
   if you touched the checker),
-- the IG self-test build must succeed with QA errors = 0.
+- the IG preview build must succeed with QA errors = 0.
 
 ## 6. Merge — or document why not
 

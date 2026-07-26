@@ -23,7 +23,7 @@ second linter next to it.
 > covering both wiki drift and the metadata contract.
 
 Adapted from the skill of the same name in the FGDH sample IG
-([`mii-kds-sample-ig-inoffiziell`](https://github.com/forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell),
+([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), generalized for the template repositories and module IGs.
 
 ## When to activate

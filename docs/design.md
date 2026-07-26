@@ -5,7 +5,7 @@
 > **The MII corporate design of this template (logo + palette + layout) is
 > CONFIRMED by the maintainer** and may go into a release. The design was derived
 > on 2026-07-22 from the assets the MII itself publishes (see the source table
-> below) and reviewed on the rendered self-test preview before confirmation.
+> below) and reviewed on the rendered preview preview before confirmation.
 > Changes since the derived suggestion: the page header background is **white**
 > (matching the white logo background and the white content area), and the
 > highlight boxes are purpose-neutral (`mii-highlight-blue` / `mii-highlight-green`).
@@ -30,7 +30,7 @@ live sources on 2026-07-22:
 
 | Fact | Evidence |
 | --- | --- |
-| Both MII reference repos use `fhir2.base.template` | `medizininformatik-initiative/kerndatensatz-basis` `ig.ini` (main @ `310ad1e`, 2026-07-21): `template = fhir2.base.template#current`. Same in `forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell` `ig.ini`. |
+| Both MII reference repos use `fhir2.base.template` | `medizininformatik-initiative/kerndatensatz-basis` `ig.ini` (main @ `310ad1e`, 2026-07-21): `template = fhir2.base.template#current`. Same in `medizininformatik-initiative/mii-kds-sample-ig-inoffiziell` `ig.ini`. |
 | `fhir.base.template` is avoided because of reported security issues | Recorded verbatim in the sample IG's `ig.ini`: `# Template: fhir2.base.template (fhir.base.template wegen gemeldeter Security-Issues nicht genutzt).` |
 | `hl7.fhir.template` is inappropriate for MII | Its repo `HL7/ig-template-fhir` describes itself as "Template used for most HL7-defined FHIR implementation guides … **Adds HL7 logos**" — HL7 branding on an MII guide would be wrong. |
 | `fhir2.base.template` is the language-aware base | Its `package.json` description: "FHIR IG **Translated** Base Template — foundational for use by anyone"; it declares `multilanguage-format: true` (in `config.json`) and ships per-language `translations/stringsBase-<lang>.po` / `stringsArtifacts-<lang>.po` catalogs. Required for the German-default/English-second setup (spec §3.4). **Caveat — the pinned `0.1.0` ships NO German catalog** (only `ar`, `es`, `fr`, `nl`, `pt`, `ru`; verified 2026-07-22 by extracting `packages.simplifier.net/fhir2.base.template/0.1.0`). German UI-string catalogs were added upstream (`HL7/ig-template-base2` `main`) only *after* `0.1.0` was cut, so they are not in the pinned build — consequence in §6. |
@@ -207,7 +207,7 @@ The override appends to (never replaces) the base footer content:
   on `stringsBase` for its labels — it hard-codes language-aware labels
   (`Links` / `Inhaltsverzeichnis` / `QA-Bericht` / `Impressum` on `/de/`,
   `Links` / `Table of Contents` / `QA Report` / `Legal notice` on `/en/`), so the
-  footer now renders real text in **both** languages. Verified on the self-test
+  footer now renders real text in **both** languages. Verified on the preview
   preview. This is a footer-only override; other base chrome that still resolves
   through `stringsBase` would remain affected until the base ships a German
   catalog.
@@ -223,7 +223,7 @@ The override appends to (never replaces) the base footer content:
   > supplements the base's catalogs instead of replacing them. This template
   > therefore vendors the base's own German catalogs — `stringsBase-de.po` and
   > `stringsArtifacts-de.po` (CC0, from `HL7/ig-template-base2` `main`) — into
-  > `translations/`. Verified on the rendered self-test: the German footer now
+  > `translations/`. Verified on the rendered preview: the German footer now
   > shows the full metadata (`IG © 2026+ …`, `Package … basiert auf FHIR 4.0.1`,
   > `Erstellt <date>`), matching English. Delete `translations/` once the pinned
   > base ships `de` itself; see `translations/README.md`.
@@ -290,7 +290,7 @@ Notes and deliberate deviations:
 
 ## 8. How to review this design (Gate B)
 
-1. Wait for the self-test build (task A4: `ig.ini` + CI + `dev` Pages preview)
+1. Wait for the preview build (task A4: `ig.ini` + CI + `dev` Pages preview)
    or run the IG Publisher locally on any IG with `ig.ini` →
    `template = <path-to-this-repo>` (vendored path).
 2. Compare the rendered header/footer/navbar against

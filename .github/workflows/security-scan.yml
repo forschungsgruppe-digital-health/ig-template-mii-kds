@@ -15,7 +15,7 @@
 #            see docs/recipes/triage-a-vulnerability-alert.md. Nothing here
 #            changes code or dependencies.
 #
-# HONEST COVERAGE LIMIT (docs/MAINTENANCE.md): these scanners do NOT cover
+# HONEST COVERAGE LIMIT (docs/maintenance.md): these scanners do NOT cover
 # FHIR content packages or the IG Publisher jar (not in vulnerability
 # databases). For those, the dependency version check (layer B) is the
 # available safeguard.

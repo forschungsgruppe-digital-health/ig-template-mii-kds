@@ -3,7 +3,7 @@
 **Goal.** Make a module IG render with this MII template.
 
 **Prerequisites.** A module IG project (e.g. one created from
-[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template)).
+[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)).
 
 There are two ways to reference the template. Use **published** once this template
 has a release; use **vendored** during bring-up before that.

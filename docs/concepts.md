@@ -1,6 +1,6 @@
 # Concepts — how this template works and why
 
-Read this after the [Glossary](GLOSSARY.md). It explains the ideas behind this
+Read this after the [Glossary](glossary.md). It explains the ideas behind this
 repository so the recipes and workflows make sense. Every non-obvious choice
 carries a **Why**.
 
@@ -31,11 +31,11 @@ inherited from the base.
 > **Why override instead of copy:** the base template ships the branding fragments
 > as *empty placeholders* precisely so a child fills them. Copying the whole base
 > would re-introduce drift and lose upstream fixes. The small override surface is
-> the entire point — see [DESIGN.md](DESIGN.md) for the exact files.
+> the entire point — see [design.md](design.md) for the exact files.
 
 > **Why pin the base to `0.1.0` instead of the moving `#current`:** reproducibility.
 > A build in 2029 must produce the same output as today. The
-> [dependency checker](MAINTENANCE.md) watches for a newer base and proposes the
+> [dependency checker](maintenance.md) watches for a newer base and proposes the
 > bump as a reviewable PR, so pinning does not mean going stale silently.
 
 ## 3. How an IG is created and published (the big picture)
@@ -48,8 +48,8 @@ inherited from the base.
    website is hosted (for humans).
 
 This repository sits at step 3: it is the *template* the Publisher applies. It also
-ships a tiny **self-test IG** so it can build itself and prove the branding renders
-before a release (see [WORKFLOWS.md](WORKFLOWS.md)).
+ships a tiny **preview IG** so it can build itself and prove the branding renders
+before a release (see [workflows.md](workflows.md)).
 
 ## 4. Registries and where things get listed
 
@@ -60,7 +60,7 @@ before a release (see [WORKFLOWS.md](WORKFLOWS.md)).
   this one by id. Getting listed there is a deliberate, gated step (a human
   decision about the post-2026 owner — see the project's Gate D). **This
   template is deliberately NOT registered yet:** it is a prototype pending
-  discussion in the MII Taskforce KDS — see [PROJECT-STATUS.md](PROJECT-STATUS.md).
+  discussion in the MII Taskforce KDS — see [project-status.md](project-status.md).
 - **Simplifier** — an alternative FHIR registry platform; not required here.
 
 ## 5. The MII governance context
@@ -71,7 +71,7 @@ its own IG. Naming, terminology policy, the release workflow and the reusable CI
 are defined in the [MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki).
 This template exists so those module IGs share one MII-branded presentation. When
 this document and the wiki disagree, **the wiki wins** — see
-[FURTHER-READING.md](FURTHER-READING.md) for the pages that matter.
+[further-reading.md](further-reading.md) for the pages that matter.
 
 ## 6. Two version schemes — do not mix them
 

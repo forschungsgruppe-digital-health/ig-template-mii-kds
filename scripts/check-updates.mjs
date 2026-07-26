@@ -2,7 +2,7 @@
 // check-updates.mjs — compares this repo's pinned versions against the latest
 // available upstream and prints a Markdown drift report.
 //
-// Design rules (see docs/MAINTENANCE.md):
+// Design rules (see docs/maintenance.md):
 // - Pins are read from the REAL repo files (package/package.json, the CI
 //   workflow env) so this checker never becomes a second source of truth.
 // - Every row links the upstream changelog / release notes so a reviewer can

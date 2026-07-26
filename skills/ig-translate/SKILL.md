@@ -16,7 +16,7 @@ license: CC-BY-4.0
 # ig-translate — multi-language support (template-owner scope)
 
 Adapted from the `ig-translate` skill of the FGDH sample IG
-([`mii-kds-sample-ig-inoffiziell`](https://github.com/forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell),
+([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), trimmed to what the **template** owns.
 
 ## Scope split (read this first)
@@ -28,7 +28,7 @@ Multi-language support is split across the two template repositories:
   inherited UI-string translations of the base template, and the documented
   conventions below.
 - **The module scaffold
-  ([`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template))**
+  ([`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template))**
   owns the module-facing *workflow*: creating or harvesting the actual
   translation supplements (`input/translations/en/…`) and translated
   narrative pages for a concrete module IG, including the supporting
@@ -55,7 +55,7 @@ language.**
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
 Re-verified with **IG Publisher 2.2.11** + `fhir2.base.template` 0.1.0 on this
-repo's self-test (2026-07): the earlier sample-IG table was WRONG about narrative
+repo's preview (2026-07): the earlier sample-IG table was WRONG about narrative
 pages because it used the wrong file location (a `*-<lang>.md` sibling). The
 correct location is a **translation-source folder**, exactly as the HL7 reference
 [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig) uses:
@@ -104,7 +104,7 @@ parameters:
    `translations/stringsArtifacts-de.po` — verified in
    `HL7/ig-template-base2`). This template inherits them by deriving from the
    base; do not fork or override them. Verify after a base bump that the
-   German strings still render in the self-test build.
+   German strings still render in the preview build.
 3. **Do not "translate" FHIR identifiers.** `name`, `id`, codes, and
    canonical URLs stay as they are, in every language.
 4. **Additive only.** Translations are supplements; the German source is
@@ -125,7 +125,7 @@ Findings are reported and proposed as changes via a pull request **targeting
 ## References
 
 - Module-facing workflow + tooling: the `ig-translate` skill in
-  [`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template).
+  [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template).
 - Base template string mechanism and `.po` translations:
   [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2)
   (`includes/`, `translations/`).

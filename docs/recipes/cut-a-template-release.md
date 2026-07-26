@@ -2,8 +2,8 @@
 
 **Goal.** Publish a new **SemVer** version of this template package.
 
-**Prerequisites.** Your change is merged into `dev` and the self-test builds green.
-Releases are cut on `main` by **Release Please** (see [WORKFLOWS.md](../WORKFLOWS.md)).
+**Prerequisites.** Your change is merged into `dev` and the preview builds green.
+Releases are cut on `main` by **Release Please** (see [workflows.md](../workflows.md)).
 
 ## Steps
 

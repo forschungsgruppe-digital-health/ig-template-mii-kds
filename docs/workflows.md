@@ -26,7 +26,7 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 
 | Workflow | Trigger | What it does | Output | Toggle (default) | Human-gated? |
 | --- | --- | --- | --- | --- | --- |
-| `ig-preview.yml` | push to any branch except `main`/`gh-pages`; `workflow_dispatch` | Builds the **self-test IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
+| `ig-preview.yml` | push to any branch except `main`/`gh-pages`; `workflow_dispatch` | Builds the **preview IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
@@ -39,7 +39,7 @@ Notes:
 - **Terminology** is not an on/off pipeline: `ig-preview.yml` auto-selects
   **SU-TermServ** when the client-cert secrets are present, else falls back to HL7
   `tx.fhir.org` with a notice (see §2.10 of the build spec and
-  [MAINTENANCE.md](MAINTENANCE.md)).
+  [maintenance.md](maintenance.md)).
 - Each workflow file starts with a comment block (purpose · triggers · toggle ·
   gated steps) so the explanation lives next to the code.
 
@@ -60,7 +60,7 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 [recipes/consume-this-template-in-a-module.md](recipes/consume-this-template-in-a-module.md).
 
 > **Why one page:** the operational knowledge would otherwise be scattered across
-> `CONTRIBUTING.md`, `MAINTENANCE.md` and six workflow files. Post-2026 a new
+> `CONTRIBUTING.md`, `maintenance.md` and six workflow files. Post-2026 a new
 > maintainer needs one place that says "this is how this repo builds, previews and
 > releases."
 
@@ -68,5 +68,5 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 
 All builds and releases work without secrets. To enable the optional gated
 features — SU-TermServ terminology (Gate F) and the Zulip release announcement
-(Gate G) — see [docs/SECRETS.md](SECRETS.md) for the exact `gh secret set`
+(Gate G) — see [docs/secrets.md](secrets.md) for the exact `gh secret set`
 commands. The workflows are already wired; adding the secret is the only step.

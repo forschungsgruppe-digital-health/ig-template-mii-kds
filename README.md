@@ -6,7 +6,7 @@ This repository is an [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR
 
 ## Relation to `mii-kds-module-template` (Repo B)
 
-[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template) is a separate GitHub **template repository** that scaffolds a brand-new MII KDS module IG. That scaffold **references this template package by version**. This repository does **not** contain the module scaffold — the two repos are consumed in different ways: this one is downloaded by the IG Publisher at build time; Repo B is copied once via GitHub's "Use this template" button.
+[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template) is a separate GitHub **template repository** that scaffolds a brand-new MII KDS module IG. That scaffold **references this template package by version**. This repository does **not** contain the module scaffold — the two repos are consumed in different ways: this one is downloaded by the IG Publisher at build time; Repo B is copied once via GitHub's "Use this template" button.
 
 > **Why by version and not by branch:** a module IG build must be reproducible. Referencing a released version of this package (instead of a moving branch) guarantees the same input produces the same rendered guide.
 
@@ -14,33 +14,33 @@ This repository is an [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR
 > pending discussion in the MII Taskforce Kerndatensatz. They are released and
 > fully usable, but the template is deliberately **not** registered in
 > `FHIR/ig-registry` and the repos must not be moved to another organisation
-> until that is explicitly decided — see [docs/PROJECT-STATUS.md](docs/PROJECT-STATUS.md).
+> until that is explicitly decided — see [docs/project-status.md](docs/project-status.md).
 
 ## Quickstart
 
 You do **not** need this Quickstart to *use* the template in a module — for that,
 see [recipes/consume-this-template-in-a-module.md](docs/recipes/consume-this-template-in-a-module.md).
-This Quickstart is for *maintaining* the template: build its self-test, see the
+This Quickstart is for *maintaining* the template: build its preview, see the
 rendered branding, change something, and release.
 
 1. **Clone** and open in the dev container (installs the whole toolchain for you):
-   `git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds && cd ig-template-mii-kds`, then in VS Code run **"Reopen in Container"**. Details: [recipes/first-build-in-devcontainer.md](docs/recipes/first-build-in-devcontainer.md).
-2. **Build the self-test IG** (the template applied to a tiny sample so you can see
+   `git clone https://github.com/medizininformatik-initiative/ig-template-mii-kds && cd ig-template-mii-kds`, then in VS Code run **"Reopen in Container"**. Details: [recipes/first-build-in-devcontainer.md](docs/recipes/first-build-in-devcontainer.md).
+2. **Build the preview IG** (the template applied to a tiny sample so you can see
    it render): `sushi . && curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar && java -jar publisher.jar -ig ig.ini`.
 3. **Open** `output/index.html` in a browser — you now see the MII header, footer,
    colours and logo applied.
 4. **Or just push a branch:** every push to a `feature/*` branch builds the
-   self-test in CI and posts a **preview URL** on the PR (see [docs/WORKFLOWS.md](docs/WORKFLOWS.md)).
+   preview in CI and posts a **preview URL** on the PR (see [docs/workflows.md](docs/workflows.md)).
    The current `dev` preview is at
-   `https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/`.
+   `https://medizininformatik-initiative.github.io/ig-template-mii-kds/branches/dev/`.
 5. **Change the brand colour** in `content/assets/css/mii.css` (override a CSS
    variable — one line): [recipes/change-the-brand-color.md](docs/recipes/change-the-brand-color.md).
    Rebuild (step 2) and see it.
 6. **Cut a release** when your change is ready: merge `dev → main`; Release Please
    opens a SemVer release PR: [recipes/cut-a-template-release.md](docs/recipes/cut-a-template-release.md).
 
-New to any of the words above? Start with the [Glossary](docs/GLOSSARY.md) and
-[Concepts](docs/CONCEPTS.md).
+New to any of the words above? Start with the [Glossary](docs/glossary.md) and
+[Concepts](docs/concepts.md).
 
 ## How this repo is structured
 
@@ -56,6 +56,11 @@ Planned layout — the directories are added by the ongoing build-out pull reque
 | `.github/` | CI workflows, issue forms, repository housekeeping |
 
 > **Why the split mirrors the base template:** the IG Publisher's template mechanism resolves files by well-known paths (`package/`, `includes/`, `content/`); keeping the upstream layout makes the diff against `fhir2.base.template` reviewable and upgrades mechanical.
+
+
+## Quality bar
+
+- [IG best-practices checklist](docs/ig-best-practices-checklist.md) — how this template meets the official HL7 IG guidance, item by item.
 
 ## Where to get help
 

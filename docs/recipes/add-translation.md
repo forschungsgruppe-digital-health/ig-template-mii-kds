@@ -1,230 +1,214 @@
-# Recipe: add an English translation to a German-default IG
+# Recipe: extend the translations of an IG (menu, footer, content, resources)
 
-**Goal.** Your MII KDS module IG is authored in **German** (the default,
-authoritative language). This recipe adds an **English** rendering the way the
-IG Publisher actually supports it, so the guide builds a `/de/` and an `/en/`
-site from one source — without ever changing the German source text.
+**Goal.** Add or extend a translation for any part of a bilingual IG — the
+navigation **menu**, the **footer / base UI chrome**, the **narrative content**,
+and the **conformance resources**.
 
-> **Why German-default with English recommended:** it is the language policy for
-> these repositories (spec §3.4) and matches the MII naming conventions (German
-> is the authoritative documentation language, English is the recommended
-> translation). English is a translation aid, never the normative text.
+**Language policy.** These repositories are **German-default,
+English-recommended**: German is the authoritative content language
+(`i18n-default-lang: de`), English the recommended second rendering
+(`i18n-lang: [en]`). Everything below works the same for a further language —
+replace `en` with that language code.
+
+> **Why translation is *additive*:** you never edit the German source to
+> translate it. Each language gets its own file beside the source, and a part
+> with no translation falls back to German. Nothing added here can break a build
+> — at worst it is ignored.
 
 This template (`de.medizininformatikinitiative.template`) **owns the
-multi-language mechanism**; the module scaffold
-[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template)
-ships the `ig-translate` helper tool that automates the file-path bookkeeping
-below. The steps here work with or without that tool.
+multi-language mechanism**; every module built from
+[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
+inherits it.
 
 ---
 
-## 1. Prerequisites
+## 0. The four layers at a glance
 
-- A module IG that already builds (SUSHI + IG Publisher, QA errors = 0) — see
-  [`first-build-in-devcontainer.md`](first-build-in-devcontainer.md).
-- The German source text is written and final enough to translate. **Translate
-  last**, once the German wording is stable: a translation supplement points at
-  the exact German string, so re-wording the German means re-touching the
-  supplement.
+An IG's visible text comes from four different places, and **each has its own
+translation mechanism**. This is the table to come back to:
 
----
+| # | Layer | Example text | Where the translation goes | Owned by |
+|---|---|---|---|---|
+| 1 | **Narrative content** | your page prose | `input/translations/<lang>/pagecontent/<same-filename>.md` | the IG |
+| 2 | **Menu** | `Startseite`, `Anleitung` | `input/translations/<lang>/includes/menu.xml` | the IG |
+| 3 | **Base UI chrome** (footer, buttons, boilerplate) | `Erstellt <date>`, `Inhaltsverzeichnis` | `translations/stringsBase-<lang>.po` in the **template** | the IG **template** |
+| 4 | **Conformance resources** | a profile's `description` | `input/translations/<lang>/<ResourceType>-<id>.po` | the IG |
 
-## 2. Turn on the two languages (`sushi-config.yaml`)
-
-Add these three parameters. They are the whole switch — nothing else is needed
-to make the Publisher emit a second-language site.
-
-```yaml
-parameters:
-  i18n-default-lang: de          # German is the leading/default rendered language
-  i18n-lang:
-    - en                         # additional rendered language(s)
-  translation-sources:
-    - input/translations/en      # folder holding the English supplements
-```
-
-- `i18n-default-lang: de` — the site root and the default rendering are German.
-- `i18n-lang: [en]` — the Publisher additionally renders an `/en/` tree.
-- `translation-sources: [input/translations/en]` — where the Publisher looks for
-  the per-language **translation supplements** (step 4). Add one folder per
-  extra language (`input/translations/<lang>`).
-
-> **Why a separate `translation-sources` folder and not inline text:** a
-> supplement is *additive* — it never edits the German source resource. The
-> German stays the single source of truth; English lives beside it and can be
-> regenerated or dropped without touching the module.
+Layers 1, 2 and 4 live in a module; layer 3 lives in this template repository and
+every module inherits it.
 
 ---
 
-## 3. What the toolchain will — and will NOT — translate
+## 1. Narrative content (pages)
 
-Narrative pages and the menu DO translate; several resource-internal fields do
-not. The table is empirically verified against this template's self-test build
-(IG Publisher **2.2.11** with `fhir2.base.template#0.1.0`). Re-verify on any
-toolchain bump — see the note at the end.
+Put the translated page in the translation-source folder under `pagecontent/`,
+with the **same file name** as the German page:
 
-| Content | Renders translated today? | How |
-|---|---|---|
-| **Resource-level text** of **StructureDefinition, CodeSystem, Questionnaire** — `description`, and for StructureDefinition the element `definition` / `comment` / `requirements` and binding descriptions | **Yes** | A translation supplement `input/translations/<lang>/<Type>-<id>.po` (step 4) |
-| **CodeSystem `concept.display` / `concept.definition`** | **No — not from a plain `.po` supplement** (verified 2.2.11: they stayed German on `/en/`, at data *and* narrative level). Localize a concept the FHIR-native way, with a language-tagged **`designation`** authored in the resource. | `designation[].language` in the FSH/resource, not a `.po` |
-| **Resource `title`** (any type) | **No** | Not applied from a supplement — leave it German |
-| **ValueSet** texts, **ImplementationGuide** title/description, the **menu** | **No** | Not supported by the Publisher — a supplement for these is silently ignored. Leave them German. |
-| **Narrative pages** (`input/pagecontent/<name>.md`) | **Yes** | Put the translated page at `input/translations/<lang>/pagecontent/<same-filename>` (step 5). Verified 2.2.11: `/en/index.html` renders in English. A page with no translation file falls back to the German source. |
-| **Menu** (`input/includes/menu.xml`) | **Yes** | A per-language copy at `input/translations/<lang>/includes/menu.xml` |
-
-> **Why bother translating at all, given the gaps:** conformance resources
-> (profiles, code systems, questionnaires) are the machine-readable core a
-> reader most needs in their language, and that is exactly what does translate.
-> Everything else stays German-leading, which is the policy anyway.
-
-> **Do not "simulate" the unsupported cases.** A `ValueSet-*.po`,
-> `ImplementationGuide-*.po`, or `menu.po` is not an error — it is worse: the
-> Publisher ignores it, so you get a false sense of coverage. Only create the
-> supported supplements.
-
----
-
-## 4. Translate a conformance resource (the part that renders)
-
-For each StructureDefinition / CodeSystem / Questionnaire you want in English,
-create one supplement file.
-
-**4.1 File name — must be exact.** Under the `translation-sources` folder:
-
-```
-input/translations/en/<ResourceType>-<id>.po
-```
-
-`<ResourceType>` and `<id>` are the `resourceType` and `id` of the **generated**
-resource in `fsh-generated/resources/`. A logical model is a
-`StructureDefinition`. A wrong name (wrong case, wrong id, or an unsupported
-type) is ignored with a log line like *"name is not {type}-{id}"* or *"resource
-type … is not supported"*.
-
-**4.2 File content — gettext `.po`.** One block per translatable field:
-
-```po
-#: CodeSystem.description
-msgid "<exact German source text from the generated resource>"
-msgstr "<English translation>"
-```
-
-- `#:` is the FHIRPath of the field (`CodeSystem.description`,
-  `StructureDefinition.description`,
-  `StructureDefinition.snapshot.element[3].definition`, …). It is a gettext
-  reference comment; matching is by `msgid`. Only fields the toolchain applies
-  (step 3) take effect — a `concept[0].display` entry, for example, is accepted
-  into the catalog but does **not** change the rendered concept.
-- **`msgid` must match the German source byte for byte**, umlauts included. Get
-  it from the generated JSON, not from the `.fsh` — SUSHI may normalise text:
-
-  ```sh
-  sushi .
-  jq -r '.description' fsh-generated/resources/CodeSystem-<id>.json
-  ```
-
-- `msgstr` is your English text. Leave `msgstr ""` empty for fields you have not
-  translated yet — the Publisher then falls back to the German source for that
-  field.
-
-> **Why `msgid` must be exact:** matching is by the source string, not by
-> position. One changed character (a straight vs. curly quote, a missing
-> umlaut) and the entry no longer matches, so it is silently skipped and the
-> field shows German on `/en/`.
-
-**4.3 Do not translate FHIR identifiers.** `name`, `id`, code values, and
-canonical URLs stay identical in every language — never put them in a
-supplement. Only human-readable text is translated.
-
-**Worked example in this repo.** The self-test ships exactly one supplement,
-[`input/translations/en/CodeSystem-selftest-palette.po`](../../input/translations/en/CodeSystem-selftest-palette.po),
-for the German-authored CodeSystem
-[`input/fsh/selftest-palette.fsh`](../../input/fsh/selftest-palette.fsh). On the
-`/en/` CodeSystem page its `description` renders in **English**, while its
-concept displays and `title` stay German — a live, inspectable illustration of
-the table in step 3 (only the `description` translated on Publisher 2.2.11).
-
-### Harvest instead of hand-writing (optional)
-
-The module scaffold's `ig-translate` helper lists, for every generated resource,
-the target supplement path and whether it exists — so you translate against a
-generated to-do list rather than guessing file names:
-
-```sh
-tools/ig-translate.sh --scan en        # show the target path for each page/resource
-tools/ig-translate.sh --validate en    # check that existing supplements are named/placed correctly
-```
-
-The tool determines paths and validates conventions; it does **not** invent
-translations — a human (or an agent, reviewed) writes the `msgstr` values. Run
-it after `sushi .`, because it reads `fsh-generated/resources/`.
-
----
-
-## 5. Translate a narrative page
-
-Narrative pages DO translate. Put the translated page in the translation-source
-folder, under `pagecontent/`, with the **same file name** as the German page:
-
-```
-input/pagecontent/index.md                     # German (leading / default)
+```text
+input/pagecontent/index.md                     # German — the source
 input/translations/en/pagecontent/index.md     # English — renders on /en/
 ```
 
-- Keep the structure, headings, and links 1:1 with the German page.
-- Leave internal artifact links (`CodeSystem-<id>.html`, …) and FHIR identifiers
-  unchanged.
-- The file goes under `input/translations/<lang>/pagecontent/`, **not** as a
-  `<name>-<lang>.md` sibling in `input/pagecontent/` (the toolchain would treat a
-  sibling as a separate page, not a translation — this is exactly the mistake to
-  avoid). This mirrors the HL7 reference
-  [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig).
-- A page with no translation file simply falls back to the German source on
-  `/en/` — that is fine; translate the pages that matter most first.
+- Keep structure, headings and links 1:1 with the German page.
+- Leave internal artifact links (`StructureDefinition-<id>.html`, …) and FHIR
+  identifiers unchanged — translate prose, not identifiers.
+- A page with no translation file falls back to the German source on `/en/`,
+  with a "no translation available" note. That is fine — translate the pages
+  that matter most first.
 
-This repo carries one such translation,
-[`input/translations/en/pagecontent/index.md`](../../input/translations/en/pagecontent/index.md),
-and `/en/index.html` renders it in English.
+> **The mistake to avoid:** a `<name>-en.md` sibling inside `input/pagecontent/`
+> is **not** a translation. The toolchain treats it as a *separate page*, so
+> `/en/` keeps showing German. It must live under
+> `input/translations/<lang>/pagecontent/`. This mirrors the HL7 reference IG
+> [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig).
 
 ---
 
-## 6. Build and check the result
+## 2. Menu
+
+The menu **is** translatable, but only if it is maintained as a **file**:
+
+```text
+input/includes/menu.xml                      # German — the source menu
+input/translations/en/includes/menu.xml      # English translation
+```
+
+Rules:
+
+- **Do not use the `menu:` property in `sushi-config.yaml`.** SUSHI generates a
+  single `menu.xml` from it that cannot be translated, and it competes with the
+  files above. Remove the property if it is present.
+- Keep the `href` targets **identical** across languages; translate only labels.
+- A dropdown parent must link to a **real page** (`href="#"` is rejected by the
+  template's menu QA check).
+- The IG Publisher supports **one** sub-menu level.
+- Add the same entries to every language file, or the navigation differs per
+  language.
+
+> **Why the property cannot work:** that menu is generated once, before any
+> per-language rendering, so there is nothing language-specific to translate. The
+> per-language file is the mechanism the HL7 reference IG uses.
+
+---
+
+## 3. Base UI chrome (footer, buttons, boilerplate) — template-level
+
+Text the **base template** contributes — the footer's `Links` /
+table-of-contents / QA-report labels, the copyright line, `Package … based on
+FHIR …`, `Generated <date>`, the page-navigation buttons — is not in your IG at
+all. It comes from the base template's UI-string catalogs, looked up as
+`site.data.stringsBase[<lang>][<Key>]`.
+
+**If a language has no catalog, every one of those labels renders blank.** That
+is exactly what happened to German before this was fixed: the `/de/` footer lost
+its copyright, package and generated-date lines while `/en/` showed all of them.
+
+### How this template solves it (and how to add another language)
+
+`fhir2.base.template` is pinned to `0.1.0`, which ships catalogs for
+`ar`/`es`/`fr`/`nl`/`pt`/`ru` — **not** `de`. This template therefore vendors the
+base's own German catalogs into its `translations/` folder:
+
+```text
+translations/stringsBase-de.po        # base UI strings, German
+translations/stringsArtifacts-de.po   # artifact-page strings, German
+```
+
+To add a further language, copy that language's catalogs from
+[`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) (CC0) into
+`translations/` here, then rebuild.
+
+> **Why this is safe (and why the `.json` table is not):** the `.po` catalogs are
+> **additive** — template files are layered base-then-child, so a *new* filename
+> supplements the base's catalogs. The master `stringsBase.json` would *replace*
+> the base file wholesale, so never ship that. The Publisher compiles the `.po`
+> files into the language table at build time.
+
+**Upkeep:** when the pinned base is bumped to a release that ships the language
+itself, delete the vendored copy — see
+[`../../translations/README.md`](../../translations/README.md). The dependency
+checker watches `fhir2.base.template` and proposes that bump.
+
+> **In a module:** nothing to do — a module inherits this from the template.
+
+---
+
+## 4. Conformance resources (profiles, code systems, questionnaires)
+
+For each resource whose text you want in English, add one supplement named
+exactly `<ResourceType>-<id>.po`:
+
+```text
+input/translations/en/StructureDefinition-example-patient.po
+```
+
+Format (`msgid` = the German source, `msgstr` = the translation):
+
+```po
+#: StructureDefinition.description
+msgid "Minimales Beispielprofil …"
+msgstr "Minimal example profile …"
+```
+
+- The `msgid` must match the generated German text **byte for byte**. Copy it
+  from `fsh-generated/resources/<Type>-<id>.json` after running `sushi .` —
+  quote style, umlauts and trailing punctuation included.
+- The file name must match the **generated** `resourceType` + `id`, not the FSH
+  name.
+
+### What actually renders (verified on IG Publisher 2.2.11)
+
+| Field | Translated by a `.po` supplement? |
+|---|---|
+| Resource-level `description` (StructureDefinition, CodeSystem, Questionnaire), and a StructureDefinition's element `definition` / `comment` / `requirements` | **Yes** |
+| `CodeSystem.concept.display` / `concept.definition` | **No** — localize these the FHIR-native way, with a language-tagged `designation` authored in the resource |
+| Resource `title` | **No** — leave it German |
+| ValueSet texts, ImplementationGuide title/description | **No** — a supplement is silently ignored |
+
+> **Do not "simulate" the unsupported cases.** A `ValueSet-*.po` or
+> `ImplementationGuide-*.po` is not an error — it is worse: it is ignored, giving
+> a false sense of coverage. Only create supplements that render.
+
+---
+
+## 5. Build and check
 
 ```sh
 sushi .
-# then run the IG Publisher (see the dev-container recipe), or push and let the
-# ig-preview CI build the /de/ and /en/ site.
+# then the IG Publisher (see the dev-container recipe), or push the branch and
+# let CI build the /de/ and /en/ preview.
 ```
 
-Expected result:
+Check, in this order:
 
-- The build stays green (QA errors = 0). A translation supplement never *breaks*
-  a build — at worst it is ignored.
-- Open `output/en/CodeSystem-<id>.html`: the `description` you translated appears
-  in **English**; concept displays, the title, and untranslated fields stay
-  German (step 3).
-- Open `output/de/…`: unchanged German — translation work is additive.
-- Narrative pages under `/en/` still show German plus "There is no translation
-  page available …" — expected (step 3).
+1. `/de/` — menu in German; footer shows the copyright, `Package … basiert auf
+   FHIR …` and `Erstellt <date>`.
+2. `/en/` — menu in English; footer shows `Package … based on FHIR …` and
+   `Generated <date>`.
+3. A translated page renders in English on `/en/`; an untranslated one falls back
+   to German with the "no translation available" note.
+4. A translated resource's `description` is English on `/en/`, German on `/de/`.
+
+The build must stay green (QA errors = 0).
 
 ---
 
-## 7. Common errors
+## 6. Common errors
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| The `/en/` artifact page still shows German text | `msgid` does not match the German source exactly (quote style, umlaut, trailing period), or the field is not a translatable one | Copy the `msgid` from `fsh-generated/resources/<Type>-<id>.json`; check it is a supported field (step 3) |
-| A supplement seems to do nothing at all | File name is not `<ResourceType>-<id>.po`, or the type is unsupported (ValueSet/IG/menu) | Rename to the exact generated `resourceType`+`id`; drop supplements for unsupported types |
-| On the **German** (`/de/`) pages the base **chrome** labels are **blank** — e.g. the footer shows empty, textless links to `toc.html`/`qa.html` (and the breadcrumb shows the English "Table of Contents") | The pinned base template `fhir2.base.template#0.1.0` ships **no German UI-string catalog** (`stringsBase-de.po` was added upstream only after 0.1.0), so `site.data.stringsBase['de']` is empty and the Liquid label lookups return nothing — see [`docs/DESIGN.md`](../DESIGN.md) §6 | Not a module bug and not fixable in the module. It resolves when the base template is bumped to a version that carries German; the dependency checker watches `fhir2.base.template` and proposes that bump ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). |
-| Your translated page does not appear on `/en/` | The file is in the wrong place — e.g. a `<name>-en.md` sibling in `input/pagecontent/`, or a wrong file name | Put it at `input/translations/en/pagecontent/<same-filename-as-the-German-page>` and rebuild |
-| The language-switcher flag is broken/missing | `fhir2.base.template#0.1.0` does not ship the ISO-639-3 flag SVGs the current Publisher expects | Known base-version gap; harmless (see `input/ignoreWarnings.txt`) |
+| Menu stays in one language on every rendering | The `menu:` property is still in `sushi-config.yaml`, or `input/translations/<lang>/includes/menu.xml` is missing | Remove the property; add the per-language menu file (§2) |
+| Menu QA error about `href="#"` | A dropdown parent has no real target | Point it at a real page (§2) |
+| On `/de/` the footer/base labels are **blank** | No German UI-string catalog for the pinned base | Vendor `stringsBase-de.po` + `stringsArtifacts-de.po` into the template's `translations/` (§3) |
+| A translated page does not appear on `/en/` | It is a `<name>-en.md` sibling in `input/pagecontent/`, or its file name differs from the German page | Move it to `input/translations/en/pagecontent/<same-filename>` (§1) |
+| A resource supplement seems to do nothing | `msgid` does not match the generated German byte-for-byte, the file name is not `<ResourceType>-<id>.po`, or the field is not translatable | Copy the `msgid` from `fsh-generated/resources/…`; check the table in §4 |
+| The language-switcher flag image is missing | The pinned base does not ship the ISO-639-3 flag SVGs the current Publisher expects | Known base-version gap; suppressed in `input/ignoreWarnings.txt` |
 
 ---
 
 ## Re-verify on a toolchain bump
 
-The rendering table in step 3 is a snapshot of what the pinned IG Publisher and
-`fhir2.base.template` actually do. **Whenever either pin changes, re-verify it**
-(especially the base-template chrome gap): rebuild the self-test, inspect a `/de/`
-and an `/en/` page, and update the table here and in
+The rendering tables above are a snapshot of what the **pinned** IG Publisher and
+`fhir2.base.template` actually do. Whenever either pin changes, re-verify:
+rebuild, inspect a `/de/` and an `/en/` page, and update this recipe and
 [`skills/ig-translate/SKILL.md`](../../skills/ig-translate/SKILL.md).

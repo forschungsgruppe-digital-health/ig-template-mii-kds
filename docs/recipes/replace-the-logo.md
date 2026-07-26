@@ -3,7 +3,7 @@
 **Goal.** Replace the MII logo image the header shows.
 
 **Prerequisites.** The replacement logo file(s), and the ability to build the
-self-test.
+preview.
 
 ## Steps
 
@@ -17,7 +17,7 @@ self-test.
    main logo exists as SVG publicly today, so PNG is shipped; if you obtain an SVG,
    add it and point the header at it.
 4. Keep the `alt` text meaningful (it is in `fragment-header.html`).
-5. Rebuild the self-test or push a `feature/*` branch and open the preview; check
+5. Rebuild the preview or push a `feature/*` branch and open the preview; check
    the logo on both `/de/` and `/en/` pages.
 
 ## Expected result
@@ -34,4 +34,4 @@ The header shows your logo in both languages; the browser tab shows your favicon
 
 > **Licensing note:** the MII logo is a trademark. Shipping it in this CC0 repo
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII
-> logos). Confirm redistribution rights before a release. See `docs/DESIGN.md`.
+> logos). Confirm redistribution rights before a release. See `docs/design.md`.

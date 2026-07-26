@@ -32,7 +32,7 @@ image and tools).
 1. Clone the repository and switch to the `dev` branch:
 
    ```sh
-   git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds.git
+   git clone https://github.com/medizininformatik-initiative/ig-template-mii-kds.git
    cd ig-template-mii-kds
    git checkout dev
    ```
@@ -75,9 +75,9 @@ image and tools).
 
    Each command must print the version shown in the comment.
 
-6. Build the template's self-test IG.
+6. Build the template's preview IG.
 
-   > **Not yet available:** this step depends on the self-test harness
+   > **Not yet available:** this step depends on the preview harness
    > (`ig.ini` + build scripts + validation workflow), which lands in a
    > separate task. Once it is merged, this section will point at the exact
    > build command; until then, steps 1–5 are the complete recipe.
@@ -95,7 +95,7 @@ image and tools).
 - VS Code runs inside the container (the green remote indicator in the
   bottom-left corner shows the dev container name).
 - All six version checks in step 5 print the pinned versions.
-- Once the self-test harness is merged: the self-test IG builds cleanly and
+- Once the preview harness is merged: the preview IG builds cleanly and
   produces an `output/` folder with the rendered pages.
 
 ## Common errors and fixes

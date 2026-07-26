@@ -1,4 +1,4 @@
-# sushi-config.yaml — self-test IG for the de.medizininformatikinitiative.template
+# sushi-config.yaml — preview IG for the de.medizininformatikinitiative.template
 # IG template.
 # ============================================================================
 # This is NOT an MII Core Dataset module. It is the smallest possible IG that
@@ -8,19 +8,19 @@
 #
 # It is referenced by ig.ini (template = #.) and is never published to a
 # package registry; the package id below is intentionally distinct from any
-# KDS module id and ends in `.selftest`.
+# KDS module id and ends in `.preview`.
 #
 # Multi-language is kept MINIMAL on purpose: German is the default language and
 # English is the one additional language, so the language-aware header/footer
 # render in BOTH languages. The full de→en translation workflow (translation
 # sources, harvesting) is added by the multi-language task, not here.
 
-id: de.medizininformatikinitiative.template.selftest
-packageId: de.medizininformatikinitiative.template.selftest
-canonical: https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds
-name: MIIKDSTemplateSelfTest
-title: "MII KDS IG Template — Self-Test"
-description: "Minimal self-test IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."
+id: de.medizininformatikinitiative.template.preview
+packageId: de.medizininformatikinitiative.template.preview
+canonical: https://github.com/medizininformatik-initiative/ig-template-mii-kds
+name: MIIKDSTemplatePreview
+title: "MII KDS IG Template — Preview"
+description: "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in German (default) and English. Not an MII KDS module."
 status: draft
 version: 0.1.0
 releaseLabel: ci-build
@@ -29,7 +29,7 @@ license: CC0-1.0
 copyrightYear: 2026+
 publisher:
   name: Forschungsgruppe Digital Health, TU Dresden
-  url: https://github.com/forschungsgruppe-digital-health
+  url: https://github.com/medizininformatik-initiative
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 
 # Multi-language: German default, English recommended (§3.4). German is the
@@ -44,9 +44,9 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 #     rendered in that language on /<lang>/.
 #   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
 #     (msgid/msgstr entries translate resource fields such as description).
-# The self-test ships the English home page (input/translations/en/pagecontent/
+# The preview ships the English home page (input/translations/en/pagecontent/
 # index.md) so /en/ renders in English — the mechanism a module maintainer
-# follows (docs/recipes/add-translation.md). The self-test carries no conformance
+# follows (docs/recipes/add-translation.md). The preview carries no conformance
 # resources; a module adds its own FSH + the matching .po files.
 parameters:
   i18n-default-lang: de

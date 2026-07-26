@@ -7,7 +7,7 @@
 // container image that bundles SUSHI plus every IG-Publisher dependency, a
 // bind mount of the host's `~/.fhir` package cache, and the IG Publisher jar
 // NOT baked into the image (it is fetched, pinned, by the repo's build
-// scripts — see the self-test harness — so the dependency checker governs
+// scripts — see the preview harness — so the dependency checker governs
 // its version).
 //
 // Deviation from the wiki, on purpose: the wiki's prebuilt image
