@@ -55,8 +55,8 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 `main`:
 
 1. Conventional Commits accumulate on `dev`, then land on `main` via a merge commit.
-2. Release Please opens a release PR (version bump in `package/package.json` +
-   `package-list.json`, changelog). A human merges it.
+2. Release Please opens a release PR (version bump in `package/package.json`,
+   `sushi-config.yaml` and `package-list.json`, changelog). A human merges it.
 3. Merging cuts the tag + GitHub Release; `notify-zulip.yml` announces it.
 4. Production publication (if any) stays a manual, gated step — never automatic.
 

@@ -21,12 +21,15 @@
 # (CalVer YYYY.n.n); a module must NEVER carry these files — the module
 # template's first-run bootstrap removes them from a newly created module.
 #
-# Version sync (release-please-config.json `extra-files`):
-#   - package/package.json: bumped via the JSON updater (jsonpath $.version).
-#   - package-list.json: bumped via the GENERIC updater — the version line to
-#     bump MUST carry an `x-release-please-version` marker, otherwise Release
-#     Please leaves the file untouched. Keep the marker when editing
-#     package-list.json.
+# Version sync (release-please-config.json `extra-files`): three files carry
+# the version and are bumped by the STRUCTURED updaters, which address the
+# value by JSONPath. No in-file marker comment is involved (JSON cannot carry
+# one), so there is nothing to preserve when editing these files:
+#   - package/package.json — json updater, $.version
+#   - sushi-config.yaml    — yaml updater, $.version
+#   - package-list.json    — json updater, $.list[0].version
+# A version spelled out anywhere else is NOT bumped and will drift — keep it
+# out of free text such as package-list.json `list[0].desc`.
 # -----------------------------------------------------------------------------
 name: release-please
 
