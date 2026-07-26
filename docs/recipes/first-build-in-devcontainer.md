@@ -91,10 +91,10 @@ access (the first build downloads the base image and tools):
    > line exists to catch (see
    > [review a dependency update](review-a-dependency-update.md)).
 
-   > **Why `-Xmx6g`:** the publisher runs out of heap on the default JVM
-   > setting. `-tx https://tx.fhir.org` is the public HL7 terminology server —
-   > the same fallback CI uses when no SU-TermServ certificate is configured
-   > (see [secrets.md](../secrets.md)).
+   > **Why `-Xmx6g` and `-tx`:** the default JVM heap is not enough for an IG
+   > build, so CI passes the same `-Xmx6g`. `https://tx.fhir.org` is the public
+   > HL7 terminology server — the fallback CI uses when no SU-TermServ
+   > certificate is configured (see [secrets.md](../secrets.md)).
 
    > **Why the IG Publisher is not pre-installed in the container:** the
    > publisher version is governed by the repo's CI pin and its dependency
