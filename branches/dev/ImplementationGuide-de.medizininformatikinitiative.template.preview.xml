@@ -9,11 +9,11 @@
 </div></div></div>
   </text>
   <url value="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/>
-  <version value="0.1.0"/>
+  <version value="0.2.0"/>
   <name value="MIIKDSTemplatePreview"/>
   <title value="MII KDS IG Template — Preview"/>
   <status value="draft"/>
-  <date value="2026-07-26T10:03:38+00:00"/>
+  <date value="2026-07-26T10:40:12+00:00"/>
   <publisher value="Medical Informatics Initiative (MII)"/>
   <contact>
     <name value="Medical Informatics Initiative (MII)"/>

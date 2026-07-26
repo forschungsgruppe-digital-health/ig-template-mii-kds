@@ -10,11 +10,11 @@
   "id" : "de.medizininformatikinitiative.template.preview",
   "language" : "de",
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
-  "version" : "0.1.0",
+  "version" : "0.2.0",
   "name" : "MIIKDSTemplatePreview",
   "title" : "MII KDS IG Template — Preview",
   "status" : "draft",
-  "date" : "2026-07-26T10:03:38+00:00",
+  "date" : "2026-07-26T10:40:12+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",

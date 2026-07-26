@@ -1,4 +1,4 @@
-# Home - MII KDS IG Template — Preview v0.1.0
+# Home - MII KDS IG Template — Preview v0.2.0
 
 * [**Table of Contents**](toc.md)
 * **Home**
@@ -7,7 +7,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.1.0 |
+| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.2.0 |
 | Draft as of 2026-07-26 | *Computable Name*:MIIKDSTemplatePreview |
 
  This page includes translations from the original source language in which the guide was authored. Information on these translations and instructions on how to provide feedback on the translations can be found [here](translationinfo.html). 
