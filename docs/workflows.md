@@ -78,4 +78,5 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 
 All builds and releases work without secrets. To enable the optional gated
 features — SU-TermServ terminology and the Zulip release announcement — see
-[docs/secrets.md](secrets.md) for the exact `gh secret set` commands. The workflows are already wired; adding the secret is the only step.
+[docs/secrets.md](secrets.md) for the exact `gh secret set` commands. The
+workflows are already wired; adding the secret is the only step.
