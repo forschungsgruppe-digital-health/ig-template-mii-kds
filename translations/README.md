@@ -24,13 +24,22 @@ made it unnecessary.
 Source files:
 
 - `stringsArtifacts-de.po` — unmodified copy.
-- `stringsBase-de.po` — one deliberate change, marked with a comment in the
-  file: the `TRANS_HLP` link is written as HTML (`<a href='…'>hier</a>`) instead
-  of markdown. The pinned base inserts this string without `| markdownify`, so
+- `stringsBase-de.po` — one deliberate change, in the `TRANS_HLP` entry: the
+  link is written as HTML (`<a href='…'>hier</a>`) instead of markdown. The pinned base inserts this string without `| markdownify`, so
   markdown link syntax reached the rendered page verbatim and every German page
   showed a literal `[hier](translationinfo.html)`. HTML renders as a link both
   on the pinned base and on the newer upstream one that does apply
-  `markdownify`.
+  `markdownify`. The same defect is visible in HL7's own reference IG
+  (FHIR/multi-lang-test-ig) and should be raised upstream against
+  [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2). The href
+  is single-quoted on purpose: no upstream catalog escapes a double quote, so
+  the reader's handling of that is unproven, and single quotes need no escaping.
+
+> **Keep the rationale here, not in the `.po`.** The IG Publisher's PO reader
+> aborts the whole build with `Publishing Content Failed: Name is null` when an
+> entry carries extra comment lines between its `# NAME` and `#: NAME` lines.
+> The vendored catalogs must stay structurally identical to upstream — only
+> `msgstr` values may differ.
 
 > **Upstream:** the missing `markdownify` is a defect of the pinned base, not of
 > the German text — HL7's own reference IG `FHIR/multi-lang-test-ig` shows the
