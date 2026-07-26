@@ -62,18 +62,24 @@ dependency checker watches `fhir2.base.template` and proposes the bump.
 
 ### 2. The preview IG's own pages and menu
 
-The preview ships one page and one menu per language, purely so branding changes
-are reviewable in both renderings:
+The preview ships two pages and one menu per language, purely so branding
+changes are reviewable in both renderings:
 
 ```text
-input/pagecontent/index.md                     # English (default)
-input/translations/de/pagecontent/index.md     # German — same file name
-input/includes/menu.xml                        # English
-input/translations/de/includes/menu.xml        # German
+input/pagecontent/index.md                              # English (default)
+input/translations/de/pagecontent/index.md              # German — same file name
+input/pagecontent/translationinfo.md                    # English (default)
+input/translations/de/pagecontent/translationinfo.md    # German — same file name
+input/includes/menu.xml                                 # English
+input/translations/de/includes/menu.xml                 # German
 ```
 
-Keep both in step when you change either. A page with no translation falls back
-to the default language.
+Keep each pair in step when you change either half. A page with no translation
+falls back to the default language.
+
+> **Why `translationinfo.md` is not optional:** the base template puts a notice
+> at the top of every translated page linking to `translationinfo.html`. Without
+> the page, that link 404s on the whole German tree.
 
 ## Expected result
 
@@ -92,6 +98,7 @@ Build the preview (or push a branch and open the CI preview) and confirm on
 | Footer/base labels blank in one language | No UI-string catalog for it in the pinned base | Vendor that language's `.po` files into `translations/` |
 | A menu label does not change with the language | The per-language `menu.xml` is missing, or a `menu:` property was added to `sushi-config.yaml` | Ship `input/translations/<lang>/includes/menu.xml`; never use the `menu:` property — it generates one untranslatable menu |
 | Language-switcher flag missing | The flag asset is not resolvable from the language folder | The template ships `content/assets/images/deu.svg` for exactly this reason |
+| The organisation name and link in the footer's copyright line stay English on `/de/` | They are not UI strings: the base reads them from the IG's single-valued `publisher` block and emits them before our footer fragment runs | Not fixable from the template — see the "Known limit" bullet in [`../design.md`](../design.md) §6 |
 
 ## Re-verify on a toolchain bump
 

@@ -4,7 +4,7 @@ Dataset module.
 
 The preview builds the template standalone so that branding changes (header,
 footer, CSS, logo) can be reviewed in a rendered IG before a template version is
-released. The build renders in German (the default language) and English, to
+released. The build renders in English (the default language) and German, to
 check the language-aware header and footer.
 
 What the template is and how a module uses it is described in the repository's
@@ -16,12 +16,14 @@ The template ships reusable, purpose-neutral CSS classes for calling out content
 (classes `mii-highlight mii-highlight-blue` / `mii-highlight-green`). These are
 styling only — a module decides what each colour means.
 
+<!-- Raw HTML block: the page processor does NOT run markdown inside it, so the
+     class names have to be marked up as <code>, not with backticks. -->
 <div class="mii-highlight mii-highlight-blue">
 <h5>Blue highlight box</h5>
-<p>Example of the blue background highlight (`mii-highlight-blue`).</p>
+<p>Example of the blue background highlight (<code>mii-highlight-blue</code>).</p>
 </div>
 
 <div class="mii-highlight mii-highlight-green">
 <h5>Green highlight box</h5>
-<p>Example of the green background highlight (`mii-highlight-green`).</p>
+<p>Example of the green background highlight (<code>mii-highlight-green</code>).</p>
 </div>

@@ -13,7 +13,7 @@ preview.
    The favicon is `content/assets/ico/favicon.png`.
 2. Replace the file(s) **keeping the same file names**, or, if you use new names,
    update the `<img src="…">` in `includes/fragment-header.html` to match.
-3. The shipped files are **SVG traced from the official PNGs** (`tools/trace-logo.sh`),
+3. The shipped files are **SVG traced from the official PNGs** (`scripts/trace-logo.sh`),
    because the MII publishes no official SVG. If you get an official SVG, drop it
    in and delete the trace. If you only have a new PNG, re-run the trace script —
    the exact commands are in [`../design.md`](../design.md) §4.

@@ -42,6 +42,7 @@ mechanism) · ➖ not applicable to a template.
 
 | Check | State | Evidence |
 |---|---|---|
+| Multi-language is set up the supported way | ✅ | `i18n-default-lang: en`, `i18n-lang: [de]`, `translation-sources: [input/translations/de]` — the same model as `kerndatensatz-basis` |
 | Uses the language-aware base and the supported translation mechanism | ✅ | `fhir2.base.template` is the *translated* base; content/menu/resource translations follow the HL7 reference layout ([`docs/recipes/add-translation.md`](recipes/add-translation.md)) |
 | Header/footer overrides are language-aware, not hard-coded to one language | ✅ | `fragment-header.html` switches the logo on `include.lang`; `fragment-footer.html` supplies `de`/`en` labels |
 | The base UI strings resolve in every offered language | ✅ | `translations/stringsBase-de.po` + `stringsArtifacts-de.po` vendored (the pinned base ships no German catalog) — verified: the German footer renders copyright, package and generated-date lines |
@@ -53,7 +54,7 @@ mechanism) · ➖ not applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/design.md`](design.md) §3 |
-| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted at Gate B) |
+| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted in the design review) |
 | Consistent page chrome (no mixed white/grey surfaces) | ✅ | Header sides and container are both white, matching the logo background and the content area |
 | Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/design.md`](design.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
 | Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning |
@@ -68,8 +69,8 @@ enables or obstructs them. This is what the scaffold provides:
 | Separate non-normative from normative content | The MII-standard page set: guidance/downloads vs conformance pages |
 | A Security & Privacy Considerations section | `security-and-privacy.md` ships with the required structure |
 | Explain `mustSupport` | `must-support.md` ships the MII-standard server/client expectations |
-| Say how to engage with the community | Index *Ansprechpartner* block → `chat.fhir.org` `german/mi-initiative` + GitHub issues |
-| Reference the IG registry / related guides | Index *Verwandte Leitfäden* block → [FHIR IG Registry](https://fhir.org/guides/registry/) |
+| Say how to engage with the community | Index *Contact* block → `chat.fhir.org` `german/mi-initiative` + GitHub issues |
+| Reference the IG registry / related guides | Index *Related guides* block → [FHIR IG Registry](https://fhir.org/guides/registry/) |
 | Artifact intros and notes | `input/intro-notes/` wired via `path-pages` |
 | Examples with synthetic data only | A worked example instance (`Max Mustermann-Testpatient`) |
 | Pin canonicals and dependencies | `pin-canonicals: pin-all`, fixed dependency versions, enforced by `convention-check` |
@@ -78,7 +79,7 @@ enables or obstructs them. This is what the scaffold provides:
 
 | Check | State | Evidence |
 |---|---|---|
-| Publication uses the IG Publisher's `-go-publish` mode | ✅ | In the module scaffold: `go-publish.yml`, `workflow_dispatch`-only and dry-run by default (Gate E) |
+| Publication uses the IG Publisher's `-go-publish` mode | ✅ | In the module scaffold: `go-publish.yml`, `workflow_dispatch`-only and dry-run by default, so publishing is always a human step |
 | The template itself is versioned and released so modules can pin it | ✅ | SemVer via Release Please; `package-list.json` tracks the versions |
 | Consumers can pin a template version | ✅ | `template = de.medizininformatikinitiative.template#<version>` in a module's `ig.ini` — today via the vendored mirror, since the package is not registry-published ([`docs/project-status.md`](project-status.md)) |
 | Registry publication is a deliberate, human decision | ✅ | Deferred by decision — see [`docs/project-status.md`](project-status.md) |
@@ -90,7 +91,6 @@ enables or obstructs them. This is what the scaffold provides:
 | Deviation | Why |
 |---|---|
 | The base is pinned to `0.1.0` while the MII reference repos float `#current` | Reproducibility: a rebuild years from now must produce the same output. Drift is surfaced as a reviewable PR by `dependency-check.yml`. |
-| German is the default IG language (the HL7 ecosystem is English-first) | Project language policy for MII KDS modules; English ships as the recommended second rendering. |
 | The template is not in `FHIR/ig-registry` | Prototype status pending MII TF KDS discussion — [`docs/project-status.md`](project-status.md). |
 
 ## Re-check on a toolchain bump

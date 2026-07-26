@@ -86,7 +86,7 @@ export function parseWorkflowEnvPin(yamlText, key) {
 
 /**
  * Parse the `dependencies:` block of a sushi-config.yaml into { id: version }.
- * Taken over from the MII KDS sample IG's tools/check-updates.py: only pinned
+ * Taken over from the MII KDS sample IG's scripts/check-updates.py: only pinned
  * (version starts with a digit), non-commented entries count; the block ends
  * at the first non-indented line. the IG template repo ships no sushi-config.yaml — this
  * exists so the checker also works unchanged in a module repo.

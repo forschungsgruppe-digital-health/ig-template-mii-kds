@@ -1,4 +1,4 @@
-# Secrets & variables — enabling the gated features (F + G)
+# Secrets & variables — enabling the gated features
 
 Everything in this repository builds and releases **without any secrets** (the
 preview uses the public HL7 terminology server; the release announcement skips
@@ -14,7 +14,7 @@ gh secret set NAME --repo medizininformatik-initiative/ig-template-mii-kds < val
 gh variable set NAME --repo medizininformatik-initiative/ig-template-mii-kds --body "value"
 ```
 
-## Gate F — SU-TermServ terminology server (optional)
+## SU-TermServ terminology server (optional)
 
 The preview build resolves terminology against the **public HL7 server
 `tx.fhir.org`** by default. To route it to the **MII SU-TermServ**
@@ -49,7 +49,7 @@ them (access is granted to entities in Germany).
 
 ### Recommended: use the helper script
 
-`tools/set-su-termserv-secrets.sh` validates everything **before** uploading, and
+`scripts/set-su-termserv-secrets.sh` validates everything **before** uploading, and
 can prove the certificate against the live server first.
 
 ```sh
@@ -57,11 +57,11 @@ D=/path/to/certificate
 R=<owner>/ig-template-mii-kds
 
 # 1. Prove it works — validates locally AND does a real mTLS call. Uploads nothing.
-tools/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
+scripts/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
   --test --check-only
 
 # 2. Upload
-tools/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
+scripts/set-su-termserv-secrets.sh --p12 "$D/cert.p12" --password-file "$D/pw.txt" \
   --repo "$R"
 ```
 
@@ -117,13 +117,13 @@ the integration off again, delete the three secrets; the build falls back to
 `tx.fhir.org` on the next run with a `::notice`. Note the expiry date: an expired
 certificate fails the handshake, so rotate before `notAfter`.
 
-## Verifying a gate after you enable it
+## Verifying a gated feature after you enable it
 
-Both gates are *wired and fall back safely*, but until the credential exists the
+Both are *wired and fall back safely*, but until the credential exists the
 "enabled" code path has never executed. Verify each once, right after enabling:
 
-**Gate F (SU-TermServ).** Push any branch (or re-run the IG preview) and open the
-log of the terminology step. Enabled and working looks like
+**SU-TermServ.** Push any branch (or re-run the IG preview) and open the log of
+the terminology step. Enabled and working looks like
 `SU-TermServ client certificate present — starting a local client-cert nginx proxy`
 followed by a green build; not configured looks like
 `No SU-TermServ credential — falling back to the public HL7 terminology server`.
@@ -131,8 +131,8 @@ If the proxy fails to start, the step fails loudly rather than silently
 mis-expanding value sets — re-check that the cert/key are **base64-encoded** and
 that the key password is correct.
 
-**Gate G (Zulip).** The announcement runs on `release: published`. Verify on the
-next release by opening the `Announce release` run: it prints either the delivered
+**Zulip announcement.** It runs on `release: published`. Verify on the next
+release by opening the `Announce release` run: it prints either the delivered
 message or an explicit skip notice naming exactly what is missing.
 
 ## CI toggles (variables — all default correctly when unset)

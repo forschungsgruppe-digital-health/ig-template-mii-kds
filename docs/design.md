@@ -1,6 +1,6 @@
 # DESIGN — MII branding for `de.medizininformatikinitiative.template`
 
-> ## ✅ Gate B — CONFIRMED (2026-07-24)
+> ## ✅ MII corporate design — CONFIRMED (2026-07-24)
 >
 > **The MII corporate design of this template (logo + palette + layout) is
 > CONFIRMED by the maintainer** and may go into a release. The design was derived
@@ -62,8 +62,7 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 > **Why no `config.json`:** the IG Publisher **replaces** (does not merge) a
 > child template's `config.json` over the base's. Shipping one would fork the
 > whole base configuration (scripts, extraTemplates, path patterns) and silently
-> detach us from base updates. We inherit the base `config.json` untouched
-> (spec §3.2).
+> detach us from base updates. We inherit the base `config.json` untouched.
 
 > **Why no `layouts/`, `liquid/`, `scripts/`, `translations/`:** same reasoning
 > — inherit everything; every copied file is future drift. In particular
@@ -73,10 +72,10 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 
 ---
 
-## 3. Palette (CONFIRMED, Gate B 2026-07-24)
+## 3. Palette (CONFIRMED 2026-07-24)
 
-Derivation order followed spec §6-B: (1) `kerndatensatz-basis` repo assets,
-(2) the MII website as fallback. The basis repo carries **no CSS and no palette**
+Derivation order: (1) `kerndatensatz-basis` repo assets, (2) the MII website as
+fallback. The basis repo carries **no CSS and no palette**
 — its only branding assets are the two logo JPGs (`input/images/MII_Logo_rgb.jpg`,
 `MII_Logo_engl_rgb.jpg`, Photoshop 2017) and an IG-level `fragment-header.html`
 that displays them. So the colors below come from the MII **logo the site ships
@@ -118,14 +117,30 @@ IG-Publisher semantic signals, not brand surfaces): publish box (15–16), TOC b
 MII site header), footer-nav strip (23), footer text (24, already white),
 dragon (29–30), translation box (31–32).
 
-> **Why variables-only:** spec §3.3 — the base exposes its palette as CSS custom
-> properties precisely so children re-color without touching rules; a later
-> human override (Gate B outcome) is then a one-file change with no cascade
-> surprises.
+> **Known consequence — the publish box's "Directory of published versions" link
+> is dead in the preview.** Every rendered page carries that link, and in the
+> preview it points at
+> `https://github.com/medizininformatik-initiative/ig-template-mii-kds/history.html`,
+> which 404s. The link is the IG's `canonical` with `history.html` appended
+> (observed on both builds: this preview → the repo URL, the module template's
+> `https://www.medizininformatik-initiative.de/fhir/modul-template` → …
+> `/history.html`; the behaviour is not spelled out in the HL7 ig-guidance).
+> Here the canonical *is* the GitHub repository URL — a deliberate decision,
+> because the template package is not published to a registry
+> ([project-status.md](project-status.md)) — and the preview IG is never
+> published at all, so there is no version directory to point at. **Accepted as
+> inert, preview-only chrome:** it is not a branding surface, a module IG's real
+> canonical yields a working link, and pointing the preview's canonical at the
+> GitHub Pages root would only make the dead link look plausible (that root has
+> no `history.html` either).
+
+> **Why variables-only:** the base exposes its palette as CSS custom properties
+> precisely so children re-color without touching rules; a later human override
+> is then a one-file change with no cascade surprises.
 
 ---
 
-## 4. Logo & favicon (CONFIRMED, Gate B 2026-07-24)
+## 4. Logo & favicon (CONFIRMED 2026-07-24)
 
 The logo ships as **SVG, traced from the official PNGs** (see below). The source
 PNGs and their checksums are recorded for provenance.
@@ -154,7 +169,7 @@ spelling: `favicon.png` (browser convention) and `deu.svg` (IG Publisher).
 The MII publishes its logo **only as PNG** — the sole SVG on the MII website
 (`Logo_MII_second.svg`) is the **"10 Jahre MII" anniversary mark**, verified by
 rendering it, not the brand logo. A vector is wanted so the logo stays crisp at
-any size, so the PNGs are traced with `tools/trace-logo.sh`
+any size, so the PNGs are traced with `scripts/trace-logo.sh`
 (ImageMagick + potrace). **This is a conversion, not an official asset** —
 replace both files the day the MII publishes a real SVG.
 
@@ -168,11 +183,11 @@ into one layer.
 The exact commands that produced the shipped files:
 
 ```sh
-tools/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
+scripts/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
   slate:#7a8495:#7a8495 blue:#3473aa:#3473aa teal:#548b9b:#548b9b \
   sage:#74a86f:#74a86f green:#72b802:#72b802 lime:#99cc4a:#99cc4a
 
-tools/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
+scripts/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
   "slate:#6d7887,#848c9a,#798693:#7a8495" "blue:#6a89ba:#3473aa" "teal:#93a5ad:#548b9b" \
   "sage:#9ebd89:#74a86f" "green:#afcf01,#a4c80d:#72b802"
 ```
@@ -225,16 +240,32 @@ The override appends to (never replaces) the base footer content:
 
 ---
 
-## 6. Language neutrality (spec §3.4)
+## 6. Language neutrality
 
 - The overridden footer **supplies its own language-branched labels**
   (`Links`, `Inhaltsverzeichnis`/`Table of Contents`, `QA-Bericht`/`QA Report`,
   `Impressum`/`Legal notice`) rather than resolving them through the base
   mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`. This is a
   deliberate deviation: the pinned base ships no German catalog, so the base
-  mechanism renders those labels **blank** on the German default pages (next
+  mechanism renders those labels **blank** on the German `/de/` pages (next
   bullet). Every visible footer string is therefore correct in both `de` and
   `en`; adding a third language means extending this fragment's label branch.
+- **Known limit — the organisation name and link in the copyright line are the
+  same in every language.** On `/de/` the footer reads `IG © 2026+ Medical
+  Informatics Initiative (MII)`, linking to `…medizininformatik-initiative.de/en`,
+  right next to the German `Impressum` link this fragment *does* branch. It
+  cannot be branched here: the **base** emits that link in
+  `fragment-pageend.html` —
+  `<a href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher | escape}}</a>`
+  — *before* it includes our `fragment-footer.html`, and both values come from
+  the single-valued `publisher` block in `sushi-config.yaml` (SUSHI maps
+  `publisher.url` onto `contact[0].telecom[0]`). **Accepted as-is:** that block
+  is deliberately identical to `kerndatensatz-basis` and the module template so
+  every MII KDS IG names the same responsible organisation, and there is no
+  language-neutral MII URL to switch to — the site root `301`s to `/de/start`,
+  so changing it would only mirror the mismatch onto the English pages. Fixing
+  it properly needs either per-language IG metadata (not available) or an
+  override of `fragment-pageend.html`, which would fork base behaviour (§2).
 - **Finding — the pinned base ships no German UI-string catalog (i18n gap; RESOLVED 2026-07-25 by vendoring, see end of this bullet).**
   `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
   catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
@@ -285,7 +316,7 @@ The override appends to (never replaces) the base footer content:
 
 ---
 
-## 7. Accessibility & contrast (spec §3.3)
+## 7. Accessibility & contrast
 
 WCAG 2.1 relative-luminance contrast ratios, computed for every text-bearing
 override (AA: ≥ 4.5:1 normal text, ≥ 3:1 large/bold ≥ 18.66 px bold or 24 px):
@@ -317,7 +348,7 @@ Notes and deliberate deviations:
   the surrounding footer text (exactly like the MII site footer) and the base
   applies no underline to footer links; they are distinguishable only on hover.
   Fixing this would require a rule override (`#segment-footer a { text-decoration:
-  underline }`), which this variables-only design forbids. **Decision (Gate B, 2026-07-24): accepted as-is** —
+  underline }`), which this variables-only design forbids. **Decision (2026-07-24): accepted as-is** —
   the site-faithful appearance was confirmed. Revisit if an accessibility review
   requires underlined footer links (one rule override would be needed).
 - **Language selector legibility:** the base language dropdown reads
@@ -329,7 +360,7 @@ Notes and deliberate deviations:
 
 ---
 
-## 8. How to review this design (Gate B)
+## 8. How to review this design
 
 1. Wait for the preview build (task A4: `ig.ini` + CI + `dev` Pages preview)
    or run the IG Publisher locally on any IG with `ig.ini` →
@@ -337,13 +368,13 @@ Notes and deliberate deviations:
 2. Compare the rendered header/footer/navbar against
    `https://www.medizininformatik-initiative.de/` and against a
    `kerndatensatz-basis` build.
-3. Then either **confirm** logo + palette (remove the Gate B banners here, in
-   `mii.css`, and in the three fragments) or **replace** the hex values in
+3. Then either **confirm** logo + palette (remove the confirmation banners
+   here, in `mii.css`, and in the three fragments) or **replace** the hex values in
    `mii.css` / the PNGs in `content/assets/images/` — no other file needs to
    change.
 
-**Gate B is CONFIRMED (2026-07-24).** The palette, logo and layout above are the
-agreed MII corporate design of this template and shipped in v0.2.0.
+**The design is CONFIRMED (2026-07-24).** The palette, logo and layout above are
+the agreed MII corporate design of this template and shipped in v0.2.0.
 
 **Remaining follow-ups — non-blocking, none gate a release:**
 

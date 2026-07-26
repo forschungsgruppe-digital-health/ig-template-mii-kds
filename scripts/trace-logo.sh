@@ -21,7 +21,7 @@
 # REQUIREMENTS: imagemagick, potrace
 #
 # USAGE
-#   tools/trace-logo.sh <src.png> <out.svg> <upscale%> <turdsize> <opt> <label> \
+#   scripts/trace-logo.sh <src.png> <out.svg> <upscale%> <turdsize> <opt> <label> \
 #       <name:segHex[,segHex...]:paintHex>...
 #
 # The exact invocations that produced the shipped assets are in

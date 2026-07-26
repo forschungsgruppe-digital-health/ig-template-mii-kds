@@ -30,18 +30,28 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
-| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream; opens a tracking issue/PR | `dependencies` issue/PR | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never auto-merges |
-| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image) | SARIF in the Security tab | `ENABLE_SECURITY_SCAN` (ON) | no |
+| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the checker's unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
+| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`scripts/check-language-model.sh`) and the `tooling-tests` job (`node --test scripts/check-updates.test.mjs`) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
 Notes:
 - **Dependabot** (`.github/dependabot.yml`) is not a job you gate with `if:` — it is
   switched by its config presence and the repo's Dependabot setting.
 - **Terminology** is not an on/off pipeline: `ig-preview.yml` auto-selects
   **SU-TermServ** when the client-cert secrets are present, else falls back to HL7
-  `tx.fhir.org` with a notice (see §2.10 of the build spec and
-  [maintenance.md](maintenance.md)).
+  `tx.fhir.org` with a notice (see [maintenance.md](maintenance.md)).
 - Each workflow file starts with a comment block (purpose · triggers · toggle ·
   gated steps) so the explanation lives next to the code.
+- **The `language-model` job** is content hygiene, not a scanner:
+  `scripts/check-language-model.sh` fails the pull request when a file re-asserts
+  the abandoned language model (the script lists the exact phrases). The IG is
+  English-default with a German translation under `input/translations/de/` —
+  see [add-translation.md](recipes/add-translation.md). The job lives in
+  `security-scan.yml` because that is the only pull-request-triggered workflow.
+- **The `tooling-tests` job** runs the unit tests of `scripts/check-updates.mjs`
+  (`node --test scripts/check-updates.test.mjs`, offline, no `npm install`). It
+  rides in `security-scan.yml` for the same reason as the language-model guard.
+  `dependency-check.yml` runs the same suite as a pre-flight, so the weekly
+  check fails loudly instead of filing a garbled tracking issue.
 
 ## 3. Release
 
@@ -49,8 +59,8 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 `main`:
 
 1. Conventional Commits accumulate on `dev`, then land on `main` via a merge commit.
-2. Release Please opens a release PR (version bump in `package/package.json` +
-   `package-list.json`, changelog). A human merges it.
+2. Release Please opens a release PR (version bump in `package/package.json`,
+   `sushi-config.yaml` and `package-list.json`, changelog). A human merges it.
 3. Merging cuts the tag + GitHub Release; `notify-zulip.yml` announces it.
 4. Production publication (if any) stays a manual, gated step — never automatic.
 
@@ -67,6 +77,6 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 ## Secrets & enabling the gated features
 
 All builds and releases work without secrets. To enable the optional gated
-features — SU-TermServ terminology (Gate F) and the Zulip release announcement
-(Gate G) — see [docs/secrets.md](secrets.md) for the exact `gh secret set`
-commands. The workflows are already wired; adding the secret is the only step.
+features — SU-TermServ terminology and the Zulip release announcement — see
+[docs/secrets.md](secrets.md) for the exact `gh secret set` commands. The
+workflows are already wired; adding the secret is the only step.

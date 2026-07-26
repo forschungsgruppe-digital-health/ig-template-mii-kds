@@ -1,6 +1,6 @@
 # Template validation against a real module (kerndatensatz-basis) — 2026-07-23
 
-Acceptance test (spec §3.5): validate `de.medizininformatikinitiative.template`
+Acceptance test: validate `de.medizininformatikinitiative.template`
 against the latest **real** MII KDS module by building
 [`kerndatensatz-basis`](https://github.com/medizininformatik-initiative/kerndatensatz-basis)
 (`main`, version `2026.0.1`) with its `ig.ini` pointing at **this** template
@@ -47,7 +47,9 @@ environment with the full toolchain (the repo's dev container, Ruby 3.3 + Jekyll
 git clone https://github.com/medizininformatik-initiative/kerndatensatz-basis
 cd kerndatensatz-basis
 mkdir ig-template && cp -R <this-repo>/package <this-repo>/includes <this-repo>/content ig-template/
-sed -i 's#^template =.*#template = #ig-template#' ig.ini
+# the replacement starts with '#', so the delimiter must not be '#'
+# (on macOS the flag takes an argument: sed -i '' 's|...|...|' ig.ini)
+sed -i 's|^template =.*|template = #ig-template|' ig.ini
 sushi .
 curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar
 java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org

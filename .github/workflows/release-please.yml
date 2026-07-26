@@ -1,32 +1,35 @@
 # -----------------------------------------------------------------------------
-# release-please — SemVer release automation for THIS TEMPLATE REPO (spec §2.2)
+# release-please — SemVer release automation for THIS TEMPLATE REPO
 #
 # Purpose:   Watches the Conventional Commits that land on `main` (via the
 #            dev -> main release-candidate merge, see CONTRIBUTING.md) and
 #            maintains a release PR. Merging that release PR cuts the SemVer
 #            tag (vMAJOR.MINOR.PATCH), the GitHub Release, and the
 #            auto-generated CHANGELOG.md.
-# Trigger:   push to `main` (release automation runs on `main` only, §2.6).
+# Trigger:   push to `main` (release automation runs on `main` only).
 # Toggle:    vars.ENABLE_RELEASE_PLEASE — ON by default; set the repo variable
-#            to 'false' to make the job skip without editing YAML (§2.13).
+#            to 'false' to make the job skip without editing YAML.
 # Human-gated steps:
 #   - The dev -> main merge (release-candidate gate) is a human-reviewed PR.
 #   - The Release Please release PR must be merged by a human; nothing is
 #     tagged or released until then.
 #   - Publication (registry/site) is NOT part of this workflow — it stays a
-#     separate, manual, gated workflow_dispatch (§2.2).
+#     separate, manual, gated workflow_dispatch.
 #
-# Scope (§2.2): Release Please versions the TEMPLATE REPO ITSELF (SemVer).
+# Scope: Release Please versions the TEMPLATE REPO ITSELF (SemVer).
 # MII KDS modules release solely via the MII Module Release Workflow
 # (CalVer YYYY.n.n); a module must NEVER carry these files — the module
 # template's first-run bootstrap removes them from a newly created module.
 #
-# Version sync (release-please-config.json `extra-files`):
-#   - package/package.json: bumped via the JSON updater (jsonpath $.version).
-#   - package-list.json: bumped via the GENERIC updater — the version line to
-#     bump MUST carry an `x-release-please-version` marker, otherwise Release
-#     Please leaves the file untouched. Keep the marker when editing
-#     package-list.json.
+# Version sync (release-please-config.json `extra-files`): three files carry
+# the version and are bumped by the STRUCTURED updaters, which address the
+# value by JSONPath. No in-file marker comment is involved (JSON cannot carry
+# one), so there is nothing to preserve when editing these files:
+#   - package/package.json — json updater, $.version
+#   - sushi-config.yaml    — yaml updater, $.version
+#   - package-list.json    — json updater, $.list[0].version
+# A version spelled out anywhere else is NOT bumped and will drift — keep it
+# out of free text such as package-list.json `list[0].desc`.
 # -----------------------------------------------------------------------------
 name: release-please
 

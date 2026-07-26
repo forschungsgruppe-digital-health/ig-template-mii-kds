@@ -10,11 +10,16 @@ or both.
 
 ---
 
-## Section 1 — Module-metadata contract (HARD assertions; CI must fail on violation)
+## Section 1 — Module-metadata contract (HARD assertions)
 
 > **This section is the metadata contract.** It is deliberately a small,
 > fixed list. Do not grow it casually, and do not duplicate it in a second
 > linter — this matrix is the single source of truth.
+>
+> **Where a violation fails a build:** in `mii-kds-module-template` and the
+> modules created from it, where `scripts/convention-check.mjs` runs in CI. This
+> repository has no such job, so here a violation is reported by the run and
+> blocks a release by human decision.
 
 ### 1a. Assertions for MODULE IGs (do **not** apply to template repos)
 

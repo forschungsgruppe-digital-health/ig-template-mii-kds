@@ -18,7 +18,9 @@ Pick the variant that matches where the template stands today.
    `template = de.medizininformatikinitiative.template#<version>` (e.g. `#0.1.0`).
    > **Why a pinned version, not `#current`:** reproducible builds — the same input
    > always produces the same rendered guide.
-2. Rebuild the module (`sushi . && java -jar publisher.jar -ig ig.ini`).
+2. Rebuild the module (`sushi . && java -Xmx6g -jar publisher.jar -ig ig.ini`;
+   step 6 of the [dev-container recipe](first-build-in-devcontainer.md) shows
+   how to obtain `publisher.jar`).
 3. To adopt a newer template release later, bump the version and rebuild.
 
 ### B. Vendored (bring-up, before this template is published)

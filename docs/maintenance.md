@@ -33,6 +33,11 @@ in sync:
 | GitHub Actions | commit-SHA pins in `.github/workflows/*.yml` (with `# vX.Y.Z` comments) |
 | FHIR package dependencies | `sushi-config.yaml` `dependencies:` block (module repos; not present here) |
 | Dev container (base-image digest, feature versions, SUSHI/Jekyll installs) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest and the `postCreateCommand` tool pins are bumped manually |
+| SU-TermServ client-cert proxy image | `.github/workflows/ig-preview.yml` — the `docker run` in the terminology step, pinned `nginx:<tag>@sha256:<digest>`; no tool watches it, so it is bumped manually |
+
+Note the two manual entries: the checker (layer B) reads neither the dev
+container nor the proxy image, and Dependabot covers only the dev container's
+*features*. Those pins stay current only because someone bumps them.
 
 Until a pin's file lands, the tracking issue shows a `pin not found` row — a
 reminder, not an error.
@@ -68,7 +73,8 @@ Two further dev-container limits, stated plainly:
   reviews (changelog first) and merges into `dev`.
 - **Version and checksum move together.** An IG Publisher bump always includes
   the recomputed jar SHA-256 — never one without the other.
-- Update PRs (Dependabot and PR mode) target `dev`, never `main`.
+- Update PRs target `dev`, never `main` — Dependabot's, and the ones a
+  maintainer opens by hand after reading a checker row.
 
 ## How-tos
 
