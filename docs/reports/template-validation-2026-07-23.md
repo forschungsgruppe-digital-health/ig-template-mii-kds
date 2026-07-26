@@ -47,7 +47,9 @@ environment with the full toolchain (the repo's dev container, Ruby 3.3 + Jekyll
 git clone https://github.com/medizininformatik-initiative/kerndatensatz-basis
 cd kerndatensatz-basis
 mkdir ig-template && cp -R <this-repo>/package <this-repo>/includes <this-repo>/content ig-template/
-sed -i 's#^template =.*#template = #ig-template#' ig.ini
+# the replacement starts with '#', so the delimiter must not be '#'
+# (on macOS the flag takes an argument: sed -i '' 's|...|...|' ig.ini)
+sed -i 's|^template =.*|template = #ig-template|' ig.ini
 sushi .
 curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar
 java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
