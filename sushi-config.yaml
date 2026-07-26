@@ -12,8 +12,11 @@
 #
 # Multi-language is kept MINIMAL on purpose: English is the default language and
 # German is the one additional language, so the language-aware header/footer
-# render in BOTH languages. The preview carries one translated page and one
+# render in BOTH languages. The preview carries two translated pages and one
 # translated menu; the full en→de workflow is in docs/recipes/add-translation.md.
+#
+# Only the options this preview actually needs are set below. Every SUSHI
+# option and what it does: https://fshschool.org/docs/sushi/configuration/
 
 id: de.medizininformatikinitiative.template.preview
 packageId: de.medizininformatikinitiative.template.preview
@@ -47,10 +50,10 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 #     rendered in that language on /<lang>/.
 #   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
 #     (msgid/msgstr entries translate resource fields such as description).
-# The preview ships the German home page (input/translations/de/pagecontent/
-# index.md) so /de/ renders in German — the mechanism a module maintainer
-# follows (docs/recipes/add-translation.md). The preview carries no conformance
-# resources; a module adds its own FSH + the matching .po files.
+# The preview ships a German version of each of its pages under
+# input/translations/de/pagecontent/ so /de/ renders in German — the mechanism
+# a module maintainer follows (docs/recipes/add-translation.md). The preview
+# carries no conformance resources; a module adds its own FSH + the .po files.
 parameters:
   i18n-default-lang: en
   i18n-lang:
@@ -73,94 +76,3 @@ pages:
 # translation at input/translations/de/includes/menu.xml. That is the ONLY way to
 # get a TRANSLATED menu (the `menu:` property generates one untranslatable
 # menu.xml); it mirrors the HL7 reference IG FHIR/multi-lang-test-ig.
-
-# ╔══════════════════════════════════════════════════════════════════════════╗
-# ║  SUSHI configuration reference — every remaining option, commented          ║
-# ║  ------------------------------------------------------------------------  ║
-# ║  Copied from the SUSHI 3.20.0 default `sushi-config.yaml` (the version this  ║
-# ║  repo pins) so you can see EVERY available option and what it means without  ║
-# ║  external research. The options that this IG actually uses are set, active,  ║
-# ║  ABOVE. The blocks below are the options this IG does NOT use — left         ║
-# ║  commented as a reference. Full docs: https://fshschool.org/docs/sushi/configuration/ ║
-# ╚══════════════════════════════════════════════════════════════════════════╝
-#
-# ── title / description ──────────────────────────────────────────────────────
-# Both are set above. `title` is the human-readable IG title; `description` is a
-# short summary. (Shown here only to note they belong to the commonly-used set.)
-#
-# ── contact ──────────────────────────────────────────────────────────────────
-# Those who need more control than the `publisher` block (above) can list
-# contacts directly, following ImplementationGuide.contact / ContactDetail:
-#
-# contact:
-#   - name: Bob Smith
-#     telecom:
-#       - system: email # phone | fax | email | pager | url | sms | other
-#         value: bobsmith@example.org
-#         use: work
-#
-# ── global ───────────────────────────────────────────────────────────────────
-# IG.global — bind a profile to ALL instances of a resource type. The type is
-# the YAML key; the value is a profile URL (or an array of URLs). An id or name
-# is replaced with the correct canonical when the IG JSON is generated.
-#
-# global:
-#   Patient: http://example.org/fhir/StructureDefinition/my-patient-profile
-#   Encounter: http://example.org/fhir/StructureDefinition/my-encounter-profile
-#
-# ── resources ────────────────────────────────────────────────────────────────
-# IG.definition.resource — SUSHI auto-generates these from your FSH and any
-# JSON/XML resource files. Add entries only to override or complete the
-# generated list. Use the reference as the YAML key; use "omit" to drop a
-# FSH-generated resource from the IG.
-#
-# resources:
-#   Patient/my-example-patient:
-#     name: My Example Patient
-#     description: An example Patient
-#     exampleBoolean: true
-#   Patient/bad-example: omit
-#
-# ── groups ───────────────────────────────────────────────────────────────────
-# IG.definition.grouping — organize artifacts into groups on the IG's artifact
-# pages. The IG docs recommend using the template's default groups instead; use
-# this only if you want custom groups.
-#
-# groups:
-#   GroupA:
-#     name: Group A
-#     description: The Alpha Group
-#     resources:
-#       - StructureDefinition/animal-patient
-#       - StructureDefinition/arm-procedure
-#
-# ── other ImplementationGuide properties ─────────────────────────────────────
-# These can be set as-is, following the ImplementationGuide resource format:
-#   date · meta · implicitRules · language · text · contained · extension ·
-#   modifierExtension · experimental · useContext · copyright · packageId
-# (This IG sets several of them above, e.g. meta.profile for CRMI and a set of
-#  artifact-* extensions.)
-#
-# ── SUSHI processing flags ───────────────────────────────────────────────────
-# FSHOnly: when true, SUSHI exports ONLY the FSH-derived resources and generates
-# no IG content (no ImplementationGuide, no page scaffolding). Default: false.
-#
-# FSHOnly: false
-#
-# applyExtensionMetadataToRoot: when true, an Extension's root element `short`
-# and `definition` are set from the Extension's Title and Description.
-# Default: true.
-#
-# applyExtensionMetadataToRoot: true
-#
-# instanceOptions — how SUSHI processes Instances. `manualSliceOrdering` is set
-# above (recommended for new projects). The other options:
-#   setMetaProfile: for which Instances SUSHI auto-sets meta.profile when
-#                   InstanceOf references a profile.
-#                   Values: always | never | inline-only | standalone-only
-#   setId:          for which Instances SUSHI auto-sets id.
-#                   Values: always | standalone-only
-#
-# instanceOptions:
-#   setMetaProfile: always
-#   setId: always
