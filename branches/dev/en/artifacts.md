@@ -5,8 +5,6 @@
 
 ## Artifacts Summary
 
- There is no translation page available for the current page, so it has been rendered in the default language 
-
 This page provides a list of the FHIR artifacts defined as part of this implementation guide.
 
 ### Structures: Logical Models 
