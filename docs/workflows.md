@@ -89,7 +89,8 @@ release today. Modules vendor this repository's `dev` branch instead:
 
 **So `dev` is a consumer-visible surface, not an internal branch.** Work in
 progress that has passed CI and review belongs there; a known-broken state does
-not, because the next sync ships it to every module. A module cannot pin its way
+not, because the next sync ships it to every repository created from the
+scaffold. A module cannot pin its way
 out: the module template's workflow hardcodes `--ref dev` in both jobs. The two
 things that do stop the sync — setting the module's `ENABLE_TEMPLATE_SYNC`
 variable to `false`, or editing those two lines — contradict that repo's stated
