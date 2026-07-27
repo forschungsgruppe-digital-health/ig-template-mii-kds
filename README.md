@@ -72,7 +72,14 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 - [Workflows](docs/workflows.md) — what the CI does, and how releases work
 - [HL7 IG guidance](docs/ig-best-practices-checklist.md) — how this template follows it, and where it differs
 - [Secrets](docs/secrets.md) — optional: MII terminology server, release announcements
+- [Maintenance](docs/maintenance.md) — keeping the pins and dependencies current
+- [Further reading](docs/further-reading.md) — the specifications and MII pages this is built on
 - [Open tasks](docs/open-tasks.md) — what is unfinished, and why
+- [Project status](docs/project-status.md) — prototype; what that means in practice
+
+Contributing and policies: [CONTRIBUTING.md](CONTRIBUTING.md) ·
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) · [SECURITY.md](SECURITY.md) ·
+[CHANGELOG.md](CHANGELOG.md)
 
 ## Getting help
 

@@ -17,8 +17,14 @@ not here; when they and this repo disagree, they win.
   answer every comment. Read it before assuming any rule in this repository is an
   MII rule.
 - [Namenskonventionen für FHIR-Ressourcen in der MII](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Namenskonventionen-für-FHIR‐Ressourcen-in-der-MII)
-  — the naming rules for packageId, id, name, title and canonicals. Read before you
-  name anything; the convention check enforces these.
+  — the naming rules for packageId, id, name, title and canonicals. Read before
+  you name anything. What checks them depends on the rule: some are asserted
+  mechanically in a created module (`scripts/convention-check.mjs`, and the
+  Simplifier quality-control rules in `qc/custom.rules.yaml` that the MII
+  reusable validation reads); some surface only when the FHIR validator runs;
+  and some are conventions nothing enforces, which the `wiki-consistency-check`
+  skill compares by hand. **This repository runs none of them** — it carries no
+  convention checker and no `qc/` rules; both live in the module scaffold.
 - [Conformance](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Conformance)
   — what "conformant" means for MII modules (Must-Support, cardinalities).
 - [Terminology Version Policy](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Terminology-Version-Policy)

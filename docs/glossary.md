@@ -7,6 +7,9 @@ build on earlier ones.
 
 | Term | In one sentence |
 | --- | --- |
+| **MII** | *Medizininformatik-Initiative* (Medical Informatics Initiative) — the German initiative that defines and maintains the Kerndatensatz. It publishes the governance these repositories follow; it does not own them yet. |
+| **Kerndatensatz (KDS)** | The MII **core dataset**: the agreed set of data every participating site can supply, split into modules (Person, Diagnose, Prozedur, Fall, …). Each module is published as its own Implementation Guide. |
+| **CDS** | The English abbreviation for the same thing — *core data set*. MII pages use both; they mean the Kerndatensatz. |
 | **FHIR** | *Fast Healthcare Interoperability Resources* — the HL7 standard for exchanging health data as structured "resources" (Patient, Observation, Condition, …). This project uses FHIR **R4** (version 4.0.1). |
 | **Resource** | One unit of FHIR data of a defined type, e.g. a single `Patient` or `Observation`. |
 | **Profile** | A set of extra rules that constrains a base FHIR resource for a specific use (e.g. "an MII Patient must have a name and a birth date"). A profile does not invent a new resource type; it narrows an existing one. |
