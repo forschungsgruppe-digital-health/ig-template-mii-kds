@@ -5,8 +5,11 @@
 **Prerequisites.** A module IG project (e.g. one created from
 [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)).
 
-There are two ways to reference the template. Use **published** once this template
-has a release; use **vendored** during bring-up before that.
+There are two ways to reference the template. Use **published** once the package
+`de.medizininformatikinitiative.template` is resolvable from a FHIR package
+registry; use **vendored** until then. A GitHub release is not the trigger — this
+repository already cuts releases, but the IG Publisher cannot fetch a template it
+cannot resolve. See [open tasks](../open-tasks.md).
 
 ## Steps
 
