@@ -5,10 +5,15 @@
 Please report suspected vulnerabilities **privately** via GitHub's private
 vulnerability reporting:
 
-1. Open the repository's **Security** tab.
-2. Choose **Report a vulnerability** (this opens a draft security advisory at
-   `https://github.com/medizininformatik-initiative/ig-template-mii-kds/security/advisories/new`).
+1. Open the **Security** tab **of the repository you are reading this in**.
+2. Choose **Report a vulnerability** — that opens a draft security advisory.
 3. Describe the issue, affected files/versions, and reproduction steps.
+
+> **No absolute link on purpose.** These repositories are moving to the
+> `medizininformatik-initiative` organisation. A hard-coded advisory URL sends
+> reports to whichever copy the link names — which, while the move is in
+> progress, may be an empty repository nobody is watching. A vulnerability
+> report that goes somewhere unread is worse than an inconvenient one.
 
 Do **not** open a public issue for security problems.
 
