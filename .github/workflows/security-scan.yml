@@ -55,10 +55,13 @@ jobs:
       - name: Language-model guard
         run: bash scripts/check-language-model.sh
 
-  # The dependency checker's own unit tests (version parsing, status
-  # classification, table rendering). Without them in CI a regression in
-  # scripts/check-updates.mjs would show up only as a garbled weekly tracking
-  # issue. Offline, no npm install, well under a second.
+  # The repository's own script tests. check-updates.test.mjs covers version
+  # parsing, status classification and table rendering — without it in CI a
+  # regression in scripts/check-updates.mjs would show up only as a garbled
+  # weekly tracking issue. terminology-fallback.test.mjs pins ig-preview.yml's
+  # stated safety property (a missing or partial SU-TermServ credential falls
+  # back, never fails), which nothing else can observe until a build breaks.
+  # Offline, no npm install, well under a second.
   tooling-tests:
     runs-on: ubuntu-latest
     permissions:
@@ -70,8 +73,12 @@ jobs:
         with:
           node-version: "22"
 
+      # Listed by name, never by glob — a new test file is added here on
+      # purpose, so widening the gate stays a decision (scripts/README.md).
       - name: Unit tests
-        run: node --test scripts/check-updates.test.mjs
+        run: |
+          node --test scripts/check-updates.test.mjs \
+            scripts/terminology-fallback.test.mjs
 
   osv:
     if: ${{ vars.ENABLE_SECURITY_SCAN != 'false' }} # toggle: ON by default

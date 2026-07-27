@@ -38,9 +38,13 @@ jobs:
           node-version: "22"
 
       # Pre-flight: a broken checker would otherwise surface only as a garbled
-      # tracking issue. The suite is offline and runs in well under a second.
-      - name: Test the dependency checker
-        run: node --test scripts/check-updates.test.mjs
+      # tracking issue. The suites are offline and run in well under a second.
+      # Listed by name, never by glob — a new test file is added here on
+      # purpose, so widening the gate stays a decision (scripts/README.md).
+      - name: Test the repository's scripts
+        run: |
+          node --test scripts/check-updates.test.mjs \
+            scripts/terminology-fallback.test.mjs
 
       - name: Run checker
         id: check
