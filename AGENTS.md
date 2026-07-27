@@ -65,7 +65,7 @@ source of truth; consult them before doing the corresponding task by hand.
 
 - [`skills/wiki-consistency-check/`](skills/wiki-consistency-check/SKILL.md)
   — **the single convention checker**: repo ↔ MII meta wiki drift plus the
-  hard module-metadata contract; report-only, PRs target `dev`.
+  metadata conventions these templates adopt; report-only, PRs target `dev`.
 - [`skills/ig-translate/`](skills/ig-translate/SKILL.md) — multi-language
   support in template-owner scope: en-default with a German translation, the
   verified rendering table, i18n conventions, language-neutrality rules for

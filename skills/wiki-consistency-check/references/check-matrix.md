@@ -1,42 +1,46 @@
-# Check matrix: repository artifact ↔ wiki page ↔ metadata contract
+# Check matrix: repository artifact ↔ wiki page ↔ metadata conventions
 
-Two sections. Section 1 is the **hard** module-metadata contract (violations
-fail the run). Section 2 lists the **advisory** wiki-drift checks (reported,
-never failed). The **Applies to** column states whether a row concerns a
-**template repository** (this repo, `ig-template-mii-kds`, and the scaffold
-repo `mii-kds-module-template` itself) or a **module IG** (a KDS module
-repository created from the scaffold, and the scaffold's starter content) —
-or both.
+Two sections. Section 1 is the **hard** set of metadata checks (a violation
+fails the run where the checker runs). Section 2 lists the **advisory**
+wiki-drift checks (reported, never failed). The **Applies to** column states
+whether a row concerns a **template repository** (this repo,
+`ig-template-mii-kds`, and the scaffold repo `mii-kds-module-template` itself)
+or a **module IG** (a KDS module repository created from the scaffold, and the
+scaffold's starter content) — or both.
 
 ---
 
-## Section 1 — Module-metadata contract (HARD assertions)
+## Section 1 — Metadata checks for repositories built from these templates (HARD assertions)
 
-> **This section is the metadata contract.** It is deliberately a small,
-> fixed list. Do not grow it casually, and do not duplicate it in a second
-> linter — this matrix is the single source of truth.
+> These are the conventions this template project applies to itself and to the
+> scaffold it ships. Rows marked *wiki* restate a rule from the MII meta wiki
+> (that page is authoritative — cite it, not this table). Rows marked *local*
+> are this project's own preference; a module that does otherwise is not
+> violating an MII rule. The list is deliberately small and fixed. Do not grow
+> it casually, and do not duplicate it in a second linter — this matrix is the
+> single source of truth for the checker.
 >
 > **Where a violation fails a build:** in `mii-kds-module-template` and the
-> modules created from it, where `scripts/convention-check.mjs` runs in CI. This
-> repository has no such job, so here a violation is reported by the run and
+> repositories created from it, where `scripts/convention-check.mjs` runs in CI.
+> This repository has no such job, so here a violation is reported by the run and
 > blocks a release by human decision.
 
 ### 1a. Assertions for MODULE IGs (do **not** apply to template repos)
 
-Checked in the module's `sushi-config.yaml` (and `ig.ini` for the template
-pin). Reference values verified against
+Checked in the `sushi-config.yaml` (and `ig.ini` for the template pin) of a
+repository that uses the scaffold. Reference values verified against
 [`kerndatensatz-basis`](https://github.com/medizininformatik-initiative/kerndatensatz-basis)
 `main` on 2026-07-21.
 
 | # | Assertion | Where | Rule | Verified reference value |
 |---|-----------|-------|------|--------------------------|
-| M1 | `packageId` matches the MII KDS namespace | `sushi-config.yaml` → `packageId` | `^de\.medizininformatikinitiative\.kerndatensatz\.[a-z0-9-]+$` | `de.medizininformatikinitiative.kerndatensatz.base` |
-| M2 | `id` is kebab-case with the `mii-ig-` prefix | `sushi-config.yaml` → `id` | `^mii-ig-[a-z0-9-]+$`, ≤ 64 chars | `mii-ig-base` |
-| M3 | `name` is Upper_Snake_Case with the `MII_IG_` prefix | `sushi-config.yaml` → `name` | `^MII_IG_[A-Za-z0-9_]+$` | `MII_IG_Base` |
-| M4 | `title` follows the wiki title structure | `sushi-config.yaml` → `title` | Starts with `MII ` and names the module (wiki: `MII <Präfix> <Abkürzung Modulname> <Beschreibung>`) | `MII Implementation Guide Core Dataset Base` |
-| M5 | `canonical` is under the agreed MII path | `sushi-config.yaml` → `canonical` | `^https://www\.medizininformatik-initiative\.de/fhir/<technischer Modulname>$` — technical module name per the wiki table in "Namenskonventionen für FHIR‐Ressourcen in der MII" | `https://www.medizininformatik-initiative.de/fhir/modul-base` |
-| M6 | `version` is CalVer | `sushi-config.yaml` → `version` | `^\d{4}\.\d+\.\d+$` (`YYYY.n.n`; modules never use SemVer) | `2026.0.1` |
-| M7 | No dependency — including the IG template — pinned to a floating label | `sushi-config.yaml` → `dependencies`; `ig.ini` → `template` | No `current`, `#current`, `latest`, or `dev` anywhere; every dependency and the template use a fixed version | `kerndatensatz-basis` itself floats `template = fhir2.base.template#current` — a known upstream practice this project deliberately does **not** follow. Do not copy it, and do not "correct" a fixed pin back to `#current`. |
+| M1 | *wiki* — `packageId` matches the MII KDS namespace | `sushi-config.yaml` → `packageId` | `^de\.medizininformatikinitiative\.kerndatensatz\.[a-z0-9-]+$` | `de.medizininformatikinitiative.kerndatensatz.base` |
+| M2 | *wiki* — `id` is kebab-case with the `mii-ig-` prefix | `sushi-config.yaml` → `id` | `^mii-ig-[a-z0-9-]+$`, ≤ 64 chars | `mii-ig-base` |
+| M3 | *wiki* — `name` is Upper_Snake_Case with the `MII_IG_` prefix | `sushi-config.yaml` → `name` | `^MII_IG_[A-Za-z0-9_]+$` | `MII_IG_Base` |
+| M4 | *wiki* — `title` follows the wiki title structure | `sushi-config.yaml` → `title` | Starts with `MII ` and names the module (wiki: `MII <Präfix> <Abkürzung Modulname> <Beschreibung>`) | `MII Implementation Guide Core Dataset Base` |
+| M5 | *wiki* — `canonical` is under the agreed MII path | `sushi-config.yaml` → `canonical` | `^https://www\.medizininformatik-initiative\.de/fhir/<technischer Modulname>$` — technical module name per the wiki table in "Namenskonventionen für FHIR‐Ressourcen in der MII" | `https://www.medizininformatik-initiative.de/fhir/modul-base` |
+| M6 | *wiki* — `version` is CalVer | `sushi-config.yaml` → `version` | `^\d{4}\.\d+\.\d+$` (`YYYY.n.n`; modules never use SemVer) | `2026.0.1` |
+| M7 | *local* — no dependency — including the IG template — pinned to a floating label | `sushi-config.yaml` → `dependencies`; `ig.ini` → `template` | No `current`, `#current`, `latest`, or `dev` anywhere; every dependency and the template use a fixed version | `kerndatensatz-basis` floats `template = fhir2.base.template#current` — a legitimate alternative trade-off, not an error. This project prefers fixed pins for its own repositories, so a rebuild years later reproduces the same output; do not "correct" a fixed pin here back to `#current`. |
 
 ### 1b. Assertions for TEMPLATE repositories (this repo; do **not** apply to module IGs)
 
