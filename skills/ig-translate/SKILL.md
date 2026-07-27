@@ -53,12 +53,15 @@ additional rendering** — following `kerndatensatz-basis`.
 > description/name/title but require a translation extension whose content is
 > shown "im englischsprachigen Implementierungsleitfaden" — that phrasing
 > assumes an English guide, and `kerndatensatz-basis` is built that way. The
-> wiki does not state the rule directly, so a module is free to choose
-> otherwise; the template's overrides are language-neutral either way. Only
-> this repository's own content is held to the model, by the language-model
-> guard `.github/workflows/security-scan.yml` runs on every pull request into
-> `dev`. It reverses an earlier draft decision of this project — do not flip
-> this repository back without changing that guard too.
+> wiki does not state the rule directly, so no MII rule stops a module from
+> choosing otherwise, and the template's overrides are language-neutral either
+> way. The model is nevertheless binding wherever the guard runs: here, on
+> every pull request into `dev` (`.github/workflows/security-scan.yml`), and in
+> a repository created from the module scaffold, which inherits the scaffold's
+> own copy (`scripts/language-model-check.sh`, run by `convention-check.yml`
+> and never removed by the first-run bootstrap). It reverses an earlier draft
+> decision of this project — do not flip a repository back without changing its
+> guard too.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
