@@ -339,6 +339,8 @@ override (AA: ≥ 4.5:1 normal text, ≥ 3:1 large/bold ≥ 18.66 px bold or 24 
 | IG title/status | `#6a7484` on `#ffffff` | 4.73:1 | AA (normal) |
 | Breadcrumb | `#333333` on `#ebedef` | 10.77:1 | AAA |
 | Top stripe, green accents | `#9abc31` | n/a | decorative only — never under text (white on it would be 2.18:1) |
+| Narrative-table header | `#333333` on `#ebedef` | 10.77:1 | AAA |
+| Narrative-table border | `#7a8495` on `#ffffff` / on `#ebedef` | 3.78:1 / 3.22:1 | AA non-text (WCAG 1.4.11, ≥ 3:1) |
 
 The base's `#f5f5f5` (var 21) never sits under the status text: it paints the
 header *sides*, while `#ig-status` renders inside `#segment-header > .container`,
@@ -371,6 +373,38 @@ Notes and deliberate deviations:
   seamless on white — another reason not to re-color the header background.
 
 ---
+
+## 7a. Narrative tables
+
+The base template styles the tables the IG Publisher *generates* — profile
+snapshot and differential trees, artifact indices, binding tables — but leaves
+markdown tables in page content with no border and no header fill.
+`kerndatensatz-basis` compensates per page with an inline `<style>` block; that
+is why its
+[`/en/metadata.html`](https://medizininformatik-initiative.github.io/kerndatensatz-basis/en/metadata.html)
+has bordered tables while its profile pages do not. This template does it once,
+in `content/assets/css/mii.css`, so every module inherits it through the
+vendored mirror.
+
+| Property | Value | Source |
+| --- | --- | --- |
+| Header background | `#ebedef` | MII light background (§3) — the same site value as the breadcrumb |
+| Border | `1px solid #7a8495` | MII slate (§3) |
+| Header text | `#333333` | MII body text (§3) |
+| Padding | `6px 10px` | — |
+
+> **Why the selector is `table:not([class])`, and why not to widen it:** it must
+> match only what the markdown renderer emits. Every table the IG Publisher
+> generates carries a class — `grid`, `codes`, `dict`, `list`, `colsd`, `colsi`,
+> `binding grid`, `fhir-conformance-list`. Measured across both built sites at
+> the time of writing: **210 generated tables, all of them classed; every bare
+> `<table>` was a narrative one.** A bare `table {}` rule would repaint the
+> profile trees, whose hierarchy lines are background images, so widening this
+> selector breaks artifact rendering.
+
+> **Why no `width: 100%`:** `kerndatensatz-basis` sets it; this template does
+> not. Forcing full width stretches two-column tables across the page. Add it in
+> a module if that module's tables want it.
 
 ## 8. How to review this design
 
