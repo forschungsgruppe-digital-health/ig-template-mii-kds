@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.2.0...v0.3.0) (2026-07-27)
+
+
+### Features
+
+* **css:** give narrative tables an MII border and header fill ([#42](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/42)) ([3c9fa50](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/3c9fa50ae91557a113b23ca76a39f7177cec0c68))
+
+
+### Bug Fixes
+
+* apply the deep audit — language model, CI, docs; merge tools/ into scripts/ ([#35](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/35)) ([d9f9770](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/d9f97705eb5d849dfdeff59a9f132065001d647d))
+* **css:** stop the table styling from reaching the profile trees ([#43](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/43)) ([d95eaf4](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/d95eaf4034061175e2e733dfbb555af08e3e39a6))
+* German menu translation + German base-chrome/footer strings ([#24](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/24)) ([1cea152](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/1cea152413fbc25d6f8eaad4a155947b5ff7e093))
+* jurisdiction flag renders; MII logo ships as SVG ([#25](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/25)) ([#31](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/31)) ([4faea47](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/4faea4775732aa38dd42fb50f303aa1e2370cae4))
+* **preview:** stop shipping a link that 404s ([#38](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/38)) ([c0d5dac](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/c0d5dac242709d840a77564c27ff7f0ef9e681e2))
+* second verification round — correct what was wrong, and what was only half-corrected ([#37](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/37)) ([d7b7933](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/d7b7933a73ee4aa1e4328bd86307b33b42b6f5e0))
+
 ## [0.2.0](https://github.com/medizininformatik-initiative/ig-template-mii-kds/compare/v0.1.0...v0.2.0) (2026-07-23)
 
 
