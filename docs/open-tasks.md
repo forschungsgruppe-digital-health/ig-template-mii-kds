@@ -56,6 +56,19 @@ workaround can eventually be deleted.
 
 ## Known limits, deliberately not "fixed"
 
+- **A private address is in one commit message on `main`, and stays there.** The
+  squash-merge of the second verification round carries a
+  `Co-authored-by:` trailer with a personal mailbox. Removing it would mean
+  rewriting seven commits per repository, force-pushing two protected branches,
+  and invalidating the `v0.3.0` tag and its release — and it would **still not
+  remove the address**, because a force-push leaves the old commit reachable by
+  its URL until the forge purges unreferenced objects on request. The rewrite
+  therefore pays the full cost and does not achieve the goal. Decided:
+  leave it. The route that does work, if it is ever needed, is asking GitHub
+  Support to purge the unreferenced commit after a rewrite.
+  Prevented from recurring instead: commits are authored with the GitHub
+  noreply address, so no future squash merge generates the trailer.
+
 - **The build reports broken links; CI does not gate on the count.** The QA gate
   is `Errors: 0`, which the preview meets. Broken links are reported separately
   and are usually external URLs whose reachability depends on the network at
