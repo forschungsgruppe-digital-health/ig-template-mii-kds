@@ -11,7 +11,7 @@ The module-author counterpart lives in the module scaffold:
 
 ## Sources (all official, retrieved 2026-07-26)
 
-| # | Source | What it governs |
+| # | Source | What it covers |
 |---|---|---|
 | S1 | [Guidance for FHIR IG Creation — **IG Best Practices**](https://build.fhir.org/ig/FHIR/ig-guidance/best-practice.html) (HL7 International / FHIR Management Group) | pages & organisation, writing, diagrams, artifacts, profiles, terminology, security & privacy, examples |
 | S2 | [**Using the HL7 IG Templates**](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html) and [**Extending the HL7 IG Templates**](https://build.fhir.org/ig/FHIR/ig-guidance/template.html) | how a template is built, extended and consumed |
