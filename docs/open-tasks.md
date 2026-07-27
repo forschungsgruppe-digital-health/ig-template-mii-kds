@@ -55,6 +55,15 @@ workaround can eventually be deleted.
 
 ## Known limits, deliberately not "fixed"
 
+- **The build reports broken links; CI does not gate on the count.** The QA gate
+  is `Errors: 0`, which the preview meets. Broken links are reported separately
+  and are usually external URLs whose reachability depends on the network at
+  build time, so failing a build on them would make CI flaky. Read the count in
+  `qa.html` when you change page content: it was 2 for several builds because
+  the preview's `translationinfo` page linked to the target organisation's issue
+  tracker, which does not exist yet. Rendered page content therefore does not
+  hard-code a repository URL — see the note on that page.
+
 - **The footer's publisher link is English on German pages.** It cannot be
   branched from this template: the pinned base emits it in
   `fragment-pageend.html:48` from the single-valued `publisher` block in

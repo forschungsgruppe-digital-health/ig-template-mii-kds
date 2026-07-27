@@ -22,11 +22,16 @@ notice at the top of the page saying so.
 
 ### Feedback on a translation
 
-Open an issue at
-<https://github.com/medizininformatik-initiative/ig-template-mii-kds/issues>,
-naming the page and the wording. Corrections go through the same pull-request
-review as any other change; the step-by-step is in the repository's
+Write to the HL7 FHIR Zulip, stream `german/mi-initiative`
+(<https://chat.fhir.org>), naming the page and the wording — or open an issue on
+the repository this guide is built from. Corrections go through the same
+pull-request review as any other change; the step-by-step is in the repository's
 `docs/recipes/add-translation.md`.
+
+> The repository's issue tracker is deliberately not linked here. This guide is
+> a prototype whose GitHub organisation is not settled, so a hard-coded issues
+> URL would 404 for readers of a build made before the move. Zulip is stable
+> either way.
 
 > **Scope of this guide:** it is the *preview* of the MII IG template
 > (`de.medizininformatikinitiative.template`), not an MII Core Dataset module.
