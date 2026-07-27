@@ -104,10 +104,12 @@ parameters:
 1. **Every offered language renders.** The header, footer, and CSS fragments
    this template ships must produce correct text in `de` and `en` alike. The
    base's string mechanism — `site.data.stringsBase[include.lang]['<Key>']` —
-   is the default way to get that, and the header fragment uses it. The footer
-   fragment deliberately does not: the base has no `Impressum` key, a child
-   template cannot add one, and the pinned base ships no German catalog, so
-   those lookups render blank on `/de/`. It hard-codes an
+   is the default way to get that. The header and CSS fragments avoid the
+   question entirely: they carry no UI strings, only an asset and its `alt`
+   text switched on `include.lang`. The footer fragment does resolve labels,
+   and deliberately not through the base: the base has no `Impressum` key, a
+   child template cannot add one, and the pinned base ships no German catalog,
+   so those lookups render blank on `/de/`. It hard-codes an
    `include.lang`-branched label set instead. Read `docs/design.md` §5 and §6
    before changing it, and keep every branch complete when adding a language.
 2. **Vendored German UI strings.** The pinned base
