@@ -74,11 +74,15 @@ workaround can eventually be deleted.
 
 ## Cross-repo consistency — decided, not pending
 
-The two repositories share thirteen documentation filenames. That was once real
-duplication; it is not any more. After the 2026-07-26 audit, **no shared file is
-identical**, and the closest pairs differ for good reasons — `project-status.md`
-because each names the other repository, `glossary.md` because the module
-scaffold defines nine terms this repository has no use for.
+The two repositories share fourteen documentation filenames. Re-measure rather
+than trust this line: `comm -12` over `git ls-files docs` in both checkouts,
+excluding `docs/reports/` (dated snapshots; they share no filenames), then `cmp`
+each pair. That was once real duplication; it is not any more. Thirteen of the
+fourteen differ for good reasons — `project-status.md` because each names the
+other repository, `glossary.md` because the module scaffold defines nine terms
+this repository has no use for. The fourteenth, `further-reading.md`, is a pure
+external reading list whose two copies were byte-identical at the 2026-07-26
+audit; check that pair first when you edit it.
 
 No sync mechanism is planned. A created module must be self-contained: replacing
 its copy of `glossary.md` or `maintenance.md` with a link back here would break
