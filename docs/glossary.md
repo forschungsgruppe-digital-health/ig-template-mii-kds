@@ -36,7 +36,3 @@ build on earlier ones.
 | **Conventional Commits** | A commit-message convention (`feat:`, `fix:`, `docs:` …) that lets tooling derive version bumps and changelogs. See [CONTRIBUTING.md](../CONTRIBUTING.md). |
 | **Release Please** | The automation that reads Conventional Commits on `main` and opens a release PR (tag + changelog). Runs on the **template repos only**. |
 | **Dev container** | A pre-built development environment (Docker) that ships the whole toolchain (Java, Node, SUSHI, Jekyll…) so you do not install it by hand. See [recipes/first-build-in-devcontainer.md](recipes/first-build-in-devcontainer.md). |
-
-> **Why a glossary this long:** the biggest barrier for a newcomer is not any single
-> concept but the *stack* of unfamiliar words that assume each other. Skim it once;
-> come back when a term bites.

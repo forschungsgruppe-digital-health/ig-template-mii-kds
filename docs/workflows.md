@@ -97,11 +97,6 @@ variable to `false`, or editing those two lines — contradict that repo's state
 intent ("the module IG must always build against the CURRENT MII IG template"),
 so if either is ever wanted it belongs in the module template's docs, not here.
 
-> **Why one page:** the operational knowledge would otherwise be scattered across
-> `CONTRIBUTING.md`, `maintenance.md` and six workflow files. Post-2026 a new
-> maintainer needs one place that says "this is how this repo builds, previews and
-> releases."
-
 ## Secrets & enabling the gated features
 
 All builds and releases work without secrets. To enable the optional gated

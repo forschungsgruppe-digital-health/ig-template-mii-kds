@@ -130,15 +130,13 @@ Extras a novice should know:
 
 ## Release automation
 
-Release automation (Release Please, producing SemVer `vMAJOR.MINOR.PATCH` tags,
-a generated `CHANGELOG.md`, and a GitHub Release) runs **on `main`** — it will
-be added to this repository by a later PR. Until then, releases are manual.
+Release automation (Release Please) runs **on `main`**: it opens a release PR,
+and merging that PR cuts the SemVer `vMAJOR.MINOR.PATCH` tag, the `CHANGELOG.md`
+entry and the GitHub Release. The steps are in
+[docs/workflows.md](docs/workflows.md) §3.
 
-> **Why SemVer for this repo:** this is a *tooling* repo whose consumers (the
-> MII KDS module IGs) pin to a version; SemVer communicates breaking vs.
-> compatible changes. Do not confuse it with the CalVer (`YYYY.n.n`) scheme the
-> MII KDS *modules* use for their own releases — one repo, one release
-> mechanism.
+> This repo uses SemVer; MII KDS *modules* use CalVer (`YYYY.n.n`) for their own
+> releases. Why, and why not to mix them: [docs/concepts.md](docs/concepts.md) §6.
 
 ## How this relates to the MII process
 

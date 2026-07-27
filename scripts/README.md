@@ -1,8 +1,6 @@
 # `scripts/`
 
-Every executable helper in this repository. One directory, one concern: things
-you run. The distinction between "tools" and "scripts" was not one a reader
-could predict, so there is only this one.
+Every executable helper in this repository lives here.
 
 | Script | What it does | Run by |
 | --- | --- | --- |

@@ -90,18 +90,12 @@ workaround can eventually be deleted.
 
 ## Cross-repo consistency — decided, not pending
 
-The two repositories share fourteen documentation filenames. Re-measure rather
-than trust this line: `comm -12` over `git ls-files docs` in both checkouts,
-excluding `docs/reports/` (dated snapshots; they share no filenames), then `cmp`
-each pair. That was once real duplication; it is not any more. Thirteen of the
-fourteen differ for good reasons — `project-status.md` because each names the
-other repository, `glossary.md` because the module scaffold defines nine terms
-this repository has no use for. The fourteenth, `further-reading.md`, is a pure
-external reading list whose two copies were byte-identical at the 2026-07-26
-audit; check that pair first when you edit it.
-
-No sync mechanism is planned. A created module must be self-contained: replacing
-its copy of `glossary.md` or `maintenance.md` with a link back here would break
-the moment a module is developed independently, which is the whole point of a
-template. Convergence is checked when a shared doc is edited, not enforced by
-tooling.
+No sync mechanism between this repository and the module scaffold is planned. A
+created module must be self-contained: replacing its copy of a shared page such
+as `glossary.md` or `maintenance.md` with a link back here would break the moment
+that module is developed independently, which is the whole point of a template.
+The two repositories share several documentation filenames, and the copies
+differ where the repositories differ — `project-status.md` because each names the
+other, `glossary.md` because the module scaffold defines terms this repository
+has no use for. Convergence is checked when a shared doc is edited, not enforced
+by tooling.
