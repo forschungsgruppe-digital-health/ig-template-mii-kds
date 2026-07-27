@@ -75,7 +75,7 @@ what a module keeps is the module author's call:
 | Reference the IG registry / related guides | Index *Related guides* block → [FHIR IG Registry](https://fhir.org/guides/registry/) |
 | Artifact intros and notes | `input/intro-notes/` wired via `path-pages` |
 | Examples with synthetic data only | A worked example instance (`Max Mustermann-Testpatient`) |
-| Pin canonicals and dependencies (S5 describes the options) | The scaffold defaults to `pin-canonicals: pin-all` and fixed dependency versions; its own `convention-check` job keeps that default honest in repositories created from it |
+| Pin canonicals and dependencies (S5 describes the options) | The scaffold sets `pin-canonicals: pin-all` and fixed dependency versions; in repositories created from it, its `convention-check` job fails the build on any floating dependency or template pin |
 
 ## 5. Publication (S6, S8)
 
