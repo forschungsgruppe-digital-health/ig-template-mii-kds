@@ -2,14 +2,15 @@
 name: ig-translate
 description: >-
   Multi-language support for MII KDS Implementation Guides — the part the
-  TEMPLATE owns. English is the default IG language, German the recommended
-  translation. Documents the empirically verified rendering behavior of the
-  toolchain (which artifacts actually render translations), the i18n
-  configuration conventions modules must use, and the language-neutrality
-  rules for this template's header/footer/CSS overrides. The module-facing
-  translate/harvest workflow lives in the module scaffold repository, not
-  here. Report/propose only; any change goes through a pull request
-  targeting dev.
+  TEMPLATE owns. This project's model is English as the default IG language
+  and German as the additional rendering. Documents the empirically verified
+  rendering behavior of the toolchain (which artifacts actually render
+  translations), the i18n configuration this template is built and tested
+  against and which the module scaffold pre-configures, and the
+  language-neutrality rules for this template's header/footer/CSS overrides.
+  The module-facing translate/harvest workflow lives in the module scaffold
+  repository, not here. Report/propose only; any change goes through a pull
+  request targeting dev.
 license: CC-BY-4.0
 ---
 
@@ -39,7 +40,8 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
 
 ## Language policy
 
-**English is the default IG language; German is the recommended translation.**
+**This project's model: English is the default IG language, German the
+additional rendering** — following `kerndatensatz-basis`.
 
 - `i18n-default-lang: en` — the guide leads in English.
 - `i18n-lang: [de]` — German is the additional rendering.
@@ -47,14 +49,17 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
   (the MII naming conventions prefer German there), surfaced in the English
   guide via a Translation extension.
 
-> **Why en-default:** the same model as `kerndatensatz-basis`. The MII meta
-> wiki's naming conventions prefer German for a conformance resource's
+> **Why en-default (this project's reading):** the MII meta wiki's naming
+> conventions prefer German for a conformance resource's
 > description/name/title but require a translation extension whose content is
-> shown "im englischsprachigen Implementierungsleitfaden" — i.e. they assume the
-> guide is English. This reverses an earlier draft decision of this project; do
-> not flip it back. `.github/workflows/security-scan.yml` runs a language-model
-> guard on every pull request into `dev` that fails the build if the old
-> wording reappears.
+> shown "im englischsprachigen Implementierungsleitfaden" — that phrasing
+> assumes an English guide, and `kerndatensatz-basis` is built that way. The
+> wiki does not state the rule directly, so a module is free to choose
+> otherwise; the template's overrides are language-neutral either way. Only
+> this repository's own content is held to the model, by the language-model
+> guard `.github/workflows/security-scan.yml` runs on every pull request into
+> `dev`. It reverses an earlier draft decision of this project — do not flip
+> this repository back without changing that guard too.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
@@ -81,7 +86,7 @@ toolchain treats it as a separate page, not a translation.
 > the table (here and in the module scaffold's copy) with the new
 > verification statement.
 
-## Configuration conventions (what modules must declare)
+## Configuration the scaffold pre-configures (and this template is verified against)
 
 The template supports — and the module scaffold pre-configures — this
 `sushi-config.yaml` parameter set:
