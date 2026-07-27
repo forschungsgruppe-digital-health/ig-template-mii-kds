@@ -29,7 +29,7 @@ in sync:
 | Pin | Location |
 |---|---|
 | `fhir2.base.template` | `package/package.json` → `dependencies` |
-| IG Publisher / SUSHI / Jekyll | `env:` values (`PUBLISHER_VERSION`, `SUSHI_VERSION`, `JEKYLL_VERSION`) in the CI build workflow |
+| IG Publisher / SUSHI / Jekyll | `env:` values (`PUBLISHER_VERSION` **and** `PUBLISHER_SHA256`, `SUSHI_VERSION`, `JEKYLL_VERSION`) in `.github/workflows/ig-preview.yml` — the only build workflow here. The checker reads the three version pins; the jar checksum has to move with `PUBLISHER_VERSION` in the same edit ([recipe step 4](recipes/review-a-dependency-update.md)) |
 | GitHub Actions | commit-SHA pins in `.github/workflows/*.yml` (with `# vX.Y.Z` comments) |
 | FHIR package dependencies | `sushi-config.yaml` `dependencies:` block (module repos; not present here) |
 | Dev container (base-image digest, feature versions, SUSHI/Jekyll installs) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest and the `postCreateCommand` tool pins are bumped manually |
