@@ -13,7 +13,7 @@ yet.
 | [change the brand colour](change-the-brand-color.md) | A colour has to change |
 | [replace the logo](replace-the-logo.md) | A logo file has to change |
 | [languages in the template](add-translation.md) | A UI label is blank in one language, or you add a language |
-| [cut a template release](cut-a-template-release.md) | Changes on `dev` are ready to reach modules |
+| [cut a template release](cut-a-template-release.md) | `dev` is ready to be pinned as a version — vendoring modules already have it |
 
 ## Using the template
 

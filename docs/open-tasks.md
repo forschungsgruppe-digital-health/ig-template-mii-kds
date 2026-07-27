@@ -24,10 +24,16 @@ say "go" — none should be done by an agent.
 
 ## Needs an official asset
 
+<!-- Issue links need three `..`. A docs/ page renders under
+     /OWNER/REPO/blob/<ref>/docs/, so `../../../issues/N` is the form that lands
+     on /OWNER/REPO/issues/N; a root-level file such as README.md needs two.
+     Kept relative so the pending move to `medizininformatik-initiative` does not
+     have to touch them. -->
+
 | Task | Issue | Note |
 | --- | --- | --- |
-| Replace the traced logos with official MII SVGs | [#25](../../issues/25) | `content/assets/images/logo-de.svg` and `logo-en.svg` are traced from the official PNGs with `scripts/trace-logo.sh`. They render correctly; they are not the vendor's own vector files. |
-| Confirm trademark permission for the MII logo and wordmark | [#26](../../issues/26) | Needed before any use beyond this prototype. |
+| Replace the traced logos with official MII SVGs | [#25](../../../issues/25) | `content/assets/images/logo-de.svg` and `logo-en.svg` are traced from the official PNGs with `scripts/trace-logo.sh`. They render correctly; they are not the vendor's own vector files. |
+| Confirm trademark permission for the MII logo and wordmark | [#26](../../../issues/26) | Needed before any use beyond this prototype. |
 
 ## To raise upstream
 
@@ -60,18 +66,23 @@ workaround can eventually be deleted.
   repository URL. Recorded in [design](design.md).
 - **`scripts/check-language-model.sh` is curated, not exhaustive.** It matches
   line by line, so a claim split across a line break passes — which is exactly
-  how one survived a commit whose subject was "align every language statement
-  with the English-default model". It was tested against 20 phrasings and
-  catches every wording that has actually occurred here. If you add a phrasing,
-  add the pattern; do not weaken the existing ones.
+  how the comment in `includes/fragment-footer.html` survived `ce3a914`,
+  "align the preview IG with the module template's language model": it read
+  "the German" / "(default) pages" across two lines. It was tested against 20
+  phrasings and catches every wording that has actually occurred here. If you
+  add a phrasing, add the pattern; do not weaken the existing ones.
 
 ## Cross-repo consistency — decided, not pending
 
-The two repositories share thirteen documentation filenames. That was once real
-duplication; it is not any more. After the 2026-07-26 audit, **no shared file is
-identical**, and the closest pairs differ for good reasons — `project-status.md`
-because each names the other repository, `glossary.md` because the module
-scaffold defines nine terms this repository has no use for.
+The two repositories share fourteen documentation filenames. Re-measure rather
+than trust this line: `comm -12` over `git ls-files docs` in both checkouts,
+excluding `docs/reports/` (dated snapshots; they share no filenames), then `cmp`
+each pair. That was once real duplication; it is not any more. Thirteen of the
+fourteen differ for good reasons — `project-status.md` because each names the
+other repository, `glossary.md` because the module scaffold defines nine terms
+this repository has no use for. The fourteenth, `further-reading.md`, is a pure
+external reading list whose two copies were byte-identical at the 2026-07-26
+audit; check that pair first when you edit it.
 
 No sync mechanism is planned. A created module must be self-contained: replacing
 its copy of `glossary.md` or `maintenance.md` with a link back here would break

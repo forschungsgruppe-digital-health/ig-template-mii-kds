@@ -9,7 +9,9 @@ template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2).
 **You don't edit this repository to write an IG — you reference it.** A module
 names it in `ig.ini` and the IG Publisher applies it at build time. Keeping the
 branding in one versioned package means every module looks the same, and a fix
-here reaches all of them with one release.
+here reaches all of them with one release. The package is not on a registry yet,
+so today modules vendor this repository's `dev` branch instead — see
+[how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 
 To start a module, use
 [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
@@ -56,6 +58,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 | `translations/` | German UI-string catalogs for the base template |
 | `input/`, `ig.ini` | The bundled preview IG (so branding changes are reviewable) |
 | `docs/` | Guides and step-by-step recipes |
+| `scripts/` | Helper scripts: dependency check, language-model guard, logo trace, secret upload — see [`scripts/README.md`](scripts/README.md) |
 | `skills/` | Vendor-neutral agent skills for maintenance tasks |
 | `.github/workflows/` | CI: preview build, release, monitoring |
 

@@ -11,8 +11,13 @@ An [IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documenta
 MII (Medizininformatik-Initiative) branding. It derives from the HL7 base
 template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2),
 **pinned to the fixed version `0.1.0`** — never `#current`. MII KDS module
-Implementation Guides reference this package in their `ig.ini`; they do not
-copy it. The separate repo
+Implementation Guides reference this package in their `ig.ini`. Until it is
+registry-published they also *copy* it: `mii-kds-module-template` vendors this
+repo's `package/`, `includes/`, `content/` and `translations/` from `dev` into
+its own `ig-template/` folder, so a merge into `dev` here reaches modules
+without a release — see
+[`docs/workflows.md`](docs/workflows.md#how-a-module-consumes-this-template).
+The separate repo
 [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
 is the scaffold for new module IGs. See [`README.md`](README.md) for the full
 picture.

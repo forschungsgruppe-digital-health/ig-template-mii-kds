@@ -64,8 +64,8 @@ the checksum is there to catch.
 Run the template's preview build (the PR CI does the same). The bump is only
 good if the build is clean:
 
-- lint/tests for the touched tooling (`node --test scripts/check-updates.test.mjs`
-  if you touched the checker),
+- lint/tests for the touched tooling (`node --test scripts/*.test.mjs` if you
+  touched anything under `scripts/`),
 - the IG preview build must succeed with QA errors = 0.
 
 ### 6. Merge — or document why not

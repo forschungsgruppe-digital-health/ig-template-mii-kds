@@ -55,9 +55,15 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 > **Why the override set is exactly these three fragments + one CSS file + logo
 > assets:** header and CSS fragments are the base's *designed* child-template
 > extension points (empty placeholders). The footer fragment carries base
-> behavior (TOC/QA/feedback links), so our override **copies the base content
-> byte-for-byte and only appends** — losing the TOC/QA links would break every
-> rendered page's navigation and the QA workflow.
+> behavior (TOC/QA/feedback links), so our override **preserves the base's link
+> structure verbatim and appends to it** — losing the TOC/QA links would break
+> every rendered page's navigation and the QA workflow. It is **not** a
+> byte-for-byte copy: the base's three label lookups (`Links`,
+> `TableOfContents`, `QAReport`) are replaced by hard-coded
+> `include.lang`-branched labels, because the same branch has to supply the
+> `Impressum` / `Legal notice` label, for which the base ships no `stringsBase`
+> key and a child template cannot add one (§6). When re-syncing against a bumped
+> base, port structural changes only — do not restore the `stringsBase` lookups.
 
 > **Why no `config.json`:** the IG Publisher **replaces** (does not merge) a
 > child template's `config.json` over the base's. Shipping one would fork the
@@ -110,11 +116,11 @@ today** and the MII **website theme CSS** (retrieved 2026-07-22):
 numbered 1–32 upstream) — no hard rule overrides, so a human can re-theme by
 editing one file. Overridden: 1 (`--ig-status-text-color`), 2 (`--navbar-bg-color`),
 3–4 (footer bands), 5 (`--stripe-bg-color`), 6–8 (menu buttons), 9–12 (menu
-gradient incl. the legacy-IE `#AARRGGBB` alpha variants), 13–14 (links), 25–26
-(footer link/highlight), 27–28 (breadcrumb). **Not** overridden (kept as
-IG-Publisher semantic signals, not brand surfaces): publish box (15–16), TOC box
-(17–18), STU note (19–20), header backgrounds (21–22, stay white/neutral like the
-MII site header), footer-nav strip (23), footer text (24, already white),
+gradient incl. the legacy-IE `#AARRGGBB` alpha variants), 13–14 (links), 21–22
+(header sides + container, both forced to `#ffffff`), 25–26 (footer
+link/highlight), 27–28 (breadcrumb). **Not** overridden (kept as IG-Publisher
+semantic signals, not brand surfaces): publish box (15–16), TOC box (17–18),
+STU note (19–20), footer-nav strip (23), footer text (24, already white),
 dragon (29–30), translation box (31–32).
 
 > **Known consequence — the publish box's "Directory of published versions" link
@@ -330,9 +336,14 @@ override (AA: ≥ 4.5:1 normal text, ≥ 3:1 large/bold ≥ 18.66 px bold or 24 
 | Body links | `#5773a2` on `#ffffff` | 4.80:1 | AA (normal) |
 | Link hover | `#3473aa` on `#ffffff` | 5.03:1 | AA (normal) |
 | Footer text + links | `#ffffff` on `#6a7484` | 4.73:1 | AA (normal) |
-| IG title/status | `#6a7484` on `#f5f5f5` | 4.33:1 | AA (large — the base renders it 12 pt bold); below AA for normal text |
+| IG title/status | `#6a7484` on `#ffffff` | 4.73:1 | AA (normal) |
 | Breadcrumb | `#333333` on `#ebedef` | 10.77:1 | AAA |
 | Top stripe, green accents | `#9abc31` | n/a | decorative only — never under text (white on it would be 2.18:1) |
+
+The base's `#f5f5f5` (var 21) never sits under the status text: it paints the
+header *sides*, while `#ig-status` renders inside `#segment-header > .container`,
+whose background is var 22 — `#ffffff` in the base, and set to `#ffffff` here
+together with var 21.
 
 Notes and deliberate deviations:
 
@@ -354,7 +365,8 @@ Notes and deliberate deviations:
 - **Language selector legibility:** the base language dropdown reads
   `var(--btn-text-color)` on `var(--navbar-bg-color)` → white on `#3473aa`,
   5.03:1 (AA) — improved over the base default pairing (4.03:1).
-- The logo PNGs sit on the base's white header container (`#ffffff`, kept):
+- The logo PNGs sit on the white header container (`#ffffff` — the base's value,
+  set explicitly here together with the header sides):
   the DE PNG is transparent (RGBA); the EN PNG has a white matte (RGB) and is
   seamless on white — another reason not to re-color the header background.
 
