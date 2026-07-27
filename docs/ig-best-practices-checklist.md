@@ -1,9 +1,10 @@
-# FHIR IG best-practices checklist (template compliance)
+# How this template relates to the official HL7 IG guidance
 
-This template shapes how every MII KDS module IG looks and is published, so it
-must itself follow the official HL7 guidance — and it must **make the right thing
-easy** for module authors. This page derives the checklist from the official
-sources and proves each item against this repository.
+This template is a proposal for a shared MII KDS look. HL7 publishes guidance for
+IG and template authors; this page records, item by item, how this repository
+currently follows it and where it deliberately differs. It is a self-assessment
+by this repository's maintainer, not an MII or HL7 conformance statement, and it
+says nothing about what a module IG is obliged to do.
 
 The module-author counterpart lives in the module scaffold:
 [`mii-kds-module-template` → `docs/ig-best-practices-checklist.md`](https://github.com/medizininformatik-initiative/mii-kds-module-template/blob/dev/docs/ig-best-practices-checklist.md).
@@ -61,19 +62,20 @@ mechanism) · ➖ not applicable to a template.
 
 ## 4. What the template makes easy for module authors (S1)
 
-The best practices below are fulfilled *in a module*, but a template either
-enables or obstructs them. This is what the scaffold provides:
+What HL7 recommends below is fulfilled *in a module*, but a template either
+enables or obstructs it. This is what the scaffold provides as a starting point;
+what a module keeps is the module author's call:
 
-| Best practice (S1) | Provided by the scaffold |
+| HL7 recommends (S1) | Provided by the scaffold |
 |---|---|
-| Separate non-normative from normative content | The MII-standard page set: guidance/downloads vs conformance pages |
-| A Security & Privacy Considerations section | `security-and-privacy.md` ships with the required structure |
-| Explain `mustSupport` | `must-support.md` ships the MII-standard server/client expectations |
+| Separate non-normative from normative content | The scaffold's page set (guidance/downloads vs conformance pages), modelled on `kerndatensatz-basis` |
+| A Security & Privacy Considerations section | `security-and-privacy.md` ships with a suggested structure a module can keep or replace |
+| Explain `mustSupport` | `must-support.md` ships suggested server/client expectations, phrased as a starting point for the module author |
 | Say how to engage with the community | Index *Contact* block → `chat.fhir.org` `german/mi-initiative` + GitHub issues |
 | Reference the IG registry / related guides | Index *Related guides* block → [FHIR IG Registry](https://fhir.org/guides/registry/) |
 | Artifact intros and notes | `input/intro-notes/` wired via `path-pages` |
 | Examples with synthetic data only | A worked example instance (`Max Mustermann-Testpatient`) |
-| Pin canonicals and dependencies | `pin-canonicals: pin-all`, fixed dependency versions, enforced by `convention-check` |
+| Pin canonicals and dependencies (S5 describes the options) | The scaffold defaults to `pin-canonicals: pin-all` and fixed dependency versions; its own `convention-check` job keeps that default honest in repositories created from it |
 
 ## 5. Publication (S6, S8)
 
@@ -86,11 +88,11 @@ enables or obstructs them. This is what the scaffold provides:
 
 ---
 
-## Known deviations (deliberate, with rationale)
+## Where this project deliberately differs
 
-| Deviation | Why |
+| Difference | Why |
 |---|---|
-| The base is pinned to `0.1.0` while the MII reference repos float `#current` | Reproducibility: a rebuild years from now must produce the same output. Drift is surfaced as a reviewable PR by `dependency-check.yml`. |
+| The base is pinned to `0.1.0` while the MII reference repos float `#current` | Reproducibility: a rebuild years from now should produce the same output. Drift is surfaced as a reviewable PR by `dependency-check.yml`. Floating `#current` is a legitimate alternative trade-off, not an error. |
 | The template is not in `FHIR/ig-registry` | Prototype status pending MII TF KDS discussion — [`docs/project-status.md`](project-status.md). |
 
 ## Re-check on a toolchain bump

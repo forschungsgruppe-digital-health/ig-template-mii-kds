@@ -68,7 +68,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 - [Glossary](docs/glossary.md) · [Concepts](docs/concepts.md) — the vocabulary and the ideas behind it
 - [Design](docs/design.md) — every branding decision and where its value comes from
 - [Workflows](docs/workflows.md) — what the CI does, and how releases work
-- [IG best-practices checklist](docs/ig-best-practices-checklist.md) — how this template meets the official HL7 guidance
+- [HL7 IG guidance](docs/ig-best-practices-checklist.md) — how this template follows it, and where it differs
 - [Secrets](docs/secrets.md) — optional: MII terminology server, release announcements
 - [Open tasks](docs/open-tasks.md) — what is unfinished, and why
 
