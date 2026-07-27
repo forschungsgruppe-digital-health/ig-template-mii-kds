@@ -14,7 +14,7 @@
   "name" : "MIIKDSTemplatePreview",
   "title" : "MII KDS IG Template — Preview",
   "status" : "draft",
-  "date" : "2026-07-27T15:24:50+00:00",
+  "date" : "2026-07-27T15:48:00+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",
