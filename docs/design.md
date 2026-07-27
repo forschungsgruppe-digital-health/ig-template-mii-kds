@@ -266,8 +266,8 @@ The override appends to (never replaces) the base footer content:
   — *before* it includes our `fragment-footer.html`, and both values come from
   the single-valued `publisher` block in `sushi-config.yaml` (SUSHI maps
   `publisher.url` onto `contact[0].telecom[0]`). **Accepted as-is:** that block
-  is deliberately identical to `kerndatensatz-basis` and the module template so
-  every MII KDS IG names the same responsible organisation, and there is no
+  is deliberately identical to `kerndatensatz-basis` and the module template, so
+  all three name the same responsible organisation, and there is no
   language-neutral MII URL to switch to — the site root `301`s to `/de/start`,
   so changing it would only mirror the mismatch onto the English pages. Fixing
   it properly needs either per-language IG metadata (not available) or an
@@ -383,7 +383,7 @@ markdown tables in page content with no border and no header fill.
 is why its
 [`/en/metadata.html`](https://medizininformatik-initiative.github.io/kerndatensatz-basis/en/metadata.html)
 has bordered tables while its profile pages do not. This template does it once,
-in `content/assets/css/mii.css`, so every module inherits it through the
+in `content/assets/css/mii.css`, so a module inherits it through the
 vendored mirror.
 
 | Property | Value | Source |

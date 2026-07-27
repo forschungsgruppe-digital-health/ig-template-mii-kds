@@ -31,9 +31,11 @@ fhirVersion: 4.0.1
 license: CC0-1.0
 copyrightYear: 2026+
 publisher:
-  # The template (and this preview of it) is an MII artifact; ownership stays
-  # with the Medizininformatik-Initiative. Matches the module template's
-  # publisher so every MII KDS IG shows the same responsible organisation.
+  # Publisher is set to the MII because that is the intended owner if the TF KDS
+  # adopts this template (docs/project-status.md); it matches the module
+  # template's publisher so both previews name the same organisation. It is not
+  # a statement that the MII has endorsed this prototype — the rendered pages
+  # say so themselves (input/pagecontent/index.md).
   name: Medical Informatics Initiative (MII)
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
