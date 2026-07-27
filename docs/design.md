@@ -55,9 +55,15 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 > **Why the override set is exactly these three fragments + one CSS file + logo
 > assets:** header and CSS fragments are the base's *designed* child-template
 > extension points (empty placeholders). The footer fragment carries base
-> behavior (TOC/QA/feedback links), so our override **copies the base content
-> byte-for-byte and only appends** — losing the TOC/QA links would break every
-> rendered page's navigation and the QA workflow.
+> behavior (TOC/QA/feedback links), so our override **preserves the base's link
+> structure verbatim and appends to it** — losing the TOC/QA links would break
+> every rendered page's navigation and the QA workflow. It is **not** a
+> byte-for-byte copy: the base's three label lookups (`Links`,
+> `TableOfContents`, `QAReport`) are replaced by hard-coded
+> `include.lang`-branched labels, because the same branch has to supply the
+> `Impressum` / `Legal notice` label, for which the base ships no `stringsBase`
+> key and a child template cannot add one (§6). When re-syncing against a bumped
+> base, port structural changes only — do not restore the `stringsBase` lookups.
 
 > **Why no `config.json`:** the IG Publisher **replaces** (does not merge) a
 > child template's `config.json` over the base's. Shipping one would fork the
