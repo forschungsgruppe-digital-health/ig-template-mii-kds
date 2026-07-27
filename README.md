@@ -66,15 +66,11 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 
 ## Documentation
 
+**[docs/](docs/README.md) is the index** — every guide, with a reading order for
+newcomers. The three you are most likely to want first:
+
 - [Recipes](docs/recipes/) — step-by-step for the common tasks
-- [Glossary](docs/glossary.md) · [Concepts](docs/concepts.md) — the vocabulary and the ideas behind it
-- [Design](docs/design.md) — every branding decision and where its value comes from
-- [Workflows](docs/workflows.md) — what the CI does, and how releases work
-- [HL7 IG guidance](docs/ig-best-practices-checklist.md) — how this template follows it, and where it differs
-- [Secrets](docs/secrets.md) — optional: MII terminology server, release announcements
-- [Maintenance](docs/maintenance.md) — keeping the pins and dependencies current
-- [Further reading](docs/further-reading.md) — the specifications and MII pages this is built on
-- [Open tasks](docs/open-tasks.md) — what is unfinished, and why
+- [Design](docs/design.md) — every branding value and where it came from
 - [Project status](docs/project-status.md) — prototype; what that means in practice
 
 Contributing and policies: [CONTRIBUTING.md](CONTRIBUTING.md) ·
