@@ -242,7 +242,7 @@ The override appends to (never replaces) the base footer content:
   `Impressum`/`Legal notice`) rather than resolving them through the base
   mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`. This is a
   deliberate deviation: the pinned base ships no German catalog, so the base
-  mechanism renders those labels **blank** on the German `/de/` pages (next
+  mechanism renders those labels **blank** on the German `/de/` pages (third
   bullet). Every visible footer string is therefore correct in both `de` and
   `en`; adding a third language means extending this fragment's label branch.
 - **Known limit — the organisation name and link in the copyright line are the
