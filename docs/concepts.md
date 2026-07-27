@@ -4,7 +4,7 @@ Read this after the [Glossary](glossary.md). It explains the ideas behind this
 repository so the recipes and workflows make sense. Every non-obvious choice
 carries a **Why**.
 
-## 1. What an IG template is, and why MII needs its own
+## 1. What an IG template is, and why this project proposes an MII-specific one
 
 The HL7 **IG Publisher** renders an Implementation Guide website. It applies
 exactly **one template** per build — the template decides the header, footer,
@@ -23,9 +23,11 @@ here reaches modules without a release — the mechanics are in
 [workflows.md](workflows.md#how-a-module-consumes-this-template), the status in
 [project-status.md](project-status.md).
 
-> **Why a shared template package:** every MII KDS module IG then looks identical,
-> a branding fix ships to all of them by releasing one new version here, and each
-> module pins a *version* so its build stays reproducible.
+> **The argument for a shared template package:** if the KDS modules adopted one,
+> they would share a single presentation, a branding fix would reach them by
+> releasing one version here, and each module would pin a *version* so its build
+> stays reproducible. That is the proposal this repository puts to the TF KDS —
+> see [project-status.md](project-status.md).
 
 ## 2. Derived from `fhir2.base.template` — override, don't fork
 
@@ -77,8 +79,8 @@ The Medical Informatics Initiative (MII) maintains the **Kerndatensatz (KDS)** �
 core dataset split into modules (Person, Diagnose, Prozedur, …), each published as
 its own IG. Naming, terminology policy, the release workflow and the reusable CI
 are defined in the [MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki).
-This template exists so those module IGs share one MII-branded presentation. When
-this document and the wiki disagree, **the wiki wins** — see
+This template proposes that those module IGs share one MII-branded presentation.
+When this document and the wiki disagree, **the wiki wins** — see
 [further-reading.md](further-reading.md) for the pages that matter.
 
 ## 6. Two version schemes — do not mix them

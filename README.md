@@ -1,16 +1,17 @@
 # ig-template-mii-kds
 
-The **IG template** that gives every MII Kerndatensatz (KDS) module
-Implementation Guide its MII look — header, footer, colours, logo. It is an
+A proposed shared **IG template** for MII Kerndatensatz (KDS) module
+Implementation Guides — header, footer, colours, logo — so module guides could
+share one presentation. It is an
 [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation)
 template package (`de.medizininformatikinitiative.template`) built on the HL7 base
 template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2).
 
 **You don't edit this repository to write an IG — you reference it.** A module
 names it in `ig.ini` and the IG Publisher applies it at build time. Keeping the
-branding in one versioned package means every module looks the same, and a fix
-here reaches all of them with one release. The package is not on a registry yet,
-so today modules vendor this repository's `dev` branch instead — see
+branding in one versioned package means the modules that adopt it look the same,
+and a fix here reaches them with one release. The package is not on a registry
+yet, so today a module vendors this repository's `dev` branch instead — see
 [how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 
 To start a module, use
@@ -18,7 +19,8 @@ To start a module, use
 instead; it already references this template.
 
 > **Status: prototype.** Usable and released, but pending discussion in the MII
-> Taskforce Kerndatensatz — see [docs/project-status.md](docs/project-status.md).
+> Taskforce Kerndatensatz, and no module uses it yet — see
+> [docs/project-status.md](docs/project-status.md).
 
 ## Quickstart (for maintaining the template)
 
