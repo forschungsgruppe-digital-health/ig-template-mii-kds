@@ -19,7 +19,7 @@ yet.
 
 | Recipe | Use it when |
 | --- | --- |
-| [consume this template in a module IG](consume-this-template-in-a-module.md) | A module has to reference this template |
+| [consume this template in a module IG](consume-this-template-in-a-module.md) | You are wiring a module up to reference this template |
 
 ## Keeping it healthy
 
