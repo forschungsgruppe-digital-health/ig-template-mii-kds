@@ -15,6 +15,14 @@ A module IG does not copy any layout files. In its `ig.ini` it writes one line �
 `template = de.medizininformatikinitiative.template#<version>` — and the IG
 Publisher downloads and applies this package.
 
+That is the target state. The package is not on a registry yet
+([open-tasks.md](open-tasks.md)), so today a module *does* copy these files: it
+vendors this repository's `dev` branch into its own `ig-template/` folder and
+points `ig.ini` at that folder. Nobody pins a version, and a merge into `dev`
+here reaches modules without a release — the mechanics are in
+[workflows.md](workflows.md#how-a-module-consumes-this-template), the status in
+[project-status.md](project-status.md).
+
 > **Why a shared template package:** every MII KDS module IG then looks identical,
 > a branding fix ships to all of them by releasing one new version here, and each
 > module pins a *version* so its build stays reproducible.

@@ -68,10 +68,33 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 3. Merging cuts the tag + GitHub Release; `notify-zulip.yml` announces it.
 4. Production publication (if any) stays a manual, gated step — never automatic.
 
-**How a module picks up a template release:** in the module's `ig.ini` (or
-`sushi-config.yaml` dependency), bump the pinned version, e.g.
-`template = de.medizininformatikinitiative.template#0.2.0`, then rebuild. See
+### How a module consumes this template
+
+**Once the package is published**, a module picks up a release by bumping the
+pinned version in its `ig.ini` (or `sushi-config.yaml` dependency), e.g.
+`template = de.medizininformatikinitiative.template#0.2.0`, then rebuilding. See
 [recipes/consume-this-template-in-a-module.md](recipes/consume-this-template-in-a-module.md).
+
+**It is not published yet** ([open-tasks.md](open-tasks.md)), so no module pins a
+release today. Modules vendor this repository's `dev` branch instead:
+
+- `mii-kds-module-template` copies `package/`, `includes/`, `content/` and
+  `translations/` from `ig-template-mii-kds@dev` into its own `ig-template/`
+  folder, and its `ig.ini` points at that folder.
+- Its `sync-ig-template.yml` re-vendors on a schedule (Mondays 05:00 UTC) and
+  opens a **reviewable** pull request — it never auto-merges.
+- The same workflow runs `sync-ig-template.sh --check --ref dev` on every module
+  pull request, so a module PR opened after a merge into `dev` here fails that
+  check until the sync PR lands.
+
+**So `dev` is a consumer-visible surface, not an internal branch.** Work in
+progress that has passed CI and review belongs there; a known-broken state does
+not, because the next sync ships it to every module. A module cannot pin its way
+out: the module template's workflow hardcodes `--ref dev` in both jobs. The two
+things that do stop the sync — setting the module's `ENABLE_TEMPLATE_SYNC`
+variable to `false`, or editing those two lines — contradict that repo's stated
+intent ("the module IG must always build against the CURRENT MII IG template"),
+so if either is ever wanted it belongs in the module template's docs, not here.
 
 > **Why one page:** the operational knowledge would otherwise be scattered across
 > `CONTRIBUTING.md`, `maintenance.md` and six workflow files. Post-2026 a new

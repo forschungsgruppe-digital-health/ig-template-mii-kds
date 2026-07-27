@@ -17,9 +17,11 @@ This repo uses a simple two-branch model with short-lived working branches.
   is what visitors see first.
   > **Why `main` is the default:** newcomers should land on, and start from, the
   > stable state — not work-in-progress.
-- **`dev` — integration branch, unstable.** Where reviewed changes accumulate
-  between releases; it may be temporarily broken. Protected — changes arrive
-  only via pull request (PR).
+- **`dev` — integration branch.** Where reviewed changes accumulate between
+  releases. Protected — changes arrive only via pull request (PR). Work in
+  progress is expected here; a known-broken state is not, because module IGs
+  vendor `dev` itself while the template package is unpublished — see
+  [how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 - **`feature/*`, `change/*`, `fix/*` — short-lived working branches.** Branched
   **off `dev`**, one focused change each, merged back into `dev` via PR, then
   deleted. Name them descriptively, e.g. `feature/add-terminology-page` or
