@@ -1,80 +1,31 @@
-# sushi-config.yaml — preview IG for the de.medizininformatikinitiative.template
-# IG template.
-# ============================================================================
-# This is NOT an MII Core Dataset module. It is the smallest possible IG that
-# the IG Publisher can render, and it exists ONLY so a `sushi . && publisher`
-# run produces real pages that exercise this template's branding overrides
-# (header, footer, CSS, logo) — see ig.ini and includes/.
-#
-# It is referenced by ig.ini (template = #.) and is never published to a
-# package registry; the package id below is intentionally distinct from any
-# KDS module id and ends in `.preview`.
-#
-# Multi-language is kept MINIMAL on purpose: English is the default language and
-# German is the one additional language, so the language-aware header/footer
-# render in BOTH languages. The preview carries two translated pages and one
-# translated menu; the full en→de workflow is in docs/recipes/add-translation.md.
-#
-# Only the options this preview actually needs are set below. Every SUSHI
-# option and what it does: https://fshschool.org/docs/sushi/configuration/
-
 id: de.medizininformatikinitiative.template.preview
 packageId: de.medizininformatikinitiative.template.preview
 canonical: https://github.com/medizininformatik-initiative/ig-template-mii-kds
 name: MIIKDSTemplatePreview
-title: "MII KDS IG Template — Preview"
-description: "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module."
+title: MII KDS IG Template — Preview
+description: >-
+  Minimal preview IG that builds the de.medizininformatikinitiative.template IG
+  template standalone so its branding (header, footer, CSS, logo) is rendered
+  and visually reviewable in English (default) and German. Not an MII KDS
+  module.
 status: draft
-version: 0.2.0
+version: 0.3.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
 copyrightYear: 2026+
 publisher:
-  # The template (and this preview of it) is an MII artifact; ownership stays
-  # with the Medizininformatik-Initiative. Matches the module template's
-  # publisher so every MII KDS IG shows the same responsible organisation.
   name: Medical Informatics Initiative (MII)
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
-
-# Multi-language: English default, German the additional rendering. This is the
-# model the MII KDS modules use — for example kerndatensatz-basis, whose
-# sushi-config.yaml sets `i18n-default-lang: en`, `i18n-lang: [de]` and
-# `translation-sources: [input/translations/de]` (verified against `main`).
-#   i18n-default-lang: en       -> English is the leading/default rendered language
-#   i18n-lang: [de]             -> German is the additional rendered language
-#   translation-sources: [...]  -> folder(s) holding the per-language translations
-# Two translation mechanisms live under a translation-source folder
-# (mirroring FHIR/multi-lang-test-ig, the HL7 reference IG):
-#   - NARRATIVE PAGES: input/translations/<lang>/pagecontent/<same-filename>
-#     (e.g. input/translations/de/pagecontent/index.md) — the whole page is
-#     rendered in that language on /<lang>/.
-#   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
-#     (msgid/msgstr entries translate resource fields such as description).
-# The preview ships a German version of each of its pages under
-# input/translations/de/pagecontent/ so /de/ renders in German — the mechanism
-# a module maintainer follows (docs/recipes/add-translation.md). The preview
-# carries no conformance resources; a module adds its own FSH + the .po files.
 parameters:
   i18n-default-lang: en
   i18n-lang:
     - de
   translation-sources:
     - input/translations/de
-
-# Two pages (English source, German translation each) + the auto-generated
-# artifact index. `translationinfo.md` is not optional: the base template's
-# translation notice links to translationinfo.html from EVERY translated page,
-# so without this page the German tree carries a dead link.
 pages:
   index.md:
-    title: "Home"
+    title: Home
   translationinfo.md:
-    title: "Translation information"
-
-# NOTE: no `menu:` property here — the menu is maintained as
-# input/includes/menu.xml (English, the default language) plus a per-language
-# translation at input/translations/de/includes/menu.xml. That is the ONLY way to
-# get a TRANSLATED menu (the `menu:` property generates one untranslatable
-# menu.xml); it mirrors the HL7 reference IG FHIR/multi-lang-test-ig.
+    title: Translation information
