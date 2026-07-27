@@ -25,9 +25,8 @@ CC-BY-4.0), trimmed to what the **template** owns.
 Multi-language support is split across the two template repositories:
 
 - **This repo (`ig-template-mii-kds`, the template package)** owns the
-  language *mechanism*: language-neutral header/footer/CSS overrides, the
-  inherited UI-string translations of the base template, and the documented
-  conventions below.
+  language *mechanism*: the header/footer/CSS overrides, the base template's
+  UI-string catalogs, and the documented conventions below.
 - **The module scaffold
   ([`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template))**
   owns the module-facing *workflow*: creating or harvesting the actual
@@ -102,18 +101,24 @@ parameters:
 
 ## What THIS repo must uphold (template obligations)
 
-1. **Language-neutral overrides.** The header, footer, and CSS fragments this
-   template ships must not hard-code UI strings. Use the base template's
-   string mechanism — `site.data.stringsBase[include.lang]['<Key>']` — as the
-   base's own `fragment-footer.html` does. (Verified in
-   `HL7/ig-template-base2`: the base resolves all UI strings through
-   `stringsBase[include.lang]`.)
-2. **Inherited German UI strings.** The base template ships `.po` UI-string
-   translations including German (`translations/stringsBase-de.po`,
-   `translations/stringsArtifacts-de.po` — verified in
-   `HL7/ig-template-base2`). This template inherits them by deriving from the
-   base; do not fork or override them. Verify after a base bump that the
-   German strings still render in the preview build.
+1. **Every offered language renders.** The header, footer, and CSS fragments
+   this template ships must produce correct text in `de` and `en` alike. The
+   base's string mechanism — `site.data.stringsBase[include.lang]['<Key>']` —
+   is the default way to get that, and the header fragment uses it. The footer
+   fragment deliberately does not: the base has no `Impressum` key, a child
+   template cannot add one, and the pinned base ships no German catalog, so
+   those lookups render blank on `/de/`. It hard-codes an
+   `include.lang`-branched label set instead. Read `docs/design.md` §5 and §6
+   before changing it, and keep every branch complete when adding a language.
+2. **Vendored German UI strings.** The pinned base
+   `fhir2.base.template#0.1.0` ships `.po` catalogs for
+   `ar`/`es`/`fr`/`nl`/`pt`/`ru` — **not** `de` (German was added upstream
+   after `0.1.0` was cut). This template therefore vendors the base's own
+   `translations/stringsBase-de.po` and `stringsArtifacts-de.po`; `.po` files
+   layer additively, so a new filename supplements the base rather than
+   replacing it. After a base bump, verify the German strings still render in
+   the preview — and delete the vendored copies once the pinned base ships `de`
+   itself.
 3. **Do not "translate" FHIR identifiers.** `name`, `id`, codes, and
    canonical URLs stay as they are, in every language.
 4. **Additive only.** Translations are supplements; the English source page is
@@ -121,8 +126,8 @@ parameters:
 
 ## When to activate (in this repo)
 
-- When changing `includes/` or `content/assets/css/` — check the
-  language-neutrality rule (obligation 1).
+- When changing `includes/` or `content/assets/css/` — check that both
+  renderings still show correct text (obligation 1).
 - When bumping the pinned `fhir2.base.template` version — re-verify the
   rendering table and the German UI strings (obligations 2 and the ground
   truth above).
