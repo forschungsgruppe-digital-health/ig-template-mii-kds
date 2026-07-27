@@ -67,7 +67,7 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 
 ---
 
-## 3. Palette (CONFIRMED 2026-07-24)
+## 3. Palette
 
 Derivation order: (1) `kerndatensatz-basis` repo assets, (2) the MII website as
 fallback. The basis repo carries **no CSS and no palette**
@@ -135,7 +135,7 @@ dragon (29–30), translation box (31–32).
 
 ---
 
-## 4. Logo & favicon (CONFIRMED 2026-07-24)
+## 4. Logo & favicon
 
 The logo ships as **SVG, traced from the official PNGs** (see below). The source
 PNGs and their checksums are recorded for provenance.
@@ -201,10 +201,12 @@ zoom: indistinguishable at display size, clean vector edges when enlarged.
   untouched.
 - **Header layout:** the logo sits in `#project-nav`/`#project-logo` — the base's
   own project-logo slot (`project.css`: floats `var(--ig-left)`, `line-height:
-  50px`), rendered at `height="50"` like the basis repo's header. We deliberately
-  do **not** add the FHIR-family logo on the right (basis does at IG level):
-  the template stays minimal, and a module can add it via its own
-  `input/includes/fragment-header.html`, which overrides ours per IG.
+  50px`), rendered at `height="50"` like the basis repo's header. Beside it the
+  fragment renders the **HL7 FHIR family logo** in `#family-nav`/`#family-logo`
+  — the base's own slot, which `project.css` floats on `var(--ig-right)` —
+  linking to <https://hl7.org/fhir>, mirroring kerndatensatz-basis. A module that
+  overrides `input/includes/fragment-header.html` replaces this fragment
+  wholesale, so it must re-add both logos if it wants them.
 - **Licensing note — follow-up (non-blocking): confirm MII permission to redistribute the
   logo.** The logo and wordmark are marks of the Medizininformatik-Initiative
   (TMF e.V. coordination). This repo is CC0-1.0, but CC0 cannot and does not
@@ -391,7 +393,9 @@ vendored mirror.
 
 1. Build the preview — push a branch and CI comments the URL, or run the IG
    Publisher locally on any IG whose `ig.ini` says
-   `template = <path-to-this-repo>` (vendored path).
+   `template = #<folder-holding-a-copy-of-this-repo>`. The leading `#` marks a
+   local folder; without it the value is read as a package id and the build
+   fails to find the template.
 2. Compare the rendered header/footer/navbar against
    `https://www.medizininformatik-initiative.de/` and against a
    `kerndatensatz-basis` build.

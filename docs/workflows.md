@@ -50,8 +50,8 @@ Notes:
   see [add-translation.md](recipes/add-translation.md). The job lives in
   `security-scan.yml` because that is the only pull-request-triggered workflow.
 - **The `tooling-tests` job** runs the repository's script tests
-  (`check-updates.test.mjs` and `terminology-fallback.test.mjs`, offline, no
-  `npm install`). It rides in `security-scan.yml` for the same reason as the
+  (`check-updates.test.mjs`, `terminology-fallback.test.mjs` and
+  `narrative-table-styles.test.mjs`, offline, no `npm install`). It rides in `security-scan.yml` for the same reason as the
   language-model guard. `dependency-check.yml` runs the same suites as a
   pre-flight, so the weekly check fails loudly instead of filing a garbled
   tracking issue. Both list the files by name rather than globbing

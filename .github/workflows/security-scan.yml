@@ -22,8 +22,8 @@
 #
 # ALSO HERE (not scanners): the `language-model` and `tooling-tests` jobs. This
 # is the repo's only pull-request-triggered workflow, so the cheap repo-hygiene
-# guard scripts/check-language-model.sh and the unit tests for
-# scripts/check-updates.mjs ride along instead of adding a workflow each.
+# guard scripts/check-language-model.sh and the repository's three script test
+# suites ride along instead of adding a workflow each.
 # Neither is covered by vars.ENABLE_SECURITY_SCAN — they check content and
 # tooling, not vulnerabilities, and must run on every pull request into `dev`
 # (the trigger below), which is where changes land.
@@ -61,6 +61,9 @@ jobs:
   # weekly tracking issue. terminology-fallback.test.mjs pins ig-preview.yml's
   # stated safety property (a missing or partial SU-TermServ credential falls
   # back, never fails), which nothing else can observe until a build breaks.
+  # narrative-table-styles.test.mjs simulates the shipped table selector against
+  # fixtures from the built output, so the scope can never widen back to the
+  # form that repainted generated tables.
   # Offline, no npm install, well under a second.
   tooling-tests:
     runs-on: ubuntu-latest

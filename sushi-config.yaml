@@ -57,7 +57,9 @@ jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 # The preview ships a German version of each of its pages under
 # input/translations/de/pagecontent/ so /de/ renders in German — the mechanism
 # a module maintainer follows (docs/recipes/add-translation.md). The preview
-# carries no conformance resources; a module adds its own FSH + the .po files.
+# ships exactly one conformance resource — the preview-model Logical Model in
+# input/fsh/ — because the IG Publisher cannot assemble a package for an IG with
+# none. It needs no .po supplement; a module adds its own FSH and .po files.
 parameters:
   i18n-default-lang: en
   i18n-lang:
