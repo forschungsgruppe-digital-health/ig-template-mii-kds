@@ -20,11 +20,17 @@ mit einem entsprechenden Hinweis am Seitenanfang.
 
 ### Rückmeldungen zu einer Übersetzung
 
-Bitte ein Issue unter
-<https://github.com/medizininformatik-initiative/ig-template-mii-kds/issues>
-anlegen und dabei Seite und Formulierung nennen. Korrekturen durchlaufen dieselbe
-Pull-Request-Prüfung wie jede andere Änderung; die Schritt-für-Schritt-Anleitung
-steht im Repository unter `docs/recipes/add-translation.md`.
+Bitte im HL7-FHIR-Zulip, Stream `german/mi-initiative`
+(<https://chat.fhir.org>), Seite und Formulierung nennen — oder ein Issue im
+Repository anlegen, aus dem dieser Leitfaden gebaut wird. Korrekturen durchlaufen
+dieselbe Pull-Request-Prüfung wie jede andere Änderung; die
+Schritt-für-Schritt-Anleitung steht im Repository unter
+`docs/recipes/add-translation.md`.
+
+> Der Issue-Tracker des Repositories ist hier bewusst nicht verlinkt: Dieser
+> Leitfaden ist ein Prototyp, dessen GitHub-Organisation noch nicht feststeht —
+> eine fest eingetragene Issues-URL liefe für Leserinnen und Leser eines vor dem
+> Umzug erzeugten Builds ins Leere. Zulip bleibt in beiden Fällen erreichbar.
 
 > **Geltungsbereich:** Dies ist die *Vorschau* der MII-IG-Vorlage
 > (`de.medizininformatikinitiative.template`) und kein MII-Kerndatensatz-Modul.
