@@ -36,5 +36,8 @@ is configured — otherwise the job skips with a notice).
 | Version files out of sync | An embedded version was not in `extra-files` | Add it to `release-please-config.json` |
 | Zulip not posted | `ZULIP_API_KEY` secret absent | Expected — the job skips with a notice; add the secret to enable |
 
-> Modules do **not** use this recipe — they release with **CalVer** via the MII
-> Module Release Workflow. Never put Release Please on a module.
+> Modules do **not** use this recipe: the MII meta wiki's
+> [Module Release Workflow](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Module-Release-Workflow)
+> defines **CalVer** releases for them. Adding Release Please on top of that
+> would produce a second, conflicting version stream — which is why these
+> template repositories keep the two schemes strictly apart.
