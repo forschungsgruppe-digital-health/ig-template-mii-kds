@@ -78,7 +78,8 @@ jobs:
       - name: Unit tests
         run: |
           node --test scripts/check-updates.test.mjs \
-            scripts/terminology-fallback.test.mjs
+            scripts/terminology-fallback.test.mjs \
+            scripts/narrative-table-styles.test.mjs
 
   osv:
     if: ${{ vars.ENABLE_SECURITY_SCAN != 'false' }} # toggle: ON by default

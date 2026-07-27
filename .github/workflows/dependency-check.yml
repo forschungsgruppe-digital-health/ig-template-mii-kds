@@ -44,7 +44,8 @@ jobs:
       - name: Test the repository's scripts
         run: |
           node --test scripts/check-updates.test.mjs \
-            scripts/terminology-fallback.test.mjs
+            scripts/terminology-fallback.test.mjs \
+            scripts/narrative-table-styles.test.mjs
 
       - name: Run checker
         id: check
