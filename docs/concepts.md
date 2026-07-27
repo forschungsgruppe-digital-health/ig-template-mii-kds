@@ -46,7 +46,8 @@ inherited from the base.
 > **Why pin the base to `0.1.0` instead of the moving `#current`:** reproducibility.
 > A build in 2029 must produce the same output as today. The
 > [dependency checker](maintenance.md) watches for a newer base and proposes the
-> bump as a reviewable PR, so pinning does not mean going stale silently.
+> bump as a reviewable PR, so pinning does not mean going stale silently. The MII
+> reference repos float `#current` instead — a different trade-off, not an error.
 
 ## 3. How an IG is created and published (the big picture)
 
@@ -67,10 +68,8 @@ before a release (see [workflows.md](workflows.md)).
   including template packages, are resolved by id + version.
 - **[`FHIR/ig-registry`](https://github.com/FHIR/ig-registry)** — HL7's public
   index; its `templates.json` lists IG **templates** so the Publisher can resolve
-  this one by id. Getting listed there is a deliberate, gated step (a human
-  decision about the post-2026 owner). **This template is deliberately NOT
-  registered yet:** it is a prototype pending
-  discussion in the MII Taskforce KDS — see [project-status.md](project-status.md).
+  this one by id. This template is deliberately not listed there yet — the
+  decision and its rationale are in [project-status.md](project-status.md).
 - **Simplifier** — an alternative FHIR registry platform; not required here.
 
 ## 5. The MII governance context
