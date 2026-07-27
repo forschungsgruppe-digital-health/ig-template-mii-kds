@@ -9,7 +9,9 @@ template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2).
 **You don't edit this repository to write an IG — you reference it.** A module
 names it in `ig.ini` and the IG Publisher applies it at build time. Keeping the
 branding in one versioned package means every module looks the same, and a fix
-here reaches all of them with one release.
+here reaches all of them with one release. The package is not on a registry yet,
+so today modules vendor this repository's `dev` branch instead — see
+[how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 
 To start a module, use
 [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)

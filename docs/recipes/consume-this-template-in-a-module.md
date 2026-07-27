@@ -25,8 +25,9 @@ Pick the variant that matches where the template stands today.
 
 ### B. Vendored (bring-up, before this template is published)
 
-1. Copy this template's content (`package/`, `includes/`, `content/`) into an
-   `ig-template/` folder in the module repo.
+1. Copy this template's content (`package/`, `includes/`, `content/` and
+   `translations/` — the German UI-string catalogs the pinned base lacks) into
+   an `ig-template/` folder in the module repo.
 2. In the module's `ig.ini`, set `template = #ig-template` (the leading `#` makes it
    a **local folder**, not a package id).
 3. Build as usual. When this template gets published, switch to option A and delete

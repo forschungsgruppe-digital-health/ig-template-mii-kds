@@ -84,8 +84,8 @@ release today. Modules vendor this repository's `dev` branch instead:
 - Its `sync-ig-template.yml` re-vendors on a schedule (Mondays 05:00 UTC) and
   opens a **reviewable** pull request — it never auto-merges.
 - The same workflow runs `sync-ig-template.sh --check --ref dev` on every module
-  pull request, so a module PR opened after a merge into `dev` here fails that
-  check until the sync PR lands.
+  pull request into `dev`, so a module PR opened after a merge into `dev` here
+  fails that check until the sync PR lands.
 
 **So `dev` is a consumer-visible surface, not an internal branch.** Work in
 progress that has passed CI and review belongs there; a known-broken state does
