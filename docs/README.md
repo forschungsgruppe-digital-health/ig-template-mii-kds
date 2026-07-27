@@ -15,6 +15,7 @@ Everything else here is about changing the template itself.
 | Get the toolchain running and build the preview | [recipes/first-build-in-devcontainer.md](recipes/first-build-in-devcontainer.md) |
 | Understand a term I do not recognise | [glossary.md](glossary.md) |
 | Understand what an IG template is and why this one exists | [concepts.md](concepts.md) |
+| Publish the preview so someone can look at it | [recipes/publish-the-preview-on-github-pages.md](recipes/publish-the-preview-on-github-pages.md) |
 | Change a colour, a logo, or the footer | [design.md](design.md) · [recipes/change-the-brand-color.md](recipes/change-the-brand-color.md) |
 | Know what CI runs, and which variable turns it off | [workflows.md](workflows.md) |
 | Keep the toolchain and dependencies current | [maintenance.md](maintenance.md) |
