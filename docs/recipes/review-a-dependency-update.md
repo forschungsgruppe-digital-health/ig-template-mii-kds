@@ -1,20 +1,24 @@
 # Recipe: review a dependency update
 
-You received a Dependabot PR, a checker PR, or a row in the
-"Dependency status" tracking issue (label `dependencies`). This recipe takes
-you from "a bump is proposed" to "the bump is merged — or consciously not".
+**Goal.** Take a proposed dependency bump from "a bump is proposed" to
+"merged — or consciously not".
+
+**Prerequisites.** A Dependabot PR, a checker PR, or a row in the
+`dependencies` tracking issue.
 
 > **Why a recipe:** updates are proposals, never automatic
-> ([`docs/MAINTENANCE.md`](../MAINTENANCE.md)). The human in the loop is you.
+> ([`docs/maintenance.md`](../maintenance.md)). The human in the loop is you.
 
-## 1. Read the proposal
+## Steps
+
+### 1. Read the proposal
 
 - **Dependabot PR:** the artifact and versions are in the PR title; release
   notes are quoted in the PR body.
 - **Tracking issue:** each `update available` row names the artifact, the
   pinned and the latest version, and links the changelog / release notes.
 
-## 2. Check the changelog
+### 2. Check the changelog
 
 Open the linked release notes and answer two questions:
 
@@ -22,10 +26,10 @@ Open the linked release notes and answer two questions:
 2. Does anything in the notes affect **how this template builds IGs** (template
    parameters, Jekyll/liquid behavior, publisher CLI flags)?
 
-If unsure, prefer bumping in a working branch and letting the self-test build
+If unsure, prefer bumping in a working branch and letting the preview build
 answer.
 
-## 3. Apply the bump in the pin's real location
+### 3. Apply the bump in the pin's real location
 
 Create a working branch off `dev` (e.g. `chore/bump-<artifact>`). Then edit
 exactly one pin (one bump per PR — keep diffs reviewable):
@@ -36,9 +40,9 @@ exactly one pin (one bump per PR — keep diffs reviewable):
 | IG Publisher | `PUBLISHER_VERSION` env in the CI build workflow **+ the jar SHA-256 (step 4)** |
 | SUSHI / Jekyll | `SUSHI_VERSION` / `JEKYLL_VERSION` env in the CI build workflow |
 | GitHub Action | the commit SHA in the `uses:` line **and** its `# vX.Y.Z` comment (Dependabot PRs do this for you) |
-| Dev container (base-image digest, feature versions) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest is bumped manually (see the dev-container limits in [`docs/MAINTENANCE.md`](../MAINTENANCE.md)) |
+| Dev container (base-image digest, feature versions) | `.devcontainer/devcontainer.json` — features come as Dependabot PRs; the image digest is bumped manually (see the dev-container limits in [`docs/maintenance.md`](../maintenance.md)) |
 
-## 4. IG Publisher only: recompute the jar SHA-256
+### 4. IG Publisher only: recompute the jar SHA-256
 
 The version pin and the checksum move **together** — never bump one without
 the other. Download the release jar and hash it:
@@ -55,19 +59,33 @@ Paste the printed hash next to the new version wherever the checksum is
 pinned. A mismatch later means the downloaded artifact changed — exactly what
 the checksum is there to catch.
 
-## 5. Build and verify
+### 5. Build and verify
 
-Run the template's self-test build (the PR CI does the same). The bump is only
+Run the template's preview build (the PR CI does the same). The bump is only
 good if the build is clean:
 
-- lint/tests for the touched tooling (`node --test scripts/check-updates.test.mjs`
-  if you touched the checker),
-- the IG self-test build must succeed with QA errors = 0.
+- lint/tests for the touched tooling (`node --test scripts/*.test.mjs` if you
+  touched anything under `scripts/`),
+- the IG preview build must succeed with QA errors = 0.
 
-## 6. Merge — or document why not
+### 6. Merge — or document why not
 
 - Open a PR to `dev`, reference the tracking issue row / Dependabot PR, get a
   review, merge. **Never auto-merge.**
 - If you decide **against** the bump (e.g. a breaking change with no benefit),
   say so briefly in the tracking issue so the next reader does not re-do your
   analysis. The row will reappear weekly — that is by design.
+
+## Expected result
+
+The pin is updated everywhere it appears (including any checksum), the build is
+green with QA errors = 0, and the decision is recorded — whether you merged or
+declined.
+
+## Common errors & fixes
+
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| The bump reappears next week after you rejected it | The checker reports drift every run by design | Record the decision in the tracking issue so the next reader does not redo the analysis |
+| The build fails only after the bump | A breaking change in the dependency | Read the linked changelog; either adapt the repo or keep the old pin and note why |
+| The IG Publisher jar hash no longer matches | The version was bumped without recomputing the SHA-256 | Recompute it and update the pin in the same commit — never bump one without the other |

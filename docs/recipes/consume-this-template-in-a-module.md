@@ -3,24 +3,34 @@
 **Goal.** Make a module IG render with this MII template.
 
 **Prerequisites.** A module IG project (e.g. one created from
-[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template)).
+[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)).
 
-There are two ways to reference the template. Use **published** once this template
-has a release; use **vendored** during bring-up before that.
+There are two ways to reference the template. Use **published** once the package
+`de.medizininformatikinitiative.template` is resolvable from a FHIR package
+registry; use **vendored** until then. A GitHub release is not the trigger — this
+repository already cuts releases, but the IG Publisher cannot fetch a template it
+cannot resolve. See [open tasks](../open-tasks.md).
 
-## A. Published (the normal case)
+## Steps
+
+Pick the variant that matches where the template stands today.
+
+### A. Published (the normal case)
 
 1. In the module's `ig.ini`, set:
    `template = de.medizininformatikinitiative.template#<version>` (e.g. `#0.1.0`).
    > **Why a pinned version, not `#current`:** reproducible builds — the same input
    > always produces the same rendered guide.
-2. Rebuild the module (`sushi . && java -jar publisher.jar -ig ig.ini`).
+2. Rebuild the module (`sushi . && java -Xmx6g -jar publisher.jar -ig ig.ini`;
+   step 6 of the [dev-container recipe](first-build-in-devcontainer.md) shows
+   how to obtain `publisher.jar`).
 3. To adopt a newer template release later, bump the version and rebuild.
 
-## B. Vendored (bring-up, before this template is published)
+### B. Vendored (bring-up, before this template is published)
 
-1. Copy this template's content (`package/`, `includes/`, `content/`) into an
-   `ig-template/` folder in the module repo.
+1. Copy this template's content (`package/`, `includes/`, `content/` and
+   `translations/` — the German UI-string catalogs the pinned base lacks) into
+   an `ig-template/` folder in the module repo.
 2. In the module's `ig.ini`, set `template = #ig-template` (the leading `#` makes it
    a **local folder**, not a package id).
 3. Build as usual. When this template gets published, switch to option A and delete

@@ -4,8 +4,7 @@
 # Purpose:   run scripts/check-updates.mjs and surface version drift as ONE
 #            continuously-updated tracking issue ("Dependency status <YYYYWww>",
 #            label: dependencies). Proposes only — never bumps anything itself.
-# Triggers:  schedule (Mondays 06:00 UTC) + workflow_dispatch
-#            (input "mode": notify = tracking issue [default] | pr = sketch below).
+# Triggers:  schedule (Mondays 06:00 UTC) + workflow_dispatch (no inputs).
 # Toggle:    vars.ENABLE_DEPENDENCY_CHECK — ON by default; set the repo variable
 #            to 'false' to skip the job (it then shows as "skipped", not failed).
 # Human-gated: every proposed bump. A human reviews the changelog, updates the
@@ -18,17 +17,10 @@ on:
   schedule:
     - cron: "0 6 * * 1" # Mondays 06:00 UTC
   workflow_dispatch:
-    inputs:
-      mode:
-        description: "notify (tracking issue) or pr (one PR per drift)"
-        type: choice
-        options: [notify, pr]
-        default: notify
 
 permissions:
-  contents: write # pr mode (sketch below) needs to push branches
-  issues: write # notify mode upserts the tracking issue
-  pull-requests: write
+  contents: read # checkout only — nothing here writes to the repository
+  issues: write # the tracking issue is upserted in place
 
 concurrency:
   group: dependency-check
@@ -36,7 +28,7 @@ concurrency:
 
 jobs:
   check:
-    if: ${{ vars.ENABLE_DEPENDENCY_CHECK != 'false' }} # toggle: ON by default (§2.13)
+    if: ${{ vars.ENABLE_DEPENDENCY_CHECK != 'false' }} # toggle: ON by default
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -44,6 +36,16 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "22"
+
+      # Pre-flight: a broken checker would otherwise surface only as a garbled
+      # tracking issue. The suites are offline and run in well under a second.
+      # Listed by name, never by glob — a new test file is added here on
+      # purpose, so widening the gate stays a decision (scripts/README.md).
+      - name: Test the repository's scripts
+        run: |
+          node --test scripts/check-updates.test.mjs \
+            scripts/terminology-fallback.test.mjs \
+            scripts/narrative-table-styles.test.mjs
 
       - name: Run checker
         id: check
@@ -60,8 +62,7 @@ jobs:
           name: drift-report
           path: drift.md
 
-      - name: Upsert tracking issue (notify mode)
-        if: ${{ (github.event.inputs.mode || 'notify') == 'notify' }}
+      - name: Upsert tracking issue
         env:
           GH_TOKEN: ${{ github.token }}
         # One open, continuously-updated issue instead of many stale ones:
@@ -83,13 +84,16 @@ jobs:
           fi
 
       # ---------------------------------------------------------------------
-      # PR mode (opt-in via the "mode" dispatch input) — implementation sketch:
-      # for each drifted artifact, create a branch off dev, apply the
-      # single-line pin bump (for the IG Publisher also download the jar and
-      # recompute its SHA-256 next to the version — never one without the
-      # other), and open ONE PR per artifact targeting dev with the changelog
-      # link in the body, e.g. with
+      # PR mode is NOT implemented. There is no dispatch input for it: an
+      # option that silently does nothing is worse than no option. Sketch for
+      # whoever implements it — for each drifted artifact, create a branch off
+      # dev, apply the single-line pin bump (for the IG Publisher also download
+      # the jar and recompute its SHA-256 next to the version — never one
+      # without the other), and open ONE PR per artifact targeting dev with the
+      # changelog link in the body, e.g. with
       #   peter-evans/create-pull-request@<PIN_SHA> # vX.Y.Z (pin when adopting)
+      # That path needs `contents: write` + `pull-requests: write` back in the
+      # permissions block, and a `mode` input to opt into it.
       # NEVER auto-merge: the PR is a proposal; a human reviews and merges it
       # (docs/recipes/review-a-dependency-update.md).
       # ---------------------------------------------------------------------

@@ -1,6 +1,6 @@
 # Template validation against a real module (kerndatensatz-basis) — 2026-07-23
 
-Acceptance test (spec §3.5): validate `de.medizininformatikinitiative.template`
+Acceptance test: validate `de.medizininformatikinitiative.template`
 against the latest **real** MII KDS module by building
 [`kerndatensatz-basis`](https://github.com/medizininformatik-initiative/kerndatensatz-basis)
 (`main`, version `2026.0.1`) with its `ig.ini` pointing at **this** template
@@ -14,7 +14,7 @@ SU-TermServ client cert in this environment).
 
 **Module scale exercised.** 8 profiles, 3 extensions, 14 value sets, 4 code systems
 → 63 generated conformance resources. This is a substantially larger and more
-realistic surface than the template's own self-test.
+realistic surface than the template's own preview.
 
 ## Results
 
@@ -29,9 +29,9 @@ realistic surface than the template's own self-test.
 
 The template's **full IG Publisher render** — the step that actually applies the
 header, footer, CSS and logo — is proven green in CI, on every push, by this repo's
-**self-test IG** (`ig-preview.yml`): it runs SUSHI **and** the pinned IG Publisher
+**preview IG** (`ig-preview.yml`): it runs SUSHI **and** the pinned IG Publisher
 2.2.11 with Jekyll, asserts QA errors = 0, and publishes a live bilingual preview at
-`https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/`.
+`https://medizininformatik-initiative.github.io/ig-template-mii-kds/branches/dev/`.
 The module scaffold's demo build (`mii-kds-module-template`) renders the same
 template green as well. So the branding **renders** correctly; what this report adds
 is that the template also **resolves and assembles cleanly against a real,
@@ -47,7 +47,9 @@ environment with the full toolchain (the repo's dev container, Ruby 3.3 + Jekyll
 git clone https://github.com/medizininformatik-initiative/kerndatensatz-basis
 cd kerndatensatz-basis
 mkdir ig-template && cp -R <this-repo>/package <this-repo>/includes <this-repo>/content ig-template/
-sed -i 's#^template =.*#template = #ig-template#' ig.ini
+# the replacement starts with '#', so the delimiter must not be '#'
+# (on macOS the flag takes an argument: sed -i '' 's|...|...|' ig.ini)
+sed -i 's|^template =.*|template = #ig-template|' ig.ini
 sushi .
 curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar
 java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
@@ -58,7 +60,7 @@ java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
 > terminology QA notes for MII-specific value sets (SNOMED/ICD-10-GM/OPS) that the
 > public server does not fully expand — those are **basis's** terminology needs, not
 > template defects, and resolve when SU-TermServ is configured. The template's own
-> contribution (layout/branding) is the part proven by the self-test render.
+> contribution (layout/branding) is the part proven by the preview render.
 
 ## Conclusion
 

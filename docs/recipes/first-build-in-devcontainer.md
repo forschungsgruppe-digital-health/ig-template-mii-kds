@@ -1,8 +1,6 @@
 # Recipe: first build in the dev container
 
-## Goal
-
-Go from "I just cloned this repository" to a working, fully equipped FHIR IG
+**Goal.** Go from "I just cloned this repository" to a working, fully equipped FHIR IG
 toolchain — Java 17, Node 22, SUSHI, Ruby/Jekyll, Graphviz — without
 installing any of those tools on your own machine. Everything runs inside a
 container that VS Code builds for you.
@@ -13,9 +11,8 @@ container that VS Code builds for you.
 > **Reopen in Container**. This follows the MII meta wiki page
 > ["Dev Container ‐ IG Publisher"](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Dev-Container-%E2%80%90-IG-Publisher).
 
-## Prerequisites
-
-You need exactly three things on your machine:
+**Prerequisites.** Three things on your machine — plus `git` and network
+access (the first build downloads the base image and tools):
 
 1. **Docker** — [Docker Desktop](https://www.docker.com/products/docker-desktop/)
    (Windows/macOS) or any Docker engine (Linux). Must be running.
@@ -24,15 +21,12 @@ You need exactly three things on your machine:
    (`ms-vscode-remote.remote-containers`). Install it from the Extensions
    view in VS Code.
 
-You also need `git` and network access (the first build downloads the base
-image and tools).
-
 ## Steps
 
 1. Clone the repository and switch to the `dev` branch:
 
    ```sh
-   git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds.git
+   git clone https://github.com/medizininformatik-initiative/ig-template-mii-kds.git
    cd ig-template-mii-kds
    git checkout dev
    ```
@@ -75,18 +69,35 @@ image and tools).
 
    Each command must print the version shown in the comment.
 
-6. Build the template's self-test IG.
+6. Build the template's preview IG — the minimal IG bundled in this repo
+   (`ig.ini`, `sushi-config.yaml`, `input/`) that exists so branding changes
+   render. From the repository root:
 
-   > **Not yet available:** this step depends on the self-test harness
-   > (`ig.ini` + build scripts + validation workflow), which lands in a
-   > separate task. Once it is merged, this section will point at the exact
-   > build command; until then, steps 1–5 are the complete recipe.
+   ```sh
+   sushi .
+   curl -L -o publisher.jar \
+     https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar
+   echo "a981af86bca3f3a22ee15b9d4ee3c97d63219b7a14e49d0a525e10bbfc71a911  publisher.jar" \
+     | sha256sum --check
+   java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
+   ```
 
-   The build scripts download the **IG Publisher jar** pinned to an exact
-   version on first use.
+   Then open `output/index.html` in a browser.
+
+   > **Where the version and the checksum come from:** `PUBLISHER_VERSION` and
+   > `PUBLISHER_SHA256` in `.github/workflows/ig-preview.yml`. CI is the source
+   > of truth — if the values there ever differ from the two above, use CI's and
+   > update this page. Bumping one without the other is the mistake the checksum
+   > line exists to catch (see
+   > [review a dependency update](review-a-dependency-update.md)).
+
+   > **Why `-Xmx6g` and `-tx`:** the default JVM heap is not enough for an IG
+   > build, so CI passes the same `-Xmx6g`. `https://tx.fhir.org` is the public
+   > HL7 terminology server — the fallback CI uses when no SU-TermServ
+   > certificate is configured (see [secrets.md](../secrets.md)).
 
    > **Why the IG Publisher is not pre-installed in the container:** the
-   > publisher version is governed by the repo's build scripts and dependency
+   > publisher version is governed by the repo's CI pin and its dependency
    > checker, not by the container image. Baking it in would mean rebuilding
    > and re-pinning the container for every publisher bump.
 
@@ -95,10 +106,11 @@ image and tools).
 - VS Code runs inside the container (the green remote indicator in the
   bottom-left corner shows the dev container name).
 - All six version checks in step 5 print the pinned versions.
-- Once the self-test harness is merged: the self-test IG builds cleanly and
-  produces an `output/` folder with the rendered pages.
+- The preview IG builds cleanly and produces an `output/` folder with the
+  rendered pages — `output/index.html` plus an `en/` and a `de/` tree, showing
+  the MII header, footer, colours and logo.
 
-## Common errors and fixes
+## Common errors & fixes
 
 | Symptom | Cause | Fix |
 |---|---|---|
@@ -109,6 +121,8 @@ image and tools).
 | `npm install -g` or `gem install` fails with `EACCES` / "permission denied" during post-create | A stale container image from an older configuration. | Run `F1` → **Dev Containers: Rebuild Container Without Cache**. |
 | Downloads fail with TLS/certificate errors | A corporate proxy intercepts TLS. | Configure Docker and VS Code for your proxy (ask your IT for the CA certificate), or build outside the proxied network once. |
 | You edited `.devcontainer/devcontainer.json` but nothing changed | The old container is still running. | `F1` → **Dev Containers: Rebuild Container**. |
+| `publisher.jar: FAILED` from `sha256sum` | The downloaded jar is not the pinned build — usually a stale `publisher.jar` in the folder, or the version and the checksum in this recipe have drifted apart. | `rm publisher.jar` and re-download. If it still fails, compare both values against `.github/workflows/ig-preview.yml`. |
+| The publisher stops with `OutOfMemoryError` | The JVM default heap is too small for an IG build. | Keep `-Xmx6g` (raise it if your machine allows). |
 
 > **Why the `~/.fhir` mount exists at all:** the IG toolchain caches FHIR
 > packages (KDS modules, base profiles) under `~/.fhir`. Mounting the host

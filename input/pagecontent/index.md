@@ -1,28 +1,29 @@
-Diese Seite dient ausschließlich dem **Selbsttest** der IG-Template-Vorlage
-`de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
+This page exists solely for the **preview** of the
+`de.medizininformatikinitiative.template` IG template. It is **not** an MII Core
+Dataset module.
 
-Der Selbsttest baut die Vorlage eigenständig, damit Branding-Änderungen
-(Kopfzeile, Fußzeile, CSS, Logo) in einer gerenderten IG geprüft werden können,
-bevor eine Template-Version veröffentlicht wird. Der Build rendert auf Deutsch
-(Standardsprache) und Englisch, um die sprachabhängige Kopf- und Fußzeile zu
-prüfen.
+The preview builds the template standalone so that branding changes (header,
+footer, CSS, logo) can be reviewed in a rendered IG before a template version is
+released. The build renders in English (the default language) and German, to
+check the language-aware header and footer.
 
-Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md`
-des Repositorys.
+What the template is and how a module uses it is described in the repository's
+`README.md`.
 
-### Highlight-Boxen (Demo der Hintergrundfarben)
+### Highlight boxes (background-colour demo)
 
-Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben
-von Inhalten bereit (Klassen `mii-highlight mii-highlight-blue` bzw.
-`mii-highlight-green`). Es handelt sich um reines Styling — welche Bedeutung eine
-Farbe hat, entscheidet das jeweilige Modul.
+The template ships reusable, purpose-neutral CSS classes for calling out content
+(classes `mii-highlight mii-highlight-blue` / `mii-highlight-green`). These are
+styling only — a module decides what each colour means.
 
+<!-- Raw HTML block: the page processor does NOT run markdown inside it, so the
+     class names have to be marked up as <code>, not with backticks. -->
 <div class="mii-highlight mii-highlight-blue">
-<h5>Blaue Highlight-Box</h5>
-<p>Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).</p>
+<h5>Blue highlight box</h5>
+<p>Example of the blue background highlight (<code>mii-highlight-blue</code>).</p>
 </div>
 
 <div class="mii-highlight mii-highlight-green">
-<h5>Grüne Highlight-Box</h5>
-<p>Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).</p>
+<h5>Green highlight box</h5>
+<p>Example of the green background highlight (<code>mii-highlight-green</code>).</p>
 </div>

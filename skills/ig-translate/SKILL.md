@@ -2,7 +2,7 @@
 name: ig-translate
 description: >-
   Multi-language support for MII KDS Implementation Guides — the part the
-  TEMPLATE owns. German is the default IG language, English the recommended
+  TEMPLATE owns. English is the default IG language, German the recommended
   translation. Documents the empirically verified rendering behavior of the
   toolchain (which artifacts actually render translations), the i18n
   configuration conventions modules must use, and the language-neutrality
@@ -15,8 +15,8 @@ license: CC-BY-4.0
 
 # ig-translate — multi-language support (template-owner scope)
 
-Adapted from the `ig-translate` skill of the FGDH sample IG
-([`mii-kds-sample-ig-inoffiziell`](https://github.com/forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell),
+Adapted from the `ig-translate` skill of the MII KDS sample IG
+([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), trimmed to what the **template** owns.
 
 ## Scope split (read this first)
@@ -28,9 +28,9 @@ Multi-language support is split across the two template repositories:
   inherited UI-string translations of the base template, and the documented
   conventions below.
 - **The module scaffold
-  ([`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template))**
+  ([`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template))**
   owns the module-facing *workflow*: creating or harvesting the actual
-  translation supplements (`input/translations/en/…`) and translated
+  translation supplements (`input/translations/de/…`) and translated
   narrative pages for a concrete module IG, including the supporting
   tooling.
 
@@ -39,23 +39,27 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
 
 ## Language policy
 
-**German is the default IG language; English is the recommended second
-language.**
+**English is the default IG language; German is the recommended translation.**
 
-- `i18n-default-lang: de` — German is authoritative/binding.
-- `i18n-lang: [en]` — English is the recommended additional rendering.
-- English is a translation aid, never the normative text.
+- `i18n-default-lang: en` — the guide leads in English.
+- `i18n-lang: [de]` — German is the additional rendering.
+- Conformance-resource `description`/`name`/`title` stay **German** in the FSH
+  (the MII naming conventions prefer German there), surfaced in the English
+  guide via a Translation extension.
 
-> **Why de-default:** project decision for these repositories. This
-> deliberately differs from `kerndatensatz-basis` (en-default) — do not
-> "correct" it back. The MII meta wiki's naming conventions also state German
-> as the preferred documentation language, with a translation extension for
-> the English guide.
+> **Why en-default:** the same model as `kerndatensatz-basis`. The MII meta
+> wiki's naming conventions prefer German for a conformance resource's
+> description/name/title but require a translation extension whose content is
+> shown "im englischsprachigen Implementierungsleitfaden" — i.e. they assume the
+> guide is English. This reverses an earlier draft decision of this project; do
+> not flip it back. `.github/workflows/security-scan.yml` runs a language-model
+> guard on every pull request into `dev` that fails the build if the old
+> wording reappears.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
 Re-verified with **IG Publisher 2.2.11** + `fhir2.base.template` 0.1.0 on this
-repo's self-test (2026-07): the earlier sample-IG table was WRONG about narrative
+repo's preview (2026-07): the earlier sample-IG table was WRONG about narrative
 pages because it used the wrong file location (a `*-<lang>.md` sibling). The
 correct location is a **translation-source folder**, exactly as the HL7 reference
 [`FHIR/multi-lang-test-ig`](https://github.com/FHIR/multi-lang-test-ig) uses:
@@ -67,9 +71,9 @@ correct location is a **translation-source folder**, exactly as the HL7 referenc
 | Menu (`input/includes/menu.xml`) | **Yes** | `input/translations/<lang>/includes/menu.xml` (per-language copy) |
 | **ValueSet**, some **ImplementationGuide** title fields, `concept.display`/`concept.definition` | **Partial / No** | Not applied from a plain `.po` supplement on this toolchain (verified) |
 
-Consequence: place the English rendering of `input/pagecontent/index.md` at
-`input/translations/en/pagecontent/index.md`, and `/en/index.html` renders in
-English. Do NOT use a `*-<lang>.md` sibling in `input/pagecontent/` — the
+Consequence: place the German rendering of `input/pagecontent/index.md` at
+`input/translations/de/pagecontent/index.md`, and `/de/index.html` renders in
+German. Do NOT use a `*-<lang>.md` sibling in `input/pagecontent/` — the
 toolchain treats it as a separate page, not a translation.
 
 > Treat this table as ground truth until re-verified. **Re-verify it whenever
@@ -84,11 +88,11 @@ The template supports — and the module scaffold pre-configures — this
 
 ```yaml
 parameters:
-  i18n-default-lang: de          # leading language
+  i18n-default-lang: en          # leading language
   i18n-lang:
-    - en                         # additional rendered language(s)
+    - de                         # additional rendered language(s)
   translation-sources:
-    - input/translations/en      # folder holding the supplements
+    - input/translations/de      # folder holding the translations
 ```
 
 ## What THIS repo must uphold (template obligations)
@@ -104,10 +108,10 @@ parameters:
    `translations/stringsArtifacts-de.po` — verified in
    `HL7/ig-template-base2`). This template inherits them by deriving from the
    base; do not fork or override them. Verify after a base bump that the
-   German strings still render in the self-test build.
+   German strings still render in the preview build.
 3. **Do not "translate" FHIR identifiers.** `name`, `id`, codes, and
    canonical URLs stay as they are, in every language.
-4. **Additive only.** Translations are supplements; the German source is
+4. **Additive only.** Translations are supplements; the English source page is
    never modified by translation work.
 
 ## When to activate (in this repo)
@@ -125,7 +129,7 @@ Findings are reported and proposed as changes via a pull request **targeting
 ## References
 
 - Module-facing workflow + tooling: the `ig-translate` skill in
-  [`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template).
+  [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template).
 - Base template string mechanism and `.po` translations:
   [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2)
   (`includes/`, `translations/`).

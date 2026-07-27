@@ -1,4 +1,4 @@
-# Stale GitHub Pages preview cleanup (§2.8 / Appendix A.9).
+# Stale GitHub Pages preview cleanup.
 #
 # Purpose:   remove branch previews under gh-pages/branches/<branch>/ whose
 #            branch no longer exists, so gh-pages does not grow without bound
@@ -34,7 +34,7 @@ concurrency:
 
 jobs:
   cleanup:
-    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default (§2.13)
+    if: ${{ vars.ENABLE_PREVIEW != 'false' }} # toggle: ON by default
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

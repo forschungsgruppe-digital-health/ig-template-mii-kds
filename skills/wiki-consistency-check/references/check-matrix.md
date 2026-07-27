@@ -10,11 +10,16 @@ or both.
 
 ---
 
-## Section 1 — Module-metadata contract (HARD assertions; CI must fail on violation)
+## Section 1 — Module-metadata contract (HARD assertions)
 
 > **This section is the metadata contract.** It is deliberately a small,
 > fixed list. Do not grow it casually, and do not duplicate it in a second
 > linter — this matrix is the single source of truth.
+>
+> **Where a violation fails a build:** in `mii-kds-module-template` and the
+> modules created from it, where `scripts/convention-check.mjs` runs in CI. This
+> repository has no such job, so here a violation is reported by the run and
+> blocks a release by human decision.
 
 ### 1a. Assertions for MODULE IGs (do **not** apply to template repos)
 
@@ -66,7 +71,7 @@ manifest). Base-template facts verified against
 | Naming conventions (id) | `input/fsh/*.fsh` | Namenskonventionen → Element id | `id` kebab-case, ≤ 64 chars, corresponds to `name`? | Module |
 | Naming conventions (title) | `input/fsh/*.fsh` | Namenskonventionen → Element title | Pattern `MII <Präfix> <ModulAbk> <Beschreibung>`? | Module |
 | Naming conventions (url) | `sushi-config.yaml` canonical + artifacts | Namenskonventionen → Element url | `<canonical>/<ResourceType>/<id>` structure? Established published URLs are never changed retroactively (Bestandsschutz). | Module |
-| Language (content) | `sushi-config.yaml` (`i18n-default-lang`), `input/fsh` | Namenskonventionen → Sprache | German leading (`i18n-default-lang: de`); translation extension on `description`/`name`/`title` where content is German? | Module |
+| Language (content) | `sushi-config.yaml` (`i18n-default-lang`), `input/fsh` | Namenskonventionen → Sprache | Guide leads in English (`i18n-default-lang: en`, as kerndatensatz-basis); resource `description`/`name`/`title` may be German, and then a translation extension is required on them? | Module |
 | Language (template mechanism) | `includes/*.html`, `content/assets/css/` | Namenskonventionen → Sprache | Header/footer/CSS overrides language-neutral (`site.data.stringsBase[include.lang]`, no hard-coded UI strings)? See the `ig-translate` skill. | Template repo |
 | Terminology (versions) | terminology documentation, `sushi-config.yaml` | Terminology Version Policy | Dated SNOMED INTERNATIONAL version per CalVer release? | Module |
 | Terminology (instance data) | profiles/documentation | Terminology Version Policy | `Coding.version` required for ICD-10-GM/OPS/ATC? | Module |

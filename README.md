@@ -1,63 +1,86 @@
 # ig-template-mii-kds
 
-This repository is an [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) **template package** (`de.medizininformatikinitiative.template`) that carries the branding of the Medical Informatics Initiative (MII — Medizininformatik-Initiative). It is derived from the HL7 base template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2) and is consumed by the MII Kerndatensatz (KDS) module Implementation Guides (IGs): a module IG names this package as its template in `ig.ini`, and the IG Publisher then renders that guide with the MII layout, header, footer, and styles. It is for maintainers of MII KDS module IGs and for anyone who builds an MII-branded FHIR IG — you do not edit this repo to write an IG, you *reference* it.
+The **IG template** that gives every MII Kerndatensatz (KDS) module
+Implementation Guide its MII look — header, footer, colours, logo. It is an
+[HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation)
+template package (`de.medizininformatikinitiative.template`) built on the HL7 base
+template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2).
 
-> **Why a template package instead of copying layout files into every IG:** the IG Publisher applies exactly one template per build. Keeping the branding in one versioned package means every module IG gets the identical look by referencing one version, and a branding fix ships to all guides by releasing one new version here.
+**You don't edit this repository to write an IG — you reference it.** A module
+names it in `ig.ini` and the IG Publisher applies it at build time. Keeping the
+branding in one versioned package means every module looks the same, and a fix
+here reaches all of them with one release. The package is not on a registry yet,
+so today modules vendor this repository's `dev` branch instead — see
+[how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 
-## Relation to `mii-kds-module-template` (Repo B)
+To start a module, use
+[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
+instead; it already references this template.
 
-[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template) is a separate GitHub **template repository** that scaffolds a brand-new MII KDS module IG. That scaffold **references this template package by version**. This repository does **not** contain the module scaffold — the two repos are consumed in different ways: this one is downloaded by the IG Publisher at build time; Repo B is copied once via GitHub's "Use this template" button.
+> **Status: prototype.** Usable and released, but pending discussion in the MII
+> Taskforce Kerndatensatz — see [docs/project-status.md](docs/project-status.md).
 
-> **Why by version and not by branch:** a module IG build must be reproducible. Referencing a released version of this package (instead of a moving branch) guarantees the same input produces the same rendered guide.
+## Quickstart (for maintaining the template)
 
-## Quickstart
+To *use* the template in a module, see
+[consume this template in a module](docs/recipes/consume-this-template-in-a-module.md).
+This is for changing the template itself.
 
-You do **not** need this Quickstart to *use* the template in a module — for that,
-see [recipes/consume-this-template-in-a-module.md](docs/recipes/consume-this-template-in-a-module.md).
-This Quickstart is for *maintaining* the template: build its self-test, see the
-rendered branding, change something, and release.
+1. **Clone and open in the dev container** (VS Code → *Reopen in Container*) — it
+   brings the whole toolchain.
+   → [details](docs/recipes/first-build-in-devcontainer.md)
+2. **Build the preview** — a small IG bundled here so you can see the branding
+   render: `sushi .`, then the IG Publisher, then open `output/index.html`.
+   Pushing a branch does the same in CI and comments the preview URL on your PR.
+   → [the exact commands, including how to get
+   `publisher.jar`](docs/recipes/first-build-in-devcontainer.md)
+3. **Change something** — e.g. a brand colour is one CSS variable in
+   `content/assets/css/mii.css`.
+   → [change the brand colour](docs/recipes/change-the-brand-color.md) ·
+   [replace the logo](docs/recipes/replace-the-logo.md)
+4. **Release** — merge `dev → main`; Release Please opens a SemVer release PR.
+   → [cut a template release](docs/recipes/cut-a-template-release.md)
 
-1. **Clone** and open in the dev container (installs the whole toolchain for you):
-   `git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds && cd ig-template-mii-kds`, then in VS Code run **"Reopen in Container"**. Details: [recipes/first-build-in-devcontainer.md](docs/recipes/first-build-in-devcontainer.md).
-2. **Build the self-test IG** (the template applied to a tiny sample so you can see
-   it render): `sushi . && curl -L -o publisher.jar https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar && java -jar publisher.jar -ig ig.ini`.
-3. **Open** `output/index.html` in a browser — you now see the MII header, footer,
-   colours and logo applied.
-4. **Or just push a branch:** every push to a `feature/*` branch builds the
-   self-test in CI and posts a **preview URL** on the PR (see [docs/WORKFLOWS.md](docs/WORKFLOWS.md)).
-   The current `dev` preview is at
-   `https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/`.
-5. **Change the brand colour** in `content/assets/css/mii.css` (override a CSS
-   variable — one line): [recipes/change-the-brand-color.md](docs/recipes/change-the-brand-color.md).
-   Rebuild (step 2) and see it.
-6. **Cut a release** when your change is ready: merge `dev → main`; Release Please
-   opens a SemVer release PR: [recipes/cut-a-template-release.md](docs/recipes/cut-a-template-release.md).
+Current `dev` preview:
+<https://medizininformatik-initiative.github.io/ig-template-mii-kds/branches/dev/>
 
-New to any of the words above? Start with the [Glossary](docs/GLOSSARY.md) and
-[Concepts](docs/CONCEPTS.md).
+Unfamiliar terms are in the [glossary](docs/glossary.md).
 
-## How this repo is structured
+## Where things live
 
-Planned layout — the directories are added by the ongoing build-out pull requests, so not all of them exist yet:
+The paths mirror the base template, because the IG Publisher resolves them by name.
 
-| Path | Purpose |
+| Path | What it is |
 | --- | --- |
-| `package/` | The template package itself (`package.json`, template configuration) — this is what the IG Publisher downloads and applies |
-| `includes/` | HTML/Liquid fragments (header, footer, navigation) that override the base template |
-| `content/` | Static branding assets: CSS, logos, images |
-| `docs/` | Documentation for humans: glossary, concepts, recipes, further reading |
-| `skills/` | Vendor-neutral agent skills (agentskills.io format) for maintenance workflows |
-| `.github/` | CI workflows, issue forms, repository housekeeping |
+| `package/` | The template package manifest — what the IG Publisher applies |
+| `includes/` | Header, footer and CSS fragments that override the base template |
+| `content/` | Branding assets: CSS, logo, favicon |
+| `translations/` | German UI-string catalogs for the base template |
+| `input/`, `ig.ini` | The bundled preview IG (so branding changes are reviewable) |
+| `docs/` | Guides and step-by-step recipes |
+| `scripts/` | Helper scripts: dependency check, language-model guard, logo trace, secret upload — see [`scripts/README.md`](scripts/README.md) |
+| `skills/` | Vendor-neutral agent skills for maintenance tasks |
+| `.github/workflows/` | CI: preview build, release, monitoring |
 
-> **Why the split mirrors the base template:** the IG Publisher's template mechanism resolves files by well-known paths (`package/`, `includes/`, `content/`); keeping the upstream layout makes the diff against `fhir2.base.template` reviewable and upgrades mechanical.
+## Documentation
 
-## Where to get help
+- [Recipes](docs/recipes/) — step-by-step for the common tasks
+- [Glossary](docs/glossary.md) · [Concepts](docs/concepts.md) — the vocabulary and the ideas behind it
+- [Design](docs/design.md) — every branding decision and where its value comes from
+- [Workflows](docs/workflows.md) — what the CI does, and how releases work
+- [IG best-practices checklist](docs/ig-best-practices-checklist.md) — how this template meets the official HL7 guidance
+- [Secrets](docs/secrets.md) — optional: MII terminology server, release announcements
+- [Open tasks](docs/open-tasks.md) — what is unfinished, and why
 
-- **HL7 FHIR community Zulip** — <https://chat.fhir.org>, stream **`german/mi-initiative`**. The channel the MII KDS IGs themselves direct questions to; anyone can create a free account and join. Best for FHIR, IG-Publisher, and profiling questions.
-- **MII Zulip organization** — <https://mii.zulipchat.com/>, stream **`MII-Kerndatensatz`**. The MII's own chat for KDS coordination. Register at the org URL; if access must be granted, request it from the MII Geschäftsstelle (<office@medizininformatik-initiative.de>).
+## Getting help
 
-> **Why two channels:** the public FHIR Zulip reaches the broad FHIR/implementer community and keeps a searchable history — post technical questions there where possible (and search existing threads first). The MII Zulip is the initiative-internal coordination space.
+- **FHIR and profiling questions** — HL7 FHIR Zulip <https://chat.fhir.org>,
+  stream `german/mi-initiative`. Free to join; this is where the MII KDS IGs
+  point their readers.
+- **MII coordination** — MII Zulip <https://mii.zulipchat.com/>, stream
+  `MII-Kerndatensatz`. Access via the MII Geschäftsstelle
+  (<office@medizininformatik-initiative.de>).
 
-## License
+## Licence
 
-[CC0-1.0](LICENSE) — the same license as the upstream base template `fhir2.base.template`.
+[CC0-1.0](LICENSE), like the upstream base template.

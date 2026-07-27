@@ -2,18 +2,6 @@
 
 # The IG Publisher reads this file (input/ignoreWarnings.txt) to suppress
 # reviewed, non-actionable QA messages. Its mere ABSENCE is itself reported as
-# an error ("Suppressed messages file not found"), so the self-test ships it.
+# an error ("Suppressed messages file not found"), so the preview ships it.
 #
 # Add a message here only after confirming it is not a real problem, and say why.
-
-# --- Language-switcher flag image (bilingual self-test) --------------------
-# The self-test builds bilingually (German default + English), so the base
-# template renders a language switcher whose flag image is named by ISO-639-3
-# code: assets/images/deu.svg. fhir2.base.template 0.1.0 ships the older
-# ISO-639-1 raster flags (lang-de.png / lang-en.png) but not the deu.svg /
-# eng.svg the current IG Publisher expects, so the flag cannot be resolved.
-# This is a base-template asset gap, not a defect of the self-test. The proper
-# fix is to ship the ISO-639-3 flag SVGs in content/assets/images/ (branding /
-# multi-language work, outside this self-test task). Suppressed so the bilingual
-# self-test stays a clean, reviewable build.
-The image source 'assets/images/deu.svg' cannot be resolved
