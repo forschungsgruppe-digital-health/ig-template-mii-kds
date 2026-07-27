@@ -144,9 +144,11 @@ Everything above is **this repository's** workflow. It is not an MII rule, and
 this repository does not speak for the MII.
 
 The MII does publish rules for commenting on a Kerndatensatz module, and a
-module built from this scaffold will eventually sit inside them. They are in
-the **KDS governance, version 4.0 (7 May 2026)**, adopted by the National
-Steering Committee and linked from the
+module that renders with this template will eventually sit inside them. They
+are in the
+[**KDS governance, version 4.0**](https://www.medizininformatik-initiative.de/sites/default/files/2026-07/KDS-Governance-v4.pdf)
+(PDF, 7 May 2026), adopted by the National Steering Committee and published on
+the
 [MII core-data-set page](https://www.medizininformatik-initiative.de/en/medical-informatics-initiatives-core-data-set):
 
 - **Where comments go.** After FHIR profiling, a module runs a commenting round.
