@@ -81,6 +81,13 @@ workaround can eventually be deleted.
   phrasings and catches every wording that has actually occurred here. If you
   add a phrasing, add the pattern; do not weaken the existing ones.
 
+- **Nothing enforces the "list test files by name" convention.** `scripts/*.test.mjs`
+  is run by an explicit list in `dependency-check.yml` and `security-scan.yml`,
+  not a glob, so a new test file can be written and silently never run in CI.
+  The explicit form is deliberate (a glob in the sibling repo's publication gate
+  once aborted a release), so the trade is accepted: `scripts/README.md` and both
+  workflows say a new test must be added by hand.
+
 ## Cross-repo consistency — decided, not pending
 
 The two repositories share fourteen documentation filenames. Re-measure rather
