@@ -393,14 +393,29 @@ vendored mirror.
 | Header text | `#333333` | MII body text (§3) |
 | Padding | `6px 10px` | — |
 
-> **Why the selector is `table:not([class])`, and why not to widen it:** it must
-> match only what the markdown renderer emits. Every table the IG Publisher
-> generates carries a class — `grid`, `codes`, `dict`, `list`, `colsd`, `colsi`,
-> `binding grid`, `fhir-conformance-list`. Measured across both built sites at
-> the time of writing: **210 generated tables, all of them classed; every bare
-> `<table>` was a narrative one.** A bare `table {}` rule would repaint the
-> profile trees, whose hierarchy lines are background images, so widening this
-> selector breaks artifact rendering.
+> **Why the selector excludes four attributes, and why the short version is
+> wrong:** it must match only what the markdown renderer emits.
+> `table:not([class])` — the obvious form, and the one first shipped here — is
+> **not** safe. The IG Publisher renders profile snapshot and differential trees
+> as tables that carry no class at all, only presentation attributes:
+>
+> ```html
+> <table border="0" fhir="generated-heirarchy" cellpadding="0" cellspacing="0"
+>        style="border: 0px #F0F0F0 solid; ..." id="…" data-fhir="…">
+> ```
+>
+> Their inline `style` sits on the `<table>`, so it does not prevent a
+> stylesheet rule from bordering their `<td>`s — which draws a box around every
+> cell of the hierarchy tree. What actually separates the two kinds is that a
+> markdown table has **no attributes at all**, while every generated one carries
+> at least `style`.
+>
+> Measured by simulating the selector against every page of both built sites:
+> the chain matches **14 markdown tables and 0 generated tables**, where
+> `:not([class])` alone would have hit **34 generated ones**.
+> `scripts/narrative-table-styles.test.mjs` re-runs that simulation against
+> fixtures taken verbatim from the built output, so the check is on behaviour
+> rather than on the selector's spelling.
 
 > **Why no `width: 100%`:** `kerndatensatz-basis` sets it; this template does
 > not. Forcing full width stretches two-column tables across the page. Add it in
