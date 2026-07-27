@@ -3,7 +3,7 @@ MIIKDSTemplatePreview : Validation Results
 
 err = 0, warn = 8, info = 2
 IG Publisher Version: 2.2.11
-Generated Mon Jul 27 15:48:58 UTC 2026. FHIR version 4.0.1 for de.medizininformatikinitiative.template.preview#0.2.0 (canonical = https://github.com/medizininformatik-initiative/ig-template-mii-kds)
+Generated Mon Jul 27 16:04:24 UTC 2026. FHIR version 4.0.1 for de.medizininformatikinitiative.template.preview#0.2.0 (canonical = https://github.com/medizininformatik-initiative/ig-template-mii-kds)
  Build Errors : 0 / 4 / 0
  /home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview : 0 / 0 / 2
  /home/runner/work/ig-template-mii-kds/ig-template-mii-kds/fsh-generated/resources/StructureDefinition-preview-model : 0 / 4 / 2
