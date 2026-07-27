@@ -14,7 +14,7 @@
   "name" : "MIIKDSTemplatePreview",
   "title" : "MII KDS IG Template — Preview",
   "status" : "draft",
-  "date" : "2026-07-27T01:54:07+00:00",
+  "date" : "2026-07-27T07:17:22+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",
@@ -42,7 +42,7 @@
     }],
     "uri" : "http://terminology.hl7.org/ImplementationGuide/hl7.terminology",
     "packageId" : "hl7.terminology.r4",
-    "version" : "7.2.0"
+    "version" : "7.3.0"
   },
   {
     "id" : "hl7ext",

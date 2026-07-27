@@ -1,5 +1,5 @@
 {
-  "date" : "Mon, 27 Jul, 2026 01:54:07 +0000",
+  "date" : "Mon, 27 Jul, 2026 07:17:22 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json",
@@ -7,52 +7,52 @@
     "processes" : [{
       "activity" : "load",
       "start" : 29,
-      "length" : 23
+      "length" : 20
     },
     {
       "activity" : "checkR4R4B",
       "start" : 30,
-      "length" : 15
+      "length" : 14
     },
     {
       "activity" : "generateNarratives",
       "start" : 30,
-      "length" : 181
+      "length" : 125
     },
     {
       "activity" : "validate",
-      "start" : 34,
-      "length" : 4619
+      "start" : 35,
+      "length" : 7003
     },
     {
-      "activity" : "scanForUsageStats",
-      "start" : 38,
+      "activity" : "checkConformanceResources3",
+      "start" : 42,
       "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 38,
-      "length" : 9
+      "start" : 42,
+      "length" : 8
     },
     {
       "activity" : "generate1",
-      "start" : 39,
-      "length" : 136
+      "start" : 43,
+      "length" : 129
     },
     {
       "activity" : "generate2",
-      "start" : 41,
-      "length" : 125
+      "start" : 46,
+      "length" : 123
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 50,
+      "start" : 57,
       "length" : 3
     },
     {
       "activity" : "scanExamplesForR5",
-      "start" : 61,
-      "length" : 3
+      "start" : 70,
+      "length" : 2
     }]
   },
   {
@@ -66,7 +66,7 @@
     {
       "activity" : "load",
       "start" : 29,
-      "length" : 9
+      "length" : 7
     },
     {
       "activity" : "generateSnapshots",
@@ -76,47 +76,47 @@
     {
       "activity" : "load-configure",
       "start" : 30,
+      "length" : 2
+    },
+    {
+      "activity" : "loadInfo",
+      "start" : 30,
       "length" : 1
     },
     {
       "activity" : "generateNarratives",
       "start" : 30,
-      "length" : 758
+      "length" : 660
     },
     {
       "activity" : "validate",
       "start" : 30,
-      "length" : 3365
-    },
-    {
-      "activity" : "checkConformanceResources",
-      "start" : 38,
-      "length" : 1
+      "length" : 4909
     },
     {
       "activity" : "translate",
-      "start" : 38,
+      "start" : 42,
       "length" : 1
     },
     {
       "activity" : "generate1",
-      "start" : 39,
-      "length" : 49
+      "start" : 43,
+      "length" : 48
     },
     {
       "activity" : "generate2",
-      "start" : 41,
-      "length" : 696
+      "start" : 46,
+      "length" : 714
     },
     {
       "activity" : "generate2",
-      "start" : 42,
-      "length" : 804
+      "start" : 47,
+      "length" : 1234
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 50,
-      "length" : 1
+      "start" : 57,
+      "length" : 2
     }]
   },
   {
@@ -124,40 +124,35 @@
     "size" : 602,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 42,
+      "start" : 47,
       "length" : 1
     }]
   },
   {
     "name" : "/fsh-generated/includes/fsh-link-references.md",
-    "size" : 54,
-    "processes" : [{
-      "activity" : "generate2",
-      "start" : 42,
-      "length" : 1
-    }]
+    "size" : 54
   },
   {
     "name" : "/input/pagecontent/translationinfo.md",
-    "size" : 1809,
+    "size" : 2115,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 43,
+      "start" : 47,
       "length" : 1
     }]
   },
   {
     "name" : "/input/pagecontent/index.md",
-    "size" : 1276,
-    "processes" : [{
-      "activity" : "generate2",
-      "start" : 42,
-      "length" : 1
-    }]
+    "size" : 1276
   },
   {
     "name" : "/template/config",
-    "size" : 0
+    "size" : 0,
+    "processes" : [{
+      "activity" : "generate2",
+      "start" : 47,
+      "length" : 1
+    }]
   },
   {
     "name" : "/template/config/_config.yml",
