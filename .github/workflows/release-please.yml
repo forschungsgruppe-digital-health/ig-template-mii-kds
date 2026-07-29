@@ -17,9 +17,10 @@
 #     separate, manual, gated workflow_dispatch.
 #
 # Scope: Release Please versions the TEMPLATE REPO ITSELF (SemVer).
-# MII KDS modules release solely via the MII Module Release Workflow
-# (CalVer YYYY.n.n); a module must NEVER carry these files — the module
-# template's first-run bootstrap removes them from a newly created module.
+# MII KDS modules release via the MII Module Release Workflow (CalVer
+# YYYY.n.n); these files on top of that would give a module a second,
+# conflicting version stream, so the module template's first-run bootstrap
+# removes them from a newly created module.
 #
 # Version sync (release-please-config.json `extra-files`): three files carry
 # the version and are bumped by the STRUCTURED updaters, which address the

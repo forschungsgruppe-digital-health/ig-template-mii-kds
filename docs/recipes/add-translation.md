@@ -18,13 +18,16 @@ English is the default rendering language, German the additional one
 (`i18n-default-lang: en`, `i18n-lang: [de]`) — the same model as
 kerndatensatz-basis.
 
-> **Why English leads the guide:** the MII meta wiki
+> **Why English leads the guide (this project's reading):** the MII meta wiki
 > ([Namenskonventionen für FHIR-Ressourcen in der MII](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Namenskonventionen-für-FHIR‐Ressourcen-in-der-MII),
 > § Sprache) prefers German for a conformance resource's `description`/`name`/
 > `title`, but requires a Translation extension whose content is shown "im
-> englischsprachigen Implementierungsleitfaden" — it assumes the guide is
-> English. Resource *descriptions* therefore stay German; the narrative guide
-> leads in English.
+> englischsprachigen Implementierungsleitfaden". That phrasing assumes an
+> English guide, and `kerndatensatz-basis` is built that way, so this project
+> follows it. The wiki does not state the rule directly — if the TF KDS decides
+> otherwise, this choice (and the `language-model` CI job that pins it here) is
+> what changes. Resource *descriptions* stay German; the narrative guide leads
+> in English.
 
 ## Steps
 

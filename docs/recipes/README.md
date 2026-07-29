@@ -13,13 +13,14 @@ yet.
 | [change the brand colour](change-the-brand-color.md) | A colour has to change |
 | [replace the logo](replace-the-logo.md) | A logo file has to change |
 | [languages in the template](add-translation.md) | A UI label is blank in one language, or you add a language |
+| [publish the preview on GitHub Pages](publish-the-preview-on-github-pages.md) | The preview builds but the URL 404s, or you are setting up a fresh copy |
 | [cut a template release](cut-a-template-release.md) | `dev` is ready to be pinned as a version — vendoring modules already have it |
 
 ## Using the template
 
 | Recipe | Use it when |
 | --- | --- |
-| [consume this template in a module IG](consume-this-template-in-a-module.md) | A module has to reference this template |
+| [consume this template in a module IG](consume-this-template-in-a-module.md) | You are wiring a module up to reference this template |
 
 ## Keeping it healthy
 

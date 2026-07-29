@@ -1,20 +1,9 @@
 # DESIGN — MII branding for `de.medizininformatikinitiative.template`
 
-> ## ✅ MII corporate design — CONFIRMED (2026-07-24)
->
-> **The MII corporate design of this template (logo + palette + layout) is
-> CONFIRMED by the maintainer** and may go into a release. The design was derived
-> on 2026-07-22 from the assets the MII itself publishes (see the source table
-> below) and reviewed on the rendered preview preview before confirmation.
-> Changes since the derived suggestion: the page header background is **white**
-> (matching the white logo background and the white content area), and the
-> highlight boxes are purpose-neutral (`mii-highlight-blue` / `mii-highlight-green`).
->
-> Remaining non-blocking follow-ups (do not gate a release):
-> - The logo is a **trace** of the official PNG (no official SVG exists); replace it if the MII publishes one.
-> - The MII logo is a trademark; shipping it in this CC0 repo relies on MII
->   permission (precedent: `kerndatensatz-basis` ships MII logo files). Confirm
->   redistribution rights with the MII before wide distribution.
+> **This is the design of record.** The logo, palette and layout below are the
+> MII corporate design this template ships. Follow-ups on the logo assets — an
+> official SVG, trademark permission — are tracked in
+> [open-tasks.md](open-tasks.md).
 
 This document records every branding decision of this template, each with its
 rationale and its exact upstream source. Nothing here is invented: every color,
@@ -30,7 +19,7 @@ live sources on 2026-07-22:
 
 | Fact | Evidence |
 | --- | --- |
-| Both MII reference repos use `fhir2.base.template` | `medizininformatik-initiative/kerndatensatz-basis` `ig.ini` (main @ `310ad1e`, 2026-07-21): `template = fhir2.base.template#current`. Same in `medizininformatik-initiative/mii-kds-sample-ig-inoffiziell` `ig.ini`. |
+| Both MII reference repos use `fhir2.base.template` | `medizininformatik-initiative/kerndatensatz-basis` `ig.ini` (main @ `310ad1e`, 2026-07-21): `template = fhir2.base.template#current`. Same in `forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell` `ig.ini`. |
 | `fhir.base.template` is avoided because of reported security issues | Recorded verbatim in the sample IG's `ig.ini`: `# Template: fhir2.base.template (fhir.base.template wegen gemeldeter Security-Issues nicht genutzt).` |
 | `hl7.fhir.template` is inappropriate for MII | Its repo `HL7/ig-template-fhir` describes itself as "Template used for most HL7-defined FHIR implementation guides … **Adds HL7 logos**" — HL7 branding on an MII guide would be wrong. |
 | `fhir2.base.template` is the language-aware base | Its `package.json` description: "FHIR IG **Translated** Base Template — foundational for use by anyone"; it declares `multilanguage-format: true` (in `config.json`) and ships per-language `translations/stringsBase-<lang>.po` / `stringsArtifacts-<lang>.po` catalogs. Required for the bilingual setup: the guide leads in English with a German translation (as kerndatensatz-basis), so the German rendering needs the base's German UI strings. **Caveat — the pinned `0.1.0` ships NO German catalog** (only `ar`, `es`, `fr`, `nl`, `pt`, `ru`; verified 2026-07-22 by extracting `packages.simplifier.net/fhir2.base.template/0.1.0`). German UI-string catalogs were added upstream (`HL7/ig-template-base2` `main`) only *after* `0.1.0` was cut, so they are not in the pinned build — consequence in §6. |
@@ -78,7 +67,7 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 
 ---
 
-## 3. Palette (CONFIRMED 2026-07-24)
+## 3. Palette
 
 Derivation order: (1) `kerndatensatz-basis` repo assets, (2) the MII website as
 fallback. The basis repo carries **no CSS and no palette**
@@ -146,7 +135,7 @@ dragon (29–30), translation box (31–32).
 
 ---
 
-## 4. Logo & favicon (CONFIRMED 2026-07-24)
+## 4. Logo & favicon
 
 The logo ships as **SVG, traced from the official PNGs** (see below). The source
 PNGs and their checksums are recorded for provenance.
@@ -212,10 +201,12 @@ zoom: indistinguishable at display size, clean vector edges when enlarged.
   untouched.
 - **Header layout:** the logo sits in `#project-nav`/`#project-logo` — the base's
   own project-logo slot (`project.css`: floats `var(--ig-left)`, `line-height:
-  50px`), rendered at `height="50"` like the basis repo's header. We deliberately
-  do **not** add the FHIR-family logo on the right (basis does at IG level):
-  the template stays minimal, and a module can add it via its own
-  `input/includes/fragment-header.html`, which overrides ours per IG.
+  50px`), rendered at `height="50"` like the basis repo's header. Beside it the
+  fragment renders the **HL7 FHIR family logo** in `#family-nav`/`#family-logo`
+  — the base's own slot, which `project.css` floats on `var(--ig-right)` —
+  linking to <https://hl7.org/fhir>, mirroring kerndatensatz-basis. A module that
+  overrides `input/includes/fragment-header.html` replaces this fragment
+  wholesale, so it must re-add both logos if it wants them.
 - **Licensing note — follow-up (non-blocking): confirm MII permission to redistribute the
   logo.** The logo and wordmark are marks of the Medizininformatik-Initiative
   (TMF e.V. coordination). This repo is CC0-1.0, but CC0 cannot and does not
@@ -253,7 +244,7 @@ The override appends to (never replaces) the base footer content:
   `Impressum`/`Legal notice`) rather than resolving them through the base
   mechanism `{{site.data.stringsBase[include.lang]['<Key>']}}`. This is a
   deliberate deviation: the pinned base ships no German catalog, so the base
-  mechanism renders those labels **blank** on the German `/de/` pages (next
+  mechanism renders those labels **blank** on the German `/de/` pages (third
   bullet). Every visible footer string is therefore correct in both `de` and
   `en`; adding a third language means extending this fragment's label branch.
 - **Known limit — the organisation name and link in the copyright line are the
@@ -266,45 +257,22 @@ The override appends to (never replaces) the base footer content:
   — *before* it includes our `fragment-footer.html`, and both values come from
   the single-valued `publisher` block in `sushi-config.yaml` (SUSHI maps
   `publisher.url` onto `contact[0].telecom[0]`). **Accepted as-is:** that block
-  is deliberately identical to `kerndatensatz-basis` and the module template so
-  every MII KDS IG names the same responsible organisation, and there is no
+  is deliberately identical to `kerndatensatz-basis` and the module template, so
+  all three name the same responsible organisation, and there is no
   language-neutral MII URL to switch to — the site root `301`s to `/de/start`,
   so changing it would only mirror the mismatch onto the English pages. Fixing
   it properly needs either per-language IG metadata (not available) or an
   override of `fragment-pageend.html`, which would fork base behaviour (§2).
-- **Finding — the pinned base ships no German UI-string catalog (i18n gap; RESOLVED 2026-07-25 by vendoring, see end of this bullet).**
-  `fhir2.base.template#0.1.0` (the pinned base) contains `stringsBase-<lang>.po`
-  catalogs for `ar`/`es`/`fr`/`nl`/`pt`/`ru` only — **not** `de` (verified
-  2026-07-22; German was added to `HL7/ig-template-base2` `main` after `0.1.0`).
-  The master `stringsBase.json` carries only the English values, so
-  `site.data.stringsBase['de']` is **empty**, so any base UI string resolved
-  through `{{site.data.stringsBase['de']['<Key>']}}` returns **nothing on the
-  `/de/` pages**. Originally this left the footer's `Links` label blank and the
-  "Table of Contents"/"QA Report" links textless on German pages.
-  **Fix applied (2026-07-24):** `includes/fragment-footer.html` no longer relies
-  on `stringsBase` for its labels — it hard-codes language-aware labels
-  (`Links` / `Inhaltsverzeichnis` / `QA-Bericht` / `Impressum` on `/de/`,
-  `Links` / `Table of Contents` / `QA Report` / `Legal notice` on `/en/`), so the
-  footer now renders real text in **both** languages. Verified on the preview
-  preview. This is a footer-only override; other base chrome that still resolves
-  through `stringsBase` would remain affected until the base ships a German
-  catalog.
-  > **Upstream fix still preferred for the rest of the base chrome:** bump the
-  > base to a release that carries the German catalog (the dependency checker
-  > watches `fhir2.base.template`, so the bump arrives as a reviewable PR).
-  > Vendoring `stringsBase-de.po` into a template `translations/` override is the
-  > alternative for the `.json` table, which replaces rather than merges (the
-  > fork hazard of §2).
-  >
-  > **RESOLVED (2026-07-25).** The `.po` catalogs are *additive*, unlike the
-  > `.json` table: template files layer base-then-child, so a **new** filename
-  > supplements the base's catalogs instead of replacing them. This template
-  > therefore vendors the base's own German catalogs — `stringsBase-de.po` and
-  > `stringsArtifacts-de.po` (CC0, from `HL7/ig-template-base2` `main`) — into
-  > `translations/`. Verified on the rendered preview: the German footer now
-  > shows the full metadata (`IG © 2026+ …`, `Package … basiert auf FHIR 4.0.1`,
-  > `Erstellt <date>`), matching English. Delete `translations/` once the pinned
-  > base ships `de` itself; see `translations/README.md`.
+- **The pinned base ships no German UI-string catalog.**
+  `fhir2.base.template#0.1.0` carries `stringsBase-<lang>.po` for
+  `ar`/`es`/`fr`/`nl`/`pt`/`ru` only, so anything resolved through
+  `{{site.data.stringsBase['de']['<Key>']}}` renders **blank** on the `/de/`
+  pages. Two consequences: the footer fragment hard-codes its own labels (§5),
+  and this template vendors the base's own `stringsBase-de.po` and
+  `stringsArtifacts-de.po` into `translations/` for the rest of the base chrome.
+  Delete both once the pinned base ships `de` itself — see
+  [`translations/README.md`](../translations/README.md) and
+  [add-translation.md](recipes/add-translation.md) §1.
 - **No new visible strings are hard-coded.** The only literal texts added are
   (a) bare URLs (not translated in any language) and (b) `alt` texts that quote
   the proper name/wordmark of the logo variant being shown
@@ -383,7 +351,7 @@ markdown tables in page content with no border and no header fill.
 is why its
 [`/en/metadata.html`](https://medizininformatik-initiative.github.io/kerndatensatz-basis/en/metadata.html)
 has bordered tables while its profile pages do not. This template does it once,
-in `content/assets/css/mii.css`, so every module inherits it through the
+in `content/assets/css/mii.css`, so a module inherits it through the
 vendored mirror.
 
 | Property | Value | Source |
@@ -421,25 +389,15 @@ vendored mirror.
 > not. Forcing full width stretches two-column tables across the page. Add it in
 > a module if that module's tables want it.
 
-## 8. How to review this design
+## 8. How to review a branding change
 
-1. Wait for the preview build (task A4: `ig.ini` + CI + `dev` Pages preview)
-   or run the IG Publisher locally on any IG with `ig.ini` →
-   `template = <path-to-this-repo>` (vendored path).
+1. Build the preview — push a branch and CI comments the URL, or run the IG
+   Publisher locally on any IG whose `ig.ini` says
+   `template = #<folder-holding-a-copy-of-this-repo>`. The leading `#` marks a
+   local folder; without it the value is read as a package id and the build
+   fails to find the template.
 2. Compare the rendered header/footer/navbar against
    `https://www.medizininformatik-initiative.de/` and against a
    `kerndatensatz-basis` build.
-3. Then either **confirm** logo + palette (remove the confirmation banners
-   here, in `mii.css`, and in the three fragments) or **replace** the hex values in
-   `mii.css` / the PNGs in `content/assets/images/` — no other file needs to
-   change.
-
-**The design is CONFIRMED (2026-07-24).** The palette, logo and layout above are
-the agreed MII corporate design of this template and shipped in v0.2.0.
-
-**Remaining follow-ups — non-blocking, none gate a release:**
-
-1. Replace the traced logo with an official SVG if the MII publishes one (the site's only SVG is the anniversary mark). The shipped SVG is a faithful trace, so this is a provenance improvement, not a visual one.
-3. Confirm MII permission to redistribute the logo files in this CC0 repo.
-4. Decide whether translated imprint-link labels (lang-branched strings) are preferred over the language-neutral bare-URL labels.
-5. Decide whether to accept footer links being the same white as the surrounding footer text (site-faithful, but WCAG 1.4.1-relevant) or allow one underline rule override.
+3. To change a value, edit the hex in `mii.css` or the assets in
+   `content/assets/images/` — no other file needs to change.

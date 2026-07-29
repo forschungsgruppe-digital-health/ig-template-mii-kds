@@ -65,12 +65,18 @@ source of truth; consult them before doing the corresponding task by hand.
 
 - [`skills/wiki-consistency-check/`](skills/wiki-consistency-check/SKILL.md)
   — **the single convention checker**: repo ↔ MII meta wiki drift plus the
-  hard module-metadata contract; report-only, PRs target `dev`.
+  metadata conventions these templates adopt; report-only, PRs target `dev`.
 - [`skills/ig-translate/`](skills/ig-translate/SKILL.md) — multi-language
   support in template-owner scope: en-default with a German translation, the
   verified rendering table, i18n conventions, language-neutrality rules for
   the template's overrides. The module-facing translate/harvest workflow
   lives in `mii-kds-module-template`.
+- [`skills/docs-steward/`](skills/docs-steward/SKILL.md) — audits, repairs and
+  trims this repository's documentation: verifies every link, path and factual
+  claim against the repo itself, removes AI decision-narration, reduces the docs
+  to what create/modify/maintain actually needs, and walks the documented path
+  as a first-time and an experienced reader. Report-only by default; writes a
+  dated report to [`docs/reports/`](docs/reports/).
 
 ### Discovery paths (symlinks, not copies)
 
