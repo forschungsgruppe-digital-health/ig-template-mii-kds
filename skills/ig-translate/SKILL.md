@@ -2,21 +2,22 @@
 name: ig-translate
 description: >-
   Multi-language support for MII KDS Implementation Guides — the part the
-  TEMPLATE owns. English is the default IG language, German the recommended
-  translation. Documents the empirically verified rendering behavior of the
-  toolchain (which artifacts actually render translations), the i18n
-  configuration conventions modules must use, and the language-neutrality
-  rules for this template's header/footer/CSS overrides. The module-facing
-  translate/harvest workflow lives in the module scaffold repository, not
-  here. Report/propose only; any change goes through a pull request
-  targeting dev.
+  TEMPLATE owns. This project's model is English as the default IG language
+  and German as the additional rendering. Documents the empirically verified
+  rendering behavior of the toolchain (which artifacts actually render
+  translations), the i18n configuration this template is built and tested
+  against and which the module scaffold pre-configures, and the
+  language-neutrality rules for this template's header/footer/CSS overrides.
+  The module-facing translate/harvest workflow lives in the module scaffold
+  repository, not here. Report/propose only; any change goes through a pull
+  request targeting dev.
 license: CC-BY-4.0
 ---
 
 # ig-translate — multi-language support (template-owner scope)
 
 Adapted from the `ig-translate` skill of the MII KDS sample IG
-([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
+([`mii-kds-sample-ig-inoffiziell`](https://github.com/forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), trimmed to what the **template** owns.
 
 ## Scope split (read this first)
@@ -24,9 +25,8 @@ CC-BY-4.0), trimmed to what the **template** owns.
 Multi-language support is split across the two template repositories:
 
 - **This repo (`ig-template-mii-kds`, the template package)** owns the
-  language *mechanism*: language-neutral header/footer/CSS overrides, the
-  inherited UI-string translations of the base template, and the documented
-  conventions below.
+  language *mechanism*: the header/footer/CSS overrides, the base template's
+  UI-string catalogs, and the documented conventions below.
 - **The module scaffold
   ([`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template))**
   owns the module-facing *workflow*: creating or harvesting the actual
@@ -39,7 +39,8 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
 
 ## Language policy
 
-**English is the default IG language; German is the recommended translation.**
+**This project's model: English is the default IG language, German the
+additional rendering** — following `kerndatensatz-basis`.
 
 - `i18n-default-lang: en` — the guide leads in English.
 - `i18n-lang: [de]` — German is the additional rendering.
@@ -47,14 +48,20 @@ scaffold's `ig-translate` skill. Stay here for template mechanics.
   (the MII naming conventions prefer German there), surfaced in the English
   guide via a Translation extension.
 
-> **Why en-default:** the same model as `kerndatensatz-basis`. The MII meta
-> wiki's naming conventions prefer German for a conformance resource's
+> **Why en-default (this project's reading):** the MII meta wiki's naming
+> conventions prefer German for a conformance resource's
 > description/name/title but require a translation extension whose content is
-> shown "im englischsprachigen Implementierungsleitfaden" — i.e. they assume the
-> guide is English. This reverses an earlier draft decision of this project; do
-> not flip it back. `.github/workflows/security-scan.yml` runs a language-model
-> guard on every pull request into `dev` that fails the build if the old
-> wording reappears.
+> shown "im englischsprachigen Implementierungsleitfaden" — that phrasing
+> assumes an English guide, and `kerndatensatz-basis` is built that way. The
+> wiki does not state the rule directly, so no MII rule stops a module from
+> choosing otherwise, and the template's overrides are language-neutral either
+> way. The model is nevertheless binding wherever the guard runs: here, on
+> every pull request into `dev` (`.github/workflows/security-scan.yml`), and in
+> a repository created from the module scaffold, which inherits the scaffold's
+> own copy (`scripts/language-model-check.sh`, run by `convention-check.yml`
+> and never removed by the first-run bootstrap). It reverses an earlier draft
+> decision of this project — do not flip a repository back without changing its
+> guard too.
 
 ## Ground truth: what the toolchain actually renders (empirically verified)
 
@@ -81,7 +88,7 @@ toolchain treats it as a separate page, not a translation.
 > the table (here and in the module scaffold's copy) with the new
 > verification statement.
 
-## Configuration conventions (what modules must declare)
+## Configuration the scaffold pre-configures (and this template is verified against)
 
 The template supports — and the module scaffold pre-configures — this
 `sushi-config.yaml` parameter set:
@@ -97,18 +104,26 @@ parameters:
 
 ## What THIS repo must uphold (template obligations)
 
-1. **Language-neutral overrides.** The header, footer, and CSS fragments this
-   template ships must not hard-code UI strings. Use the base template's
-   string mechanism — `site.data.stringsBase[include.lang]['<Key>']` — as the
-   base's own `fragment-footer.html` does. (Verified in
-   `HL7/ig-template-base2`: the base resolves all UI strings through
-   `stringsBase[include.lang]`.)
-2. **Inherited German UI strings.** The base template ships `.po` UI-string
-   translations including German (`translations/stringsBase-de.po`,
-   `translations/stringsArtifacts-de.po` — verified in
-   `HL7/ig-template-base2`). This template inherits them by deriving from the
-   base; do not fork or override them. Verify after a base bump that the
-   German strings still render in the preview build.
+1. **Every offered language renders.** The header, footer, and CSS fragments
+   this template ships must produce correct text in `de` and `en` alike. The
+   base's string mechanism — `site.data.stringsBase[include.lang]['<Key>']` —
+   is the default way to get that. The header and CSS fragments avoid the
+   question entirely: they carry no UI strings, only an asset and its `alt`
+   text switched on `include.lang`. The footer fragment does resolve labels,
+   and deliberately not through the base: the base has no `Impressum` key, a
+   child template cannot add one, and the pinned base ships no German catalog,
+   so those lookups render blank on `/de/`. It hard-codes an
+   `include.lang`-branched label set instead. Read `docs/design.md` §5 and §6
+   before changing it, and keep every branch complete when adding a language.
+2. **Vendored German UI strings.** The pinned base
+   `fhir2.base.template#0.1.0` ships `.po` catalogs for
+   `ar`/`es`/`fr`/`nl`/`pt`/`ru` — **not** `de` (German was added upstream
+   after `0.1.0` was cut). This template therefore vendors the base's own
+   `translations/stringsBase-de.po` and `stringsArtifacts-de.po`; `.po` files
+   layer additively, so a new filename supplements the base rather than
+   replacing it. After a base bump, verify the German strings still render in
+   the preview — and delete the vendored copies once the pinned base ships `de`
+   itself.
 3. **Do not "translate" FHIR identifiers.** `name`, `id`, codes, and
    canonical URLs stay as they are, in every language.
 4. **Additive only.** Translations are supplements; the English source page is
@@ -116,8 +131,8 @@ parameters:
 
 ## When to activate (in this repo)
 
-- When changing `includes/` or `content/assets/css/` — check the
-  language-neutrality rule (obligation 1).
+- When changing `includes/` or `content/assets/css/` — check that both
+  renderings still show correct text (obligation 1).
 - When bumping the pinned `fhir2.base.template` version — re-verify the
   rendering table and the German UI strings (obligations 2 and the ground
   truth above).

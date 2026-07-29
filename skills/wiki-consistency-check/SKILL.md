@@ -1,29 +1,30 @@
 ---
 name: wiki-consistency-check
 description: >-
-  THE single convention checker for the MII KDS template repositories and the
-  module IGs built from them. Checks a repository against the MII meta wiki
-  (kerndatensatz-meta/wiki) — naming conventions, terminology policy, reusable
-  validation workflows, dev container, release/versioning, language, folder
-  structure — AND enforces the hard module-metadata contract (packageId, id,
-  name, title, canonical, version scheme, no floating dependency pins).
-  Report-only: it never merges anything; fixes it proposes go through a pull
-  request targeting dev.
+  The convention checker used by this template project — it compares a
+  repository against the MII meta wiki (kerndatensatz-meta/wiki, authoritative)
+  — naming conventions, terminology policy, reusable validation workflows, dev
+  container, release/versioning, language, folder structure — and against the
+  metadata conventions these templates adopt (packageId, id, name, title,
+  canonical, version scheme, no floating dependency pins). Intended for these
+  two template repositories and for module repositories that choose to use the
+  scaffold; it is not an MII compliance tool. Report-only: it never merges
+  anything; fixes it proposes go through a pull request targeting dev.
 license: CC-BY-4.0
 ---
 
-# wiki-consistency-check (repository ↔ MII meta wiki + metadata contract)
+# wiki-consistency-check (repository ↔ MII meta wiki + metadata conventions)
 
 **This is the single convention checker for the project.** The wiki-drift
-check and the module-metadata contract live in ONE checker — do not build a
-second linter next to it.
+check and the metadata checks live in ONE checker — do not build a second
+linter next to it.
 
 > **Why one checker:** two overlapping linters drift apart and confuse a
 > maintainer about which is authoritative. One check run, one source of truth,
-> covering both wiki drift and the metadata contract.
+> covering both wiki drift and the metadata conventions.
 
 Adapted from the skill of the same name in the MII KDS sample IG
-([`mii-kds-sample-ig-inoffiziell`](https://github.com/medizininformatik-initiative/mii-kds-sample-ig-inoffiziell),
+([`mii-kds-sample-ig-inoffiziell`](https://github.com/forschungsgruppe-digital-health/mii-kds-sample-ig-inoffiziell),
 CC-BY-4.0), generalized for the template repositories and module IGs.
 
 ## When to activate
@@ -42,12 +43,13 @@ CC-BY-4.0), generalized for the template repositories and module IGs.
 
 ## Two check classes
 
-1. **Hard assertions — the module-metadata contract.** A small, fixed set of
+1. **Hard assertions — the metadata conventions.** A small, fixed set of
    metadata rules (see the clearly marked section in
    [`references/check-matrix.md`](references/check-matrix.md)). A violation is
    a **failure** — non-zero exit where the mechanical checker runs (the module
    scaffold), a reported failed assertion here. The matrix states per assertion
-   whether it applies to **template repositories** or to **module IGs** — only
+   whether it applies to **template repositories** or to **module IGs**, and
+   whether it restates a wiki rule or is this project's own preference — only
    the template-relevant subset applies to this repository.
 2. **Advisory wiki-drift findings.** Everything compared against the current
    wiki text. Deviations are **reported, not failed** (soft-fail): the wiki
@@ -78,7 +80,7 @@ remembered wiki content.
 3. **Compare the advisory areas.** For each check area, compare the repo
    artifact against the wiki statement (list in
    [`references/check-matrix.md`](references/check-matrix.md)).
-4. **Report.** Output a table: area · repo state · expected (wiki/contract) ·
+4. **Report.** Output a table: area · repo state · expected (wiki/convention) ·
    `OK`/`DEVIATION`/`UNCLEAR` · recommendation. Where the checker runs in CI,
    the table goes into the job summary and hard-assertion failures fail the job;
    advisory findings never do. Here the run is manual, so report the failures in
@@ -98,4 +100,4 @@ remembered wiki content.
 ## References
 
 - [`references/check-matrix.md`](references/check-matrix.md) — the concrete
-  check points (repo file ↔ wiki page) and the hard module-metadata contract.
+  check points (repo file ↔ wiki page) and the hard metadata conventions.

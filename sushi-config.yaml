@@ -15,9 +15,35 @@ fhirVersion: 4.0.1
 license: CC0-1.0
 copyrightYear: 2026+
 publisher:
+  # Publisher is set to the MII because that is the intended owner if the TF KDS
+  # adopts this template (docs/project-status.md); it matches the module
+  # template's publisher so both previews name the same organisation. It is not
+  # a statement that the MII has endorsed this prototype — the rendered pages
+  # say so themselves (input/pagecontent/index.md).
   name: Medical Informatics Initiative (MII)
   url: https://www.medizininformatik-initiative.de/en
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
+
+# Multi-language: English default, German the additional rendering. This is the
+# model the MII KDS modules use — for example kerndatensatz-basis, whose
+# sushi-config.yaml sets `i18n-default-lang: en`, `i18n-lang: [de]` and
+# `translation-sources: [input/translations/de]` (verified against `main`).
+#   i18n-default-lang: en       -> English is the leading/default rendered language
+#   i18n-lang: [de]             -> German is the additional rendered language
+#   translation-sources: [...]  -> folder(s) holding the per-language translations
+# Two translation mechanisms live under a translation-source folder
+# (mirroring FHIR/multi-lang-test-ig, the HL7 reference IG):
+#   - NARRATIVE PAGES: input/translations/<lang>/pagecontent/<same-filename>
+#     (e.g. input/translations/de/pagecontent/index.md) — the whole page is
+#     rendered in that language on /<lang>/.
+#   - CONFORMANCE RESOURCES: input/translations/<lang>/<ResourceType>-<id>.po
+#     (msgid/msgstr entries translate resource fields such as description).
+# The preview ships a German version of each of its pages under
+# input/translations/de/pagecontent/ so /de/ renders in German — the mechanism
+# a module maintainer follows (docs/recipes/add-translation.md). The preview
+# ships exactly one conformance resource — the preview-model Logical Model in
+# input/fsh/ — because the IG Publisher cannot assemble a package for an IG with
+# none. It needs no .po supplement; a module adds its own FSH and .po files.
 parameters:
   i18n-default-lang: en
   i18n-lang:

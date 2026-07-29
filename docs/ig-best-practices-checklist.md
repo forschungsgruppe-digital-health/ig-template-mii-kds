@@ -1,16 +1,17 @@
-# FHIR IG best-practices checklist (template compliance)
+# How this template relates to the official HL7 IG guidance
 
-This template shapes how every MII KDS module IG looks and is published, so it
-must itself follow the official HL7 guidance — and it must **make the right thing
-easy** for module authors. This page derives the checklist from the official
-sources and proves each item against this repository.
+This template is a proposal for a shared MII KDS look. HL7 publishes guidance for
+IG and template authors; this page records, item by item, how this repository
+currently follows it and where it deliberately differs. It is a self-assessment
+by this repository's maintainer, not an MII or HL7 conformance statement, and it
+says nothing about what a module IG is obliged to do.
 
 The module-author counterpart lives in the module scaffold:
 [`mii-kds-module-template` → `docs/ig-best-practices-checklist.md`](https://github.com/medizininformatik-initiative/mii-kds-module-template/blob/dev/docs/ig-best-practices-checklist.md).
 
 ## Sources (all official, retrieved 2026-07-26)
 
-| # | Source | What it governs |
+| # | Source | What it covers |
 |---|---|---|
 | S1 | [Guidance for FHIR IG Creation — **IG Best Practices**](https://build.fhir.org/ig/FHIR/ig-guidance/best-practice.html) (HL7 International / FHIR Management Group) | pages & organisation, writing, diagrams, artifacts, profiles, terminology, security & privacy, examples |
 | S2 | [**Using the HL7 IG Templates**](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html) and [**Extending the HL7 IG Templates**](https://build.fhir.org/ig/FHIR/ig-guidance/template.html) | how a template is built, extended and consumed |
@@ -30,24 +31,24 @@ mechanism) · ➖ not applicable to a template.
 
 | Check | State | Evidence |
 |---|---|---|
-| Derives from an official HL7 base template rather than forking it | ✅ | `package/package.json`: `base: fhir2.base.template`, `dependencies: { "fhir2.base.template": "0.1.0" }` |
-| Overrides only the designed extension points | ✅ | Only `includes/fragment-header.html`, `fragment-css.html`, `fragment-footer.html` + `content/assets/**` — the base ships the header/CSS fragments as empty placeholders for exactly this purpose ([`docs/design.md`](design.md) §2) |
-| Does **not** ship `config.json` (which replaces, not merges) | ✅ | No `config.json` in this repo — see [`docs/design.md`](design.md) §2 |
-| Branding is done through the base's CSS **variables**, not rule overrides | ✅ | `content/assets/css/mii.css` overrides only `--…` custom properties (S4) |
+| Derives from an official HL7 base template rather than forking it | ✅ | `package/package.json` declares `fhir2.base.template` as its base |
+| Overrides only the designed extension points | ✅ | Three fragments + `content/assets/**` — [`docs/design.md`](design.md) §2 |
+| Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/design.md`](design.md) §2 |
+| Branding is done through the base's CSS **variables**, not rule overrides | ✅ | [`docs/design.md`](design.md) §3 |
 | The base version is pinned (reproducible builds) | ✅ | `0.1.0`, never `#current`; drift is surfaced by `dependency-check.yml` |
-| The template is exercised by a real build before release | ✅ | The bundled **preview IG** builds on every push (`ig-preview.yml`) and is published as a browsable preview |
-| Validated against a real module | ✅ | [`docs/reports/template-validation-2026-07-23.md`](reports/template-validation-2026-07-23.md): `kerndatensatz-basis` (63 resources) builds against this template with 0 errors |
+| The template is exercised by a real build before release | ✅ | The bundled preview IG builds on every push (`ig-preview.yml`) |
+| Validated against a real module | ✅ | `kerndatensatz-basis` builds against it with 0 errors — [the report](reports/template-validation-2026-07-23.md) |
 
 ## 2. Multi-language support (S3)
 
 | Check | State | Evidence |
 |---|---|---|
-| Multi-language is set up the supported way | ✅ | `i18n-default-lang: en`, `i18n-lang: [de]`, `translation-sources: [input/translations/de]` — the same model as `kerndatensatz-basis` |
-| Uses the language-aware base and the supported translation mechanism | ✅ | `fhir2.base.template` is the *translated* base; content/menu/resource translations follow the HL7 reference layout ([`docs/recipes/add-translation.md`](recipes/add-translation.md)) |
-| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | `fragment-header.html` switches the logo on `include.lang`; `fragment-footer.html` supplies `de`/`en` labels |
-| The base UI strings resolve in every offered language | ✅ | `translations/stringsBase-de.po` + `stringsArtifacts-de.po` vendored (the pinned base ships no German catalog) — verified: the German footer renders copyright, package and generated-date lines |
+| Multi-language is set up the supported way | ✅ | `i18n-default-lang: en`, `i18n-lang: [de]` — the same model as `kerndatensatz-basis` ([`docs/recipes/add-translation.md`](recipes/add-translation.md)) |
+| Uses the language-aware base and the supported translation mechanism | ✅ | `fhir2.base.template` is the *translated* base; translations follow the HL7 reference layout |
+| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | [`docs/design.md`](design.md) §5–§6 |
+| The base UI strings resolve in every offered language | ✅ | German catalogs vendored, because the pinned base ships none — [`translations/README.md`](../translations/README.md) |
 | The menu can be translated | ✅ | Per-language `input/translations/<lang>/includes/menu.xml`; the untranslatable `menu:` property is deliberately not used |
-| Language switching works in the rendered output | ✅ | `/de/` and `/en/` both render with the correct menu, footer and content; the language-redirect landing page was fixed (the pinned base's `lang-redirects.js` only redirected the first language) |
+| Language switching works in the rendered output | ✅ | `/de/` and `/en/` both render with the correct menu, footer and content; the landing-page redirect is overridden in `content/assets/js/lang-redirects.js` (the reason is in that file) |
 
 ## 3. Presentation quality (S1 §Pages/Writing/Images, S4)
 
@@ -61,19 +62,20 @@ mechanism) · ➖ not applicable to a template.
 
 ## 4. What the template makes easy for module authors (S1)
 
-The best practices below are fulfilled *in a module*, but a template either
-enables or obstructs them. This is what the scaffold provides:
+What HL7 recommends below is fulfilled *in a module*, but a template either
+enables or obstructs it. This is what the scaffold provides as a starting point;
+what a module keeps is the module author's call:
 
-| Best practice (S1) | Provided by the scaffold |
+| HL7 recommends (S1) | Provided by the scaffold |
 |---|---|
-| Separate non-normative from normative content | The MII-standard page set: guidance/downloads vs conformance pages |
-| A Security & Privacy Considerations section | `security-and-privacy.md` ships with the required structure |
-| Explain `mustSupport` | `must-support.md` ships the MII-standard server/client expectations |
+| Separate non-normative from normative content | The scaffold's page set (guidance/downloads vs conformance pages), modelled on `kerndatensatz-basis` |
+| A Security & Privacy Considerations section | `security-and-privacy.md` ships with a suggested structure a module can keep or replace |
+| Explain `mustSupport` | `must-support.md` ships suggested server/client expectations, phrased as a starting point for the module author |
 | Say how to engage with the community | Index *Contact* block → `chat.fhir.org` `german/mi-initiative` + GitHub issues |
 | Reference the IG registry / related guides | Index *Related guides* block → [FHIR IG Registry](https://fhir.org/guides/registry/) |
 | Artifact intros and notes | `input/intro-notes/` wired via `path-pages` |
 | Examples with synthetic data only | A worked example instance (`Max Mustermann-Testpatient`) |
-| Pin canonicals and dependencies | `pin-canonicals: pin-all`, fixed dependency versions, enforced by `convention-check` |
+| Pin canonicals and dependencies (S5 describes the options) | The scaffold sets `pin-canonicals: pin-all` and fixed dependency versions; in repositories created from it, its `convention-check` job fails the build on any floating dependency or template pin |
 
 ## 5. Publication (S6, S8)
 
@@ -86,12 +88,12 @@ enables or obstructs them. This is what the scaffold provides:
 
 ---
 
-## Known deviations (deliberate, with rationale)
+## Where this project deliberately differs
 
-| Deviation | Why |
-|---|---|
-| The base is pinned to `0.1.0` while the MII reference repos float `#current` | Reproducibility: a rebuild years from now must produce the same output. Drift is surfaced as a reviewable PR by `dependency-check.yml`. |
-| The template is not in `FHIR/ig-registry` | Prototype status pending MII TF KDS discussion — [`docs/project-status.md`](project-status.md). |
+- **The base template is pinned to `0.1.0`, while the MII reference repos float
+  `#current`** — for reproducibility; see [`docs/concepts.md`](concepts.md) §2.
+- **The template is not listed in `FHIR/ig-registry`** — a deferred decision; see
+  [`docs/project-status.md`](project-status.md).
 
 ## Re-check on a toolchain bump
 

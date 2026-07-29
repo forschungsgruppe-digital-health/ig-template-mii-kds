@@ -27,6 +27,12 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | Workflow | Trigger | What it does | Output | Toggle (default) | Human-gated? |
 | --- | --- | --- | --- | --- | --- |
 | `ig-preview.yml` | push to any branch except `main`/`gh-pages`; `workflow_dispatch` | Builds the **preview IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
+
+> **One manual setting is required and the workflow cannot tell you it is
+> missing:** pushing to `gh-pages` publishes nothing until the repository is set
+> to serve that branch (*Settings → Pages → Deploy from a branch → `gh-pages`,
+> `/ (root)`*). Without it the build goes green and every preview URL is a 404.
+> See [publish the preview on GitHub Pages](recipes/publish-the-preview-on-github-pages.md).
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
@@ -50,8 +56,8 @@ Notes:
   see [add-translation.md](recipes/add-translation.md). The job lives in
   `security-scan.yml` because that is the only pull-request-triggered workflow.
 - **The `tooling-tests` job** runs the repository's script tests
-  (`check-updates.test.mjs` and `terminology-fallback.test.mjs`, offline, no
-  `npm install`). It rides in `security-scan.yml` for the same reason as the
+  (`check-updates.test.mjs`, `terminology-fallback.test.mjs` and
+  `narrative-table-styles.test.mjs`, offline, no `npm install`). It rides in `security-scan.yml` for the same reason as the
   language-model guard. `dependency-check.yml` runs the same suites as a
   pre-flight, so the weekly check fails loudly instead of filing a garbled
   tracking issue. Both list the files by name rather than globbing
@@ -89,17 +95,13 @@ release today. Modules vendor this repository's `dev` branch instead:
 
 **So `dev` is a consumer-visible surface, not an internal branch.** Work in
 progress that has passed CI and review belongs there; a known-broken state does
-not, because the next sync ships it to every module. A module cannot pin its way
-out: the module template's workflow hardcodes `--ref dev` in both jobs. The two
+not, because the next sync ships it to every repository created from the
+scaffold. A module cannot pin its way out: the module template's workflow
+hardcodes `--ref dev` in both jobs. The two
 things that do stop the sync — setting the module's `ENABLE_TEMPLATE_SYNC`
 variable to `false`, or editing those two lines — contradict that repo's stated
 intent ("the module IG must always build against the CURRENT MII IG template"),
 so if either is ever wanted it belongs in the module template's docs, not here.
-
-> **Why one page:** the operational knowledge would otherwise be scattered across
-> `CONTRIBUTING.md`, `maintenance.md` and six workflow files. Post-2026 a new
-> maintainer needs one place that says "this is how this repo builds, previews and
-> releases."
 
 ## Secrets & enabling the gated features
 

@@ -3,14 +3,28 @@
 A curated, verified reading list. Each entry says **why** you would read it. Links
 were checked when this file was written; if one moves, search its title.
 
-## MII — the rules this template and its modules follow
+## MII — the rules this project follows, and where they are actually defined
 
-The [MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki)
-is authoritative; when it and this repo disagree, the wiki wins.
+MII-wide rules are defined in the MII's own governance and in the
+[MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki),
+not here; when they and this repo disagree, they win.
 
+- [KDS-Governance v4.0](https://www.medizininformatik-initiative.de/sites/default/files/2026-07/KDS-Governance-v4.pdf)
+  (PDF, 7 May 2026) — the governance adopted by the Nationales Steuerungsgremium:
+  how a KDS module is developed, decided and released. § 5.1.2 names the two
+  sanctioned comment channels — the HL7 Deutschland ballot portal, or an issue in
+  the module's own GitHub repository — and § 3.5.4 obliges the module team to
+  answer every comment. Read it before assuming any rule in this repository is an
+  MII rule.
 - [Namenskonventionen für FHIR-Ressourcen in der MII](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Namenskonventionen-für-FHIR‐Ressourcen-in-der-MII)
-  — the naming rules for packageId, id, name, title and canonicals. Read before you
-  name anything; the convention check enforces these.
+  — the naming rules for packageId, id, name, title and canonicals. Read before
+  you name anything. What checks them depends on the rule: some are asserted
+  mechanically in a created module (`scripts/convention-check.mjs`, and the
+  Simplifier quality-control rules in `qc/custom.rules.yaml` that the MII
+  reusable validation reads); some surface only when the FHIR validator runs;
+  and some are conventions nothing enforces, which the `wiki-consistency-check`
+  skill compares by hand. **This repository runs none of them** — it carries no
+  convention checker and no `qc/` rules; both live in the module scaffold.
 - [Conformance](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Conformance)
   — what "conformant" means for MII modules (Must-Support, cardinalities).
 - [Terminology Version Policy](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Terminology-Version-Policy)
@@ -38,7 +52,7 @@ is authoritative; when it and this repo disagree, the wiki wins.
   template this one derives from; read its `package/package.json`, `includes/` and
   `package-list.json` to understand what we override vs inherit.
 - [`FHIR/ig-registry`](https://github.com/FHIR/ig-registry) — the public IG/template
-  registry; `templates.json` is where this template gets listed.
+  registry; `templates.json` is where a template like this one would be listed.
 - [FHIR sample IG](https://build.fhir.org/ig/FHIR/sample-ig/) — a minimal reference
   IG, useful when you want to see a complete small example.
 

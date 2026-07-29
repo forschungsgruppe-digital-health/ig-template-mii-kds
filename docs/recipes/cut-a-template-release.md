@@ -14,8 +14,9 @@ Releases are cut on `main` by **Release Please** (see [workflows.md](../workflow
    squash), so the individual commits reach `main`.
    > **Why not squash:** squashing collapses the changelog to one line.
 3. On `main`, `release-please.yml` opens (or updates) a **release PR** that bumps
-   the version in `package/package.json` + `package-list.json` and writes the
-   `CHANGELOG.md`.
+   the version in `package/package.json`, `sushi-config.yaml` and
+   `package-list.json` — the three `extra-files` entries in
+   `release-please-config.json` — and writes the `CHANGELOG.md`.
 4. Review that release PR (check the proposed version — `feat:` → minor, `fix:` →
    patch, a `!`/`BREAKING CHANGE` → major) and **merge it**.
 5. Merging cuts the git tag `vX.Y.Z` and a GitHub Release; `notify-zulip.yml` then
@@ -24,8 +25,8 @@ Releases are cut on `main` by **Release Please** (see [workflows.md](../workflow
 ## Expected result
 
 A new `vX.Y.Z` tag + GitHub Release, an updated `CHANGELOG.md`, matching versions in
-`package/package.json` and `package-list.json`, and a Zulip announcement (if the key
-is configured — otherwise the job skips with a notice).
+`package/package.json`, `sushi-config.yaml` and `package-list.json`, and a Zulip
+announcement (if the key is configured — otherwise the job skips with a notice).
 
 ## Common errors & fixes
 
@@ -36,5 +37,8 @@ is configured — otherwise the job skips with a notice).
 | Version files out of sync | An embedded version was not in `extra-files` | Add it to `release-please-config.json` |
 | Zulip not posted | `ZULIP_API_KEY` secret absent | Expected — the job skips with a notice; add the secret to enable |
 
-> Modules do **not** use this recipe — they release with **CalVer** via the MII
-> Module Release Workflow. Never put Release Please on a module.
+> Modules do **not** use this recipe: the MII meta wiki's
+> [Module Release Workflow](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Module-Release-Workflow)
+> defines **CalVer** releases for them. Adding Release Please on top of that
+> would produce a second, conflicting version stream — which is why these
+> template repositories keep the two schemes strictly apart.

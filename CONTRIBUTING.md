@@ -130,12 +130,52 @@ Extras a novice should know:
 
 ## Release automation
 
-Release automation (Release Please, producing SemVer `vMAJOR.MINOR.PATCH` tags,
-a generated `CHANGELOG.md`, and a GitHub Release) runs **on `main`** — it will
-be added to this repository by a later PR. Until then, releases are manual.
+Release automation (Release Please) runs **on `main`**: it opens a release PR,
+and merging that PR cuts the SemVer `vMAJOR.MINOR.PATCH` tag, the `CHANGELOG.md`
+entry and the GitHub Release. The steps are in
+[docs/workflows.md](docs/workflows.md) §3.
 
-> **Why SemVer for this repo:** this is a *tooling* repo whose consumers (the
-> MII KDS module IGs) pin to a version; SemVer communicates breaking vs.
-> compatible changes. Do not confuse it with the CalVer (`YYYY.n.n`) scheme the
-> MII KDS *modules* use for their own releases — one repo, one release
-> mechanism.
+> This repo uses SemVer; MII KDS *modules* use CalVer (`YYYY.n.n`) for their own
+> releases. Why, and why not to mix them: [docs/concepts.md](docs/concepts.md) §6.
+
+## How this relates to the MII process
+
+Everything above is **this repository's** workflow. It is not an MII rule, and
+this repository does not speak for the MII.
+
+The MII does publish rules for commenting on a Kerndatensatz module, and a
+module that renders with this template will eventually sit inside them. They
+are in the
+[**KDS governance, version 4.0**](https://www.medizininformatik-initiative.de/sites/default/files/2026-07/KDS-Governance-v4.pdf)
+(PDF, 7 May 2026), adopted by the National Steering Committee and published on
+the
+[MII core-data-set page](https://www.medizininformatik-initiative.de/en/medical-informatics-initiatives-core-data-set):
+
+- **Where comments go.** After FHIR profiling, a module runs a commenting round.
+  Comments are filed either through the HL7 Deutschland ballot portal **or as an
+  issue in the module's own GitHub repository** (§5.1.2) — so a module's issue
+  tracker is a sanctioned channel, not an informal one.
+- **Who may comment, and for how long.** Anyone may comment; the round is
+  announced in advance and runs for a defined window (§3.5.4). Voting on an HL7
+  ballot is a separate matter and is restricted to HL7 Deutschland members.
+- **The module team must answer.** Every comment is answered — accepted or
+  rejected, with a reason (§3.5.4).
+- **Comments are public by default.** A commenter may ask for their identity to
+  be pseudonymised.
+
+Two things the MII does **not** publish, which are worth knowing so you do not
+go looking:
+
+- **No code of conduct**, anywhere — see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+- **No `CONTRIBUTING.md`** in the MII organisation or in any KDS module,
+  including the reference module `kerndatensatz-basis`. The one participation
+  rule published organisation-wide is how to request GitHub access, on the
+  [MII organisation profile](https://github.com/medizininformatik-initiative/.github/blob/main/profile/README.md):
+  email the Geschäftsstelle with the subject *"Zugang zum GitHub der MII"*.
+
+> **Cite version 4.0, not what you may find first.** The
+> `medizininformatik-initiative/kerndatensatz-governance` repository still
+> announces version 3, ships no document and has not been touched since January
+> 2024. Version 3.0's tooling chapter — GitHub, SharePoint, Simplifier, Zulip
+> access — was **removed** in 4.0 and replaced by an appendix marked *in
+> Arbeit*, so those instructions are no longer published guidance.

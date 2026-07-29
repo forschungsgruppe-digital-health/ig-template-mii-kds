@@ -19,6 +19,7 @@ say "go" — none should be done by an agent.
 | Publish `de.medizininformatikinitiative.template` to a FHIR package registry | The same decision | Until then modules vendor the template as a folder. Once published, a module switches per [switch-template-to-published](https://github.com/medizininformatik-initiative/mii-kds-module-template/blob/main/docs/recipes/switch-template-to-published.md) in the module scaffold. |
 | Move both repositories to the `medizininformatik-initiative` organisation | The same decision | All content already names the target org. After the move, delete the module template's `IG_TEMPLATE_REPO_URL` repository variable — it only exists to bridge the gap. |
 | Decide who owns the template after 2026 | TF KDS | Currently "the MII, for now". |
+| Name a code owner in `.github/CODEOWNERS` and an enforcement contact in `CODE_OF_CONDUCT.md` | The same decision | Both are deliberately empty: naming an individual would present one person as responsible for an MII-branded artifact, and routing reports to the MII Geschäftsstelle would claim it owns repositories it does not. Set a team once the repositories move to the organisation. |
 | Store the SU-TermServ client certificate as repository secrets | A maintainer with the certificate | The procedure is written and the handshake was verified locally against the live server. See [secrets](secrets.md); run `scripts/set-su-termserv-secrets.sh`. Without it, builds fall back to `tx.fhir.org`. |
 | Store the Zulip announcement key | A maintainer | See [secrets](secrets.md). Release announcements stay silent until then. |
 
@@ -55,6 +56,19 @@ workaround can eventually be deleted.
 
 ## Known limits, deliberately not "fixed"
 
+- **A private address is in one commit message on `main`, and stays there.** The
+  squash-merge of the second verification round carries a
+  `Co-authored-by:` trailer with a personal mailbox. Removing it would mean
+  rewriting seven commits per repository, force-pushing two protected branches,
+  and invalidating the `v0.3.0` tag and its release — and it would **still not
+  remove the address**, because a force-push leaves the old commit reachable by
+  its URL until the forge purges unreferenced objects on request. The rewrite
+  therefore pays the full cost and does not achieve the goal. Decided:
+  leave it. The route that does work, if it is ever needed, is asking GitHub
+  Support to purge the unreferenced commit after a rewrite.
+  Prevented from recurring instead: commits are authored with the GitHub
+  noreply address, so no future squash merge generates the trailer.
+
 - **The build reports broken links; CI does not gate on the count.** The QA gate
   is `Errors: 0`, which the preview meets. Broken links are reported separately
   and are usually external URLs whose reachability depends on the network at
@@ -90,18 +104,12 @@ workaround can eventually be deleted.
 
 ## Cross-repo consistency — decided, not pending
 
-The two repositories share fourteen documentation filenames. Re-measure rather
-than trust this line: `comm -12` over `git ls-files docs` in both checkouts,
-excluding `docs/reports/` (dated snapshots; they share no filenames), then `cmp`
-each pair. That was once real duplication; it is not any more. Thirteen of the
-fourteen differ for good reasons — `project-status.md` because each names the
-other repository, `glossary.md` because the module scaffold defines nine terms
-this repository has no use for. The fourteenth, `further-reading.md`, is a pure
-external reading list whose two copies were byte-identical at the 2026-07-26
-audit; check that pair first when you edit it.
-
-No sync mechanism is planned. A created module must be self-contained: replacing
-its copy of `glossary.md` or `maintenance.md` with a link back here would break
-the moment a module is developed independently, which is the whole point of a
-template. Convergence is checked when a shared doc is edited, not enforced by
-tooling.
+No sync mechanism between this repository and the module scaffold is planned. A
+created module must be self-contained: replacing its copy of a shared page such
+as `glossary.md` or `maintenance.md` with a link back here would break the moment
+that module is developed independently, which is the whole point of a template.
+The two repositories share several documentation filenames, and the copies
+differ where the repositories differ — `project-status.md` because each names the
+other, `glossary.md` because the module scaffold defines terms this repository
+has no use for. Convergence is checked when a shared doc is edited, not enforced
+by tooling.
