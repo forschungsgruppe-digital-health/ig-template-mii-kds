@@ -1,4 +1,4 @@
-# Home - MII KDS IG Template — Preview v0.3.0
+# Home - MII KDS IG Template — Preview v0.4.0
 
 * [**Table of Contents**](toc.md)
 * **Home**
@@ -7,7 +7,7 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.3.0 |
+| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.4.0 |
 | Draft as of 2026-07-30 | *Computable Name*:MIIKDSTemplatePreview |
 
 **Prototype.** This preview is not an MII-endorsed artifact; it is a proposal pending discussion in the MII Taskforce Kerndatensatz. The MII logo, wordmark and publisher name below show what an adopted template would look like — they do not signal an endorsement.
@@ -20,7 +20,7 @@ What the template is and how a module uses it is described in the repository's `
 
 ### Highlight boxes (background-colour demo)
 
-The template ships reusable, purpose-neutral CSS classes for calling out content (classes `mii-highlight mii-highlight-blue` / `mii-highlight-green`). These are styling only — a module decides what each colour means.
+The template ships reusable, purpose-neutral CSS classes for calling out content (classes `mii-highlight` with `-blue`, `-green`, `-orange`, `-red`, `-grey`). These are styling only — a module decides what each colour means; the conventional reading is orange = warning, red = important, grey = hint.
 
 ##### Blue highlight box
 
@@ -29,4 +29,16 @@ Example of the blue background highlight (`mii-highlight-blue`).
 ##### Green highlight box
 
 Example of the green background highlight (`mii-highlight-green`).
+
+##### Orange highlight box (warning)
+
+Example of the orange background highlight (`mii-highlight-orange`) — conventionally a warning.
+
+##### Red highlight box (important)
+
+Example of the red background highlight (`mii-highlight-red`) — conventionally an important notice.
+
+##### Grey highlight box (hint)
+
+Example of the grey background highlight (`mii-highlight-grey`) — conventionally a hint or authoring note.
 

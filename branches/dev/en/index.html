@@ -6,7 +6,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en" dir="ltr">
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
-    <title>Home - MII KDS IG Template — Preview v0.3.0</title>
+    <title>Home - MII KDS IG Template — Preview v0.4.0</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="http://hl7.org/fhir"/>
@@ -81,7 +81,7 @@
         <div id="ig-status">
           <p><span style="font-size:12pt;font-weight:bold">MII KDS IG Template — Preview</span>
             <br/>
-            <span style="display:inline-block;">0.3.0 - 
+            <span style="display:inline-block;">0.4.0 - 
 
 
 
@@ -170,7 +170,7 @@ h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) ".
 h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
 </style>
 <div class="col-12">
-  <!--ReleaseHeader--><p id="publish-box">MII KDS IG Template — Preview - Local Development build (v0.3.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://github.com/medizininformatik-initiative/ig-template-mii-kds/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
+  <!--ReleaseHeader--><p id="publish-box">MII KDS IG Template — Preview - Local Development build (v0.4.0) built by the FHIR (HL7® FHIR® Standard) Build Tools. See the <a href='https://github.com/medizininformatik-initiative/ig-template-mii-kds/history.html'>Directory of published versions</a></p><!--EndReleaseHeader-->
   <h2>Home</h2>
   
 
@@ -185,7 +185,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
       <td colspan="4"><i>Official URL</i>: <span class="copy-text">https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview<button title="Click to copy URL" class="btn-copy" data-clipboard-text="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/></span>
       </td>
       <td><i>Version</i>:
-      <span class="copy-text">0.3.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview|0.3.0"/></span>
+      <span class="copy-text">0.4.0<button title="Click to copy versioned URL" class="btn-copy" data-clipboard-text="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview|0.4.0"/></span>
       </td>
     </tr>
 
@@ -252,8 +252,9 @@ check the language-aware header and footer.</p>
 <h3 id="highlight-boxes-background-colour-demo">Highlight boxes (background-colour demo)</h3>
 
 <p>The template ships reusable, purpose-neutral CSS classes for calling out content
-(classes <code class="language-plaintext highlighter-rouge">mii-highlight mii-highlight-blue</code> / <code class="language-plaintext highlighter-rouge">mii-highlight-green</code>). These are
-styling only — a module decides what each colour means.</p>
+(classes <code class="language-plaintext highlighter-rouge">mii-highlight</code> with <code class="language-plaintext highlighter-rouge">-blue</code>, <code class="language-plaintext highlighter-rouge">-green</code>, <code class="language-plaintext highlighter-rouge">-orange</code>, <code class="language-plaintext highlighter-rouge">-red</code>, <code class="language-plaintext highlighter-rouge">-grey</code>).
+These are styling only — a module decides what each colour means; the
+conventional reading is orange = warning, red = important, grey = hint.</p>
 
 <!-- Raw HTML block: the page processor does NOT run markdown inside it, so the
      class names have to be marked up as <code>, not with backticks. -->
@@ -265,6 +266,21 @@ styling only — a module decides what each colour means.</p>
 <div class="mii-highlight mii-highlight-green">
 <h5>Green highlight box</h5>
 <p>Example of the green background highlight (<code>mii-highlight-green</code>).</p>
+</div>
+
+<div class="mii-highlight mii-highlight-orange">
+<h5>Orange highlight box (warning)</h5>
+<p>Example of the orange background highlight (<code>mii-highlight-orange</code>) — conventionally a warning.</p>
+</div>
+
+<div class="mii-highlight mii-highlight-red">
+<h5>Red highlight box (important)</h5>
+<p>Example of the red background highlight (<code>mii-highlight-red</code>) — conventionally an important notice.</p>
+</div>
+
+<div class="mii-highlight mii-highlight-grey">
+<h5>Grey highlight box (hint)</h5>
+<p>Example of the grey background highlight (<code>mii-highlight-grey</code>) — conventionally a hint or authoring note.</p>
 </div>
 
 
@@ -291,8 +307,8 @@ styling only — a module decides what each colour means.</p>
 
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de/en">Medical Informatics Initiative (MII)</a>.  
-          Package de.medizininformatikinitiative.template.preview#0.3.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Generated <span title="Thu, Jul 30, 2026 09:38+0000">2026-07-30</span>
+          Package de.medizininformatikinitiative.template.preview#0.4.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
+          Generated <span title="Thu, Jul 30, 2026 13:08+0000">2026-07-30</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- MII branding override for the fhir2.base.template footer fragment.

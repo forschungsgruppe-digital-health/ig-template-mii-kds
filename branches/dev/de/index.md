@@ -1,4 +1,4 @@
-# Home - MII KDS IG Template — Preview v0.3.0
+# Home - MII KDS IG Template — Preview v0.4.0
 
 * [**Table of Contents**](toc.md)
 * **Home**
@@ -7,7 +7,7 @@
 
 | | |
 | :--- | :--- |
-| *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.3.0 |
+| *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.4.0 |
 | Draft Stand: 2026-07-30 | *Maschinenlesbarer Name*:MIIKDSTemplatePreview |
 
  Diese Seite enthält Übersetzungen aus der Originalsprache, in der der Leitfaden verfasst wurde. Informationen zu diesen Übersetzungen und Anweisungen zum Abgeben von Feedback zu den Übersetzungen finden Sie [hier](translationinfo.md). 
@@ -22,7 +22,7 @@ Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md` de
 
 ### Highlight-Boxen (Demo der Hintergrundfarben)
 
-Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben von Inhalten bereit (Klassen `mii-highlight mii-highlight-blue` bzw. `mii-highlight-green`). Es handelt sich um reines Styling — welche Bedeutung eine Farbe hat, entscheidet das jeweilige Modul.
+Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben von Inhalten bereit (Klassen `mii-highlight` mit `-blue`, `-green`, `-orange`, `-red`, `-grey`). Es handelt sich um reines Styling — welche Bedeutung eine Farbe hat, entscheidet das jeweilige Modul; die übliche Lesart ist Orange = Warnung, Rot = Wichtig, Grau = Hinweis.
 
 ##### Blaue Highlight-Box
 
@@ -31,4 +31,16 @@ Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).
 ##### Grüne Highlight-Box
 
 Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).
+
+##### Orange Highlight-Box (Warnung)
+
+Beispiel für die orange Hintergrund-Hervorhebung (`mii-highlight-orange`) — üblicherweise eine Warnung.
+
+##### Rote Highlight-Box (Wichtig)
+
+Beispiel für die rote Hintergrund-Hervorhebung (`mii-highlight-red`) — üblicherweise ein wichtiger Hinweis.
+
+##### Graue Highlight-Box (Hinweis)
+
+Beispiel für die graue Hintergrund-Hervorhebung (`mii-highlight-grey`) — üblicherweise ein Hinweis oder eine Autorennotiz.
 
