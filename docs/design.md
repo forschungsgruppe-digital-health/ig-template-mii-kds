@@ -326,14 +326,19 @@ Notes and deliberate deviations:
   > **Why:** accessibility-first when two "official" colors compete; slate-dark
   > is itself MII-sourced (site-css menu links, logo-svg wordmark fill), so the
   > brand look is preserved.
-- **Publisher name in the © line (language-aware):** the base's
-  `fragment-pageend.html` renders the single global `site.data.fhir.ig.publisher`
-  on every language's pages, so `/de/` showed the English name — the same
-  limitation kerndatensatz-basis ships live. The template overrides the fragment
-  (copied verbatim from the pinned base, one changed line) and hard-codes
-  "Medizininformatik-Initiative (MII)" for `include.lang == 'de'` — the same
-  recorded hard-coded-label pattern as the footer (§5–§6). Re-check the override
-  when bumping the base template.
+- **Publisher name in the © line stays English on `/de/` (recorded
+  limitation):** the base's `fragment-pageend.html` renders the single global
+  `site.data.fhir.ig.publisher` on every language's pages; Jekyll's site data
+  carries no per-language publisher, and the IG-resource `.po` translation does
+  not feed this fragment. kerndatensatz-basis ships the same English-on-`/de/`
+  footer live. An override of `fragment-pageend.html` was tried and REVERTED as
+  a deliberate decision: unlike the narrow header/footer/CSS overrides, pageend
+  is core page layout, and carrying a vendored copy risks breaking the whole
+  style/layout on a base-template bump. Do not re-add it; the durable fix is an
+  upstream mechanism (a translatable publisher label in
+  `HL7/ig-template-base2`). The publisher **link** is language-neutral
+  (`https://www.medizininformatik-initiative.de`), and the translated name is
+  recorded in the IG-resource `.po` for the surfaces that do read it.
 - **Base's own defaults we improved:** base `--btn-text-color: #e6e6e6` would be
   4.03:1 on our navbar blue → raised to `#ffffff`.
 - **Known limitation (WCAG 1.4.1, use of color):** footer links are white like
