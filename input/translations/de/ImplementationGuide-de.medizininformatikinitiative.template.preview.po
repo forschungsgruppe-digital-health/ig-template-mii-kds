@@ -1,0 +1,27 @@
+# German translations of the preview IG's own fields — breadcrumbs, TOC
+# entries and section captions render from
+# ImplementationGuide.definition.page.title, so without this file the /de/
+# pages keep the English titles although their content is German. Same
+# mechanism as kerndatensatz-basis (ImplementationGuide-mii-ig-base.po,
+# verified 2026-07-30); msgid must equal the exact `pages:` title in
+# sushi-config.yaml.
+
+# ImplementationGuide.title
+#: ImplementationGuide.title
+msgid "MII KDS IG Template — Preview"
+msgstr "MII-KDS-IG-Vorlage — Vorschau"
+
+# ImplementationGuide.definition.page.title
+#: ImplementationGuide.definition.page.title
+msgid "Table of Contents"
+msgstr "Inhaltsverzeichnis"
+
+# ImplementationGuide.definition.page.title
+#: ImplementationGuide.definition.page.title
+msgid "Home"
+msgstr "Startseite"
+
+# ImplementationGuide.definition.page.title
+#: ImplementationGuide.definition.page.title
+msgid "Translation information"
+msgstr "Hinweise zur Übersetzung"
