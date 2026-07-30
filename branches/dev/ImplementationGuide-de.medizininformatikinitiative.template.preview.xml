@@ -22,7 +22,7 @@
     </extension>
   </title>
   <status value="draft"/>
-  <date value="2026-07-30T18:59:10+00:00"/>
+  <date value="2026-07-30T19:38:20+00:00"/>
   <publisher value="Medical Informatics Initiative (MII)">
     <extension url="http://hl7.org/fhir/StructureDefinition/translation">
       <extension url="lang">
