@@ -2,10 +2,11 @@
 
 The layout and design conventions of this template: what the branding is, which
 rules keep it consistent and accessible, and which boundaries must not be
-crossed. Every color and asset traces to a file that MII or HL7 publishes — the
-[provenance appendix](#appendix-provenance) records the sources. Follow-ups on
-the logo assets (an official SVG, trademark permission) are tracked in
-[open-tasks.md](open-tasks.md).
+crossed. Every color and asset traces to a file that MII or HL7 publishes; the full
+source-by-source derivation (URLs, checksums, pixel analyses) is preserved in
+this repository's git history (`docs/design.md`, the styleguide's
+predecessor). Follow-ups on the logo assets (an official SVG, trademark
+permission) are tracked in [open-tasks.md](open-tasks.md).
 
 ---
 
@@ -97,8 +98,9 @@ compromise into new variants.
 - The logo ships as **SVG, traced from the official PNGs** (MII publishes no
   brand SVG — the site's only SVG is the "10 Jahre" anniversary mark). This is
   a conversion, not an official asset: **replace both files the day the MII
-  publishes a real SVG.** Reproduction commands and source checksums are in the
-  [appendix](#appendix-provenance).
+  publishes a real SVG.** The exact reproduction commands live in
+  [replace-the-logo.md](recipes/replace-the-logo.md); source URLs and checksums
+  are preserved in git history (`docs/design.md`).
 - **Two language variants** (`logo-de.svg`, `logo-en.svg`) because the wordmark
   text differs; `fragment-header.html` switches on `include.lang == 'de'`,
   non-`de` languages get the EN logo. Layout: MII logo in `#project-nav`
@@ -221,49 +223,3 @@ white on navbar blue (5.03:1).
 3. To change a value, edit the hex in `mii.css` or the assets in
    `content/assets/images/` — no other file needs to change. Re-check §8's
    ratios for any color you touch.
-
----
-
-## Appendix: provenance
-
-Everything above traces to published sources (retrieved 2026-07-22 unless
-noted):
-
-- **Base template:** `fhir2.base.template#0.1.0` — the base both MII reference
-  repos use (`kerndatensatz-basis` `ig.ini`; `fhir.base.template` avoided there
-  for recorded security issues; `hl7.fhir.template` adds HL7 branding). The pin
-  resolves on `packages.fhir.org` (single published version). **Caveat:**
-  `0.1.0` ships UI catalogs for `ar es fr nl pt ru` only — no German; the
-  German catalogs exist upstream (`HL7/ig-template-base2` `main`) but post-date
-  the pin, hence the vendoring rule in §6.
-- **Palette sources:** the MII site logo PNG
-  (`Logo_MII_270px_Hoehe_de.png`, dominant-pixel analysis: `#7a8495` wordmark,
-  `#71b800`/`#3473aa`/`#74a86f`/`#528a94` dots), the site theme CSS (`base.css`,
-  `component.css`: `#5773a2` links, `#9abc31` accents, `#6a7484` menu,
-  `#7a8495` footer, `#333333` text, `#ebedef` light), and the anniversary SVG's
-  fills as corroboration. The basis repo itself carries no CSS and no palette.
-- **Logo sources + checksums:**
-  `Logo_MII_270px_Hoehe_de.png` `d316838e…ce04`,
-  `Logo_MII_270px_Hoehe_en.png` `f205ba1b…5ac`,
-  `favicon.ico` `f6351d08…2d62` → shipped `favicon.png` `1c470d08…2667`.
-  Trace pipeline: `scripts/trace-logo.sh` (ImageMagick + potrace), one layer
-  per brand color, segmented on source colors but painted with brand colors:
-
-  ```sh
-  scripts/trace-logo.sh mii-de.png logo-de.svg 200 4 0.4 "Medizininformatik-Initiative (MII)" \
-    slate:#7a8495:#7a8495 blue:#3473aa:#3473aa teal:#548b9b:#548b9b \
-    sage:#74a86f:#74a86f green:#72b802:#72b802 lime:#99cc4a:#99cc4a
-
-  scripts/trace-logo.sh mii-en.png logo-en.svg 200 6 0.5 "Medical Informatics Initiative Germany (MII)" \
-    "slate:#6d7887,#848c9a,#798693:#7a8495" "blue:#6a89ba:#3473aa" "teal:#93a5ad:#548b9b" \
-    "sage:#9ebd89:#74a86f" "green:#afcf01,#a4c80d:#72b802"
-  ```
-
-- **Imprint targets** verified HTTP 200: `/de/impressum`, `/en/legal-notice`.
-- **Licensing note (non-blocking follow-up):** logo and wordmark are MII marks
-  (TMF e.V. coordination); CC0 on this repo cannot cover third-party
-  trademarks. Precedent: kerndatensatz-basis (CC-BY-4.0) redistributes the MII
-  logo files. Confirm MII permission — tracked in open-tasks.
-- **Base extension points** studied at `HL7/ig-template-base2` `main`
-  `4c20cf6`: header/CSS fragments are empty placeholders; the footer fragment
-  carries real content (the link row this template appends to).

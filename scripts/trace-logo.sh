@@ -25,7 +25,8 @@
 #       <name:segHex[,segHex...]:paintHex>...
 #
 # The exact invocations that produced the shipped assets are in
-# docs/styleguide.md (§4 + the provenance appendix).
+# docs/styleguide.md §4; the exact shipped-file commands are in
+# docs/recipes/replace-the-logo.md.
 set -euo pipefail
 src=$1; out=$2; up=$3; t=$4; o=$5; label=$6; shift 6
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
