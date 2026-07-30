@@ -326,6 +326,14 @@ Notes and deliberate deviations:
   > **Why:** accessibility-first when two "official" colors compete; slate-dark
   > is itself MII-sourced (site-css menu links, logo-svg wordmark fill), so the
   > brand look is preserved.
+- **Publisher name in the © line (language-aware):** the base's
+  `fragment-pageend.html` renders the single global `site.data.fhir.ig.publisher`
+  on every language's pages, so `/de/` showed the English name — the same
+  limitation kerndatensatz-basis ships live. The template overrides the fragment
+  (copied verbatim from the pinned base, one changed line) and hard-codes
+  "Medizininformatik-Initiative (MII)" for `include.lang == 'de'` — the same
+  recorded hard-coded-label pattern as the footer (§5–§6). Re-check the override
+  when bumping the base template.
 - **Base's own defaults we improved:** base `--btn-text-color: #e6e6e6` would be
   4.03:1 on our navbar blue → raised to `#ffffff`.
 - **Known limitation (WCAG 1.4.1, use of color):** footer links are white like

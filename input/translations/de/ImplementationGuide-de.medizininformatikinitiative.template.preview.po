@@ -25,3 +25,8 @@ msgstr "Startseite"
 #: ImplementationGuide.definition.page.title
 msgid "Translation information"
 msgstr "Hinweise zur Übersetzung"
+
+# ImplementationGuide.publisher — the footer's "IG © <year> <publisher>" line
+#: ImplementationGuide.publisher
+msgid "Medical Informatics Initiative (MII)"
+msgstr "Medizininformatik-Initiative (MII)"
