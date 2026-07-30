@@ -26,7 +26,7 @@ access (the first build downloads the base image and tools):
 1. Clone the repository and switch to the `dev` branch:
 
    ```sh
-   git clone https://github.com/medizininformatik-initiative/ig-template-mii-kds.git
+   git clone https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds.git
    cd ig-template-mii-kds
    git checkout dev
    ```

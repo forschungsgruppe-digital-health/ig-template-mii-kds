@@ -161,4 +161,4 @@ echo
 echo "Done — the SU-TermServ credential is configured."
 echo "Verify in CI: push any branch and read the terminology step's log."
 echo "  enabled  -> 'SU-TermServ client certificate present — starting a local client-cert nginx proxy'"
-echo "  fallback -> 'No SU-TermServ credential — falling back to the public HL7 terminology server'"
+echo "  fallback -> 'No SU-TermServ credential — falling back to HL7 tx.fhir.org'"

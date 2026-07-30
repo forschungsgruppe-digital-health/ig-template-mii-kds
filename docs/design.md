@@ -115,7 +115,7 @@ dragon (29–30), translation box (31–32).
 > **Known consequence — the publish box's "Directory of published versions" link
 > is dead in the preview.** Every rendered page carries that link, and in the
 > preview it points at
-> `https://github.com/medizininformatik-initiative/ig-template-mii-kds/history.html`,
+> `https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/history.html`,
 > which 404s. The link is the IG's `canonical` with `history.html` appended
 > (observed on both builds: this preview → the repo URL, the module template's
 > `https://www.medizininformatik-initiative.de/fhir/modul-template` → …
@@ -151,7 +151,7 @@ PNGs and their checksums are recorded for provenance.
 > is not ours to choose. The IG Publisher derives it from the IG's `jurisdiction`
 > (`urn:iso:std:iso:3166#DE`) and emits `<img src="assets/images/deu.svg">` —
 > `DEU` is the **ISO 3166-1 alpha-3 code for Germany**, i.e. the official
-> jurisdiction identifier already. Renaming the file would simply break the
+> jurisdiction identifier already. Renaming the file would break the
 > reference again. If the jurisdiction changes, the expected file name changes
 > with it (e.g. `aut.svg` for Austria).
 
@@ -335,10 +335,12 @@ Notes and deliberate deviations:
 - **Language selector legibility:** the base language dropdown reads
   `var(--btn-text-color)` on `var(--navbar-bg-color)` → white on `#3473aa`,
   5.03:1 (AA) — improved over the base default pairing (4.03:1).
-- The logo PNGs sit on the white header container (`#ffffff` — the base's value,
-  set explicitly here together with the header sides):
-  the DE PNG is transparent (RGBA); the EN PNG has a white matte (RGB) and is
-  seamless on white — another reason not to re-color the header background.
+- The logos sit on the white header container (`#ffffff` — the base's value,
+  set explicitly here together with the header sides). They ship as transparent
+  SVGs painted with the brand colours (§4's trace pipeline), so both language
+  variants read identically on white; the source PNGs' properties (DE
+  transparent RGBA, EN white-matte RGB) stay recorded in §4 as provenance. The
+  white header itself still stands on §3's consistent-white-chrome reasoning.
 
 ---
 

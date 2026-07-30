@@ -7,7 +7,7 @@ by this repository's maintainer, not an MII or HL7 conformance statement, and it
 says nothing about what a module IG is obliged to do.
 
 The module-author counterpart lives in the module scaffold:
-[`mii-kds-module-template` → `docs/ig-best-practices-checklist.md`](https://github.com/medizininformatik-initiative/mii-kds-module-template/blob/dev/docs/ig-best-practices-checklist.md).
+[`mii-kds-module-template` → `docs/ig-best-practices-checklist.md`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template/blob/dev/docs/ig-best-practices-checklist.md).
 
 ## Sources (all official, retrieved 2026-07-26)
 

@@ -28,7 +28,7 @@ Multi-language support is split across the two template repositories:
   language *mechanism*: the header/footer/CSS overrides, the base template's
   UI-string catalogs, and the documented conventions below.
 - **The module scaffold
-  ([`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template))**
+  ([`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template))**
   owns the module-facing *workflow*: creating or harvesting the actual
   translation supplements (`input/translations/de/…`) and translated
   narrative pages for a concrete module IG, including the supporting
@@ -144,7 +144,7 @@ Findings are reported and proposed as changes via a pull request **targeting
 ## References
 
 - Module-facing workflow + tooling: the `ig-translate` skill in
-  [`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template).
+  [`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template).
 - Base template string mechanism and `.po` translations:
   [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2)
   (`includes/`, `translations/`).

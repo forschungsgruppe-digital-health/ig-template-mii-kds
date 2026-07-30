@@ -26,18 +26,19 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 
 | Workflow | Trigger | What it does | Output | Toggle (default) | Human-gated? |
 | --- | --- | --- | --- | --- | --- |
-| `ig-preview.yml` | push to any branch except `main`/`gh-pages`; `workflow_dispatch` | Builds the **preview IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
+| `ig-preview.yml` | push to any branch except `main`/`gh-pages`/`fsh-generated`; `workflow_dispatch` | Builds the **preview IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
+
+| `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
+| `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
+| `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
+| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the `scripts/` unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
+| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`scripts/check-language-model.sh`) and the `tooling-tests` job (`node --test` on the `scripts/*.test.mjs` suites) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
 > **One manual setting is required and the workflow cannot tell you it is
 > missing:** pushing to `gh-pages` publishes nothing until the repository is set
 > to serve that branch (*Settings → Pages → Deploy from a branch → `gh-pages`,
 > `/ (root)`*). Without it the build goes green and every preview URL is a 404.
 > See [publish the preview on GitHub Pages](recipes/publish-the-preview-on-github-pages.md).
-| `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
-| `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
-| `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
-| `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the `scripts/` unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
-| `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`scripts/check-language-model.sh`) and the `tooling-tests` job (`node --test` on the `scripts/*.test.mjs` suites) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
 Notes:
 - **Dependabot** (`.github/dependabot.yml`) is not a job you gate with `if:` — it is
@@ -78,7 +79,8 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 
 **Once the package is published**, a module picks up a release by bumping the
 pinned version in its `ig.ini` (or `sushi-config.yaml` dependency), e.g.
-`template = de.medizininformatikinitiative.template#0.2.0`, then rebuilding. See
+`template = de.medizininformatikinitiative.template#<version>` (a released
+version from the [releases page](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/releases)), then rebuilding. See
 [recipes/consume-this-template-in-a-module.md](recipes/consume-this-template-in-a-module.md).
 
 **It is not published yet** ([open-tasks.md](open-tasks.md)), so no module pins a
