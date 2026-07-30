@@ -18,7 +18,7 @@ its own `ig-template/` folder, so a merge into `dev` here reaches modules
 without a release — see
 [`docs/workflows.md`](docs/workflows.md#how-a-module-consumes-this-template).
 The separate repo
-[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
+[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template)
 is the scaffold for new module IGs. See [`README.md`](README.md) for the full
 picture.
 

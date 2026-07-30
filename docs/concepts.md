@@ -46,7 +46,8 @@ inherited from the base.
 > **Why pin the base to `0.1.0` instead of the moving `#current`:** reproducibility.
 > A build in 2029 must produce the same output as today. The
 > [dependency checker](maintenance.md) watches for a newer base and proposes the
-> bump as a reviewable PR, so pinning does not mean going stale silently. The MII
+> bump in the continuously-updated dependencies tracking issue, so pinning does
+> not mean going stale silently. The MII
 > reference repos float `#current` instead — a different trade-off, not an error.
 
 ## 3. How an IG is created and published (the big picture)
