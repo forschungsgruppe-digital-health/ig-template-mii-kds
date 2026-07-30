@@ -16,7 +16,7 @@ preview.
 3. The shipped files are **SVG traced from the official PNGs** (`scripts/trace-logo.sh`),
    because the MII publishes no official SVG. If you get an official SVG, drop it
    in and delete the trace. If you only have a new PNG, re-run the trace script —
-   the exact commands are in [`../design.md`](../design.md) §4.
+   the exact commands are in [`../styleguide.md`](../styleguide.md) §4 and its provenance appendix.
 4. Keep the `alt` text meaningful (it is in `fragment-header.html`).
 5. Rebuild the preview or push a `feature/*` branch and open the preview; check
    the logo on both `/de/` and `/en/` pages.
@@ -35,4 +35,4 @@ The header shows your logo in both languages; the browser tab shows your favicon
 
 > **Licensing note:** the MII logo is a trademark. Shipping it in this CC0 repo
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII
-> logos). Confirm redistribution rights before a release. See `docs/design.md`.
+> logos). Confirm redistribution rights before a release. See `docs/styleguide.md`.

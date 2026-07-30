@@ -32,9 +32,9 @@ mechanism) · ➖ not applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Derives from an official HL7 base template rather than forking it | ✅ | `package/package.json` declares `fhir2.base.template` as its base |
-| Overrides only the designed extension points | ✅ | Three fragments + `content/assets/**` — [`docs/design.md`](design.md) §2 |
-| Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/design.md`](design.md) §2 |
-| Branding is done through the base's CSS **variables**, not rule overrides | ✅ | [`docs/design.md`](design.md) §3 |
+| Overrides only the designed extension points | ✅ | Three fragments + `content/assets/**` — [`docs/styleguide.md`](styleguide.md) §2 |
+| Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/styleguide.md`](styleguide.md) §2 |
+| Branding is done through the base's CSS **variables**, not rule overrides | ✅ | [`docs/styleguide.md`](styleguide.md) §3 |
 | The base version is pinned (reproducible builds) | ✅ | `0.1.0`, never `#current`; drift is surfaced by `dependency-check.yml` |
 | The template is exercised by a real build before release | ✅ | The bundled preview IG builds on every push (`ig-preview.yml`) |
 | Validated against a real module | ✅ | `kerndatensatz-basis` builds against it with 0 errors — [the report](reports/template-validation-2026-07-23.md) |
@@ -45,7 +45,7 @@ mechanism) · ➖ not applicable to a template.
 |---|---|---|
 | Multi-language is set up the supported way | ✅ | `i18n-default-lang: en`, `i18n-lang: [de]` — the same model as `kerndatensatz-basis` ([`docs/recipes/add-translation.md`](recipes/add-translation.md)) |
 | Uses the language-aware base and the supported translation mechanism | ✅ | `fhir2.base.template` is the *translated* base; translations follow the HL7 reference layout |
-| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | [`docs/design.md`](design.md) §5–§6 |
+| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | [`docs/styleguide.md`](styleguide.md) §5–§6 |
 | The base UI strings resolve in every offered language | ✅ | German catalogs vendored, because the pinned base ships none — [`translations/README.md`](../translations/README.md) |
 | The menu can be translated | ✅ | Per-language `input/translations/<lang>/includes/menu.xml`; the untranslatable `menu:` property is deliberately not used |
 | Language switching works in the rendered output | ✅ | `/de/` and `/en/` both render with the correct menu, footer and content; the landing-page redirect is overridden in `content/assets/js/lang-redirects.js` (the reason is in that file) |
@@ -54,10 +54,10 @@ mechanism) · ➖ not applicable to a template.
 
 | Check | State | Evidence |
 |---|---|---|
-| Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/design.md`](design.md) §3 |
-| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted in the design review) |
+| Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/styleguide.md`](styleguide.md) §3 |
+| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/styleguide.md`](styleguide.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted in the design review) |
 | Consistent page chrome (no mixed white/grey surfaces) | ✅ | Header sides and container are both white, matching the logo background and the content area |
-| Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/design.md`](design.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
+| Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/styleguide.md`](styleguide.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
 | Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning |
 
 ## 4. What the template makes easy for module authors (S1)
