@@ -1,8 +1,3 @@
-**Prototyp.** Diese Vorschau ist kein von der MII freigegebenes Artefakt,
-sondern ein Vorschlag, der in der MII-Taskforce Kerndatensatz noch diskutiert
-wird. Logo, Wortmarke und Herausgeberangabe zeigen, wie eine übernommene
-Vorlage aussähe — sie bedeuten keine Freigabe durch die MII.
-
 Diese Seite dient ausschließlich dem **Vorschau** der IG-Template-Vorlage
 `de.medizininformatikinitiative.template`. Sie ist **kein** MII-Kerndatensatz-Modul.
 
