@@ -33,7 +33,7 @@ Everything else here is about changing the template itself.
 2. [concepts.md](concepts.md) — what this package is, and what it is not.
 3. [recipes/first-build-in-devcontainer.md](recipes/first-build-in-devcontainer.md)
    — get a build before changing anything.
-4. [styleguide.md](styleguide.md) — the layout/design conventions; every value's source is in its provenance appendix.
+4. [styleguide.md](styleguide.md) — the layout/design conventions; the full source derivations are preserved in git history (`docs/design.md`).
 
 ## What is a recommendation and what is a rule
 
