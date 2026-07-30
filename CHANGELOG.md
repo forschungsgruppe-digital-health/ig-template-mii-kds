@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.3.0...v0.4.0) (2026-07-30)
+
+
+### Features
+
+* **skills:** add docs-steward, a documentation audit and repair skill ([2b9826d](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/2b9826d7bd9b9efe0e439837b611f85097e632a5))
+
+
+### Bug Fixes
+
+* **security:** do not hard-code the advisory URL ([5b47df7](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/5b47df7cd2df2445b0a30c749ccf1337f3eca11e))
+* **skills:** apply what the first dry run of docs-steward found ([c856d07](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/c856d07bbd4fed3a71221e840d89970f3574c035))
+* **skills:** sort step 8 by consequence, and give findings a severity ([90daa08](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/90daa080bd5549fccd2fe6ed43352402dfc47f98))
+
 ## [0.3.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.2.0...v0.3.0) (2026-07-27)
 
 
