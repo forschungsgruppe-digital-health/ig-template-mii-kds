@@ -318,11 +318,14 @@ together with var 21.
 Notes and deliberate deviations:
 
 - **Footer band vs. the MII site:** the site's own footer puts white text on
-  `#7a8495` = **3.78:1 (fails AA normal)**. We therefore put the text-bearing
-  footer *container* on the darker sourced slate `#6a7484` (4.73:1, AA) and use
-  the site's `#7a8495` only for the outer, text-free band.
-  > **Why:** accessibility-first when two "official" colors compete; both values
-  > are MII-sourced, so the brand look is preserved.
+  `#7a8495` = **3.78:1 (fails AA normal)**. The footer here is therefore ONE
+  uniform grey — MII slate-dark `#6a7484` (4.73:1 with white, AA) for both the
+  outer band and the text container. Earlier revisions kept the site's
+  `#7a8495` on the outer, text-free band, which produced two nearly-identical
+  greys reading as a seam; unified 2026-07-30.
+  > **Why:** accessibility-first when two "official" colors compete; slate-dark
+  > is itself MII-sourced (site-css menu links, logo-svg wordmark fill), so the
+  > brand look is preserved.
 - **Base's own defaults we improved:** base `--btn-text-color: #e6e6e6` would be
   4.03:1 on our navbar blue → raised to `#ffffff`.
 - **Known limitation (WCAG 1.4.1, use of color):** footer links are white like
