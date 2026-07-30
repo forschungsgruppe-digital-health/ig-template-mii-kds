@@ -16,7 +16,7 @@ Everything else here is about changing the template itself.
 | Understand a term I do not recognise | [glossary.md](glossary.md) |
 | Understand what an IG template is and why this one exists | [concepts.md](concepts.md) |
 | Publish the preview so someone can look at it | [recipes/publish-the-preview-on-github-pages.md](recipes/publish-the-preview-on-github-pages.md) |
-| Change a colour, a logo, or the footer | [design.md](design.md) · [recipes/change-the-brand-color.md](recipes/change-the-brand-color.md) |
+| Change a colour, a logo, or the footer | [styleguide.md](styleguide.md) · [recipes/change-the-brand-color.md](recipes/change-the-brand-color.md) |
 | Know what CI runs, and which variable turns it off | [workflows.md](workflows.md) |
 | Keep the toolchain and dependencies current | [maintenance.md](maintenance.md) |
 | Cut a release so modules can pin it | [recipes/cut-a-template-release.md](recipes/cut-a-template-release.md) |
@@ -33,7 +33,7 @@ Everything else here is about changing the template itself.
 2. [concepts.md](concepts.md) — what this package is, and what it is not.
 3. [recipes/first-build-in-devcontainer.md](recipes/first-build-in-devcontainer.md)
    — get a build before changing anything.
-4. [design.md](design.md) — every branding value and where it came from.
+4. [styleguide.md](styleguide.md) — the layout/design conventions; every value's source is in its provenance appendix.
 
 ## What is a recommendation and what is a rule
 

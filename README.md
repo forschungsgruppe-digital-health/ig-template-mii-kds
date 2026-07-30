@@ -70,7 +70,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 newcomers. The three you are most likely to want first:
 
 - [Recipes](docs/recipes/) — step-by-step for the common tasks
-- [Design](docs/design.md) — every branding value and where it came from
+- [Styleguide](docs/styleguide.md) — the layout/design conventions (palette, boxes, tables, language rules, accessibility), with provenance in the appendix
 - [Project status](docs/project-status.md) — prototype; what that means in practice
 
 Contributing and policies: [CONTRIBUTING.md](CONTRIBUTING.md) ·

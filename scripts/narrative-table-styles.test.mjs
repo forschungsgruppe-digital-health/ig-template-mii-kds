@@ -18,7 +18,7 @@
 // selector against fixtures taken verbatim from both built sites, which is the
 // check that would have caught the original mistake.
 //
-// Rationale: docs/design.md section 7a.
+// Rationale: docs/styleguide.md §5.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -86,7 +86,7 @@ test("the styling never reaches a publisher-generated table", () => {
       assert.ok(
         !selectorMatches(sel, attrs),
         `"${sel}" WOULD match a generated table (<table${attrs}>). ` +
-          `Bordering its cells breaks the profile tree — see docs/design.md 7a.`,
+          `Bordering its cells breaks the profile tree — see docs/styleguide.md §5.`,
       );
     }
   }
@@ -104,7 +104,7 @@ test("a border and a header background are actually defined", () => {
 
 test("the table colours come from the documented MII palette", () => {
   const design = readFileSync(
-    fileURLToPath(new URL("../docs/design.md", import.meta.url)),
+    fileURLToPath(new URL("../docs/styleguide.md", import.meta.url)),
     "utf8",
   );
   for (const [name, value] of [
@@ -115,7 +115,7 @@ test("the table colours come from the documented MII palette", () => {
     assert.match(css, new RegExp(`${name}:\\s*${value}`, "i"));
     assert.ok(
       design.includes(value),
-      `${value} is not recorded in docs/design.md — every colour needs a source`,
+      `${value} is not recorded in docs/styleguide.md — every colour needs a source`,
     );
   }
 });

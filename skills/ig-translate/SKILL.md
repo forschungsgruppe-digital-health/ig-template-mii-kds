@@ -113,7 +113,7 @@ parameters:
    and deliberately not through the base: the base has no `Impressum` key, a
    child template cannot add one, and the pinned base ships no German catalog,
    so those lookups render blank on `/de/`. It hard-codes an
-   `include.lang`-branched label set instead. Read `docs/design.md` §5 and §6
+   `include.lang`-branched label set instead. Read `docs/styleguide.md` §5 and §6
    before changing it, and keep every branch complete when adding a language.
 2. **Vendored German UI strings.** The pinned base
    `fhir2.base.template#0.1.0` ships `.po` catalogs for
