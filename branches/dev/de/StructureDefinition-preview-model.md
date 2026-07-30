@@ -65,13 +65,26 @@ Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-preview-mode
   "name" : "PreviewModel",
   "title" : "Preview Model",
   "status" : "draft",
-  "date" : "2026-07-30T15:45:53+00:00",
+  "date" : "2026-07-30T16:02:24+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
+  "_publisher" : {
+    "extension" : [{
+      "extension" : [{
+        "url" : "lang",
+        "valueCode" : "de"
+      },
+      {
+        "url" : "content",
+        "valueString" : "Medizininformatik-Initiative (MII)"
+      }],
+      "url" : "http://hl7.org/fhir/StructureDefinition/translation"
+    }]
+  },
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",
     "telecom" : [{
       "system" : "url",
-      "value" : "https://www.medizininformatik-initiative.de/en"
+      "value" : "https://www.medizininformatik-initiative.de"
     }]
   }],
   "description" : "Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact.",

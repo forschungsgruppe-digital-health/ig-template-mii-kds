@@ -287,7 +287,7 @@
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.name">fhir:StructureDefinition.name</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#string">fhir:value</a> &quot;PreviewModel&quot;] ;
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.title">fhir:StructureDefinition.title</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#string">fhir:value</a> &quot;Preview Model&quot;] ;
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.status">fhir:StructureDefinition.status</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#code">fhir:value</a> &quot;draft&quot;] ;
-  <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">fhir:StructureDefinition.date</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">fhir:value</a> &quot;2026-07-30T15:45:53+00:00&quot;^^xsd:dateTime] ;
+  <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">fhir:StructureDefinition.date</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#dateTime">fhir:value</a> &quot;2026-07-30T16:02:24+00:00&quot;^^xsd:dateTime] ;
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.publisher">fhir:StructureDefinition.publisher</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#string">fhir:value</a> &quot;Medical Informatics Initiative (MII)&quot;] ;
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.contact">fhir:StructureDefinition.contact</a> [
      <a href="http://hl7.org/fhir/R4/rdf.html#index">fhir:index</a> -1 ;
@@ -295,7 +295,7 @@
      <a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.telecom">fhir:ContactDetail.telecom</a> [
        <a href="http://hl7.org/fhir/R4/rdf.html#index">fhir:index</a> -1 ;
        <a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.system">fhir:ContactPoint.system</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#code">fhir:value</a> &quot;url&quot; ] ;
-       <a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.value">fhir:ContactPoint.value</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#string">fhir:value</a> &quot;https://www.medizininformatik-initiative.de/en&quot; ]
+       <a href="http://hl7.org/fhir/R4/datatypes.html#ContactPoint#ContactPoint.value">fhir:ContactPoint.value</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#string">fhir:value</a> &quot;https://www.medizininformatik-initiative.de&quot; ]
      ]
   ] ;
   <a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.description">fhir:StructureDefinition.description</a> [ <a href="http://hl7.org/fhir/R4/datatypes.html#markdown">fhir:value</a> &quot;Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact.&quot;] ;
@@ -395,6 +395,14 @@
 
 </div>
 
+<!-- OVERRIDE of fhir2.base.template#0.1.0 includes/fragment-pageend.html.
+     Copied verbatim; ONE change: the publisher name in the "IG © <year>" line
+     is language-aware. The base renders the single global
+     site.data.fhir.ig.publisher on every language's pages, so /de/ showed the
+     English name (kerndatensatz-basis has the same limitation). Jekyll's data
+     carries no per-language publisher, so the German name is hard-coded here -
+     the same recorded pattern as the footer labels (docs/design.md §5-6).
+     Re-check this file when bumping the base template version. -->
         </div>  <!-- /inner-wrapper -->
       </div>  <!-- /row -->
     </div>  <!-- /container -->
@@ -416,9 +424,9 @@
 
 
 
-          IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de/en">Medical Informatics Initiative (MII)</a>.  
+          IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.4.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Generated <span title="Thu, Jul 30, 2026 15:45+0000">2026-07-30</span>
+          Generated <span title="Thu, Jul 30, 2026 16:02+0000">2026-07-30</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- MII branding override for the fhir2.base.template footer fragment.
