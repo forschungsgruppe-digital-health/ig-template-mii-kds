@@ -18,8 +18,9 @@ What the template is and how a module uses it is described in the repository's
 ### Highlight boxes (background-colour demo)
 
 The template ships reusable, purpose-neutral CSS classes for calling out content
-(classes `mii-highlight mii-highlight-blue` / `mii-highlight-green`). These are
-styling only — a module decides what each colour means.
+(classes `mii-highlight` with `-blue`, `-green`, `-orange`, `-red`, `-grey`).
+These are styling only — a module decides what each colour means; the
+conventional reading is orange = warning, red = important, grey = hint.
 
 <!-- Raw HTML block: the page processor does NOT run markdown inside it, so the
      class names have to be marked up as <code>, not with backticks. -->
@@ -31,4 +32,19 @@ styling only — a module decides what each colour means.
 <div class="mii-highlight mii-highlight-green">
 <h5>Green highlight box</h5>
 <p>Example of the green background highlight (<code>mii-highlight-green</code>).</p>
+</div>
+
+<div class="mii-highlight mii-highlight-orange">
+<h5>Orange highlight box (warning)</h5>
+<p>Example of the orange background highlight (<code>mii-highlight-orange</code>) — conventionally a warning.</p>
+</div>
+
+<div class="mii-highlight mii-highlight-red">
+<h5>Red highlight box (important)</h5>
+<p>Example of the red background highlight (<code>mii-highlight-red</code>) — conventionally an important notice.</p>
+</div>
+
+<div class="mii-highlight mii-highlight-grey">
+<h5>Grey highlight box (hint)</h5>
+<p>Example of the grey background highlight (<code>mii-highlight-grey</code>) — conventionally a hint or authoring note.</p>
 </div>
