@@ -2,8 +2,8 @@
 
 ## Pages
 
-* [Home](index.md)
-* [Translation information](translationinfo.md)
+* [Startseite](index.md)
+* [Hinweise zur Übersetzung](translationinfo.md)
 * [Artefaktübersicht](artifacts.md)
 
 ## Resources

@@ -1,6 +1,6 @@
 # Preview Model - MII KDS IG Template — Preview v0.4.0
 
-* [**Table of Contents**](toc.md)
+* [**Inhaltsverzeichnis**](toc.md)
 * [**Artefaktübersicht**](artifacts.md)
 * **Preview Model**
 
@@ -65,7 +65,7 @@ Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-preview-mode
   "name" : "PreviewModel",
   "title" : "Preview Model",
   "status" : "draft",
-  "date" : "2026-07-30T15:32:03+00:00",
+  "date" : "2026-07-30T15:45:53+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",

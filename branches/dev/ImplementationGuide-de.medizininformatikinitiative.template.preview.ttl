@@ -16,9 +16,24 @@
   fhir:ImplementationGuide.url [ fhir:value "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"] ;
   fhir:ImplementationGuide.version [ fhir:value "0.4.0"] ;
   fhir:ImplementationGuide.name [ fhir:value "MIIKDSTemplatePreview"] ;
-  fhir:ImplementationGuide.title [ fhir:value "MII KDS IG Template — Preview"] ;
+  fhir:ImplementationGuide.title [
+     fhir:value "MII KDS IG Template — Preview" ;
+     fhir:Element.extension [
+       fhir:index 0 ;
+       fhir:Element.extension [
+         fhir:index 0 ;
+         fhir:Extension.url [ fhir:value "lang" ] ;
+         fhir:Extension.valueCode [ fhir:value "de" ]
+       ], [
+         fhir:index 1 ;
+         fhir:Extension.url [ fhir:value "content" ] ;
+         fhir:Extension.valueString [ fhir:value "MII-KDS-IG-Vorlage — Vorschau" ]
+       ] ;
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
+     ]
+  ] ;
   fhir:ImplementationGuide.status [ fhir:value "draft"] ;
-  fhir:ImplementationGuide.date [ fhir:value "2026-07-30T15:32:03+00:00"^^xsd:dateTime] ;
+  fhir:ImplementationGuide.date [ fhir:value "2026-07-30T15:45:53+00:00"^^xsd:dateTime] ;
   fhir:ImplementationGuide.publisher [ fhir:value "Medical Informatics Initiative (MII)"] ;
   fhir:ImplementationGuide.contact [
      fhir:index 0 ;
@@ -774,7 +789,22 @@
          fhir:Extension.valueUrl [ fhir:value "toc.html" ]
        ] ;
        fhir:ImplementationGuide.definition.page.nameUrl [ fhir:value "toc.html" ] ;
-       fhir:ImplementationGuide.definition.page.title [ fhir:value "Table of Contents" ] ;
+       fhir:ImplementationGuide.definition.page.title [
+         fhir:value "Table of Contents" ;
+         fhir:Element.extension [
+           fhir:index 0 ;
+           fhir:Element.extension [
+             fhir:index 0 ;
+             fhir:Extension.url [ fhir:value "lang" ] ;
+             fhir:Extension.valueCode [ fhir:value "de" ]
+           ], [
+             fhir:index 1 ;
+             fhir:Extension.url [ fhir:value "content" ] ;
+             fhir:Extension.valueString [ fhir:value "Inhaltsverzeichnis" ]
+           ] ;
+           fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
+         ]
+       ] ;
        fhir:ImplementationGuide.definition.page.generation [ fhir:value "html" ] ;
        fhir:ImplementationGuide.definition.page.page [
          fhir:index 0 ;
@@ -784,7 +814,22 @@
            fhir:Extension.valueUrl [ fhir:value "index.html" ]
          ] ;
          fhir:ImplementationGuide.definition.page.nameUrl [ fhir:value "index.html" ] ;
-         fhir:ImplementationGuide.definition.page.title [ fhir:value "Home" ] ;
+         fhir:ImplementationGuide.definition.page.title [
+           fhir:value "Home" ;
+           fhir:Element.extension [
+             fhir:index 0 ;
+             fhir:Element.extension [
+               fhir:index 0 ;
+               fhir:Extension.url [ fhir:value "lang" ] ;
+               fhir:Extension.valueCode [ fhir:value "de" ]
+             ], [
+               fhir:index 1 ;
+               fhir:Extension.url [ fhir:value "content" ] ;
+               fhir:Extension.valueString [ fhir:value "Startseite" ]
+             ] ;
+             fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
+           ]
+         ] ;
          fhir:ImplementationGuide.definition.page.generation [ fhir:value "markdown" ]
        ], [
          fhir:index 1 ;
@@ -794,7 +839,22 @@
            fhir:Extension.valueUrl [ fhir:value "translationinfo.html" ]
          ] ;
          fhir:ImplementationGuide.definition.page.nameUrl [ fhir:value "translationinfo.html" ] ;
-         fhir:ImplementationGuide.definition.page.title [ fhir:value "Translation information" ] ;
+         fhir:ImplementationGuide.definition.page.title [
+           fhir:value "Translation information" ;
+           fhir:Element.extension [
+             fhir:index 0 ;
+             fhir:Element.extension [
+               fhir:index 0 ;
+               fhir:Extension.url [ fhir:value "lang" ] ;
+               fhir:Extension.valueCode [ fhir:value "de" ]
+             ], [
+               fhir:index 1 ;
+               fhir:Extension.url [ fhir:value "content" ] ;
+               fhir:Extension.valueString [ fhir:value "Hinweise zur Übersetzung" ]
+             ] ;
+             fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
+           ]
+         ] ;
          fhir:ImplementationGuide.definition.page.generation [ fhir:value "markdown" ]
        ]
      ] ;

@@ -1,9 +1,9 @@
-# Translation information - MII KDS IG Template — Preview v0.4.0
+# Hinweise zur Übersetzung - MII KDS IG Template — Preview v0.4.0
 
-* [**Table of Contents**](toc.md)
-* **Translation information**
+* [**Inhaltsverzeichnis**](toc.md)
+* **Hinweise zur Übersetzung**
 
-## Translation information
+## Hinweise zur Übersetzung
 
  Diese Seite enthält Übersetzungen aus der Originalsprache, in der der Leitfaden verfasst wurde. Informationen zu diesen Übersetzungen und Anweisungen zum Abgeben von Feedback zu den Übersetzungen finden Sie [hier](translationinfo.md). 
 

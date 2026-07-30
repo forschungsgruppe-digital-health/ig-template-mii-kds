@@ -1,10 +1,10 @@
 Source File	Size	loadResources	load	generateSnapshots	load-configure	scan	loadDepInfo	loadInfo	checkR4R4B	generateNarratives	validate	loadLists	checkConformanceResources	checkConformanceResources2	checkConformanceResources3	generateLogicalMaps	validateExpressions	scanForUsageStats	checkURLsUnique	processProvenanceDetails	translate	generate1	generate2	generateLogicals	makeDependencies	generateExampleZip	generateValidationPack	scanProfilesForR5	scanExamplesForR5
-/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json	2414	-	0	0	0	0	0	0	9	78	0	0	0	0	0	0	0	0	0	0	8	92	108	0	0	0	2	0	1
-fsh-generated/resources/StructureDefinition-preview-model.json	1332	3	0	4	1	0	0	0	0	61	0	0	0	0	0	0	0	1	0	0	1	44	525	0	0	0	2	0	0
+/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json	2414	-	0	0	0	0	0	0	14	118	0	0	0	0	0	0	0	0	0	0	8	135	126	0	0	0	3	0	1
+fsh-generated/resources/StructureDefinition-preview-model.json	1332	3	0	5	1	0	0	0	0	622	0	0	0	0	1	0	0	0	0	0	1	50	690	0	0	0	2	0	1
 /input/includes/menu.xml	602	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
-/fsh-generated/includes/fsh-link-references.md	54	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-/input/pagecontent/translationinfo.md	2303	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
-/input/pagecontent/index.md	2003	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/fsh-generated/includes/fsh-link-references.md	54	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+/input/pagecontent/translationinfo.md	2303	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/input/pagecontent/index.md	2003	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
 /template/config	0	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 /template/config/_config.yml	140	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 /temp/pages/_includes/artifacts.xml	1675	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	1	0	0	0	0	0	0
