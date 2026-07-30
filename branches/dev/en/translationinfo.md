@@ -21,7 +21,7 @@ A page that has no German counterpart is rendered in English on `/de/`, with a n
 
 Write to the HL7 FHIR Zulip, stream `german/mi-initiative` ([https://chat.fhir.org](https://chat.fhir.org)), naming the page and the wording — or open an issue on the repository this guide is built from. Corrections go through the same pull-request review as any other change; the step-by-step is in the repository's `docs/recipes/add-translation.md`.
 
-> The repository's issue tracker is deliberately not linked here. This guide is a prototype whose GitHub organisation is not settled, so a hard-coded issues URL would 404 for readers of a build made before the move. Zulip is stable either way.
+> The repository's issue tracker is deliberately not linked with a fixed URL: a built guide outlives repository moves — such as the move to the MII's GitHub organisation, `medizininformatik-initiative` — and a URL burned into an older build would go stale. Open the issue on the repository this guide was built from; Zulip is reachable regardless.
 
 > **Scope of this guide:** it is the **preview** of the MII IG template (`de.medizininformatikinitiative.template`), not an MII Core Dataset module. It exists so the branding can be reviewed in both languages before a template release. A module IG carries its own translation-information page.
 

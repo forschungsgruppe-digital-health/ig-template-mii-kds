@@ -6,8 +6,8 @@
   "status" : "draft",
   "package-id" : "de.medizininformatikinitiative.template.preview",
   "ig-ver" : "0.4.0",
-  "date" : "Thu, 30 Jul, 2026 14:25:11 +0000",
-  "dateISO8601" : "2026-07-30T14:25:11+00:00",
+  "date" : "Thu, 30 Jul, 2026 15:32:03 +0000",
+  "dateISO8601" : "2026-07-30T15:32:03+00:00",
   "errs" : 0,
   "warnings" : 8,
   "hints" : 2,
@@ -15,5 +15,5 @@
   "suppressed-warnings" : 0,
   "version" : "4.0.1",
   "tool" : "5.0.0 (3)",
-  "maxMemory" : 944252544
+  "maxMemory" : 769908224
 }

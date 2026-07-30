@@ -10,8 +10,6 @@
 | *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.4.0 |
 | Draft as of 2026-07-30 | *Computable Name*:MIIKDSTemplatePreview |
 
-**Prototype.** This preview is not an MII-endorsed artifact; it is a proposal pending discussion in the MII Taskforce Kerndatensatz. The MII logo, wordmark and publisher name below show what an adopted template would look like — they do not signal an endorsement.
-
 This page exists solely for the **preview** of the `de.medizininformatikinitiative.template` IG template. It is **not** an MII Core Dataset module.
 
 The preview builds the template standalone so that branding changes (header, footer, CSS, logo) can be reviewed in a rendered IG before a template version is released. The build renders in English (the default language) and German, to check the language-aware header and footer.

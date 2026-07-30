@@ -1,5 +1,5 @@
 {
-  "date" : "Thu, 30 Jul, 2026 14:25:11 +0000",
+  "date" : "Thu, 30 Jul, 2026 15:32:03 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json",
@@ -7,47 +7,47 @@
     "processes" : [{
       "activity" : "load",
       "start" : 28,
-      "length" : 20
+      "length" : 13
     },
     {
       "activity" : "checkR4R4B",
       "start" : 28,
-      "length" : 23
+      "length" : 9
     },
     {
       "activity" : "generateNarratives",
       "start" : 28,
-      "length" : 340
+      "length" : 78
     },
     {
       "activity" : "validate",
-      "start" : 32,
-      "length" : 4215
+      "start" : 33,
+      "length" : 6223
     },
     {
       "activity" : "translate",
-      "start" : 36,
+      "start" : 39,
       "length" : 8
     },
     {
       "activity" : "generate1",
-      "start" : 36,
-      "length" : 120
+      "start" : 39,
+      "length" : 92
     },
     {
       "activity" : "generate2",
-      "start" : 38,
-      "length" : 127
+      "start" : 42,
+      "length" : 108
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 49,
+      "start" : 51,
       "length" : 2
     },
     {
       "activity" : "scanExamplesForR5",
-      "start" : 60,
-      "length" : 2
+      "start" : 68,
+      "length" : 1
     }]
   },
   {
@@ -56,17 +56,17 @@
     "processes" : [{
       "activity" : "loadResources",
       "start" : 28,
-      "length" : 4
+      "length" : 3
     },
     {
       "activity" : "load",
       "start" : 28,
-      "length" : 9
+      "length" : 5
     },
     {
       "activity" : "generateSnapshots",
       "start" : 28,
-      "length" : 6
+      "length" : 4
     },
     {
       "activity" : "load-configure",
@@ -76,37 +76,42 @@
     {
       "activity" : "generateNarratives",
       "start" : 28,
-      "length" : 765
+      "length" : 61
     },
     {
       "activity" : "validate",
-      "start" : 29,
-      "length" : 2355
+      "start" : 28,
+      "length" : 4624
     },
     {
-      "activity" : "checkConformanceResources",
-      "start" : 36,
+      "activity" : "scanForUsageStats",
+      "start" : 39,
+      "length" : 1
+    },
+    {
+      "activity" : "translate",
+      "start" : 39,
       "length" : 1
     },
     {
       "activity" : "generate1",
-      "start" : 36,
-      "length" : 56
+      "start" : 39,
+      "length" : 44
     },
     {
       "activity" : "generate2",
-      "start" : 39,
-      "length" : 640
+      "start" : 42,
+      "length" : 525
     },
     {
       "activity" : "generate2",
-      "start" : 39,
-      "length" : 2732
+      "start" : 43,
+      "length" : 859
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 49,
-      "length" : 1
+      "start" : 51,
+      "length" : 2
     }]
   },
   {
@@ -114,31 +119,31 @@
     "size" : 602,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 39,
+      "start" : 43,
       "length" : 1
     }]
   },
   {
     "name" : "/fsh-generated/includes/fsh-link-references.md",
-    "size" : 54
+    "size" : 54,
+    "processes" : [{
+      "activity" : "scan",
+      "start" : 28,
+      "length" : 1
+    }]
   },
   {
     "name" : "/input/pagecontent/translationinfo.md",
-    "size" : 2115,
+    "size" : 2303,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 39,
+      "start" : 43,
       "length" : 1
     }]
   },
   {
     "name" : "/input/pagecontent/index.md",
-    "size" : 2270,
-    "processes" : [{
-      "activity" : "generate2",
-      "start" : 39,
-      "length" : 1
-    }]
+    "size" : 2003
   },
   {
     "name" : "/template/config",
@@ -150,6 +155,11 @@
   },
   {
     "name" : "/temp/pages/_includes/artifacts.xml",
-    "size" : 1675
+    "size" : 1675,
+    "processes" : [{
+      "activity" : "generate2",
+      "start" : 43,
+      "length" : 1
+    }]
   }]
 }
