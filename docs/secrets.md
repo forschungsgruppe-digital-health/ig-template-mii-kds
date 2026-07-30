@@ -10,8 +10,8 @@ Set repository secrets with the GitHub CLI (or **Settings → Secrets and variab
 → Actions**):
 
 ```sh
-gh secret set NAME --repo medizininformatik-initiative/ig-template-mii-kds < value.txt
-gh variable set NAME --repo medizininformatik-initiative/ig-template-mii-kds --body "value"
+gh secret set NAME --repo forschungsgruppe-digital-health/ig-template-mii-kds < value.txt
+gh variable set NAME --repo forschungsgruppe-digital-health/ig-template-mii-kds --body "value"
 ```
 
 ## SU-TermServ terminology server (optional)
@@ -126,14 +126,32 @@ Both are *wired and fall back safely*, but until the credential exists the
 the terminology step. Enabled and working looks like
 `SU-TermServ client certificate present — starting a local client-cert nginx proxy`
 followed by a green build; not configured looks like
-`No SU-TermServ credential — falling back to the public HL7 terminology server`.
+`No SU-TermServ credential — falling back to HL7 tx.fhir.org`.
 If the proxy fails to start, the step fails loudly rather than silently
 mis-expanding value sets — re-check that the cert/key are **base64-encoded** and
 that the key password is correct.
 
-**Zulip announcement.** It runs on `release: published`. Verify on the next
-release by opening the `Announce release` run: it prints either the delivered
-message or an explicit skip notice naming exactly what is missing.
+## Zulip release announcement (optional)
+
+Two independent channels, each silent until its key exists.
+
+MII Zulip (bot `kds-github-bot@mii.zulipchat.com`, on by default):
+
+```bash
+gh secret set ZULIP_API_KEY --repo forschungsgruppe-digital-health/ig-template-mii-kds
+```
+
+Public FHIR Zulip (off by default; needs the flag, the key and the sender):
+
+```bash
+gh variable set ANNOUNCE_PUBLIC_ZULIP --body true --repo forschungsgruppe-digital-health/ig-template-mii-kds
+gh variable set FHIR_ZULIP_BOT_EMAIL --body <bot-email> --repo forschungsgruppe-digital-health/ig-template-mii-kds
+gh secret set FHIR_ZULIP_API_KEY --repo forschungsgruppe-digital-health/ig-template-mii-kds
+```
+
+**Verify:** it runs on `release: published` — open the `Announce release` run
+of the next release: it prints either the delivered message or an explicit skip
+notice naming exactly what is missing.
 
 ## CI toggles (variables — all default correctly when unset)
 

@@ -15,7 +15,7 @@ yet, so today a module vendors this repository's `dev` branch instead — see
 [how a module consumes this template](docs/workflows.md#how-a-module-consumes-this-template).
 
 To start a module, use
-[`mii-kds-module-template`](https://github.com/medizininformatik-initiative/mii-kds-module-template)
+[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template)
 instead; it already references this template.
 
 > **Status: prototype.** Usable and released, but pending discussion in the MII
@@ -44,7 +44,7 @@ This is for changing the template itself.
    → [cut a template release](docs/recipes/cut-a-template-release.md)
 
 Current `dev` preview:
-<https://medizininformatik-initiative.github.io/ig-template-mii-kds/branches/dev/>
+<https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/>
 
 Unfamiliar terms are in the [glossary](docs/glossary.md).
 

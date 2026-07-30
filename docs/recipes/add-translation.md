@@ -10,7 +10,7 @@ see a change render in both languages.
 
 **Not here:** translating a *module's* pages, menu and conformance resources.
 That is the module author's job and is documented in the module scaffold —
-[`mii-kds-module-template` → `docs/recipes/add-translation.md`](https://github.com/medizininformatik-initiative/mii-kds-module-template/blob/main/docs/recipes/add-translation.md).
+[`mii-kds-module-template` → `docs/recipes/add-translation.md`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template/blob/main/docs/recipes/add-translation.md).
 
 ## Language model
 
@@ -49,9 +49,20 @@ translations/stringsBase-de.po        # base UI strings, German
 translations/stringsArtifacts-de.po   # artifact-page strings, German
 ```
 
-**To add another language:** copy that language's catalogs from
-[`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) (CC0) into
-`translations/`, then rebuild.
+**To add another language** (say French), four steps — the first two are the
+ones without which nothing renders at all:
+
+1. In the consuming IG's `sushi-config.yaml`, add the language to `i18n-lang`
+   (`i18n-lang: [de, fr]`) and its folder to `translation-sources`
+   (`input/translations/fr`).
+2. In this template, extend the `include.lang` handling: the header, footer and
+   language selector in `includes/` list the offered languages explicitly —
+   a language they do not know falls back to the default strings.
+3. Copy that language's catalogs from
+   [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) (CC0)
+   into `translations/` — only needed if the pinned base lacks the language.
+4. Rebuild and check both the narrative pages (`/fr/`) and the generated
+   artifact pages render in the new language.
 
 > **Why this is safe, and why the `.json` table is not:** `.po` catalogs are
 > **additive** — template files layer base-then-child, so a *new* filename
