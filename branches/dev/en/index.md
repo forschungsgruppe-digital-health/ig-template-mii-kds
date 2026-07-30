@@ -8,7 +8,7 @@
 | | |
 | :--- | :--- |
 | *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.3.0 |
-| Draft as of 2026-07-29 | *Computable Name*:MIIKDSTemplatePreview |
+| Draft as of 2026-07-30 | *Computable Name*:MIIKDSTemplatePreview |
 
 **Prototype.** This preview is not an MII-endorsed artifact; it is a proposal pending discussion in the MII Taskforce Kerndatensatz. The MII logo, wordmark and publisher name below show what an adopted template would look like — they do not signal an endorsement.
 
