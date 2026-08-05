@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.4.0...v0.5.0) (2026-08-05)
+
+
+### Features
+
+* align with mii-kds-module-template v0.5.0 (structure-tabs, breadcrumb i18n override, content-image CSS) ([#60](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/60)) ([265d565](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/265d5657d4c2867afefaf46dce5dab6632ae1000))
+
 ## [0.4.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.3.0...v0.4.0) (2026-07-30)
 
 
