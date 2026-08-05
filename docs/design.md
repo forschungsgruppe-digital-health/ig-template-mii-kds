@@ -60,6 +60,7 @@ assets, and each one carries a reason for existing.
 | `content/assets/ico/favicon.png` | replaces a base file at the same path | The MII favicon instead of the base's FHIR flame (§4) |
 | `content/assets/images/logo-de.svg`, `logo-en.svg`, `deu.svg` | added assets | Branding and the language-switcher flag (§4) |
 | `translations/stringsBase-de.po`, `stringsArtifacts-de.po` | added catalogs | The pinned base ships no German UI strings (§6) — see [`translations/README.md`](../translations/README.md) |
+| `translations/README.md` | added doc | Provenance, licence and the upkeep rule ("delete this folder once the pinned base ships `de` itself") of the two catalogs above. The IG Publisher ignores it, but it is part of the payload: `scripts/sync-ig-template.sh` in `mii-kds-module-template` mirrors `translations/` wholesale, so it travels into every module |
 
 > **Why the footer is replaced rather than filled:** unlike header and CSS, the
 > base footer fragment is not an empty placeholder — it carries base behavior
