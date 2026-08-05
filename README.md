@@ -43,8 +43,11 @@ This is for changing the template itself.
 4. **Release** — merge `dev → main`; Release Please opens a SemVer release PR.
    → [cut a template release](docs/recipes/cut-a-template-release.md)
 
-Current `dev` preview:
-<https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/branches/dev/>
+Rendered demo of the current release, plus the development previews:
+<https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/>
+
+Branch previews under `branches/<branch>/` are swept when their branch is deleted;
+the release demo under `demo/<version>/` is permanent.
 
 Unfamiliar terms are in the [glossary](docs/glossary.md).
 
