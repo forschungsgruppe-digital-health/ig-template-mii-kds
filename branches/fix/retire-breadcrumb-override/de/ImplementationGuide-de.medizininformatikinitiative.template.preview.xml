@@ -10,10 +10,10 @@
   <url value="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/>
   <version value="0.5.0"/>
   <name value="MIIKDSTemplatePreview"/>
-  <title value="MII KDS IG Template — Preview"/>
+  <title value="MII-KDS-IG-Vorlage — Vorschau"/>
   <status value="draft"/>
-  <date value="2026-08-05T19:17:39+00:00"/>
-  <publisher value="Medical Informatics Initiative (MII)"/>
+  <date value="2026-08-05T19:20:10+00:00"/>
+  <publisher value="Medizininformatik-Initiative (MII)"/>
   <contact>
     <name value="Medical Informatics Initiative (MII)"/>
     <telecom>
@@ -516,14 +516,14 @@
         <valueUrl value="toc.html"/>
       </extension>
       <nameUrl value="toc.html"/>
-      <title value="Table of Contents"/>
+      <title value="Inhaltsverzeichnis"/>
       <generation value="html"/>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
           <valueUrl value="index.html"/>
         </extension>
         <nameUrl value="index.html"/>
-        <title value="Home"/>
+        <title value="Startseite"/>
         <generation value="markdown"/>
       </page>
       <page>
@@ -531,7 +531,7 @@
           <valueUrl value="translationinfo.html"/>
         </extension>
         <nameUrl value="translationinfo.html"/>
-        <title value="Translation information"/>
+        <title value="Hinweise zur Übersetzung"/>
         <generation value="markdown"/>
       </page>
     </page>

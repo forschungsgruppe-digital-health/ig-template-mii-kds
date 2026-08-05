@@ -4,11 +4,6 @@
 <!-- layouts\layout-profile-format -->
 
 
-<!-- MII KDS module template OVERRIDE of the base template's
-     fragment-pagebegin.html (copied verbatim from the staged base include,
-     publisher 2.2.11 era) with ONE change: the breadcrumb line localizes —
-     see the comment block at the breadcrumb. Re-diff against the base
-     fragment after base-template upgrades: this override SHADOWS it. -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE HTML>
 
@@ -89,7 +84,7 @@
 
 
         <div id="ig-status">
-          <p><span style="font-size:12pt;font-weight:bold">MII KDS IG Template — Preview</span>
+          <p><span style="font-size:12pt;font-weight:bold">MII-KDS-IG-Vorlage — Vorschau</span>
             <br/>
             <span style="display:inline-block;">0.5.0 - 
 
@@ -155,7 +150,8 @@
 
     <div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
       <div class="container">  <!-- container -->
-        <ul class="breadcrumb"><li><a href='toc.html'><b>Inhaltsverzeichnis</b></a></li><li><a href='artifacts.html'><b>Artefaktübersicht</b></a></li><li><b>Preview Model</b></li>
+        <ul class="breadcrumb">
+          <li><a href='toc.html'><b>Inhaltsverzeichnis</b></a></li><li><a href='artifacts.html'><b>Artefaktübersicht</b></a></li><li><b>Preview Model</b></li>
 
         </ul>
       </div>  <!-- /container -->
@@ -279,8 +275,8 @@
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.name">name</a>" : "PreviewModel",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.title">title</a>" : "Preview Model",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.status">status</a>" : "draft",
-  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a>" : "2026-08-05T19:17:39+00:00",
-  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.publisher">publisher</a>" : "Medical Informatics Initiative (MII)",
+  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.date">date</a>" : "2026-08-05T19:20:10+00:00",
+  "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.publisher">publisher</a>" : "Medizininformatik-Initiative (MII)",
   "<a href="http://hl7.org/fhir/R4/structuredefinition.html#StructureDefinition.contact">contact</a>" : [
     {
       "<a href="http://hl7.org/fhir/R4/metadatatypes.html#ContactDetail#ContactDetail.name">name</a>" : "Medical Informatics Initiative (MII)",
@@ -408,7 +404,7 @@
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de/en">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.5.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Erstellt <span title="Wed, Aug 5, 2026 19:17+0000">2026-08-05</span>
+          Erstellt <span title="Wed, Aug 5, 2026 19:20+0000">2026-08-05</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- MII branding override for the fhir2.base.template footer fragment.

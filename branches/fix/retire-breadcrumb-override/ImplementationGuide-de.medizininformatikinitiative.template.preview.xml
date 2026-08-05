@@ -11,10 +11,28 @@
   <url value="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/>
   <version value="0.5.0"/>
   <name value="MIIKDSTemplatePreview"/>
-  <title value="MII KDS IG Template — Preview"/>
+  <title value="MII KDS IG Template — Preview">
+    <extension url="http://hl7.org/fhir/StructureDefinition/translation">
+      <extension url="lang">
+        <valueCode value="de"/>
+      </extension>
+      <extension url="content">
+        <valueString value="MII-KDS-IG-Vorlage — Vorschau"/>
+      </extension>
+    </extension>
+  </title>
   <status value="draft"/>
-  <date value="2026-08-05T19:17:39+00:00"/>
-  <publisher value="Medical Informatics Initiative (MII)"/>
+  <date value="2026-08-05T19:20:10+00:00"/>
+  <publisher value="Medical Informatics Initiative (MII)">
+    <extension url="http://hl7.org/fhir/StructureDefinition/translation">
+      <extension url="lang">
+        <valueCode value="de"/>
+      </extension>
+      <extension url="content">
+        <valueString value="Medizininformatik-Initiative (MII)"/>
+      </extension>
+    </extension>
+  </publisher>
   <contact>
     <name value="Medical Informatics Initiative (MII)"/>
     <telecom>
@@ -517,14 +535,32 @@
         <valueUrl value="toc.html"/>
       </extension>
       <nameUrl value="toc.html"/>
-      <title value="Table of Contents"/>
+      <title value="Table of Contents">
+        <extension url="http://hl7.org/fhir/StructureDefinition/translation">
+          <extension url="lang">
+            <valueCode value="de"/>
+          </extension>
+          <extension url="content">
+            <valueString value="Inhaltsverzeichnis"/>
+          </extension>
+        </extension>
+      </title>
       <generation value="html"/>
       <page>
         <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-page-name">
           <valueUrl value="index.html"/>
         </extension>
         <nameUrl value="index.html"/>
-        <title value="Home"/>
+        <title value="Home">
+          <extension url="http://hl7.org/fhir/StructureDefinition/translation">
+            <extension url="lang">
+              <valueCode value="de"/>
+            </extension>
+            <extension url="content">
+              <valueString value="Startseite"/>
+            </extension>
+          </extension>
+        </title>
         <generation value="markdown"/>
       </page>
       <page>
@@ -532,7 +568,16 @@
           <valueUrl value="translationinfo.html"/>
         </extension>
         <nameUrl value="translationinfo.html"/>
-        <title value="Translation information"/>
+        <title value="Translation information">
+          <extension url="http://hl7.org/fhir/StructureDefinition/translation">
+            <extension url="lang">
+              <valueCode value="de"/>
+            </extension>
+            <extension url="content">
+              <valueString value="Hinweise zur Übersetzung"/>
+            </extension>
+          </extension>
+        </title>
         <generation value="markdown"/>
       </page>
     </page>

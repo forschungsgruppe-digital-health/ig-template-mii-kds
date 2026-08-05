@@ -1,9 +1,9 @@
-# Home - MII KDS IG Template — Preview v0.5.0
+# Startseite - MII KDS IG Template — Preview v0.5.0
 
 * [**Inhaltsverzeichnis**](toc.md)
-* **Home**
+* **Startseite**
 
-## Home
+## Startseite
 
 | | |
 | :--- | :--- |

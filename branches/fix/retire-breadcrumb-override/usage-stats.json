@@ -6,6 +6,13 @@
   "extensions": [],
   "profiles": {},
   "usage": {
+    "http://hl7.org/fhir/StructureDefinition/translation": [
+      "ImplementationGuide.definition.page.page.title",
+      "ImplementationGuide.definition.page.title",
+      "ImplementationGuide.publisher",
+      "ImplementationGuide.title",
+      "StructureDefinition.publisher"
+    ],
     "http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency": [
       "ImplementationGuide.definition"
     ],

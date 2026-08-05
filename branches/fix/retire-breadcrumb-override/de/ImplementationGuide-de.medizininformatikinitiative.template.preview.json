@@ -9,10 +9,10 @@
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
   "version" : "0.5.0",
   "name" : "MIIKDSTemplatePreview",
-  "title" : "MII KDS IG Template — Preview",
+  "title" : "MII-KDS-IG-Vorlage — Vorschau",
   "status" : "draft",
-  "date" : "2026-08-05T19:17:39+00:00",
-  "publisher" : "Medical Informatics Initiative (MII)",
+  "date" : "2026-08-05T19:20:10+00:00",
+  "publisher" : "Medizininformatik-Initiative (MII)",
   "contact" : [{
     "name" : "Medical Informatics Initiative (MII)",
     "telecom" : [{
@@ -690,7 +690,7 @@
         "valueUrl" : "toc.html"
       }],
       "nameUrl" : "toc.html",
-      "title" : "Table of Contents",
+      "title" : "Inhaltsverzeichnis",
       "generation" : "html",
       "page" : [{
         "extension" : [{
@@ -698,7 +698,7 @@
           "valueUrl" : "index.html"
         }],
         "nameUrl" : "index.html",
-        "title" : "Home",
+        "title" : "Startseite",
         "generation" : "markdown"
       },
       {
@@ -707,7 +707,7 @@
           "valueUrl" : "translationinfo.html"
         }],
         "nameUrl" : "translationinfo.html",
-        "title" : "Translation information",
+        "title" : "Hinweise zur Übersetzung",
         "generation" : "markdown"
       }]
     },

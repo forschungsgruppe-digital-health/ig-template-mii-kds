@@ -17,8 +17,23 @@
   fhir:StructureDefinition.name [ fhir:value "PreviewModel"] ;
   fhir:StructureDefinition.title [ fhir:value "Preview Model"] ;
   fhir:StructureDefinition.status [ fhir:value "draft"] ;
-  fhir:StructureDefinition.date [ fhir:value "2026-08-05T19:17:39+00:00"^^xsd:dateTime] ;
-  fhir:StructureDefinition.publisher [ fhir:value "Medical Informatics Initiative (MII)"] ;
+  fhir:StructureDefinition.date [ fhir:value "2026-08-05T19:20:10+00:00"^^xsd:dateTime] ;
+  fhir:StructureDefinition.publisher [
+     fhir:value "Medical Informatics Initiative (MII)" ;
+     fhir:Element.extension [
+       fhir:index 0 ;
+       fhir:Element.extension [
+         fhir:index 0 ;
+         fhir:Extension.url [ fhir:value "lang" ] ;
+         fhir:Extension.valueCode [ fhir:value "de" ]
+       ], [
+         fhir:index 1 ;
+         fhir:Extension.url [ fhir:value "content" ] ;
+         fhir:Extension.valueString [ fhir:value "Medizininformatik-Initiative (MII)" ]
+       ] ;
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
+     ]
+  ] ;
   fhir:StructureDefinition.contact [
      fhir:index 0 ;
      fhir:ContactDetail.name [ fhir:value "Medical Informatics Initiative (MII)" ] ;
