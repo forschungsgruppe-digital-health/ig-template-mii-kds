@@ -11,11 +11,11 @@ asset, and structural choice traces to a file that MII or HL7 publishes.
 
 ---
 
-## 1. Why `fhir2.base.template` (verification of the base-template claim)
+## 1. Why `fhir2.base.template`
 
 The template declares `fhir2.base.template` (pinned `0.1.0`) as its base — not
-`fhir.base.template` and not `hl7.fhir.template`. Claim verified against the
-live sources on 2026-07-22:
+`fhir.base.template` and not `hl7.fhir.template`. Checked against the live
+sources on 2026-07-22:
 
 | Fact | Evidence |
 | --- | --- |
@@ -41,11 +41,30 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 | `includes/fragment-css.html` | Single comment: `<!-- Placeholder for child template CSS declarations -->` (56 bytes, no trailing newline) | `fragment-pagebegin.html` line 29, in `<head>` **after** all base stylesheets (so a child stylesheet wins the cascade) |
 | `includes/fragment-footer.html` | **Not a placeholder** — real content: `Links: Table of Contents \| QA Report [\| feedback dashboards]`, driven by `stringsBase[include.lang]` | `fragment-pageend.html` line 59, inside `<span style="color: var(--footer-highlight-text-color)">` in the footer inner-wrapper |
 
-> **Why the override set is exactly these three fragments + one CSS file + logo
-> assets:** header and CSS fragments are the base's *designed* child-template
-> extension points (empty placeholders). The footer fragment carries base
-> behavior (TOC/QA/feedback links), so our override **preserves the base's link
-> structure verbatim and appends to it** — losing the TOC/QA links would break
+### What this template actually ships
+
+The list below is the complete surface — every file this template ships on top of
+the base. Only two of them fill a *designed* placeholder; the rest are the
+template's own manifest, same-path replacements of base files, added files, or
+assets, and each one carries a reason for existing.
+
+| Shipped file | Kind | Why it exists |
+| --- | --- | --- |
+| `package/package.json` | the template's own manifest | Declares the package id, the `fhir.template` type and the pinned base (§1) — not an override |
+| `includes/fragment-header.html` | fills a base placeholder | The MII and HL7 FHIR logos (§4) |
+| `includes/fragment-css.html` | fills a base placeholder | Links `mii.css` after the base stylesheets |
+| `includes/fragment-footer.html` | replaces base content | Adds the MII links and the imprint (§5); preserves the base's own links |
+| `includes/structure-tabs.html` | added file (no base counterpart) | An authoring include a page can call to render one artifact's structure as tabs — [recipe](recipes/tab-an-artifact-structure.md) |
+| `content/assets/css/mii.css` | base CSS variables + a few rules | The palette (§3) and the rule blocks listed in §3a |
+| `content/assets/js/lang-redirects.js` | replaces a base file at the same path | Carries the fix for a defect in the pinned base's landing-page redirect; the reason is written out in the file itself. Delete it once a fixed base release is pinned |
+| `content/assets/ico/favicon.png` | replaces a base file at the same path | The MII favicon instead of the base's FHIR flame (§4) |
+| `content/assets/images/logo-de.svg`, `logo-en.svg`, `deu.svg` | added assets | Branding and the language-switcher flag (§4) |
+| `translations/stringsBase-de.po`, `stringsArtifacts-de.po` | added catalogs | The pinned base ships no German UI strings (§6) — see [`translations/README.md`](../translations/README.md) |
+
+> **Why the footer is replaced rather than filled:** unlike header and CSS, the
+> base footer fragment is not an empty placeholder — it carries base behavior
+> (TOC/QA/feedback links). The override therefore **preserves the base's link
+> structure verbatim and appends to it**; losing the TOC/QA links would break
 > every rendered page's navigation and the QA workflow. It is **not** a
 > byte-for-byte copy: the base's three label lookups (`Links`,
 > `TableOfContents`, `QAReport`) are replaced by hard-coded
@@ -59,11 +78,24 @@ Studied at `HL7/ig-template-base2` `main` @ `4c20cf667e3119d4cb2a18c61a71c544f26
 > whole base configuration (scripts, extraTemplates, path patterns) and silently
 > detach us from base updates. We inherit the base `config.json` untouched.
 
-> **Why no `layouts/`, `liquid/`, `scripts/`, `translations/`:** same reasoning
-> — inherit everything; every copied file is future drift. In particular
-> `translations/stringsBase.json` is loaded per template directory, so a child
-> copy would *replace* the base's string table (the `config.json` hazard again).
-> This is also why we cannot add new `stringsBase` keys of our own (see §6).
+> **Why no `layouts/`, `liquid/` or `scripts/`:** same reasoning — inherit
+> everything; every copied file is future drift, because a copy stops receiving
+> base fixes and nothing tells you it has fallen behind.
+
+> **What `translations/` may and may not contain:** the two vendored `.po`
+> catalogs are **additive** — template directories are layered base-then-child,
+> so a *new* catalog filename supplements the base's. The master
+> `translations/stringsBase.json` is not: it is loaded per template directory, so
+> a child copy would *replace* the base's whole string table (the `config.json`
+> hazard again). That file is therefore never shipped, which is also why this
+> template cannot add `stringsBase` keys of its own (see §6).
+
+> **The two same-path replacements are on borrowed time.** `lang-redirects.js`
+> and `favicon.png` win only because a child template's file at the same path
+> beats the base's. That makes them invisible drift: a base change to either file
+> is silently discarded. The favicon is intentional and permanent (it is
+> branding); `lang-redirects.js` is a workaround with a deletion condition
+> attached — see [open-tasks.md](open-tasks.md).
 
 ---
 
@@ -100,10 +132,12 @@ today** and the MII **website theme CSS** (retrieved 2026-07-22):
 
 ### Mapping to base CSS variables
 
-`content/assets/css/mii.css` overrides **only** variables that
-`fhir2.base.template` declares in `content/assets/css/project.css` (`:root`,
-numbered 1–32 upstream) — no hard rule overrides, so a human can re-theme by
-editing one file. Overridden: 1 (`--ig-status-text-color`), 2 (`--navbar-bg-color`),
+**Every brand colour is set as a variable, never as a rule.** `mii.css` re-colours
+the guide exclusively through variables that `fhir2.base.template` declares in
+`content/assets/css/project.css` (`:root`, numbered 1–32 upstream), so a
+re-theme stays a one-file, one-line edit. The file also carries a small number of
+rule blocks that are *not* about colour — they are listed and justified in §3a.
+Overridden: 1 (`--ig-status-text-color`), 2 (`--navbar-bg-color`),
 3–4 (footer bands), 5 (`--stripe-bg-color`), 6–8 (menu buttons), 9–12 (menu
 gradient incl. the legacy-IE `#AARRGGBB` alpha variants), 13–14 (links), 21–22
 (header sides + container, both forced to `#ffffff`), 25–26 (footer
@@ -129,9 +163,30 @@ dragon (29–30), translation box (31–32).
 > GitHub Pages root would only make the dead link look plausible (that root has
 > no `history.html` either).
 
-> **Why variables-only:** the base exposes its palette as CSS custom properties
-> precisely so children re-color without touching rules; a later human override
-> is then a one-file change with no cascade surprises.
+> **Why colour is variables-only:** the base exposes its palette as CSS custom
+> properties precisely so children re-color without touching rules; a later human
+> override is then a one-file change with no cascade surprises.
+
+---
+
+## 3a. The rule blocks in `mii.css`
+
+Colour is variables-only (§3), but four rule blocks in `mii.css` go beyond the
+variables. Three of them add *new* classes, which cannot collide with the base;
+one deliberately overrides base rules. Anything added here has to earn its place,
+because a rule the base later changes will silently keep the value set here.
+
+| Block | Selectors | New or override | Why |
+| --- | --- | --- | --- |
+| Highlight boxes | `.mii-highlight`, `.mii-highlight-blue`, `.mii-highlight-green` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — the template attaches no meaning to a colour; a module decides what each one means |
+| Narrative tables | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §7a, including why the obvious short selector is wrong |
+| Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
+| Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
+
+`mii.css` is linked after the base stylesheets (`includes/fragment-css.html`), so
+none of these needs `!important`. The content-image block is the only place where
+a base rule is deliberately countermanded; if the base ever changes its image
+handling, this block is the first thing to re-check.
 
 ---
 
@@ -226,7 +281,7 @@ The override appends to (never replaces) the base footer content:
    (`/en/imprint` is 404; `/en/legal-notice` is what the MII site's own footer
    links).
 
-> **Why language-branched labels (decision taken 2026-07-24):** the base offers
+> **Why language-branched labels:** the base offers
 > no `stringsBase` key for "Imprint"/"Impressum", and a child template cannot add
 > keys (§6). The footer therefore hard-codes an `include.lang`-branched label pair
 > — `Impressum` on `/de/`, `Legal notice` on `/en/`. This deliberately accepts
@@ -329,8 +384,8 @@ Notes and deliberate deviations:
   the surrounding footer text (exactly like the MII site footer) and the base
   applies no underline to footer links; they are distinguishable only on hover.
   Fixing this would require a rule override (`#segment-footer a { text-decoration:
-  underline }`), which this variables-only design forbids. **Decision (2026-07-24): accepted as-is** —
-  the site-faithful appearance was confirmed. Revisit if an accessibility review
+  underline }`), and colour here is variables-only by design. **Accepted as-is:**
+  the appearance matches the MII site. Revisit if an accessibility review
   requires underlined footer links (one rule override would be needed).
 - **Language selector legibility:** the base language dropdown reads
   `var(--btn-text-color)` on `var(--navbar-bg-color)` → white on `#3473aa`,
