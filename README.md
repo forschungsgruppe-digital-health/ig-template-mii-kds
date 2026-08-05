@@ -64,7 +64,7 @@ The paths mirror the base template, because the IG Publisher resolves them by na
 | `input/`, `ig.ini` | The bundled preview IG (so branding changes are reviewable) |
 | `docs/` | Guides and step-by-step recipes |
 | `scripts/` | Helper scripts: dependency check, language-model guard, logo trace, secret upload — see [`scripts/README.md`](scripts/README.md) |
-| `skills/` | Vendor-neutral agent skills for maintenance tasks |
+| `skills/` | Reusable instructions for recurring maintenance tasks — see [`AGENTS.md`](AGENTS.md) |
 | `.github/workflows/` | CI: preview build, release, monitoring |
 
 ## Documentation

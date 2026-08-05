@@ -71,12 +71,12 @@ source of truth; consult them before doing the corresponding task by hand.
   verified rendering table, i18n conventions, language-neutrality rules for
   the template's overrides. The module-facing translate/harvest workflow
   lives in `mii-kds-module-template`.
-- [`skills/docs-steward/`](skills/docs-steward/SKILL.md) — audits, repairs and
+- [`skills/docs-steward/`](skills/docs-steward/SKILL.md) — checks, repairs and
   trims this repository's documentation: verifies every link, path and factual
-  claim against the repo itself, removes AI decision-narration, reduces the docs
-  to what create/modify/maintain actually needs, and walks the documented path
-  as a first-time and an experienced reader. Report-only by default; writes a
-  dated report to [`docs/reports/`](docs/reports/).
+  claim against the repo itself, reduces the docs to what create/modify/maintain
+  actually needs, and walks the documented path as a first-time and an
+  experienced reader. Report-only by default; the findings are reported back to
+  the person who asked for them and are not committed to the repository.
 
 ### Discovery paths (symlinks, not copies)
 

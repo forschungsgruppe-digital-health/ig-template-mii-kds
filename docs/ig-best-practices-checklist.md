@@ -22,8 +22,9 @@ The module-author counterpart lives in the module scaffold:
 | S7 | [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) — the base this template derives from | template package structure |
 | S8 | [MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki) | MII naming, conformance, terminology and release rules |
 
-**Legend** — ✅ met · 📝 module author's responsibility (this template provides the
-mechanism) · ➖ not applicable to a template.
+**Legend** — ✅ met · ⚠️ met with a deviation, named in the row · 📝 module
+author's responsibility (this template provides the mechanism) · ➖ not
+applicable to a template.
 
 ---
 
@@ -32,12 +33,12 @@ mechanism) · ➖ not applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Derives from an official HL7 base template rather than forking it | ✅ | `package/package.json` declares `fhir2.base.template` as its base |
-| Overrides only the designed extension points | ✅ | Three fragments + `content/assets/**` — [`docs/design.md`](design.md) §2 |
+| Overrides only the designed extension points | ⚠️ | Two of the shipped files fill the base's empty placeholders (`fragment-header.html`, `fragment-css.html`). The others do not: `fragment-footer.html` replaces a fragment that carries base content, `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png` replace base files at the same path, and `includes/structure-tabs.html` is an added include with no base counterpart. Each is listed with its reason in [`docs/design.md`](design.md) §2. The deviation that matters is the same-path replacement: a base change to those two files is silently discarded |
 | Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/design.md`](design.md) §2 |
-| Branding is done through the base's CSS **variables**, not rule overrides | ✅ | [`docs/design.md`](design.md) §3 |
+| Branding is done through the base's CSS **variables**, not rule overrides | ⚠️ | Every *colour* is a base variable and no base colour rule is re-declared — [`docs/design.md`](design.md) §3. But `mii.css` is not variables-only: it ships four rule blocks (highlight boxes, narrative tables, content images, structure-tabs), listed in [`docs/design.md`](design.md) §3a. Three add new classes; the content-image block deliberately overrides the base's `p > img` float |
 | The base version is pinned (reproducible builds) | ✅ | `0.1.0`, never `#current`; drift is surfaced by `dependency-check.yml` |
 | The template is exercised by a real build before release | ✅ | The bundled preview IG builds on every push (`ig-preview.yml`) |
-| Validated against a real module | ✅ | `kerndatensatz-basis` builds against it with 0 errors — [the report](reports/template-validation-2026-07-23.md) |
+| Validated against a real module | ✅ | `kerndatensatz-basis` (`main`, `2026.0.1`, 63 generated conformance resources) was built with its `ig.ini` pointing at this template, vendored: SUSHI compiled it with 0 errors and 0 warnings. The full IG-Publisher render is covered by the preview build in CI |
 
 ## 2. Multi-language support (S3)
 
@@ -55,10 +56,11 @@ mechanism) · ➖ not applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/design.md`](design.md) §3 |
-| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md); one known limitation is recorded (footer links are not underlined — site-faithful, accepted in the design review) |
+| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md) §7; one known limitation is recorded there (footer links are not underlined — site-faithful, accepted) |
 | Consistent page chrome (no mixed white/grey surfaces) | ✅ | Header sides and container are both white, matching the logo background and the content area |
 | Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/design.md`](design.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
-| Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning |
+| Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning — [`docs/design.md`](design.md) §3a |
+| A tabbed structure view an author can drop into a page | ✅ | `includes/structure-tabs.html` — [`docs/recipes/tab-an-artifact-structure.md`](recipes/tab-an-artifact-structure.md) |
 
 ## 4. What the template makes easy for module authors (S1)
 

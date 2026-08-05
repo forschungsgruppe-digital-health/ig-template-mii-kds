@@ -17,6 +17,7 @@ Everything else here is about changing the template itself.
 | Understand what an IG template is and why this one exists | [concepts.md](concepts.md) |
 | Publish the preview so someone can look at it | [recipes/publish-the-preview-on-github-pages.md](recipes/publish-the-preview-on-github-pages.md) |
 | Change a colour, a logo, or the footer | [design.md](design.md) · [recipes/change-the-brand-color.md](recipes/change-the-brand-color.md) |
+| Show one artifact's structure as tabs inside a page | [recipes/tab-an-artifact-structure.md](recipes/tab-an-artifact-structure.md) |
 | Know what CI runs, and which variable turns it off | [workflows.md](workflows.md) |
 | Keep the toolchain and dependencies current | [maintenance.md](maintenance.md) |
 | Cut a release so modules can pin it | [recipes/cut-a-template-release.md](recipes/cut-a-template-release.md) |
@@ -25,7 +26,6 @@ Everything else here is about changing the template itself.
 | Know whether this is production-ready | [project-status.md](project-status.md) |
 | Know what is unfinished, and why | [open-tasks.md](open-tasks.md) |
 | Read the specifications this is built on | [further-reading.md](further-reading.md) |
-| See what an audit found on a given date | [reports/](reports/) |
 
 ## Reading order for a newcomer
 

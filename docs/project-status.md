@@ -27,6 +27,36 @@ settled yet.
 > and what is a known limit rather than a defect — is in
 > [open-tasks.md](open-tasks.md).
 
+## Branch state — `main` and `dev` have diverged
+
+The documented model is that `main` only ever receives a `dev → main` merge
+([CONTRIBUTING.md](../CONTRIBUTING.md)). That is the intent, and it is what
+should happen. It is not what has happened so far, and pretending otherwise
+would mislead anyone branching off either branch.
+
+**As of 2026-08-05 the two branches have diverged in both directions:** `dev` is
+17 commits ahead of `main` and 5 commits behind it. The five commits on `main`
+that are not on `dev` are two Release Please release commits (`0.5.0`, `0.5.1` —
+those are cut on `main` by design) and three pull requests that were merged
+straight into `main`: the alignment with `mii-kds-module-template` v0.5.0
+(structure-tabs, breadcrumb i18n, content-image CSS), a README pointer, and the
+retirement of the breadcrumb override in favour of the IG-level translation
+catalogue. Meanwhile `dev` carries work that has not been released — among it a
+rename of `docs/design.md` to `docs/styleguide.md`, which is why a section
+reference that resolves on one branch can dangle on the other.
+
+**The rule, so this stops growing:**
+
+- Work still goes to `dev` first, and reaches `main` through a `dev → main`
+  merge commit. That is unchanged.
+- If anything does land on `main` directly — a release commit, a hotfix, a PR
+  retargeted in a hurry — it must be **back-merged into `dev`** (`git merge
+  main` on `dev`, via a pull request) before the next round of work, not left
+  for the next release to sort out.
+- Before opening a `dev → main` release PR, check that `dev` is not behind
+  `main`: `git fetch && git rev-list --left-right --count origin/main...origin/dev`.
+  A non-zero left-hand number means a back-merge is due first.
+
 ## What is NOT blocked by this
 
 Everything about developing and reviewing the templates works today: builds,
