@@ -10,8 +10,8 @@ Nothing here blocks developing, reviewing or releasing the template.
 
 ## Waiting on a decision, not on work
 
-These are finished as far as this repository is concerned. Each needs someone to
-say "go" — none should be done by an agent.
+These are finished as far as this repository is concerned. Each needs an explicit
+decision by a maintainer before anything is done.
 
 | Task | Blocked on | What unblocks it |
 | --- | --- | --- |
@@ -53,6 +53,14 @@ workaround can eventually be deleted.
   version, which is why `translations/` exists here at all. Delete the vendored
   copies once a pinned base ships `de` itself; the dependency checker watches
   `fhir2.base.template` and proposes that bump.
+- **The pinned base's landing-page redirect never reaches the second language.**
+  In `fhir2.base.template#0.1.0` the `return` in `lang-redirects.js` sits inside
+  the loop but outside the language match, so a browser in any language other
+  than the first is left on the blank root page. Already fixed on
+  `HL7/ig-template-base2` `main`, but no release carries the fix, so this
+  template ships a corrected `content/assets/js/lang-redirects.js` at the same
+  path (the full reasoning is in that file). Delete it once a base release with
+  the fix is pinned.
 
 ## Known limits, deliberately not "fixed"
 
