@@ -14,7 +14,9 @@ This repo uses a simple two-branch model with short-lived working branches.
 - **`main` — stable release branch.** Always in a released, buildable state:
   every commit on `main` corresponds to a released (or release-ready) version.
   Protected — no direct pushes. `main` is the repo's **default branch**, so it
-  is what visitors see first.
+  is what visitors see first. Changes are meant to reach it only through a
+  `dev → main` merge; where that has not held, and what to do about it, is
+  recorded in [docs/project-status.md](docs/project-status.md#branch-state--main-and-dev-have-diverged).
   > **Why `main` is the default:** newcomers should land on, and start from, the
   > stable state — not work-in-progress.
 - **`dev` — integration branch.** Where reviewed changes accumulate between
