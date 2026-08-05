@@ -18,7 +18,7 @@
   fhir:StructureDefinition.name [ fhir:value "PreviewModel"] ;
   fhir:StructureDefinition.title [ fhir:value "Preview Model"] ;
   fhir:StructureDefinition.status [ fhir:value "draft"] ;
-  fhir:StructureDefinition.date [ fhir:value "2026-07-30T19:38:20+00:00"^^xsd:dateTime] ;
+  fhir:StructureDefinition.date [ fhir:value "2026-08-05T20:55:41+00:00"^^xsd:dateTime] ;
   fhir:StructureDefinition.publisher [ fhir:value "Medizininformatik-Initiative (MII)"] ;
   fhir:StructureDefinition.contact [
      fhir:index -1 ;
