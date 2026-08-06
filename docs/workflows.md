@@ -7,8 +7,12 @@ previews and releases. Details live in the linked docs; this is the map.
 
 The full model with a diagram is in [CONTRIBUTING.md](../CONTRIBUTING.md). In short:
 
-- **`main`** — stable, released, the default branch. Protected; changes arrive only
-  by a `dev → main` **merge commit** (never a squash).
+- **`main`** — stable, released, the default branch. Protected; changes are meant
+  to arrive only by a `dev → main` **merge commit** (never a squash). Release
+  Please's own release commits are cut on `main`, and a few other changes have
+  landed there directly — see
+  [project-status.md](project-status.md#branch-state--main-and-dev-are-reconciled)
+  for the current state and the back-merge rule.
 - **`dev`** — integration branch where reviewed changes accumulate; CI previews run
   here.
 - **`feature|change|fix/*`** — short-lived branches off `dev`, one change each,

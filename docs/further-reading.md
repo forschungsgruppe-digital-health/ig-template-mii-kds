@@ -22,8 +22,8 @@ not here; when they and this repo disagree, they win.
   mechanically in a created module (`scripts/convention-check.mjs`, and the
   Simplifier quality-control rules in `qc/custom.rules.yaml` that the MII
   reusable validation reads); some surface only when the FHIR validator runs;
-  and some are conventions nothing enforces, which the `wiki-consistency-check`
-  skill compares by hand. **This repository runs none of them** — it carries no
+  and some are conventions nothing enforces, which somebody has to compare by
+  hand. **This repository runs none of them** — it carries no
   convention checker and no `qc/` rules; both live in the module scaffold.
 - [Conformance](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki/Conformance)
   — what "conformant" means for MII modules (Must-Support, cardinalities).

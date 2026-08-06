@@ -61,7 +61,9 @@ ones without which nothing renders at all:
 3. Copy that language's catalogs from
    [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2) (CC0)
    into `translations/` — only needed if the pinned base lacks the language.
-4. Rebuild and check both the narrative pages (`/fr/`) and the generated
+4. Add the IG-level catalogue for that language (step 2 below), or its page
+   titles, breadcrumbs and table of contents stay in the default language.
+5. Rebuild and check both the narrative pages (`/fr/`) and the generated
    artifact pages render in the new language.
 
 > **Why this is safe, and why the `.json` table is not:** `.po` catalogs are
@@ -74,7 +76,70 @@ ones without which nothing renders at all:
 itself — see [`../../translations/README.md`](../../translations/README.md). The
 dependency checker watches `fhir2.base.template` and proposes the bump.
 
-### 2. The preview IG's own pages and menu
+### 2. The IG's own titles — page titles, breadcrumbs, the table of contents
+
+Translating a page's *content* does not translate its **title**. Breadcrumbs, the
+table of contents and the caption above each page all render from
+`ImplementationGuide.definition.page.title`, which lives in the IG resource, not
+in the page file. Without a translation for it the `/de/` tree shows German
+content under English titles.
+
+The file that supplies them is the IG-level translation catalogue:
+
+```text
+input/translations/<lang>/ImplementationGuide-<ig-id>.po
+```
+
+Here that is
+`input/translations/de/ImplementationGuide-de.medizininformatikinitiative.template.preview.po`;
+in a module it is the module's own `<ig-id>`. Same mechanism as
+`kerndatensatz-basis` (`ImplementationGuide-mii-ig-base.po`).
+
+**Prerequisite — the language must be a translation source.** The catalogue is
+picked up only from a folder listed in the `translation-sources` parameter of
+`sushi-config.yaml`:
+
+```yaml
+parameters:
+  i18n-default-lang: en
+  i18n-lang:
+    - de
+  translation-sources:
+    - input/translations/de
+```
+
+A catalogue in a folder that is not listed there is **silently ignored** — no
+warning, no error, just English titles.
+
+**The rule for every entry:** each `msgid` must be the **exact** title as written
+in the `pages:` tree of `sushi-config.yaml`, character for character. A `msgid`
+that does not match any title matches nothing and is dropped without a message.
+
+```text
+#: ImplementationGuide.definition.page.title
+msgid "Home"
+msgstr "Startseite"
+```
+
+**Do not forget the root page.** The generated table of contents is itself a page
+whose title is `Table of Contents`; it does not appear in `pages:`, so it is easy
+to miss, and leaving it out leaves the German breadcrumb root in English:
+
+```text
+#: ImplementationGuide.definition.page.title
+msgid "Table of Contents"
+msgstr "Inhaltsverzeichnis"
+```
+
+The same catalogue also carries `ImplementationGuide.title` and
+`ImplementationGuide.publisher`, so the guide's own name and the footer's
+`IG © <year> <publisher>` line render in the target language too.
+
+> **Why this and not a fragment override:** the titles are IG *data*. Rewriting
+> them in a template fragment would put one IG's page names into a template that
+> every module shares, and would still not reach the generated table of contents.
+
+### 3. The preview IG's own pages and menu
 
 The preview ships two pages and one menu per language, purely so branding
 changes are reviewable in both renderings:
@@ -101,15 +166,19 @@ Build the preview (or push a branch and open the CI preview) and confirm on
 **both** `/en/` and `/de/`:
 
 1. the menu is in that language;
-2. the footer shows the copyright, `Package … based on FHIR …` and the
+2. the page title, the breadcrumb and the table of contents are in that language
+   — English titles over translated content mean the IG-level catalogue is
+   missing, incomplete or not picked up;
+3. the footer shows the copyright, `Package … based on FHIR …` and the
    generated-date line — blank labels mean a missing base catalog;
-3. the language switcher moves between the two renderings.
+4. the language switcher moves between the two renderings.
 
 ## Common errors & fixes
 
 | Symptom | Cause | Fix |
 | --- | --- | --- |
 | Footer/base labels blank in one language | No UI-string catalog for it in the pinned base | Vendor that language's `.po` files into `translations/` |
+| Page titles, breadcrumbs and the table of contents stay English on `/de/` although the content is German | The IG-level catalogue `input/translations/de/ImplementationGuide-<ig-id>.po` is missing; or its folder is not in `translation-sources`, in which case it is ignored without a warning; or a `msgid` does not match the `pages:` title character for character | Add the catalogue (step 2), list its folder in `translation-sources`, and copy each `msgid` verbatim from `sushi-config.yaml` — including the `Table of Contents` root entry |
 | A menu label does not change with the language | The per-language `menu.xml` is missing, or a `menu:` property was added to `sushi-config.yaml` | Ship `input/translations/<lang>/includes/menu.xml`; never use the `menu:` property — it generates one untranslatable menu |
 | Language-switcher flag missing | The flag asset is not resolvable from the language folder | The template ships `content/assets/images/deu.svg` for exactly this reason |
 | The organisation name and link in the footer's copyright line stay English on `/de/` | They are not UI strings: the base reads them from the IG's single-valued `publisher` block and emits them before our footer fragment runs | Not fixable from the template — see the "Known limit" bullet in [`../styleguide.md`](../styleguide.md) §6 |
@@ -118,5 +187,4 @@ Build the preview (or push a branch and open the CI preview) and confirm on
 
 The behaviour above is tied to the pinned IG Publisher and base-template
 versions. When either pin changes, rebuild and re-inspect a `/de/` and an `/en/`
-page, then update this recipe and
-[`skills/ig-translate/SKILL.md`](../../skills/ig-translate/SKILL.md).
+page, then update this recipe.
