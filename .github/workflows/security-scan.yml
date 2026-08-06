@@ -63,7 +63,13 @@ jobs:
   # back, never fails), which nothing else can observe until a build breaks.
   # narrative-table-styles.test.mjs simulates the shipped table selector against
   # fixtures from the built output, so the scope can never widen back to the
-  # form that repainted generated tables.
+  # form that repainted generated tables. toolchain-pins.test.mjs fails when
+  # ig-preview.yml and release-demo.yml stop pinning the same toolchain — a
+  # release demo rendered by a different publisher than the previews would be a
+  # silent difference in the very artifact the landing page calls "the release".
+  # update-demo-links.test.mjs pins the landing-page rewriter's two safety
+  # properties: a missing anchor throws instead of quietly leaving the page on
+  # the previous release, and the rewrite is idempotent.
   # Offline, no npm install, well under a second.
   tooling-tests:
     runs-on: ubuntu-latest
@@ -82,7 +88,9 @@ jobs:
         run: |
           node --test scripts/check-updates.test.mjs \
             scripts/terminology-fallback.test.mjs \
-            scripts/narrative-table-styles.test.mjs
+            scripts/narrative-table-styles.test.mjs \
+            scripts/toolchain-pins.test.mjs \
+            scripts/update-demo-links.test.mjs
 
   osv:
     if: ${{ vars.ENABLE_SECURITY_SCAN != 'false' }} # toggle: ON by default
