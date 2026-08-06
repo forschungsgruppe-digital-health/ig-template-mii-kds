@@ -1,4 +1,4 @@
-# Translation information - MII KDS IG Template — Preview v0.5.1
+# Translation information - MII KDS IG Template — Preview v0.6.0
 
 * [**Table of Contents**](toc.md)
 * **Translation information**

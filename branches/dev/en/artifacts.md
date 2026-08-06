@@ -1,4 +1,4 @@
-# Artifacts Summary - MII KDS IG Template — Preview v0.5.1
+# Artifacts Summary - MII KDS IG Template — Preview v0.6.0
 
 * [**Table of Contents**](toc.md)
 * **Artifacts Summary**
