@@ -38,6 +38,13 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | `dependency-check.yml` | schedule (Mon 06:00 UTC); `workflow_dispatch` | Runs the `scripts/` unit tests, then compares pinned versions (IG Publisher, SUSHI, Jekyll, base template, FHIR deps) to upstream | one continuously-updated `dependencies` tracking issue + a `drift-report` artifact | `ENABLE_DEPENDENCY_CHECK` (ON) | proposals only; never opens or merges a PR |
 | `security-scan.yml` | schedule (Mon 07:00 UTC); PR to `dev`; `workflow_dispatch` | OSV + Trivy (fs + dev-container image); plus the `language-model` job (`scripts/check-language-model.sh`) and the `tooling-tests` job (`node --test` on the `scripts/*.test.mjs` suites) | SARIF in the Security tab; red job on language-model drift or a failing script test | `ENABLE_SECURITY_SCAN` (ON) — `language-model` and `tooling-tests` are not gated | no |
 
+> **How it is triggered.** Not by a `release` event: release-please publishes the
+> release with the default `GITHUB_TOKEN`, and GitHub suppresses workflow triggers
+> raised by that token, so a release trigger would never fire and the demo would
+> keep serving the previous release. `release-please.yml` calls this workflow
+> directly in the run that created the release; `workflow_dispatch` re-renders a
+> given tag by hand.
+
 > **One manual setting is required and the workflow cannot tell you it is
 > missing:** pushing to `gh-pages` publishes nothing until the repository is set
 > to serve that branch (*Settings → Pages → Deploy from a branch → `gh-pages`,
