@@ -1,58 +1,58 @@
 {
-  "date" : "Wed, 05 Aug, 2026 20:55:41 +0000",
+  "date" : "Thu, 06 Aug, 2026 07:53:42 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json",
     "size" : 2411,
     "processes" : [{
       "activity" : "load",
-      "start" : 32,
-      "length" : 13
+      "start" : 31,
+      "length" : 19
     },
     {
       "activity" : "checkR4R4B",
-      "start" : 33,
-      "length" : 13
+      "start" : 32,
+      "length" : 18
     },
     {
       "activity" : "generateNarratives",
-      "start" : 33,
-      "length" : 86
+      "start" : 32,
+      "length" : 188
     },
     {
       "activity" : "validate",
-      "start" : 39,
-      "length" : 5993
+      "start" : 36,
+      "length" : 4350
     },
     {
-      "activity" : "checkConformanceResources3",
-      "start" : 45,
+      "activity" : "scanForUsageStats",
+      "start" : 40,
       "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 45,
-      "length" : 7
+      "start" : 40,
+      "length" : 8
     },
     {
       "activity" : "generate1",
-      "start" : 46,
-      "length" : 233
+      "start" : 41,
+      "length" : 162
     },
     {
       "activity" : "generate2",
-      "start" : 49,
-      "length" : 83
+      "start" : 43,
+      "length" : 133
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 58,
-      "length" : 2
+      "start" : 55,
+      "length" : 3
     },
     {
       "activity" : "scanExamplesForR5",
-      "start" : 71,
-      "length" : 2
+      "start" : 66,
+      "length" : 1
     }]
   },
   {
@@ -60,62 +60,77 @@
     "size" : 1332,
     "processes" : [{
       "activity" : "loadResources",
-      "start" : 32,
-      "length" : 3
+      "start" : 31,
+      "length" : 4
     },
     {
       "activity" : "load",
-      "start" : 32,
+      "start" : 31,
       "length" : 7
     },
     {
-      "activity" : "load",
-      "start" : 33,
-      "length" : 1
-    },
-    {
       "activity" : "generateSnapshots",
-      "start" : 33,
-      "length" : 5
+      "start" : 31,
+      "length" : 7
     },
     {
       "activity" : "load-configure",
-      "start" : 33,
+      "start" : 31,
+      "length" : 1
+    },
+    {
+      "activity" : "loadInfo",
+      "start" : 32,
       "length" : 1
     },
     {
       "activity" : "generateNarratives",
-      "start" : 33,
-      "length" : 56
+      "start" : 32,
+      "length" : 424
     },
     {
       "activity" : "validate",
-      "start" : 33,
-      "length" : 6182
+      "start" : 32,
+      "length" : 3831
+    },
+    {
+      "activity" : "checkConformanceResources3",
+      "start" : 40,
+      "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 45,
+      "start" : 40,
       "length" : 1
     },
     {
       "activity" : "generate1",
-      "start" : 46,
-      "length" : 243
+      "start" : 41,
+      "length" : 44
     },
     {
       "activity" : "generate2",
-      "start" : 49,
-      "length" : 476
+      "start" : 43,
+      "length" : 728
     },
     {
       "activity" : "generate2",
+      "start" : 44,
+      "length" : 1470
+    },
+    {
+      "activity" : "makeDependencies",
       "start" : 49,
-      "length" : 542
+      "length" : 1
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 58,
+      "start" : 55,
+      "length" : 1
+    },
+    {
+      "activity" : "scanProfilesForR5",
+      "start" : 66,
       "length" : 1
     }]
   },
@@ -123,13 +138,8 @@
     "name" : "/input/includes/menu.xml",
     "size" : 602,
     "processes" : [{
-      "activity" : "checkConformanceResources2",
-      "start" : 45,
-      "length" : 1
-    },
-    {
       "activity" : "generate2",
-      "start" : 49,
+      "start" : 44,
       "length" : 2
     }]
   },
@@ -139,14 +149,19 @@
   },
   {
     "name" : "/input/pagecontent/translationinfo.md",
-    "size" : 2303
+    "size" : 2303,
+    "processes" : [{
+      "activity" : "generate2",
+      "start" : 44,
+      "length" : 1
+    }]
   },
   {
     "name" : "/input/pagecontent/index.md",
     "size" : 2003,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 49,
+      "start" : 44,
       "length" : 1
     }]
   },

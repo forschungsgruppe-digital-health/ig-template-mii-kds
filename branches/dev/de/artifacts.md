@@ -1,4 +1,4 @@
-# Artefaktübersicht - MII KDS IG Template — Preview v0.4.0
+# Artefaktübersicht - MII KDS IG Template — Preview v0.5.1
 
 * [**Inhaltsverzeichnis**](toc.md)
 * **Artefaktübersicht**

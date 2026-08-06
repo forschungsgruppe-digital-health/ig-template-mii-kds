@@ -1,4 +1,4 @@
-# Home - MII KDS IG Template — Preview v0.4.0
+# Home - MII KDS IG Template — Preview v0.5.1
 
 * [**Table of Contents**](toc.md)
 * **Home**
@@ -7,8 +7,8 @@
 
 | | |
 | :--- | :--- |
-| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.4.0 |
-| Draft as of 2026-08-05 | *Computable Name*:MIIKDSTemplatePreview |
+| *Official URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview | *Version*:0.5.1 |
+| Draft as of 2026-08-06 | *Computable Name*:MIIKDSTemplatePreview |
 
 This page exists solely for the **preview** of the `de.medizininformatikinitiative.template` IG template. It is **not** an MII Core Dataset module.
 
