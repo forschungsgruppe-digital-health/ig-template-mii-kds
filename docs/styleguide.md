@@ -15,13 +15,24 @@ permission) are tracked in [open-tasks.md](open-tasks.md).
 The template derives from `fhir2.base.template` (pinned `0.1.0`) — the
 language-aware base both MII reference repos use. The rules:
 
-- **Override only the base's extension points.** The override set is exactly:
-  `includes/fragment-header.html`, `includes/fragment-css.html`,
-  `includes/fragment-footer.html`, one CSS file
-  (`content/assets/css/mii.css`), the logo/favicon assets, and the vendored
-  German UI catalogs in `translations/`. Header and CSS fragments are the
-  base's *designed* child extension points (empty placeholders); the footer
-  override preserves the base's link structure and appends to it.
+- **Override only the base's extension points.** What the template ships on top
+  of the base is exactly: `includes/fragment-header.html` and
+  `includes/fragment-css.html` (the base's *designed* child extension points —
+  empty placeholders), `includes/fragment-footer.html` (not a placeholder: the
+  override preserves the base's link structure and appends to it),
+  `includes/structure-tabs.html` (an added authoring include with no base
+  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), one CSS file
+  (`content/assets/css/mii.css`), the logo/favicon assets, the vendored German
+  UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
+  > **The two same-path replacements are on borrowed time.**
+  > `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png`
+  > win only because a child template's file at the same path beats the base's.
+  > That makes them invisible drift: a base change to either file is silently
+  > discarded. The favicon is intentional and permanent (it is branding);
+  > `lang-redirects.js` carries the fix for a defect in the pinned base's
+  > landing-page redirect and has a deletion condition attached — the reason is
+  > written out in the file itself, the follow-up in
+  > [open-tasks.md](open-tasks.md).
 - **Never ship `config.json`, `layouts/`, `liquid/`, `scripts/` or a
   `translations/stringsBase.json`.** The IG Publisher *replaces* (does not
   merge) these per template directory — a copy forks the whole base and
@@ -32,11 +43,14 @@ language-aware base both MII reference repos use. The rules:
   base-template bump. This was tried and deliberately reverted — the known
   consequence (the publisher name in the © line stays English on `/de/`) is
   accepted; see [limitations](#7-recorded-limitations-do-not-fix-by-workaround).
-- **CSS is variables-only.** `mii.css` overrides only the custom properties the
-  base declares in `project.css` `:root` — no hard rule overrides — so a
-  re-theme is a one-file edit with no cascade surprises. The single exception
-  is the narrative-table block (§5), which styles a surface the base leaves
-  completely unstyled.
+- **Colour is variables-only.** `mii.css` re-colours the guide exclusively
+  through the custom properties the base declares in `project.css` `:root` — no
+  base colour rule is re-declared — so a re-theme is a one-file edit with no
+  cascade surprises. Below the `:root` block the file carries four rule blocks
+  that are *not* about colour: the highlight boxes (§3), the narrative-table
+  styling (§5), the content-image handling and the structure-tabs spacing
+  (§5a). Three of them add new classes; the content-image block is the only
+  place where a base rule is deliberately countermanded.
 - **When re-syncing an overridden fragment against a bumped base:** port
   structural changes only; do not restore the base's `stringsBase` label
   lookups in the footer (they render blank on `/de/` — §6).
@@ -144,6 +158,25 @@ inline `<style>` blocks):
 - **No `width: 100%`** (kerndatensatz-basis sets it; this template does not):
   full width stretches two-column tables across the page. A module may add it
   for its own tables.
+
+## 5a. The other rule blocks in `mii.css`
+
+Colour is variables-only (§1), but four rule blocks go beyond the variables.
+Three of them add *new* classes, which cannot collide with the base; one
+deliberately overrides base rules. Anything added here has to earn its place,
+because a rule the base later changes will silently keep the value set here.
+
+| Block | Selectors | New or override | Why |
+| --- | --- | --- | --- |
+| Highlight boxes (§3) | `.mii-highlight`, `.mii-highlight-<color>` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — a module decides what each colour means |
+| Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
+| Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
+| Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
+
+`mii.css` is linked after the base stylesheets (`includes/fragment-css.html`),
+so none of these needs `!important`. The content-image block is the only place
+where a base rule is deliberately countermanded; if the base ever changes its
+image handling, this block is the first thing to re-check.
 
 ## 6. Language rules
 

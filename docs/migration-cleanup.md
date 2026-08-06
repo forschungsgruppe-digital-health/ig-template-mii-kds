@@ -12,7 +12,6 @@ delete this file last.** The module template repository carries its own copy
 | --- | --- |
 | `docs/project-status.md` | The prototype/organisation status page. Its open questions dissolve at adoption + move; carry any surviving decision into the README or an ADR-style note before deleting. |
 | `docs/open-tasks.md` | The pre-move task board. Move rows still open into GitHub issues of the target repository, then delete. |
-| `docs/reports/` (dated reports + its README) | Internal audit snapshots from the drafting phase. Archive in an issue first if the history is worth keeping. |
 | `docs/migration-cleanup.md` | This file — last, once every row is done. |
 
 ## Edit in one pass after migration (do not delete)

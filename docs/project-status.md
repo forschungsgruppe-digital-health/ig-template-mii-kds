@@ -28,6 +28,41 @@ settled yet.
 > and what is a known limit rather than a defect — is in
 > [open-tasks.md](open-tasks.md).
 
+## Branch state — `main` and `dev` are reconciled
+
+The documented model is that `main` only ever receives a `dev → main` merge
+([CONTRIBUTING.md](../CONTRIBUTING.md)). That is the intent. It is not what
+happened between 2026-07-30 and 2026-08-05, and pretending otherwise would
+mislead anyone branching off either branch.
+
+**What happened:** the two branches diverged in both directions. `main` had
+picked up two Release Please release commits (`0.5.0`, `0.5.1` — those are cut
+on `main` by design) plus three pull requests merged straight into it (the
+alignment with `mii-kds-module-template` v0.5.0 — structure-tabs, breadcrumb
+i18n, content-image CSS —, a README pointer, and the retirement of the
+breadcrumb override in favour of the IG-level translation catalogue), while
+`dev` carried unreleased work of its own, among it the rename of
+`docs/design.md` to `docs/styleguide.md`. Section references therefore resolved
+on one branch and dangled on the other.
+
+**As of 2026-08-06 that is repaired:** `main` was back-merged into `dev`, the
+overlapping edits were reconciled by hand (the styleguide absorbed the
+structure-tabs and content-image material that had been written into the old
+`design.md`), and `dev` was promoted to `main`. Both branches point at the same
+commit; `git diff main dev` is empty.
+
+**The rule, so this stops growing:**
+
+- Work still goes to `dev` first, and reaches `main` through a `dev → main`
+  merge commit. That is unchanged.
+- If anything does land on `main` directly — a release commit, a hotfix, a PR
+  retargeted in a hurry — it must be **back-merged into `dev`** (`git merge
+  main` on `dev`, via a pull request) before the next round of work, not left
+  for the next release to sort out.
+- Before opening a `dev → main` release PR, check that `dev` is not behind
+  `main`: `git fetch && git rev-list --left-right --count origin/main...origin/dev`.
+  A non-zero left-hand number means a back-merge is due first.
+
 ## What is NOT blocked by this
 
 Everything about developing and reviewing the templates works today: builds,
