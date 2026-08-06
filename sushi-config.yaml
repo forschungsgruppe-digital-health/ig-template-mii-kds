@@ -9,15 +9,13 @@ description: >-
   and visually reviewable in English (default) and German. Not an MII KDS
   module.
 status: draft
-version: 0.5.1
+version: 0.6.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
 copyrightYear: 2026+
 publisher:
   name: Medical Informatics Initiative (MII)
-  # Language-neutral URL: the footer's publisher link is the same on every
-  # language's pages, so it must not pin one language's site.
   url: https://www.medizininformatik-initiative.de
 jurisdiction: urn:iso:std:iso:3166#DE "Germany"
 parameters:
