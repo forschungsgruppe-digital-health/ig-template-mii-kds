@@ -69,14 +69,44 @@ source of truth; consult them before doing the corresponding task by hand.
 - [`skills/ig-translate/`](skills/ig-translate/SKILL.md) — multi-language
   support in template-owner scope: en-default with a German translation, the
   verified rendering table, i18n conventions, language-neutrality rules for
-  the template's overrides. The module-facing translate/harvest workflow
-  lives in `mii-kds-module-template`.
+  the template's overrides. The guide-facing translate/harvest workflow is
+  **not** here — it is `fhir-ig-translation` in the org catalog (below).
 - [`skills/docs-steward/`](skills/docs-steward/SKILL.md) — checks, repairs and
   trims this repository's documentation: verifies every link, path and factual
   claim against the repo itself, reduces the docs to what create/modify/maintain
   actually needs, and walks the documented path as a first-time and an
   experienced reader. Report-only by default; the findings are reported back to
   the person who asked for them and are not committed to the repository.
+
+### Skills this repository does not carry — install them from the org catalog
+
+Measuring an IG and translating one are **not** local skills here. They live in the
+organization's skill catalog,
+[`forschungsgruppe-digital-health/agent-skills`](https://github.com/forschungsgruppe-digital-health/agent-skills),
+which is their single source of truth:
+
+| Task | Catalog skill | Note |
+| --- | --- | --- |
+| Measure / compare Implementation Guides (read-only statistics, hygiene, maturity) | `fhir-ig-analysis` | Ported from `mii-kds-module-template`, developed further in the catalog |
+| Produce a *guide's* translation supplements (translate or harvest) | `fhir-ig-translation` | Ported likewise, and generalised to any language pair |
+| Migrate a Simplifier/Forge-published KDS module onto the module scaffold | `mii-ig-migration` | Never local |
+
+```bash
+CATALOG=https://github.com/forschungsgruppe-digital-health/agent-skills/tree/v0.12.0
+npx skills add "$CATALOG" --skill fhir-ig-analysis fhir-ig-translation --agent claude-code codex --yes
+```
+
+Pin with the `/tree/<ref>` form — `owner/repo@v0.12.0` does *not* pin, it silently installs from the
+default branch.
+
+`skills/ig-translate` here is **not** the same skill as the catalog's `fhir-ig-translation` and is
+not superseded by it: this one is the *template package's* obligations (language policy, the
+language-neutrality of the header/footer/CSS overrides, the vendored German UI strings), which the
+catalog explicitly leaves to the template repository. The catalog skill covers a *guide's* content.
+
+> **Do not re-vendor a catalog skill into `skills/`.** A second copy is exactly the drift the
+> catalog exists to prevent. `.claude/skills` and `.agents/skills` are symlinks to `skills/`, so an
+> install into a checkout writes here — keep it out of the commit.
 
 ### Discovery paths (symlinks, not copies)
 
