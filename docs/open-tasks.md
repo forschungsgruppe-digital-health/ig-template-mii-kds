@@ -17,7 +17,7 @@ decision by a maintainer before anything is done.
 | --- | --- | --- |
 | Register the template in [`FHIR/ig-registry`](https://github.com/FHIR/ig-registry) (`templates.json`) and name its owner | An explicit maintainer decision | A registry entry is a public, hard-to-retract commitment implying an owner and a support promise. While the approach is a proposal to the TF KDS, staying unregistered lets the design change without stranding consumers. |
 | Publish `de.medizininformatikinitiative.template` to a FHIR package registry | The same decision | Until then modules vendor the template as a folder. Once published, a module switches per [switch-template-to-published](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template/blob/main/docs/recipes/switch-template-to-published.md) in the module scaffold. |
-| Move both repositories to the `medizininformatik-initiative` organisation | The same decision | All content already names the target org. After the move, delete the module template's `IG_TEMPLATE_REPO_URL` repository variable — it only exists to bridge the gap. |
+| Move both repositories to the `medizininformatik-initiative` organisation — then work through [migration cleanup](migration-cleanup.md) | The same decision | All content already names the target org. After the move, delete the module template's `IG_TEMPLATE_REPO_URL` repository variable — it only exists to bridge the gap. |
 | Decide who owns the template after 2026 | TF KDS | Currently "the MII, for now". |
 | Name a code owner in `.github/CODEOWNERS` and an enforcement contact in `CODE_OF_CONDUCT.md` | The same decision | Both are deliberately empty: naming an individual would present one person as responsible for an MII-branded artifact, and routing reports to the MII Geschäftsstelle would claim it owns repositories it does not. Set a team once the repositories move to the organisation. |
 | Store the SU-TermServ client certificate as repository secrets | A maintainer with the certificate | The procedure is written and the handshake was verified locally against the live server. See [secrets](secrets.md); run `scripts/set-su-termserv-secrets.sh`. Without it, builds fall back to `tx.fhir.org`. |
@@ -91,10 +91,10 @@ workaround can eventually be deleted.
   `fragment-pageend.html:48` from the single-valued `publisher` block in
   `sushi-config.yaml`, *before* `fragment-footer.html` runs. There is also no
   language-neutral MII URL to point at — `medizininformatik-initiative.de`
-  redirects with `content-language: de`. Recorded in [design](design.md) §6.
+  redirects with `content-language: de`. Recorded in [styleguide](styleguide.md) §6.
 - **The preview's "Directory of published versions" link is inert.** The publish
   box derives it from the canonical, which for a template package is its GitHub
-  repository URL. Recorded in [design](design.md).
+  repository URL. Recorded in [design](styleguide.md).
 - **`scripts/check-language-model.sh` is curated, not exhaustive.** It matches
   line by line, so a claim split across a line break passes — which is exactly
   how the comment in `includes/fragment-footer.html` survived `ce3a914`,

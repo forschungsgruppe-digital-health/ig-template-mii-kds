@@ -181,7 +181,7 @@ Build the preview (or push a branch and open the CI preview) and confirm on
 | Page titles, breadcrumbs and the table of contents stay English on `/de/` although the content is German | The IG-level catalogue `input/translations/de/ImplementationGuide-<ig-id>.po` is missing; or its folder is not in `translation-sources`, in which case it is ignored without a warning; or a `msgid` does not match the `pages:` title character for character | Add the catalogue (step 2), list its folder in `translation-sources`, and copy each `msgid` verbatim from `sushi-config.yaml` — including the `Table of Contents` root entry |
 | A menu label does not change with the language | The per-language `menu.xml` is missing, or a `menu:` property was added to `sushi-config.yaml` | Ship `input/translations/<lang>/includes/menu.xml`; never use the `menu:` property — it generates one untranslatable menu |
 | Language-switcher flag missing | The flag asset is not resolvable from the language folder | The template ships `content/assets/images/deu.svg` for exactly this reason |
-| The organisation name and link in the footer's copyright line stay English on `/de/` | They are not UI strings: the base reads them from the IG's single-valued `publisher` block and emits them before our footer fragment runs | Not fixable from the template — see the "Known limit" bullet in [`../design.md`](../design.md) §6 |
+| The organisation name and link in the footer's copyright line stay English on `/de/` | They are not UI strings: the base reads them from the IG's single-valued `publisher` block and emits them before our footer fragment runs | Not fixable from the template — see the "Known limit" bullet in [`../styleguide.md`](../styleguide.md) §6 |
 
 ## Re-verify on a toolchain bump
 

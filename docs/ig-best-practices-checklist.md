@@ -33,9 +33,9 @@ applicable to a template.
 | Check | State | Evidence |
 |---|---|---|
 | Derives from an official HL7 base template rather than forking it | ✅ | `package/package.json` declares `fhir2.base.template` as its base |
-| Overrides only the designed extension points | ⚠️ | Two of the shipped files fill the base's empty placeholders (`fragment-header.html`, `fragment-css.html`). The others do not: `fragment-footer.html` replaces a fragment that carries base content, `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png` replace base files at the same path, and `includes/structure-tabs.html` is an added include with no base counterpart. Each is listed with its reason in [`docs/design.md`](design.md) §2. The deviation that matters is the same-path replacement: a base change to those two files is silently discarded |
-| Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/design.md`](design.md) §2 |
-| Branding is done through the base's CSS **variables**, not rule overrides | ⚠️ | Every *colour* is a base variable and no base colour rule is re-declared — [`docs/design.md`](design.md) §3. But `mii.css` is not variables-only: it ships four rule blocks (highlight boxes, narrative tables, content images, structure-tabs), listed in [`docs/design.md`](design.md) §3a. Three add new classes; the content-image block deliberately overrides the base's `p > img` float |
+| Overrides only the designed extension points | ⚠️ | Two of the shipped files fill the base's empty placeholders (`fragment-header.html`, `fragment-css.html`). The others do not: `fragment-footer.html` replaces a fragment that carries base content, `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png` replace base files at the same path, and `includes/structure-tabs.html` is an added include with no base counterpart. Each is listed with its reason in [`docs/styleguide.md`](styleguide.md) §1. The deviation that matters is the same-path replacement: a base change to those two files is silently discarded |
+| Does **not** ship `config.json` (which replaces, not merges) | ✅ | [`docs/styleguide.md`](styleguide.md) §1 |
+| Branding is done through the base's CSS **variables**, not rule overrides | ⚠️ | Every *colour* is a base variable and no base colour rule is re-declared — [`docs/styleguide.md`](styleguide.md) §1–§2. But `mii.css` is not variables-only: it ships four rule blocks (highlight boxes, narrative tables, content images, structure-tabs), listed in [`docs/styleguide.md`](styleguide.md) §5a. Three add new classes; the content-image block deliberately overrides the base's `p > img` float |
 | The base version is pinned (reproducible builds) | ✅ | `0.1.0`, never `#current`; drift is surfaced by `dependency-check.yml` |
 | The template is exercised by a real build before release | ✅ | The bundled preview IG builds on every push (`ig-preview.yml`) |
 | Validated against a real module | ✅ | `kerndatensatz-basis` (`main`, `2026.0.1`, 63 generated conformance resources) was built with its `ig.ini` pointing at this template, vendored: SUSHI compiled it with 0 errors and 0 warnings. The full IG-Publisher render is covered by the preview build in CI |
@@ -46,7 +46,7 @@ applicable to a template.
 |---|---|---|
 | Multi-language is set up the supported way | ✅ | `i18n-default-lang: en`, `i18n-lang: [de]` — the same model as `kerndatensatz-basis` ([`docs/recipes/add-translation.md`](recipes/add-translation.md)) |
 | Uses the language-aware base and the supported translation mechanism | ✅ | `fhir2.base.template` is the *translated* base; translations follow the HL7 reference layout |
-| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | [`docs/design.md`](design.md) §5–§6 |
+| Header/footer overrides are language-aware, not hard-coded to one language | ✅ | [`docs/styleguide.md`](styleguide.md) §4 (logo variants) and §6 (footer labels and link targets) |
 | The base UI strings resolve in every offered language | ✅ | German catalogs vendored, because the pinned base ships none — [`translations/README.md`](../translations/README.md) |
 | The menu can be translated | ✅ | Per-language `input/translations/<lang>/includes/menu.xml`; the untranslatable `menu:` property is deliberately not used |
 | Language switching works in the rendered output | ✅ | `/de/` and `/en/` both render with the correct menu, footer and content; the landing-page redirect is overridden in `content/assets/js/lang-redirects.js` (the reason is in that file) |
@@ -55,11 +55,11 @@ applicable to a template.
 
 | Check | State | Evidence |
 |---|---|---|
-| Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/design.md`](design.md) §3 |
-| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/design.md`](design.md) §7; one known limitation is recorded there (footer links are not underlined — site-faithful, accepted) |
+| Consistent, deliberate colour scheme | ✅ | Every colour in `mii.css` is sourced from an MII asset and contrast-checked — [`docs/styleguide.md`](styleguide.md) §2 |
+| Accessible contrast on chrome (navbar, footer, breadcrumb) | ✅ | WCAG AA computed per surface in [`docs/styleguide.md`](styleguide.md) §8; one known limitation is recorded in §7 (footer links are not underlined — site-faithful, accepted) |
 | Consistent page chrome (no mixed white/grey surfaces) | ✅ | Header sides and container are both white, matching the logo background and the content area |
-| Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 recorded in [`docs/design.md`](design.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
-| Reusable callout styles for authors | ✅ | `mii-highlight-blue` / `mii-highlight-green`, purpose-neutral so modules assign meaning — [`docs/design.md`](design.md) §3a |
+| Graphics are licence-clean and their source is available | ✅ / 📝 | Logo/favicon provenance + SHA-256 are preserved in this repository's git history (`docs/design.md`, the styleguide's predecessor); the reproduction commands are in [`docs/recipes/replace-the-logo.md`](recipes/replace-the-logo.md) — [`docs/styleguide.md`](styleguide.md) §4; open follow-ups: an official SVG and MII trademark redistribution confirmation (issues #25/#26) |
+| Reusable callout styles for authors | ✅ | Five `mii-highlight-<color>` classes, purpose-neutral so modules assign meaning — [`docs/styleguide.md`](styleguide.md) §3 |
 | A tabbed structure view an author can drop into a page | ✅ | `includes/structure-tabs.html` — [`docs/recipes/tab-an-artifact-structure.md`](recipes/tab-an-artifact-structure.md) |
 
 ## 4. What the template makes easy for module authors (S1)

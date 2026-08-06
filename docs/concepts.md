@@ -41,7 +41,7 @@ inherited from the base.
 > **Why override instead of copy:** the base template ships the branding fragments
 > as *empty placeholders* precisely so a child fills them. Copying the whole base
 > would re-introduce drift and lose upstream fixes. The small override surface is
-> the entire point — see [design.md](design.md) for the exact files.
+> the entire point — see [styleguide.md](styleguide.md) for the exact files.
 
 > **Why pin the base to `0.1.0` instead of the moving `#current`:** reproducibility.
 > A build in 2029 must produce the same output as today. The

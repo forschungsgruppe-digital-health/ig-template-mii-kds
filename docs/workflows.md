@@ -11,7 +11,7 @@ The full model with a diagram is in [CONTRIBUTING.md](../CONTRIBUTING.md). In sh
   to arrive only by a `dev → main` **merge commit** (never a squash). Release
   Please's own release commits are cut on `main`, and a few other changes have
   landed there directly — see
-  [project-status.md](project-status.md#branch-state--main-and-dev-have-diverged)
+  [project-status.md](project-status.md#branch-state--main-and-dev-are-reconciled)
   for the current state and the back-merge rule.
 - **`dev`** — integration branch where reviewed changes accumulate; CI previews run
   here.
