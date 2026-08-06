@@ -5,7 +5,7 @@
   "introduction": "IG-Publisher template carrying the Medizininformatik-Initiative corporate design, derived from fhir2.base.template (pinned to the fixed release 0.1.0)",
   "list": [
     {
-      "version": "0.5.1",
+      "version": "0.6.0",
       "desc": "Source at https://github.com/medizininformatik-initiative/ig-template-mii-kds",
       "path": "https://github.com/medizininformatik-initiative/ig-template-mii-kds",
       "status": "ci-build",
