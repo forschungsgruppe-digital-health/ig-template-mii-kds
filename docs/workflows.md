@@ -31,7 +31,7 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 | Workflow | Trigger | What it does | Output | Toggle (default) | Human-gated? |
 | --- | --- | --- | --- | --- | --- |
 | `ig-preview.yml` | push to any branch except `main`/`gh-pages`/`fsh-generated`; `workflow_dispatch` | Builds the **preview IG** (SUSHI + IG Publisher) and deploys a preview | `gh-pages/branches/<branch>/` + PR comment with the URL | `ENABLE_PREVIEW` (ON) | no |
-
+| `release-demo.yml` | `release: published`; `workflow_dispatch` (inputs `tag`, `update_landing_page`) | Rebuilds the demo IG **from the released tag** with the same pinned toolchain, verifies the render carries that version, publishes it, and repoints the Pages landing page at it | `gh-pages/demo/<tag>/` + a conservatively rewritten `gh-pages/index.html` | `ENABLE_RELEASE_DEMO` (ON) | reacts only to a release a human published |
 | `cleanup-gh-pages.yml` | schedule (Sun 00:00 UTC); `workflow_dispatch` | Removes previews whose branch was deleted; preserves the root + version paths | pruned `gh-pages` | `ENABLE_PREVIEW` (ON) | no |
 | `release-please.yml` | push to `main` | Opens/updates the release PR; on merge cuts the SemVer tag + GitHub Release + changelog | tag `vX.Y.Z`, release | `ENABLE_RELEASE_PLEASE` (ON) | the release PR is a human merge |
 | `notify-zulip.yml` | `release: published` | Announces the release to the MII Zulip (`MII-Kerndatensatz`, topic *Template Releases*); public FHIR Zulip only if opted in | Zulip message | `ENABLE_ZULIP_ANNOUNCE` (ON) · `ANNOUNCE_PUBLIC_ZULIP` (OFF) | public channel needs a human flag + key |
@@ -45,6 +45,15 @@ the default in the table. A disabled workflow still triggers but its jobs **skip
 > See [publish the preview on GitHub Pages](recipes/publish-the-preview-on-github-pages.md).
 
 Notes:
+- **The published demo tracks the latest release automatically.** The Pages
+  landing page advertises one rendering as "the current release"; since
+  `release-demo.yml` exists, nobody promotes it by hand. Publishing a GitHub
+  Release triggers a fresh build **from that tag** — same pinned toolchain as the
+  previews, same terminology selection — which is published to
+  `demo/<tag>/`, and the landing page's demo links and version label are
+  rewritten to match in the same `gh-pages` commit. See
+  [§ 4 The published demo](#4-the-published-demo) for the guarantees and the
+  retention rule.
 - **Dependabot** (`.github/dependabot.yml`) is not a job you gate with `if:` — it is
   switched by its config presence and the repo's Dependabot setting.
 - **Terminology** is not an on/off pipeline: `ig-preview.yml` auto-selects
@@ -67,6 +76,9 @@ Notes:
   pre-flight, so the weekly check fails loudly instead of filing a garbled
   tracking issue. Both list the files by name rather than globbing
   `scripts/*.test.mjs`, so a new suite reaches CI only when someone adds it.
+  `toolchain-pins.test.mjs` and `update-demo-links.test.mjs` were added with
+  `release-demo.yml` — the first fails when the two build workflows stop pinning
+  the same toolchain, the second pins the landing-page rewriter's behaviour.
 
 ## 3. Release
 
@@ -76,7 +88,8 @@ This repository is **tooling**, so it uses **SemVer** via Release Please, runnin
 1. Conventional Commits accumulate on `dev`, then land on `main` via a merge commit.
 2. Release Please opens a release PR (version bump in `package/package.json`,
    `sushi-config.yaml` and `package-list.json`, changelog). A human merges it.
-3. Merging cuts the tag + GitHub Release; `notify-zulip.yml` announces it.
+3. Merging cuts the tag + GitHub Release; `notify-zulip.yml` announces it and
+   `release-demo.yml` renders the published demo (§ 4).
 4. Production publication (if any) stays a manual, gated step — never automatic.
 
 ### How a module consumes this template
@@ -108,6 +121,72 @@ things that do stop the sync — setting the module's `ENABLE_TEMPLATE_SYNC`
 variable to `false`, or editing those two lines — contradict that repo's stated
 intent ("the module IG must always build against the CURRENT MII IG template"),
 so if either is ever wanted it belongs in the module template's docs, not here.
+
+## 4. The published demo
+
+The [Pages landing page](https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/)
+advertises one rendering of this repository's preview IG as *the current
+release*. **It tracks the latest release automatically** — `release-demo.yml`
+(§ 2) does the whole thing; there is no manual promotion step, and there must
+not be one again.
+
+### What the automation guarantees
+
+| | |
+| --- | --- |
+| **Built from the tag** | The job checks out the released tag into `release-src/` and builds only that. The workspace root stays on the workflow's own ref so the publishing tooling (`scripts/update-demo-links.mjs`) is current even when re-rendering an old tag. |
+| **The render carries the tag's version** | Before SUSHI runs, `sushi-config.yaml`'s `version:` is **written** from the tag. After the build, the generated `ImplementationGuide` is read back and the job fails if its `version` is not the tag. Release Please already keeps that field in step (`extra-files` in `release-please-config.json`); a disagreement is reported as a warning so re-rendering an old tag stays possible. |
+| **The links follow** | `gh-pages/index.html` is rewritten in the same commit as the demo it points at. Path, rendered content and link therefore move together or not at all. |
+| **Same toolchain as the previews** | The pins are copied from `ig-preview.yml` under the same names, and `scripts/toolchain-pins.test.mjs` fails the build if the two blocks drift apart. |
+
+> **Why this exists.** The demo used to be copied by hand out of a
+> feature-branch preview built *before* Release Please bumped the version, so
+> `demo/v0.5.1/en/index.html` rendered `… — Preview v0.5.0`. The path claimed one
+> release and the content another, and the landing page linked it as the
+> release.
+
+### How the landing page is edited
+
+`index.html` on `gh-pages` is **hand-authored** and is never regenerated.
+`scripts/update-demo-links.mjs` changes four narrowly anchored things and
+nothing else: every `demo/<version>/` path segment, the version token in the
+`<h2>` that introduces the demo, the one-paragraph per-release note (replaced
+by a link to the actual release notes, which cannot go stale), and — once — an
+obsolete sentence about `dev` predating the release. The first two are
+**required**: if either anchor is missing the script exits non-zero and the job
+fails, because a page that silently keeps linking the previous release is the
+exact bug being fixed. Rewrites are idempotent.
+
+Dry-run it against the live page before changing the script:
+
+```bash
+curl -sSL -o /tmp/index.html \
+  https://forschungsgruppe-digital-health.github.io/ig-template-mii-kds/index.html
+node scripts/update-demo-links.mjs --check --file /tmp/index.html \
+  --version v9.9.9 \
+  --repo-url https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds
+```
+
+### Retention — old demos are kept
+
+Previous `demo/<tag>/` directories are **never pruned**. They are permanent,
+externally linkable renderings, and removing one would break links this project
+does not control. `cleanup-gh-pages.yml` cannot touch them either: it only
+removes directories carrying a `.branch-name` marker, and `release-demo.yml`
+deliberately writes none (a guard fails the job if one appears). Only the
+landing page's *current* links move; superseded demos stay reachable at their
+stable URLs. The job prints the accumulated `demo/` size and warns above the
+1 GB Pages limit — if a demo ever has to be retired, every link to it must be
+updated in the same change.
+
+### Re-rendering a release by hand
+
+Dispatch `release-demo.yml` with the `tag` input — e.g. after a toolchain bump,
+or to publish the demo for a tag released before this workflow existed. Set
+`update_landing_page: false` to publish `demo/<tag>/` without moving the
+landing-page links. A **pre-release** is skipped on the `release: published`
+trigger (it is not "the current release"); dispatch it manually if you want one
+rendered.
 
 ## Secrets & enabling the gated features
 
