@@ -60,8 +60,10 @@ Author identity is the configured human committer.
 ## Skills
 
 The canonical skills live in [`skills/`](skills/) — one folder per skill, with
-the instructions in `SKILL.md` (agent-skills format). They are the single
-source of truth; consult them before doing the corresponding task by hand.
+the instructions in `SKILL.md` (agent-skills format), indexed by
+[`skills/README.md`](skills/README.md). Every one of them is **written here**:
+this repository is their source of truth, and a fix belongs here. Consult them
+before doing the corresponding task by hand.
 
 - [`skills/wiki-consistency-check/`](skills/wiki-consistency-check/SKILL.md)
   — **the single convention checker**: repo ↔ MII meta wiki drift plus the
@@ -93,20 +95,42 @@ which is their single source of truth:
 
 ```bash
 CATALOG=https://github.com/forschungsgruppe-digital-health/agent-skills/tree/v0.12.0
-npx skills add "$CATALOG" --skill fhir-ig-analysis fhir-ig-translation --agent claude-code codex --yes
+npx skills add "$CATALOG" --list
+npx skills add "$CATALOG" --skill fhir-ig-analysis fhir-ig-translation --agent claude-code codex --global --yes
 ```
 
-Pin with the `/tree/<ref>` form — `owner/repo@v0.12.0` does *not* pin, it silently installs from the
-default branch.
+Pin with the `/tree/<ref>` form — `owner/repo@v0.12.0` does *not* pin: in that CLI `@` introduces a
+skill *name*, and the install silently comes from the default branch. The catalog's own
+[`docs/consuming-skills.md`](https://github.com/forschungsgruppe-digital-health/agent-skills/blob/main/docs/consuming-skills.md)
+documents all three consumption paths.
+
+**They are deliberately NOT vendored here, and that is the difference to
+[`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template),
+which vendors them at a pinned ref.** This repository is the *branding package* — the header,
+footer, CSS, layouts and language mechanism a guide is rendered with. It contains no Implementation
+Guide to measure and no guide content to translate; the module template is where those tasks are
+actually performed, and a skill only exists for an agent if it is present on disk *there*. Carrying
+a second pinned copy here would be maintenance without a user. Install the catalog skills globally
+(`--global`, above) on the rare occasion you want them while working in this repository.
+
+> **Do not vendor a catalog skill into `skills/`.** `.claude/skills` and `.agents/skills` are
+> symlinks to `skills/`, so a project-level install writes into the tracked tree — keep it out of
+> the commit. Vendoring is a deliberate, pinned, drift-checked arrangement (see the module
+> template's `scripts/sync-skills.sh`), not something an ad-hoc install should create by accident.
 
 `skills/ig-translate` here is **not** the same skill as the catalog's `fhir-ig-translation` and is
 not superseded by it: this one is the *template package's* obligations (language policy, the
 language-neutrality of the header/footer/CSS overrides, the vendored German UI strings), which the
 catalog explicitly leaves to the template repository. The catalog skill covers a *guide's* content.
 
-> **Do not re-vendor a catalog skill into `skills/`.** A second copy is exactly the drift the
-> catalog exists to prevent. `.claude/skills` and `.agents/skills` are symlinks to `skills/`, so an
-> install into a checkout writes here — keep it out of the commit.
+### Skills never install other skills
+
+A skill that needs another one states it as a **precondition** and prints the exact install command
+for the user to run. It does not install anything itself, and `allowed-tools` is not a dependency
+declaration — it grants permissions, it says nothing about what must already be present.
+Auto-installing would write into the user's project as a side effect of an unrelated invocation,
+make the run non-hermetic (its behaviour would depend on a network fetch nobody asked for), and cut
+against the catalog's static-by-design stance.
 
 ### Discovery paths (symlinks, not copies)
 
