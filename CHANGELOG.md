@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.6.0...v0.6.1) (2026-08-07)
+
+
+### Bug Fixes
+
+* **ci:** trigger the release demo from the release run, not a release event ([#71](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/71)) ([11ea258](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/11ea258e6903b6ecbfe200d26fc68a15052499a9))
+
 ## [0.6.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.5.1...v0.6.0) (2026-08-06)
 
 
