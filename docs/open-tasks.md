@@ -62,6 +62,24 @@ workaround can eventually be deleted.
   path (the full reasoning is in that file). Delete it once a base release with
   the fix is pinned.
 
+## Needs work here
+
+- **The rendering table in [`skills/ig-translate`](../skills/ig-translate/SKILL.md)
+  contains a claim the catalog has since retired.** That skill stays local — it is
+  template-owner scope (language policy, the header/footer/CSS obligations, the
+  vendored German UI strings) and the organization's catalog deliberately does not
+  cover it. But its "what the toolchain renders" table was ported into the catalog
+  skill `fhir-ig-translation` and *maintained there*, and the 2026-08-05 revision
+  retired one row of it: the IG's own `title` and the titles of `pages:`-tree pages
+  do render, via `input/translations/<lang>/ImplementationGuide-<ig-id>.po`, which
+  the publisher imports at load time instead of treating as a resource supplement.
+  This repository already ships such a catalogue
+  (`input/translations/de/ImplementationGuide-de.medizininformatikinitiative.template.preview.po`),
+  so the file and the skill now disagree. Reconcile the table against the catalog
+  skill — or cut it down to a pointer and keep only what is template-owner scope.
+  A ⚠️ note in the skill marks the row until then. Left to the owner deliberately:
+  it is a technical claim about the toolchain, not a mechanical de-duplication.
+
 ## Known limits, deliberately not "fixed"
 
 - **A private address is in one commit message on `main`, and stays there.** The

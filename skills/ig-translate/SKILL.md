@@ -27,15 +27,22 @@ Multi-language support is split across the two template repositories:
 - **This repo (`ig-template-mii-kds`, the template package)** owns the
   language *mechanism*: the header/footer/CSS overrides, the base template's
   UI-string catalogs, and the documented conventions below.
-- **The module scaffold
-  ([`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template))**
-  owns the module-facing *workflow*: creating or harvesting the actual
-  translation supplements (`input/translations/de/…`) and translated
-  narrative pages for a concrete module IG, including the supporting
-  tooling.
+- **The organization's skill catalog
+  ([`agent-skills`](https://github.com/forschungsgruppe-digital-health/agent-skills))**
+  owns the guide-facing *workflow*: creating or harvesting the actual
+  translation supplements (`input/translations/<lang>/…`) and translated
+  narrative pages for a concrete IG, including the supporting tooling. The
+  skill is `fhir-ig-translation`. This skill does not install it for you —
+  **precondition**, to be run by the user:
+  `npx skills add https://github.com/forschungsgruppe-digital-health/agent-skills/tree/v0.12.0 --skill fhir-ig-translation --agent claude-code codex --global --yes`
+  (pin with the `/tree/<ref>` form; `owner/repo@<tag>` does *not* pin — `@`
+  introduces a skill *name* there and the install silently comes from the
+  default branch). It began as the `ig-translate` skill of
+  `mii-kds-module-template`, which now consumes it from the catalog under its
+  catalog name, as a pinned vendored copy.
 
-If the task is "translate this module's content", switch to the module
-scaffold's `ig-translate` skill. Stay here for template mechanics.
+If the task is "translate this module's content", switch to
+`fhir-ig-translation`. Stay here for template mechanics.
 
 ## Language policy
 
@@ -85,8 +92,21 @@ toolchain treats it as a separate page, not a translation.
 
 > Treat this table as ground truth until re-verified. **Re-verify it whenever
 > the pinned base template or the IG Publisher version changes**, and update
-> the table (here and in the module scaffold's copy) with the new
-> verification statement.
+> the table with the new verification statement.
+
+> ⚠️ **This table is no longer the authoritative copy — reconcile it.** The
+> catalog skill `fhir-ig-translation` carries the maintained version, and its
+> 2026-08-05 revision **retires a claim still standing in row 4 above**: the
+> IG's own `title` and the titles of `pages:`-tree pages (breadcrumbs, TOC,
+> browser `<title>`) *do* render, from
+> `input/translations/<lang>/ImplementationGuide-<ig-id>.po`, which the
+> publisher imports at load time rather than as a resource supplement. It was
+> verified on our own pin (2.2.11) and on HL7's reference build (2.0.13).
+> Read the catalog skill before acting on the row above; this copy is kept
+> because the rest of the file is template-owner scope, not because the row is
+> still correct. Reconciling it is
+> [open work for this repo's owner](../../docs/open-tasks.md), not something to
+> assume has happened.
 
 ## Configuration the scaffold pre-configures (and this template is verified against)
 
@@ -143,8 +163,10 @@ Findings are reported and proposed as changes via a pull request **targeting
 
 ## References
 
-- Module-facing workflow + tooling: the `ig-translate` skill in
-  [`mii-kds-module-template`](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template).
+- Guide-facing workflow + tooling: the `fhir-ig-translation` skill in
+  [`agent-skills`](https://github.com/forschungsgruppe-digital-health/agent-skills),
+  the organization's skill catalog — the maintained successor of the
+  `ig-translate` skill `mii-kds-module-template` used to carry.
 - Base template string mechanism and `.po` translations:
   [`HL7/ig-template-base2`](https://github.com/HL7/ig-template-base2)
   (`includes/`, `translations/`).
