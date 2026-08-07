@@ -76,7 +76,7 @@ access (the first build downloads the base image and tools):
    ```sh
    sushi .
    curl -L -o publisher.jar \
-     https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.11/publisher.jar
+     https://github.com/HL7/fhir-ig-publisher/releases/download/2.3.0/publisher.jar
    echo "a981af86bca3f3a22ee15b9d4ee3c97d63219b7a14e49d0a525e10bbfc71a911  publisher.jar" \
      | sha256sum --check
    java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org

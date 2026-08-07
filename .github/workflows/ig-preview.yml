@@ -45,11 +45,11 @@ concurrency:
 # scheduled dependency monitor stays in sync with what the build actually uses.
 # Bump a version here and the checker compares the new pin against upstream.
 env:
-  PUBLISHER_VERSION: "2.2.11"
+  PUBLISHER_VERSION: "2.3.0"
   # SHA-256 of publisher.jar for PUBLISHER_VERSION (verified by download,
   # 2026-07-22). ALWAYS bump this together with PUBLISHER_VERSION — never one
   # without the other (docs/recipes/review-a-dependency-update.md).
-  PUBLISHER_SHA256: "a981af86bca3f3a22ee15b9d4ee3c97d63219b7a14e49d0a525e10bbfc71a911"
+  PUBLISHER_SHA256: "e842f2186117d9e41be457949e6a13e69a8d8590a680b6f3cf48a20f87bdabbd"
   SUSHI_VERSION: "3.20.0"
   # The fhir2.base.template renders the site via Jekyll, so the IG Publisher
   # shells out to `jekyll` — it MUST be installed (see the "Set up Ruby +
