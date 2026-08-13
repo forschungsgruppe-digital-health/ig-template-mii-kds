@@ -70,9 +70,10 @@ jobs:
   # update-demo-links.test.mjs pins the landing-page rewriter's two safety
   # properties: a missing anchor throws instead of quietly leaving the page on
   # the previous release, and the rewrite is idempotent. brand-switch.test.mjs
-  # guards the MII/NUM-DIZ brand switch: complete palette override, exact-match
-  # guards that degrade to MII, WCAG AA recomputed from the shipped hex values,
-  # and the derived English combo logo's provenance marker.
+  # guards the NUM-DIZ/MII brand switch: complete palette override, exact-match
+  # guards ('mii' selects MII; everything else renders the NUM-DIZ default),
+  # WCAG AA recomputed from the shipped hex values, and the derived English
+  # combo logo's provenance marker.
   # Offline, no npm install, well under a second.
   tooling-tests:
     runs-on: ubuntu-latest

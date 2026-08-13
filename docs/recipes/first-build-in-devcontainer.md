@@ -108,7 +108,8 @@ access (the first build downloads the base image and tools):
 - All six version checks in step 5 print the pinned versions.
 - The preview IG builds cleanly and produces an `output/` folder with the
   rendered pages — `output/index.html` plus an `en/` and a `de/` tree, showing
-  the MII header, footer, colours and logo.
+  the template's header, footer, colours and logo (the NUM-DIZ design by
+  default — `docs/styleguide.md` §10).
 
 ## Common errors & fixes
 
