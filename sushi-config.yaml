@@ -9,7 +9,7 @@ description: >-
   and visually reviewable in English (default) and German. Not an MII KDS
   module.
 status: draft
-version: 0.6.1
+version: 0.7.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
