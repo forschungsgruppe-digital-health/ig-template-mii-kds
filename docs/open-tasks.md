@@ -18,7 +18,7 @@ decision by a maintainer before anything is done.
 | Register the template in [`FHIR/ig-registry`](https://github.com/FHIR/ig-registry) (`templates.json`) and name its owner | An explicit maintainer decision | A registry entry is a public, hard-to-retract commitment implying an owner and a support promise. While the approach is a proposal to the TF KDS, staying unregistered lets the design change without stranding consumers. |
 | Publish `de.medizininformatikinitiative.template` to a FHIR package registry | The same decision | Until then modules vendor the template as a folder. Once published, a module switches per [switch-template-to-published](https://github.com/forschungsgruppe-digital-health/mii-kds-module-template/blob/main/docs/recipes/switch-template-to-published.md) in the module scaffold. |
 | Move both repositories to the `medizininformatik-initiative` organisation — then work through [migration cleanup](migration-cleanup.md) | The same decision | All content already names the target org. After the move, delete the module template's `IG_TEMPLATE_REPO_URL` repository variable — it only exists to bridge the gap. |
-| Decide who owns the template after 2026 | TF KDS | Currently "the MII, for now". |
+| Decide who owns the template after 2026 | TF KDS | Currently "the MII, for now". MII funding ends end-2026 and NUM-DIZ takes over IG development and maintenance; the switchable NUM-DIZ design (styleguide §10) prepares the handover technically — the ownership decision is separate. |
 | Name a code owner in `.github/CODEOWNERS` and an enforcement contact in `CODE_OF_CONDUCT.md` | The same decision | Both are deliberately empty: naming an individual would present one person as responsible for an MII-branded artifact, and routing reports to the MII Geschäftsstelle would claim it owns repositories it does not. Set a team once the repositories move to the organisation. |
 | Store the SU-TermServ client certificate as repository secrets | A maintainer with the certificate | The procedure is written and the handshake was verified locally against the live server. See [secrets](secrets.md); run `scripts/set-su-termserv-secrets.sh`. Without it, builds fall back to `tx.fhir.org`. |
 | Store the Zulip announcement key | A maintainer | See [secrets](secrets.md). Release announcements stay silent until then. |
@@ -35,6 +35,8 @@ decision by a maintainer before anything is done.
 | --- | --- | --- |
 | Replace the traced logos with official MII SVGs | [#25](../../../issues/25) | `content/assets/images/logo-de.svg` and `logo-en.svg` are traced from the official PNGs with `scripts/trace-logo.sh`. They render correctly; they are not the vendor's own vector files. |
 | Confirm trademark permission for the MII logo and wordmark | [#26](../../../issues/26) | Needed before any use beyond this prototype. |
+| Obtain NUM-DIZ consent for the vendored NUM-DIZ logos | — | `logo-num-diz-de.svg` is the official combo fetched from the NUM website; the NUM/NUM-DIZ logos are third-party brand assets and shipping them needs NUM-DIZ (TF-KDS-level) consent — see styleguide §10. |
+| Obtain NUM-DIZ approval for the **derived** English combo logo | — | `logo-num-diz-en.svg` is composed from two official assets (derivation in the file header); as a *new* brand lockup it additionally needs NUM-DIZ approval. Replace it the day an official English combo exists. |
 
 ## To raise upstream
 

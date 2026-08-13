@@ -39,7 +39,7 @@ repository that uses the scaffold. Reference values verified against
 | M3 | *wiki* — `name` is Upper_Snake_Case with the `MII_IG_` prefix | `sushi-config.yaml` → `name` | `^MII_IG_[A-Za-z0-9_]+$` | `MII_IG_Base` |
 | M4 | *wiki* — `title` follows the wiki title structure | `sushi-config.yaml` → `title` | Starts with `MII ` and names the module (wiki: `MII <Präfix> <Abkürzung Modulname> <Beschreibung>`) | `MII Implementation Guide Core Dataset Base` |
 | M5 | *wiki* — `canonical` is under the agreed MII path | `sushi-config.yaml` → `canonical` | `^https://www\.medizininformatik-initiative\.de/fhir/<technischer Modulname>$` — technical module name per the wiki table in "Namenskonventionen für FHIR‐Ressourcen in der MII" | `https://www.medizininformatik-initiative.de/fhir/modul-base` |
-| M6 | *wiki* — `version` is CalVer | `sushi-config.yaml` → `version` | `^\d{4}\.\d+\.\d+$` (`YYYY.n.n`; modules never use SemVer) | `2026.0.1` |
+| M6 | *wiki* — `version` is CalVer | `sushi-config.yaml` → `version` | `^\d{4}\.\d+\.\d+$` (`YYYY.n.n`; modules never use SemVer) | `2027.0.0` |
 | M7 | *local* — no dependency — including the IG template — pinned to a floating label | `sushi-config.yaml` → `dependencies`; `ig.ini` → `template` | No `current`, `#current`, `latest`, `dev`, or `cibuild` anywhere; every dependency and the template use a fixed version | `kerndatensatz-basis` floats `template = fhir2.base.template#current` — a legitimate alternative trade-off, not an error. This project prefers fixed pins for its own repositories, so a rebuild years later reproduces the same output; do not "correct" a fixed pin here back to `#current`. |
 
 ### 1b. Assertions for TEMPLATE repositories (this repo; do **not** apply to module IGs)

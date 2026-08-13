@@ -8,8 +8,11 @@ easiest via the [dev container](first-build-in-devcontainer.md).
 
 ## Steps
 
-1. Open `content/assets/css/mii.css`. It overrides **only** the CSS custom
-   properties (`--…`) that the base template declares — never full rules.
+1. Open `content/assets/css/mii.css` (MII design, the default) or
+   `content/assets/css/num-diz.css` (NUM-DIZ design — loaded on top of
+   `mii.css` when the [brand switch](switch-brand-to-num-diz.md) is on; a
+   NUM-DIZ value must be changed there). Both override **only** CSS custom
+   properties (`--…`) — never full rules.
 2. Find the variable for the surface you want. Examples (see the file's comments
    for the full list and the source of each value):
    - `--navbar-bg-color` — the top navigation bar background (currently the MII
@@ -17,7 +20,8 @@ easiest via the [dev container](first-build-in-devcontainer.md).
    - `--stripe-bg-color` — the 8px decorative top stripe (MII accent green).
    - `--ig-status-text-color` — the IG title/status text (MII slate).
 3. Change the hex value. **House convention: every colour here is traceable to a
-   published MII asset** — record the source in a comment, exactly as the
+   published asset of the brand** (MII sources for `mii.css`, NUM-DIZ sources
+   for `num-diz.css`) — record the source in a comment, exactly as the
    existing entries do, so the next maintainer can tell a brand value from a
    guess.
 4. **Check contrast.** If text sits on the surface you changed, keep it at WCAG AA

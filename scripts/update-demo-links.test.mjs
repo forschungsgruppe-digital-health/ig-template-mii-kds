@@ -38,7 +38,7 @@ released state.</p>
 test("normalizeTag accepts both spellings and rejects non-versions", () => {
   assert.equal(normalizeTag("0.6.0"), "v0.6.0");
   assert.equal(normalizeTag("v0.6.0"), "v0.6.0");
-  assert.equal(normalizeTag("v2026.0.1-rc.1"), "v2026.0.1-rc.1");
+  assert.equal(normalizeTag("v2027.0.1-rc.1"), "v2027.0.1-rc.1");
   assert.throws(() => normalizeTag("main"), /not a release version/);
   assert.throws(() => normalizeTag("v1.2"), /not a release version/);
 });
