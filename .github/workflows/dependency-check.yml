@@ -47,7 +47,8 @@ jobs:
             scripts/terminology-fallback.test.mjs \
             scripts/narrative-table-styles.test.mjs \
             scripts/toolchain-pins.test.mjs \
-            scripts/update-demo-links.test.mjs
+            scripts/update-demo-links.test.mjs \
+            scripts/brand-switch.test.mjs
 
       - name: Run checker
         id: check
