@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.6.1...v0.7.0) (2026-08-13)
+
+
+### Features
+
+* **brand:** switchable NUM-DIZ corporate design ([#78](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/78)) ([227d718](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/227d7180aaa2ffc83cb558de53dcb1503ab3083c))
+
 ## [0.6.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.6.0...v0.6.1) (2026-08-07)
 
 
