@@ -8,7 +8,9 @@ or model executes them.
 
 An [IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation)
 **template package** (`de.medizininformatikinitiative.template`) carrying the
-MII (Medizininformatik-Initiative) branding. It derives from the HL7 base
+MII (Medizininformatik-Initiative) branding, plus a switchable second corporate
+design for NUM-DIZ (the brand switch is a module-side `input/data/brand.json`;
+default and safe fallback = MII — `docs/styleguide.md` §10). It derives from the HL7 base
 template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2),
 **pinned to the fixed version `0.1.0`** — never `#current`. MII KDS module
 Implementation Guides reference this package in their `ig.ini`. Until it is

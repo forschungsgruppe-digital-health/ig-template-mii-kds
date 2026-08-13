@@ -1,12 +1,17 @@
-# Styleguide — MII branding for `de.medizininformatikinitiative.template`
+# Styleguide — branding for `de.medizininformatikinitiative.template`
 
 The layout and design conventions of this template: what the branding is, which
 rules keep it consistent and accessible, and which boundaries must not be
-crossed. Every color and asset traces to a file that MII or HL7 publishes; the full
+crossed. The template carries **two switchable corporate designs** — **MII**
+(the default) and **NUM-DIZ** (for the takeover of IG development and
+maintenance when MII funding ends end-2026); §10 documents the switch and the
+NUM-DIZ design, §§2–8 the MII design and the rules both share. Every color and
+asset traces to a file that MII, NUM-DIZ or HL7 publishes; the full
 source-by-source derivation (URLs, checksums, pixel analyses) is preserved in
 this repository's git history (`docs/design.md`, the styleguide's
 predecessor). Follow-ups on the logo assets (an official SVG, trademark
-permission) are tracked in [open-tasks.md](open-tasks.md).
+permission — for NUM-DIZ: pending brand-use consent, §10) are tracked in
+[open-tasks.md](open-tasks.md).
 
 ---
 
@@ -21,8 +26,10 @@ language-aware base both MII reference repos use. The rules:
   empty placeholders), `includes/fragment-footer.html` (not a placeholder: the
   override preserves the base's link structure and appends to it),
   `includes/structure-tabs.html` (an added authoring include with no base
-  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), one CSS file
-  (`content/assets/css/mii.css`), the logo/favicon assets, the vendored German
+  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), two CSS files
+  (`content/assets/css/mii.css`, always linked, and
+  `content/assets/css/num-diz.css`, linked after it only when the brand switch
+  selects NUM-DIZ — §10), the logo/favicon assets, the vendored German
   UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
   > **The two same-path replacements are on borrowed time.**
   > `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png`
@@ -55,9 +62,10 @@ language-aware base both MII reference repos use. The rules:
   structural changes only; do not restore the base's `stringsBase` label
   lookups in the footer (they render blank on `/de/` — §6).
 
-## 2. Color palette
+## 2. Color palette (MII design)
 
-Use these tokens and no others; no raw hex outside `mii.css`.
+Use these tokens and no others; no raw hex outside `mii.css` and
+`num-diz.css` (the NUM-DIZ palette is in §10).
 
 | Role | Hex | Use for | Never for |
 | --- | --- | --- | --- |
@@ -117,11 +125,15 @@ compromise into new variants.
   are preserved in git history (`docs/design.md`).
 - **Two language variants** (`logo-de.svg`, `logo-en.svg`) because the wordmark
   text differs; `fragment-header.html` switches on `include.lang == 'de'`,
-  non-`de` languages get the EN logo. Layout: MII logo in `#project-nav`
+  non-`de` languages get the EN logo. Layout: project logo in `#project-nav`
   (base's project slot, `height="50"`), HL7 FHIR family logo in `#family-nav`
   linking to <https://hl7.org/fhir> — mirroring kerndatensatz-basis. A module
   overriding `input/includes/fragment-header.html` replaces the fragment
   wholesale and must re-add both logos if it wants them.
+- The **NUM-DIZ logo pair** (`logo-num-diz-de.svg`, `logo-num-diz-en.svg`)
+  follows the same per-language pattern and renders instead of the MII pair
+  when the brand switch selects NUM-DIZ; provenance and approval status are
+  documented in §10.
 - **Asset naming:** language-specific assets use `<name>-<lang>.<ext>`. Names
   dictated by other tools keep that tool's spelling: `favicon.png` (browser
   convention) and `deu.svg` — **never rename it**: the IG Publisher derives the
@@ -189,7 +201,9 @@ image handling, this block is the first thing to re-check.
   `/de/` — and the base has no Imprint key at all. Adding a third language
   means extending this label branch.
 - The footer appends (never replaces) the base's link row, and adds:
-  `medizininformatik-initiative.de` plus the imprint — `de` →
+  `NUM-DIZ` (a proper name, hence language-neutral; before the MII link
+  because NUM-DIZ takes over IG maintenance — rendered in both brand
+  designs), `medizininformatik-initiative.de` plus the imprint — `de` →
   `/de/impressum`, otherwise → `/en/legal-notice` (`/en/imprint` is 404).
 - The template vendors the base's own `stringsBase-de.po` /
   `stringsArtifacts-de.po` into `translations/` for the rest of the base
@@ -225,7 +239,8 @@ image handling, this block is the first thing to re-check.
 ## 8. Accessibility requirements
 
 Every text-bearing surface must hold WCAG 2.1 AA (≥ 4.5:1 normal text) and
-every meaningful non-text edge ≥ 3:1 (1.4.11). Current measured values — keep
+every meaningful non-text edge ≥ 3:1 (1.4.11) — **in both brand designs**
+(the NUM-DIZ ratios are in §10). Current measured MII values — keep
 them true when changing any color:
 
 | Surface | Colors | Ratio |
@@ -253,6 +268,109 @@ white on navbar blue (5.03:1).
 2. Compare the rendered header/footer/navbar against
    <https://www.medizininformatik-initiative.de/> and a kerndatensatz-basis
    build.
-3. To change a value, edit the hex in `mii.css` or the assets in
-   `content/assets/images/` — no other file needs to change. Re-check §8's
-   ratios for any color you touch.
+3. To change a value, edit the hex in `mii.css` (MII design) or `num-diz.css`
+   (NUM-DIZ design) or the assets in `content/assets/images/` — no other file
+   needs to change. Re-check §8's/§10's ratios for any color you touch.
+4. When the change touches a brand-switched surface (CSS variables, header
+   logo, footer), build **twice** — once without `input/data/brand.json`
+   (MII default) and once with `{ "design": "num-diz" }` — and review both;
+   `scripts/brand-switch.test.mjs` guards the switch's invariants offline.
+
+## 10. The brand switch: NUM-DIZ corporate design
+
+NUM-DIZ (Netzwerk Universitätsmedizin — Datenintegrationszentren) takes over
+IG development and maintenance when MII funding ends (end-2026). The template
+therefore carries the NUM-DIZ corporate design as a second, switchable brand.
+**The default stays MII** — a module that does nothing renders exactly as
+before.
+
+### The switch
+
+One file in the consuming IG, set once:
+
+```json
+// input/data/brand.json
+{ "design": "num-diz" }
+```
+
+The base template's pre-process copies `input/data/` into Jekyll's `_data`
+(`fhir2.base.template` `config.json`, `pre-process` block), so the fragments
+read the value as `site.data.brand.design`. This is a **designed** module-side
+surface — no template file is overridden, and the doctrine of §1 is untouched.
+Degradation is safe by construction: every branch tests
+`site.data.brand.design == 'num-diz'` exactly, so a missing file, an empty
+file, or any unknown value falls through to the MII design. Recipe:
+[switch-brand-to-num-diz.md](recipes/switch-brand-to-num-diz.md).
+
+The switch covers exactly three surfaces:
+
+| Surface | MII (default) | NUM-DIZ |
+| --- | --- | --- |
+| Palette | `mii.css` | `num-diz.css`, linked **after** `mii.css` by `fragment-css.html`, overrides the same variables |
+| Header logo (per language) | `logo-de.svg` / `logo-en.svg` → medizininformatik-initiative.de | `logo-num-diz-de.svg` / `logo-num-diz-en.svg` → the [NUM-DIZ page](https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz) |
+| Brand-named text | the logo `alt` texts (the only brand-named chrome text) | ditto, NUM-DIZ wording |
+
+Deliberately **not** switched: the footer's link row (the NUM-DIZ link renders
+in both designs, the MII links stay — the modules remain MII content), the
+highlight-box class names and the `--mii-table-*` variable names (API names,
+not display text), and the favicon (its `<link>` lives in the base's
+`fragment-pagebegin.html`, which §1 forbids overriding — a recorded limitation
+of the NUM-DIZ design).
+
+### NUM-DIZ color palette
+
+Measured from <https://www.netzwerk-universitaetsmedizin.de> (theme
+`styles.css`, stock Bootstrap values excluded) and the vendored logo SVGs,
+retrieved 2026-08-13. Use these tokens and no others.
+
+| Role | Hex | Use for | Never for |
+| --- | --- | --- | --- |
+| NUM-DIZ slate | `#485156` | navbar, footer, IG title/status text, breadcrumb/table text, link hover | — |
+| NUM-DIZ slate-blue | `#5c6f7e` | body links, menu hover, gradients (combo-logo wordmark fill) | — |
+| NUM-DIZ coral | `#ea5167` | the top stripe, decorative accents | **any text surface** (3.58:1 on white — fails AA; the site's own link/nav coral is deliberately not adopted for text) |
+| NUM-DIZ teal | `#42d1b8` | logo artwork only; reserved | text (1.90:1 on white) |
+| NUM yellow | `#ffcc00` | logo artwork only; reserved | text surfaces |
+| Mid grey | `#706f6f` | menu active, narrative-table borders | — |
+| Light grey | `#ecedee` | breadcrumb, narrative-table headers | — |
+
+The same design decisions as the MII palette apply: one uniform footer grey
+(no two-tone seam), consistently white header chrome, and the base's
+IG-Publisher semantic signals (publish box, STU note, …) are left alone.
+
+### NUM-DIZ contrast (WCAG 2.1)
+
+| Surface | Colors | Ratio |
+| --- | --- | --- |
+| Navbar / menu buttons / footer | `#ffffff` on `#485156` | 8.12:1 (AAA) |
+| Menu hover / gradient ends | `#ffffff` on `#5c6f7e` | 5.21:1 |
+| Menu active | `#ffffff` on `#706f6f` | 5.01:1 |
+| Body links | `#5c6f7e` on `#ffffff` | 5.21:1 |
+| Link hover / IG title/status | `#485156` on `#ffffff` | 8.12:1 |
+| Breadcrumb, table headers | `#485156` on `#ecedee` | 6.93:1 |
+| Narrative-table border | `#706f6f` on `#ffffff` / `#ecedee` | 5.01:1 / 4.27:1 |
+
+Derived conventions: coral and teal are decorative-only (they fail on text
+exactly like the MII accent greens); the site's own body-link coral
+(`a { color: #EA5167 }` in its stylesheet, 3.58:1) is **not** adopted — the
+slate-blue from the official combo-logo wordmark is the closest sourced value
+that holds AA.
+
+### NUM-DIZ logos: provenance and approval
+
+- `logo-num-diz-de.svg` — the official German combination logo
+  (`NUM-DIZ-Kombilogo-POS-RGB.svg`), vendored **byte-identical** from the
+  NUM-DIZ website on 2026-08-13 (only a provenance comment was added).
+- `logo-num-diz-en.svg` — **derived, NOT an official asset**: NUM-DIZ
+  publishes no English combination logo, so the file composes the German
+  combo's DIZ portion (copied byte-identical, original coordinates) with the
+  official English NUM logo, scaled by the exact factor (1.06277) at which
+  the German combo draws the shared NUM emblem artwork and aligned on the
+  combo's shared subtitle baseline (y = 287.19). The full derivation is in
+  the file's own header comment and the introducing PR; measured result: the
+  replaced portion keeps the original's width to 0.005 % and position
+  exactly, total canvas height grows 2.7 % (English descenders).
+- **Approval status: pending.** The NUM/NUM-DIZ logos are third-party brand
+  assets fetched from the NUM website; shipping them requires NUM-DIZ
+  consent, and the derived English combo additionally needs their approval as
+  a new brand asset. Tracked in [open-tasks.md](open-tasks.md); replace the
+  derived file the day an official English combo exists.

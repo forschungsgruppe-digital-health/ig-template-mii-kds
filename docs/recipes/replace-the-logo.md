@@ -10,6 +10,10 @@ preview.
 1. The logo assets live in `content/assets/images/`:
    - `logo-en.svg` — shown on English (default-language) pages.
    - `logo-de.svg` — shown on German pages (the wordmark differs).
+   - `logo-num-diz-en.svg` / `logo-num-diz-de.svg` — the same pair for the
+     NUM-DIZ brand ([switch recipe](switch-brand-to-num-diz.md)); the German
+     file is the official combo vendored byte-identical, the English file is
+     **derived** (provenance in its header comment and `../styleguide.md` §10).
    The favicon is `content/assets/ico/favicon.png`.
 2. Replace the file(s) **keeping the same file names**, or, if you use new names,
    update the `<img src="…">` in `includes/fragment-header.html` to match.
@@ -47,4 +51,6 @@ The header shows your logo in both languages; the browser tab shows your favicon
 
 > **Licensing note:** the MII logo is a trademark. Shipping it in this CC0 repo
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII
-> logos). Confirm redistribution rights before a release. See `docs/styleguide.md`.
+> logos). Confirm redistribution rights before a release. The NUM-DIZ logos are
+> third-party brand assets too, and their use — plus the derived English combo —
+> is **pending NUM-DIZ consent** (`docs/styleguide.md` §10, `docs/open-tasks.md`).

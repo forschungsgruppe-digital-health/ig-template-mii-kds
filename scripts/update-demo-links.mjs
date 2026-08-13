@@ -49,7 +49,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 /** A version token as it appears in a path segment or a label: `0.6.0`,
- * `v0.6.0`, `v2026.0.1-rc.1`. Deliberately permissive on the suffix so a
+ * `v0.6.0`, `v2027.0.1-rc.1`. Deliberately permissive on the suffix so a
  * pre-release tag round-trips. */
 const VERSION_TOKEN = String.raw`v?\d+\.\d+\.\d+[0-9A-Za-z.+-]*`;
 
