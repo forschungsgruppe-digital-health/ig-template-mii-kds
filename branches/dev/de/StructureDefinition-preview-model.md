@@ -1,4 +1,4 @@
-# Preview Model - MII KDS IG Template — Preview v0.6.0
+# Preview Model - MII KDS IG Template — Preview v0.6.1
 
 * [**Inhaltsverzeichnis**](toc.md)
 * [**Artefaktübersicht**](artifacts.md)
@@ -8,8 +8,8 @@
 
 | | |
 | :--- | :--- |
-| *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model | *Version*:0.6.0 |
-| Draft Stand: 2026-08-07 | *Maschinenlesbarer Name*:PreviewModel |
+| *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model | *Version*:0.6.1 |
+| Draft Stand: 2026-08-13 | *Maschinenlesbarer Name*:PreviewModel |
 
  
 Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact. 
@@ -61,11 +61,11 @@ Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-preview-mode
   "resourceType" : "StructureDefinition",
   "id" : "preview-model",
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model",
-  "version" : "0.6.0",
+  "version" : "0.6.1",
   "name" : "PreviewModel",
   "title" : "Preview Model",
   "status" : "draft",
-  "date" : "2026-08-07T06:47:02+00:00",
+  "date" : "2026-08-13T13:00:38+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "_publisher" : {
     "extension" : [{
