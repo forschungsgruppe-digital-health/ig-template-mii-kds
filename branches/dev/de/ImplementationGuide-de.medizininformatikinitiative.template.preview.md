@@ -27,8 +27,8 @@
     }]
   },
   "status" : "draft",
-  "date" : "2026-08-14T05:32:39+00:00",
-  "publisher" : "Medical Informatics Initiative (MII)",
+  "date" : "2026-08-14T07:41:45+00:00",
+  "publisher" : "NUM-DIZ",
   "_publisher" : {
     "extension" : [{
       "extension" : [{
@@ -37,16 +37,16 @@
       },
       {
         "url" : "content",
-        "valueString" : "Medizininformatik-Initiative (MII)"
+        "valueString" : "NUM-DIZ"
       }],
       "url" : "http://hl7.org/fhir/StructureDefinition/translation"
     }]
   },
   "contact" : [{
-    "name" : "Medical Informatics Initiative (MII)",
+    "name" : "NUM-DIZ",
     "telecom" : [{
       "system" : "url",
-      "value" : "https://www.medizininformatik-initiative.de"
+      "value" : "https://www.netzwerk-universitaetsmedizin.de"
     }]
   }],
   "description" : "Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module.",

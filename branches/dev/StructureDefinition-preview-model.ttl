@@ -17,9 +17,9 @@
   fhir:StructureDefinition.name [ fhir:value "PreviewModel"] ;
   fhir:StructureDefinition.title [ fhir:value "Preview Model"] ;
   fhir:StructureDefinition.status [ fhir:value "draft"] ;
-  fhir:StructureDefinition.date [ fhir:value "2026-08-14T05:32:39+00:00"^^xsd:dateTime] ;
+  fhir:StructureDefinition.date [ fhir:value "2026-08-14T07:41:45+00:00"^^xsd:dateTime] ;
   fhir:StructureDefinition.publisher [
-     fhir:value "Medical Informatics Initiative (MII)" ;
+     fhir:value "NUM-DIZ" ;
      fhir:Element.extension [
        fhir:index 0 ;
        fhir:Element.extension [
@@ -29,18 +29,18 @@
        ], [
          fhir:index 1 ;
          fhir:Extension.url [ fhir:value "content" ] ;
-         fhir:Extension.valueString [ fhir:value "Medizininformatik-Initiative (MII)" ]
+         fhir:Extension.valueString [ fhir:value "NUM-DIZ" ]
        ] ;
        fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/translation" ]
      ]
   ] ;
   fhir:StructureDefinition.contact [
      fhir:index 0 ;
-     fhir:ContactDetail.name [ fhir:value "Medical Informatics Initiative (MII)" ] ;
+     fhir:ContactDetail.name [ fhir:value "NUM-DIZ" ] ;
      fhir:ContactDetail.telecom [
        fhir:index 0 ;
        fhir:ContactPoint.system [ fhir:value "url" ] ;
-       fhir:ContactPoint.value [ fhir:value "https://www.medizininformatik-initiative.de" ]
+       fhir:ContactPoint.value [ fhir:value "https://www.netzwerk-universitaetsmedizin.de" ]
      ]
   ] ;
   fhir:StructureDefinition.description [ fhir:value "Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact."] ;
