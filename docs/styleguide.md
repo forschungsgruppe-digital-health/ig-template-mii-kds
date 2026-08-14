@@ -98,18 +98,22 @@ dragon, translation box.
 ## 3. Highlight boxes
 
 Five reusable classes for calling out content in narrative pages
-(`<div class="mii-highlight mii-highlight-<color>">` with an `<h5>` heading, or
-a kramdown attribute line `{: .mii-highlight .mii-highlight-<color>}` under a
+(`<div class="ig-highlight ig-highlight-<color>">` with an `<h5>` heading, or
+a kramdown attribute line `{: .ig-highlight .ig-highlight-<color>}` under a
 blockquote). Styling only — a module decides what each color means; the
 conventional reading:
 
 | Class | Conventional meaning |
 | --- | --- |
-| `mii-highlight-blue` | neutral call-out |
-| `mii-highlight-green` | positive/confirming note |
-| `mii-highlight-orange` | warning |
-| `mii-highlight-red` | important notice |
-| `mii-highlight-grey` | hint / authoring note (all `[TODO: …]` prompts use it) |
+| `ig-highlight-blue` | neutral call-out |
+> **Renamed 2026-08-14:** the class prefix is now the brand-neutral `ig-*` (formerly `mii-*`).
+> The old `.mii-highlight*` selectors and `--mii-table-*` variables remain as **deprecated
+> aliases** so existing module content keeps rendering; they will be removed in the next major.
+
+| `ig-highlight-green` | positive/confirming note |
+| `ig-highlight-orange` | warning |
+| `ig-highlight-red` | important notice |
+| `ig-highlight-grey` | hint / authoring note (all `[TODO: …]` prompts use it) |
 
 All heading-on-background pairs are ≥ 6.1:1 (AA); the orange/red/grey borders
 are ≥ 3.2:1 (WCAG 1.4.11). The inherited green border sits below the 3:1
@@ -181,7 +185,7 @@ because a rule the base later changes will silently keep the value set here.
 
 | Block | Selectors | New or override | Why |
 | --- | --- | --- | --- |
-| Highlight boxes (§3) | `.mii-highlight`, `.mii-highlight-<color>` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — a module decides what each colour means |
+| Highlight boxes (§3) | `.ig-highlight`, `.ig-highlight-<color>` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — a module decides what each colour means |
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
@@ -316,7 +320,7 @@ The switch covers exactly three surfaces:
 
 Deliberately **not** switched: the footer's link row (the NUM-DIZ link renders
 in both designs, the MII links stay — the modules remain MII content), the
-highlight-box class names and the `--mii-table-*` variable names (API names,
+highlight-box class names and the `--ig-table-*` variable names (API names,
 not display text), and the favicon (its `<link>` lives in the base's
 `fragment-pagebegin.html`, which §1 forbids overriding — a recorded limitation
 of the NUM-DIZ design).

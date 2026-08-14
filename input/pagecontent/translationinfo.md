@@ -33,10 +33,10 @@ pull-request review as any other change; the step-by-step is in the repository's
 > GitHub organisation, `medizininformatik-initiative` — and a URL burned into
 > an older build would go stale. Open the issue on the repository this guide
 > was built from; Zulip is reachable regardless.
-{: .mii-highlight .mii-highlight-grey}
+{: .ig-highlight .ig-highlight-grey}
 
 > **Scope of this guide:** it is the *preview* of the MII IG template
 > (`de.medizininformatikinitiative.template`), not an MII Core Dataset module.
 > It exists so the branding can be reviewed in both languages before a template
 > release. A module IG carries its own translation-information page.
-{: .mii-highlight .mii-highlight-grey}
+{: .ig-highlight .ig-highlight-grey}
