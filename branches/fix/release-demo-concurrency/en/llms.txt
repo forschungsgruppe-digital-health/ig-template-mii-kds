@@ -3,8 +3,8 @@
 ## Pages
 
 * [Home](index.md)
-* [Artifacts Summary](artifacts.md)
 * [Translation information](translationinfo.md)
+* [Artifacts Summary](artifacts.md)
 
 ## Resources
 
