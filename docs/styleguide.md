@@ -231,10 +231,21 @@ recorded limitation, §7.)
   `/de/` — and the base has no Imprint key at all. Adding a third language
   means extending this label branch.
 - The footer appends (never replaces) the base's link row, and adds:
-  `NUM-DIZ` (a proper name, hence language-neutral; before the MII link
-  because NUM-DIZ takes over IG maintenance — rendered in both brand
-  designs), `medizininformatik-initiative.de` plus the imprint — `de` →
-  `/de/impressum`, otherwise → `/en/legal-notice` (`/en/imprint` is 404).
+  `netzwerk-universitaetsmedizin.de` (before the MII link because NUM-DIZ
+  takes over IG maintenance — rendered in both brand designs),
+  `medizininformatik-initiative.de` (bare domains as anchor text are
+  language-neutral) plus the imprint — the NUM-DIZ legal pages, `de` →
+  `/impressum`, otherwise → `/en/legal-notice`.
+- **"MII" naming policy** (funding ends 2026; NUM-DIZ takes over — every MII
+  mention will be re-evaluated): "MII" appears only in **proper names and
+  identifiers** — the *MII Core Dataset / MII-Kerndatensatz* (the dataset's
+  name), the *MII Broad Consent*, the `MII_*` artifact-naming conventions,
+  package ids / canonical URLs / org and site links — and in **past-tense
+  provenance** ("was created within…"). Statements about ongoing processes,
+  scope or governance are phrased **time-robustly** instead: "KDS-wide", "the
+  Meta module", "the governance bodies of the core-dataset process", "the
+  overarching data protection concept". Do not write MII as the acting
+  institution of a present-tense sentence.
 - The template vendors the base's own `stringsBase-de.po` /
   `stringsArtifacts-de.po` into `translations/` for the rest of the base
   chrome. Vendored catalogs may differ from upstream in `msgstr` values only.

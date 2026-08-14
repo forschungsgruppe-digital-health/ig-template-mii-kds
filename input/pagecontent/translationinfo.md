@@ -39,7 +39,7 @@ pull-request review as any other change; the step-by-step is in the repository's
 > GitHub's repository redirect.
 {: .ig-highlight .ig-highlight-grey}
 
-> **Scope of this guide:** it is the *preview* of the MII IG template
+> **Scope of this guide:** it is the *preview* of the KDS IG template
 > (`de.medizininformatikinitiative.template`), not an MII Core Dataset module.
 > It exists so the branding can be reviewed in both languages before a template
 > release. A module IG carries its own translation-information page.
