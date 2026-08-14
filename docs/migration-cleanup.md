@@ -19,6 +19,7 @@ delete this file last.** The module template repository carries its own copy
 | File / place | What to change |
 | --- | --- |
 | Navigation links repo-wide | The recorded one-pass sweep: `forschungsgruppe-digital-health` → `medizininformatik-initiative` in README, docs, skills. Canonical URLs and package ids already name the target and stay untouched (`docs/project-status.md`). |
+| `input/data/repo.json` | The single substitution point for the demo pages' file links (see `translationinfo`): set `url` to the target-organisation repository. Older published builds keep resolving through GitHub's repository redirect. |
 | `.github/CODEOWNERS` | No active rule by design; add the owning team of the target organisation. |
 | `SECURITY.md`, `CODE_OF_CONDUCT.md` | Fill the deliberately-unset contacts/routes with the target organisation's. |
 | `docs/secrets.md` `--repo` examples | The sweep above covers them. |
