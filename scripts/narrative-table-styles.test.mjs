@@ -26,9 +26,17 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const css = readFileSync(
-  fileURLToPath(new URL("../content/assets/css/mii.css", import.meta.url)),
+  fileURLToPath(new URL("../content/assets/css/template-base.css", import.meta.url)),
   "utf8",
 ).replace(/\/\*[\s\S]*?\*\//g, ""); // strip comments so prose cannot trip us
+
+// The rules live in template-base.css; the colour values live in the palette
+// files (one loaded per build). The MII values are asserted against mii.css;
+// num-diz.css is covered by the palette-equality test in brand-switch.test.mjs.
+const miiPalette = readFileSync(
+  fileURLToPath(new URL("../content/assets/css/mii.css", import.meta.url)),
+  "utf8",
+).replace(/\/\*[\s\S]*?\*\//g, "");
 
 /** Every table selector the stylesheet applies to narrative tables. */
 const tableSelectors = css
@@ -69,7 +77,7 @@ const GENERATED_TABLES = [
 ];
 
 test("the styling reaches markdown tables", () => {
-  assert.ok(tableSelectors.length > 0, "expected table selectors in mii.css");
+  assert.ok(tableSelectors.length > 0, "expected table selectors in template-base.css");
   for (const sel of tableSelectors) {
     for (const attrs of MARKDOWN_TABLES) {
       assert.ok(
@@ -93,8 +101,8 @@ test("the styling never reaches a publisher-generated table", () => {
 });
 
 test("a border and a header background are actually defined", () => {
-  assert.match(css, /--ig-table-border-color:\s*#[0-9a-f]{6}/i);
-  assert.match(css, /--ig-table-header-bg-color:\s*#[0-9a-f]{6}/i);
+  assert.match(miiPalette, /--ig-table-border-color:\s*#[0-9a-f]{6}/i);
+  assert.match(miiPalette, /--ig-table-header-bg-color:\s*#[0-9a-f]{6}/i);
   assert.match(css, /border:\s*1px solid var\(--ig-table-border-color\)/);
   assert.match(
     css,
@@ -112,7 +120,7 @@ test("the table colours come from the documented MII palette", () => {
     ["--ig-table-border-color", "#7a8495"],
     ["--ig-table-header-text-color", "#333333"],
   ]) {
-    assert.match(css, new RegExp(`${name}:\\s*${value}`, "i"));
+    assert.match(miiPalette, new RegExp(`${name}:\\s*${value}`, "i"));
     assert.ok(
       design.includes(value),
       `${value} is not recorded in docs/styleguide.md — every colour needs a source`,

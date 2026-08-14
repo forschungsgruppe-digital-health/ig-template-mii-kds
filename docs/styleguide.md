@@ -27,9 +27,10 @@ language-aware base both MII reference repos use. The rules:
   empty placeholders), `includes/fragment-footer.html` (not a placeholder: the
   override preserves the base's link structure and appends to it),
   `includes/structure-tabs.html` (an added authoring include with no base
-  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), two CSS files
-  (`content/assets/css/mii.css`, always linked, and
-  `content/assets/css/num-diz.css`, linked after it by default — suppressed
+  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), three CSS
+  files (`content/assets/css/template-base.css`, the brand-independent rule
+  blocks, always linked; then exactly ONE palette file —
+  `content/assets/css/num-diz.css` by default, `content/assets/css/mii.css`
   only when the brand switch selects MII — §10), the logo/favicon assets, the vendored German
   UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
   > **The two same-path replacements are on borrowed time.**
@@ -51,11 +52,14 @@ language-aware base both MII reference repos use. The rules:
   base-template bump. This was tried and deliberately reverted — the known
   consequence (the publisher name in the © line stays English on `/de/`) is
   accepted; see [limitations](#7-recorded-limitations-do-not-fix-by-workaround).
-- **Colour is variables-only.** `mii.css` re-colours the guide exclusively
-  through the custom properties the base declares in `project.css` `:root` — no
-  base colour rule is re-declared — so a re-theme is a one-file edit with no
-  cascade surprises. Below the `:root` block the file carries four rule blocks
-  that are *not* about colour: the highlight boxes (§3), the narrative-table
+- **Colour is variables-only.** Each palette file (`num-diz.css` / `mii.css`)
+  re-colours the guide exclusively through custom properties — the ones the
+  base declares in `project.css` `:root` plus the template's own
+  `--ig-table-*` and `--ig-highlight-*` — no base colour rule is re-declared,
+  so a re-theme is a one-file edit with no cascade surprises. Both palettes
+  declare the same variable set (guarded by `scripts/brand-switch.test.mjs`);
+  exactly one is loaded per build. The rule blocks that are *not* about colour
+  live in `template-base.css`: the highlight boxes (§3), the narrative-table
   styling (§5), the content-image handling and the structure-tabs spacing
   (§5a). Three of them add new classes; the content-image block is the only
   place where a base rule is deliberately countermanded.
@@ -115,10 +119,24 @@ conventional reading:
 | `ig-highlight-red` | important notice |
 | `ig-highlight-grey` | hint / authoring note (all `[TODO: …]` prompts use it) |
 
-All heading-on-background pairs are ≥ 6.1:1 (AA); the orange/red/grey borders
-are ≥ 3.2:1 (WCAG 1.4.11). The inherited green border sits below the 3:1
+The box STRUCTURE lives in `template-base.css`; the colours are
+`--ig-highlight-<variant>-{bg,border,heading}-color` palette variables, so
+**each corporate design brings its own set** (TF-KDS feedback 2026-08-14):
+
+| Variant | MII (`mii.css`): bg / border / heading | NUM-DIZ (`num-diz.css`): bg / border / heading | NUM-DIZ source |
+| --- | --- | --- | --- |
+| blue | `#e8f4f8` / `#5c8db3` / `#406a99` | `#e8f1f8` / `#1d6fa8` / `#16537e` | DIZ wordmark blue `#1d6fa8` |
+| green | `#f0f8e8` / `#91bc3d` / `#5a6b2f` | `#f3f8e2` / `#587f4e` / `#42590a` | DIZ emblem greens `#8dbc0b`/`#6ea460`, darkened |
+| orange | `#fdf3e7` / `#c9721c` / `#8a4b12` | `#fff7db` / `#a38200` / `#6e5800` | NUM yellow `#ffcc00`, darkened |
+| red | `#fbeaea` / `#c0392b` / `#8f2318` | `#fdedf0` / `#ea5167` / `#9c2038` | NUM-DIZ coral itself |
+| grey | `#f2f3f5` / `#7a8495` / `#4a5260` | `#f0f1f2` / `#706f6f` / `#485156` | site greys + slate |
+
+MII set: heading-on-background ≥ 6.1:1 (AA); the orange/red/grey borders
+≥ 3.2:1 (WCAG 1.4.11). The inherited green border sits below the 3:1
 non-text bar — kept for parity with kerndatensatz-basis; do not copy that
-compromise into new variants.
+compromise into new variants. NUM-DIZ set: every variant passes BOTH bars —
+heading-on-background ≥ 6.4:1 and border-on-background ≥ 3.16:1 (no green
+exception; guarded by `scripts/brand-switch.test.mjs`).
 
 ## 4. Logo, favicon, assets
 
@@ -176,12 +194,14 @@ inline `<style>` blocks):
   full width stretches two-column tables across the page. A module may add it
   for its own tables.
 
-## 5a. The other rule blocks in `mii.css`
+## 5a. The rule blocks in `template-base.css`
 
-Colour is variables-only (§1), but five rule blocks go beyond the variables.
-Three of them add *new* classes, which cannot collide with the base; two
-deliberately override base rules. Anything added here has to earn its place,
-because a rule the base later changes will silently keep the value set here.
+Colour is variables-only (§1) and lives in the palette files; the four rule
+blocks that go beyond variables live in the brand-independent
+`template-base.css`. Three of them add *new* classes, which cannot collide
+with the base; one deliberately overrides base rules. Anything added here has
+to earn its place, because a rule the base later changes will silently keep
+the value set here.
 
 | Block | Selectors | New or override | Why |
 | --- | --- | --- | --- |
@@ -189,13 +209,16 @@ because a rule the base later changes will silently keep the value set here.
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
-| Navbar link typography | `#segment-navbar .navbar-nav > li > a` | **overrides base rules** | Top-level navbar links render 19px bold — WCAG 2.1 *large text* (≥ 18.66px bold), where 1.4.3 asks 3:1 instead of 4.5:1. This is what lets the NUM-DIZ design put its coral behind the navbar (§10); it applies in **both** brand designs so the two share one typography. Horizontal padding drops 12px → 10px so the longest top row (German) keeps to one line in the 992–1199px container. Dropdown items are excluded by the child combinator and stay 14px on ≥ 4.5:1 surfaces. Guarded by `scripts/brand-switch.test.mjs` |
 
-`mii.css` is linked after the base stylesheets (`includes/fragment-css.html`),
-so none of these needs `!important`. The content-image and navbar-typography
-blocks are the only places where base rules are deliberately countermanded; if
-the base ever changes its image handling or navbar metrics, these blocks are
-the first thing to re-check.
+`template-base.css` is linked after the base stylesheets
+(`includes/fragment-css.html`), so none of these needs `!important`. The
+content-image block is the only place where a base rule is deliberately
+countermanded; if the base ever changes its image handling, that block is the
+first thing to re-check. (A navbar-typography override — 19px bold links to
+reach the WCAG large-text bar on the coral navbar — shipped briefly in v1.1.0
+and was reverted on TF-KDS review: the enlarged menu did not fit visually.
+The navbar keeps the base's default typography; the contrast consequence is a
+recorded limitation, §7.)
 
 ## 6. Language rules
 
@@ -233,7 +256,18 @@ the first thing to re-check.
   ships the same limitation live. An override was tried and reverted (§1). The
   durable fix is upstream: a translatable publisher label in
   `HL7/ig-template-base2`. The publisher **link** is language-neutral
-  (`https://www.medizininformatik-initiative.de`).
+  (`https://www.netzwerk-universitaetsmedizin.de` — NUM-DIZ is the publisher
+  since 2026-08-14, §10).
+- **The NUM-DIZ navbar's resting contrast is 3.58:1** (white on coral
+  `#ea5167`) — below the 4.5:1 the rest of the template keeps (§8). A TF-KDS
+  decision (2026-08-14): the menu carries the site's own nav coral, and the
+  WCAG *large-text* variant (19px bold links, which would make 3:1 the
+  applicable bar) was rejected on review because the enlarged menu did not fit
+  visually. Accepted as corporate-design-over-1.4.3 for the navbar's resting
+  state only — hover and active states hold 8.12:1 / 5.21:1, dropdown items
+  never sit on coral, and `scripts/brand-switch.test.mjs` still enforces a
+  3:1 floor so the surface cannot silently regress further. Revisit if an
+  accessibility review (BITV/EN 301 549) requires strict 1.4.3 conformance.
 - **Footer links are white like the surrounding text** (exactly like the MII
   site footer) and distinguishable only on hover (WCAG 1.4.1). Accepted —
   fixing it needs a rule override, which §1 forbids. Revisit only if an
@@ -316,7 +350,7 @@ The switch covers exactly three surfaces:
 
 | Surface | NUM-DIZ (default) | MII (`{ "design": "mii" }`) |
 | --- | --- | --- |
-| Palette | `num-diz.css`, linked **after** `mii.css` by `fragment-css.html`, overrides the same variables | `mii.css` alone |
+| Palette | `num-diz.css` — the **only** palette linked (after the brand-independent `template-base.css`) | `mii.css` — the **only** palette linked; both declare the same variable set |
 | Header logo (per language) | `logo-num-diz-de.svg` / `logo-num-diz-en.svg` → the [NUM-DIZ page](https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz) | `logo-de.svg` / `logo-en.svg` → medizininformatik-initiative.de |
 | Brand-named text | the logo `alt` texts (the only brand-named chrome text) | ditto, MII wording |
 
@@ -337,7 +371,7 @@ retrieved 2026-08-13. Use these tokens and no others.
 | --- | --- | --- | --- |
 | NUM-DIZ slate | `#485156` | menu hover, footer, IG title/status text, breadcrumb/table text, link hover | — |
 | NUM-DIZ slate-blue | `#5c6f7e` | body links, menu active, gradients (combo-logo wordmark fill) | — |
-| NUM-DIZ coral | `#ea5167` | **navbar** (white links rendered 19px bold = WCAG large text, §5a; TF-KDS 2026-08-14), the top stripe (stripe and navbar merge into one coral band), decorative accents | **normal-size text** (3.58:1 on white/under white — below the 4.5:1 normal-text bar; the navbar carries it only because its links are large text) |
+| NUM-DIZ coral | `#ea5167` | **navbar** (TF-KDS 2026-08-14; white links at 3.58:1 — recorded limitation, §7), the top stripe (stripe and navbar merge into one coral band), the red highlight-box border (§3), decorative accents | body text and any other text surface (3.58:1 — below the 4.5:1 bar the template keeps everywhere but the navbar) |
 | NUM-DIZ teal | `#42d1b8` | logo artwork only; reserved | text (1.90:1 on white) |
 | NUM yellow | `#ffcc00` | logo artwork only; reserved | text surfaces |
 | Mid grey | `#706f6f` | narrative-table borders | menu surfaces (read muddy on the coral navbar; dropped 2026-08-14) |
@@ -351,7 +385,7 @@ IG-Publisher semantic signals (publish box, STU note, …) are left alone.
 
 | Surface | Colors | Ratio |
 | --- | --- | --- |
-| Navbar resting (links 19px **bold** = WCAG large text, §5a) | `#ffffff` on `#ea5167` | 3.58:1 (AA **large text**, 1.4.3 asks 3:1) |
+| Navbar resting | `#ffffff` on `#ea5167` | 3.58:1 (**recorded limitation** — TF-KDS decision, §7) |
 | Menu hover / footer | `#ffffff` on `#485156` | 8.12:1 (AAA) |
 | Menu active / gradient end | `#ffffff` on `#5c6f7e` | 5.21:1 |
 | Body links | `#5c6f7e` on `#ffffff` | 5.21:1 |
@@ -361,9 +395,9 @@ IG-Publisher semantic signals (publish box, STU note, …) are left alone.
 
 Derived conventions: the navbar carries the site's own nav coral since
 2026-08-14 (TF-KDS feedback: the grey menu did not complement the coral header
-stripe) — legitimate **only** because the navbar links render as WCAG large
-text (§5a), where 1.4.3 asks 3:1; `scripts/brand-switch.test.mjs` couples the
-relaxed navbar pair to that typography block. Everywhere else coral and teal
+stripe) at the base template's default link typography — its 3.58:1 resting
+contrast is a **recorded limitation** (§7), with a 3:1 floor still enforced by
+`scripts/brand-switch.test.mjs`. Everywhere else coral and teal
 stay decorative-only, and the site's own body-link coral
 (`a { color: #EA5167 }` in its stylesheet, 3.58:1) is still **not** adopted —
 the slate-blue from the official combo-logo wordmark is the closest sourced

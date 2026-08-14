@@ -1,10 +1,13 @@
 // Guards the invariants of the NUM-DIZ / MII brand switch
 // (docs/styleguide.md §10) that a rendered-build review can miss:
 //
-// 1. COMPLETE PALETTE — every CSS custom property the MII palette sets is
-//    also set by num-diz.css (base variables AND mii.css's own table
-//    variables). A missing override would not fail a build; it would silently
-//    render one MII-colored surface inside the NUM-DIZ design.
+// 1. PALETTE EQUALITY — the two palette files declare exactly the SAME
+//    variable set (base variables AND the template's own --ig-table-* /
+//    --ig-highlight-* variables), because exactly ONE of them is loaded per
+//    build. A variable missing from one palette would not fail a build; it
+//    would silently render an unstyled (base-default) surface in that design.
+//    template-base.css itself declares no palette variables (the deprecated
+//    var()-alias bridge is exempt).
 // 2. NUM-DIZ DEFAULT — every brand branch in the fragments tests the exact
 //    string 'mii', and the NUM-DIZ assets live in the fall-through path, so
 //    a missing input/data/brand.json or an unknown value renders NUM-DIZ (the
@@ -28,6 +31,7 @@ const read = (p) => readFileSync(repo(p), "utf8");
 
 const miiCss = read("content/assets/css/mii.css");
 const numDizCss = read("content/assets/css/num-diz.css");
+const templateBaseCss = read("content/assets/css/template-base.css");
 const fragmentCss = read("includes/fragment-css.html");
 const fragmentHeader = read("includes/fragment-header.html");
 const fragmentFooter = read("includes/fragment-footer.html");
@@ -45,52 +49,64 @@ const declaredProps = (css) => {
   return out;
 };
 
-test("num-diz.css overrides every custom property the MII palette sets", () => {
+test("the two palette files declare exactly the same variable set", () => {
   const mii = declaredProps(miiCss);
   const numDiz = declaredProps(numDizCss);
   for (const prop of mii) {
     assert.ok(
       numDiz.has(prop),
-      `${prop} is set in mii.css but not overridden in num-diz.css — ` +
-        "that surface would silently stay MII-colored in the NUM-DIZ design",
+      `${prop} is set in mii.css but missing from num-diz.css — that surface ` +
+        "would silently fall back to the base default in the NUM-DIZ design",
     );
   }
-});
-
-test("num-diz.css sets no property the MII palette does not (variables-only re-theme)", () => {
-  const mii = declaredProps(miiCss);
-  for (const prop of declaredProps(numDizCss)) {
+  for (const prop of numDiz) {
     assert.ok(
       mii.has(prop),
-      `${prop} appears only in num-diz.css — the NUM-DIZ palette must stay ` +
-        "a re-theme of the exact variable set the MII palette uses",
+      `${prop} is set in num-diz.css but missing from mii.css — that surface ` +
+        "would silently fall back to the base default in the MII design",
     );
   }
 });
 
-// The two guard forms of the NUM-DIZ-default contract: the header picks the
-// MII branch with an exact `if == 'mii'`; the CSS fragment suppresses the
-// NUM-DIZ overlay with an exact `unless == 'mii'`. Both fall through to
+test("template-base.css declares no palette variables (alias bridge exempt)", () => {
+  const props = declaredProps(templateBaseCss);
+  assert.equal(
+    props.size,
+    0,
+    `template-base.css must stay brand-independent; it declares: ${[...props].join(", ")}`,
+  );
+});
+
+// The single guard form of the NUM-DIZ-default contract: every brand branch
+// picks the MII variant with an exact `if == 'mii'` and falls through to
 // NUM-DIZ for every other value, including no brand.json at all.
 const MII_IF_GUARD = "{% if site.data.brand.design == 'mii' %}";
-const MII_UNLESS_GUARD = "{% unless site.data.brand.design == 'mii' %}";
 
-test("fragment-css: mii.css unconditional, num-diz.css default-on behind the unless-'mii' guard", () => {
+test("fragment-css: base unconditional, then exactly one palette (num-diz default, mii behind the if-'mii' guard)", () => {
   // Match the actual <link> hrefs, not the file names — the explanatory
-  // comment at the top of the fragment mentions both names too.
+  // comment at the top of the fragment mentions the names too.
+  const baseLink = fragmentCss.indexOf("assets/css/template-base.css");
   const miiLink = fragmentCss.indexOf("assets/css/mii.css");
   const numDizLink = fragmentCss.indexOf("assets/css/num-diz.css");
-  const guardAt = fragmentCss.indexOf(MII_UNLESS_GUARD);
-  assert.ok(miiLink > -1 && numDizLink > -1 && guardAt > -1);
+  const guardAt = fragmentCss.indexOf(MII_IF_GUARD);
+  const elseAt = fragmentCss.indexOf("{% else %}");
+  const endifAt = fragmentCss.indexOf("{% endif %}");
+  assert.ok(baseLink > -1 && miiLink > -1 && numDizLink > -1, "all three files linked");
+  assert.ok(guardAt > -1 && elseAt > -1 && endifAt > -1, "if/else/endif present");
   assert.ok(
-    miiLink < guardAt,
-    "mii.css must be linked before (outside) the brand guard — it is the " +
-      "variable base in BOTH designs",
+    baseLink < guardAt,
+    "template-base.css must be linked before (outside) the brand guard — its " +
+      "rule blocks apply in BOTH designs",
   );
   assert.ok(
-    guardAt < numDizLink,
-    "num-diz.css must be linked inside the unless-guard: rendered by default, " +
-      "suppressed only by the exact value 'mii'",
+    guardAt < miiLink && miiLink < elseAt,
+    "mii.css must be the if-'mii' branch — loaded ONLY when the consuming IG " +
+      "selects the MII design",
+  );
+  assert.ok(
+    elseAt < numDizLink && numDizLink < endifAt,
+    "num-diz.css must be the else branch — the default palette for every " +
+      "other value, including no brand.json at all",
   );
 });
 
@@ -178,11 +194,12 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
       m[2],
     ]),
   );
-  // Third element = the AA minimum for the pair. The navbar pair runs at the
-  // LARGE-TEXT bar (3:1, WCAG 1.4.3): the coral navbar (TF-KDS 2026-08-14)
-  // holds 3.58:1 under white, and mii.css renders the top-level navbar links
-  // 19px bold (>= 18.66px bold = large text). The test below this one pins
-  // that typography block — remove it and this relaxation becomes invalid.
+  // Third element = the minimum for the pair. TEXT pairs need 4.5:1 (AA
+  // normal text); the *-border pairs are NON-TEXT boundaries and need 3:1
+  // (WCAG 1.4.11). EXCEPTION: the navbar pair runs at 3.0 — the coral navbar
+  // (TF-KDS 2026-08-14, default typography) holds only 3.58:1 under white, a
+  // RECORDED LIMITATION accepted by TF-KDS decision (docs/styleguide.md §7).
+  // The 3.0 floor still guards against a regression below even that.
   const pairs = [
     ["--btn-text-color", "--navbar-bg-color", 3.0],
     ["--btn-text-color", "--btn-hover-color", 4.5],
@@ -197,6 +214,20 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
     ["--link-hover-color", "--ig-header-container-color", 4.5],
     ["--ig-table-header-text-color", "--ig-table-header-bg-color", 4.5],
   ];
+  for (const variant of ["blue", "green", "orange", "red", "grey"]) {
+    pairs.push([
+      `--ig-highlight-${variant}-heading-color`,
+      `--ig-highlight-${variant}-bg-color`,
+      4.5,
+    ]);
+    // Border on the box background — non-text (1.4.11). The NUM-DIZ set has
+    // no green exception like the inherited MII palette.
+    pairs.push([
+      `--ig-highlight-${variant}-border-color`,
+      `--ig-highlight-${variant}-bg-color`,
+      3.0,
+    ]);
+  }
   for (const [fg, bg, min] of pairs) {
     assert.ok(v[fg] && v[bg], `${fg} / ${bg} present as plain hex`);
     const ratio = contrast(v[fg], v[bg]);
@@ -205,17 +236,6 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
       `${v[fg]} on ${v[bg]} (${fg} on ${bg}) is ${ratio.toFixed(2)}:1 — below the ${min}:1 bar`,
     );
   }
-});
-
-test("navbar links render as WCAG large text (the 3:1 navbar bar depends on it)", () => {
-  // mii.css's shared typography block makes top-level navbar links >= 18.66px
-  // bold; without it the navbar pair above would need 4.5:1 again.
-  const block = miiCss.match(
-    /#segment-navbar \.navbar-nav > li > a\s*\{[^}]*\}/,
-  );
-  assert.ok(block, "mii.css carries the navbar typography block");
-  assert.match(block[0], /font-size:\s*19px/, "navbar links are 19px");
-  assert.match(block[0], /font-weight:\s*700/, "navbar links are bold");
 });
 
 test("derived English combo keeps its provenance marker; both logo files exist", () => {
