@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.0.1...v1.1.0) (2026-08-14)
+
+
+### Features
+
+* **brand:** coral navbar per TF-KDS feedback, via WCAG large-text navbar links ([189f0f2](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/189f0f2cce083e548fa03e37f5f894bea21e27c0))
+* **footer:** NUM-DIZ site root first with aligned anchors; publisher NUM-DIZ ([10b1427](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/10b1427066ae6b6985524c0c3ead1ba83798870f))
+* **logo:** English text in the derived EN combo's DIZ portion ([827144b](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/827144b2f0726dcd973429d546701902307c5061))
+* **pages:** link file references on the demo pages via one substitution point ([01e2e04](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/01e2e04771608bbd71aa96f51a98954681161470))
+
 ## [1.0.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.0.0...v1.0.1) (2026-08-14)
 
 
