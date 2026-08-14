@@ -96,11 +96,21 @@ test("release-demo.yml publishes under demo/<tag>/ and stays out of branches/", 
   assert.doesNotMatch(text, /gh-pages\/branches\//, "release-demo.yml must not touch the preview surface");
 });
 
-test("release-demo.yml shares the gh-pages concurrency group", () => {
+test("release-demo.yml runs in its own lane WITH a gh-pages push retry", () => {
+  // Changed 2026-08-14: in a SHARED group GitHub replaces a still-queued run
+  // whenever a newer one arrives (cancel-in-progress: false only protects
+  // running jobs) — the post-release dev resync evicted the queued demo on
+  // three releases. The demo now serializes only against itself; branch-write
+  // races against the other lanes are handled by a bounded rebase-retry push.
   const text = readIfPresent(".github/workflows/release-demo.yml");
   assert.match(
     text,
-    /concurrency:\s*\n(?:\s*#[^\n]*\n)*\s*group:\s*gh-pages-writes/,
-    "release-demo.yml must serialize with ig-preview.yml and cleanup-gh-pages.yml",
+    /concurrency:\s*\n(?:\s*#[^\n]*\n)*\s*group:\s*release-demo/,
+    "release-demo.yml must use its own concurrency lane (group: release-demo)",
+  );
+  assert.match(
+    text,
+    /git pull --rebase origin gh-pages/,
+    "the gh-pages push must retry with a rebase pull — its lane no longer serializes with the other writers",
   );
 });
