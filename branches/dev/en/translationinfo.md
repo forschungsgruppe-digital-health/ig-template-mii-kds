@@ -23,5 +23,5 @@ Write to the HL7 FHIR Zulip, stream `german/mi-initiative` ([https://chat.fhir.o
 
 > The repository's issue tracker is deliberately not linked with a fixed URL: a built guide outlives repository moves — such as the move to the MII's GitHub organisation, `medizininformatik-initiative` — and a URL burned into an older build would go stale. Open the issue on the repository this guide was built from; Zulip is reachable regardless. The **file links** on this page do carry a repository URL — it comes from one substitution point, `input/data/repo.json`, which the migration checklist repoints in a single edit; links in builds published before the move keep resolving through GitHub's repository redirect.
 
-> **Scope of this guide:** it is the **preview** of the MII IG template (`de.medizininformatikinitiative.template`), not an MII Core Dataset module. It exists so the branding can be reviewed in both languages before a template release. A module IG carries its own translation-information page.
+> **Scope of this guide:** it is the **preview** of the KDS IG template (`de.medizininformatikinitiative.template`), not an MII Core Dataset module. It exists so the branding can be reviewed in both languages before a template release. A module IG carries its own translation-information page.
 
