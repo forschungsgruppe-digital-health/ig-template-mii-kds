@@ -103,13 +103,13 @@ a kramdown attribute line `{: .ig-highlight .ig-highlight-<color>}` under a
 blockquote). Styling only — a module decides what each color means; the
 conventional reading:
 
-| Class | Conventional meaning |
-| --- | --- |
-| `ig-highlight-blue` | neutral call-out |
 > **Renamed 2026-08-14:** the class prefix is now the brand-neutral `ig-*` (formerly `mii-*`).
 > The old `.mii-highlight*` selectors and `--mii-table-*` variables remain as **deprecated
 > aliases** so existing module content keeps rendering; they will be removed in the next major.
 
+| Class | Conventional meaning |
+| --- | --- |
+| `ig-highlight-blue` | neutral call-out |
 | `ig-highlight-green` | positive/confirming note |
 | `ig-highlight-orange` | warning |
 | `ig-highlight-red` | important notice |
@@ -178,9 +178,9 @@ inline `<style>` blocks):
 
 ## 5a. The other rule blocks in `mii.css`
 
-Colour is variables-only (§1), but four rule blocks go beyond the variables.
-Three of them add *new* classes, which cannot collide with the base; one
-deliberately overrides base rules. Anything added here has to earn its place,
+Colour is variables-only (§1), but five rule blocks go beyond the variables.
+Three of them add *new* classes, which cannot collide with the base; two
+deliberately override base rules. Anything added here has to earn its place,
 because a rule the base later changes will silently keep the value set here.
 
 | Block | Selectors | New or override | Why |
@@ -189,11 +189,13 @@ because a rule the base later changes will silently keep the value set here.
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
+| Navbar link typography | `#segment-navbar .navbar-nav > li > a` | **overrides base rules** | Top-level navbar links render 19px bold — WCAG 2.1 *large text* (≥ 18.66px bold), where 1.4.3 asks 3:1 instead of 4.5:1. This is what lets the NUM-DIZ design put its coral behind the navbar (§10); it applies in **both** brand designs so the two share one typography. Horizontal padding drops 12px → 10px so the longest top row (German) keeps to one line in the 992–1199px container. Dropdown items are excluded by the child combinator and stay 14px on ≥ 4.5:1 surfaces. Guarded by `scripts/brand-switch.test.mjs` |
 
 `mii.css` is linked after the base stylesheets (`includes/fragment-css.html`),
-so none of these needs `!important`. The content-image block is the only place
-where a base rule is deliberately countermanded; if the base ever changes its
-image handling, this block is the first thing to re-check.
+so none of these needs `!important`. The content-image and navbar-typography
+blocks are the only places where base rules are deliberately countermanded; if
+the base ever changes its image handling or navbar metrics, these blocks are
+the first thing to re-check.
 
 ## 6. Language rules
 
@@ -333,12 +335,12 @@ retrieved 2026-08-13. Use these tokens and no others.
 
 | Role | Hex | Use for | Never for |
 | --- | --- | --- | --- |
-| NUM-DIZ slate | `#485156` | navbar, footer, IG title/status text, breadcrumb/table text, link hover | — |
-| NUM-DIZ slate-blue | `#5c6f7e` | body links, menu hover, gradients (combo-logo wordmark fill) | — |
-| NUM-DIZ coral | `#ea5167` | the top stripe, decorative accents | **any text surface** (3.58:1 on white — fails AA; the site's own link/nav coral is deliberately not adopted for text) |
+| NUM-DIZ slate | `#485156` | menu hover, footer, IG title/status text, breadcrumb/table text, link hover | — |
+| NUM-DIZ slate-blue | `#5c6f7e` | body links, menu active, gradients (combo-logo wordmark fill) | — |
+| NUM-DIZ coral | `#ea5167` | **navbar** (white links rendered 19px bold = WCAG large text, §5a; TF-KDS 2026-08-14), the top stripe (stripe and navbar merge into one coral band), decorative accents | **normal-size text** (3.58:1 on white/under white — below the 4.5:1 normal-text bar; the navbar carries it only because its links are large text) |
 | NUM-DIZ teal | `#42d1b8` | logo artwork only; reserved | text (1.90:1 on white) |
 | NUM yellow | `#ffcc00` | logo artwork only; reserved | text surfaces |
-| Mid grey | `#706f6f` | menu active, narrative-table borders | — |
+| Mid grey | `#706f6f` | narrative-table borders | menu surfaces (read muddy on the coral navbar; dropped 2026-08-14) |
 | Light grey | `#ecedee` | breadcrumb, narrative-table headers | — |
 
 The same design decisions as the MII palette apply: one uniform footer grey
@@ -349,19 +351,23 @@ IG-Publisher semantic signals (publish box, STU note, …) are left alone.
 
 | Surface | Colors | Ratio |
 | --- | --- | --- |
-| Navbar / menu buttons / footer | `#ffffff` on `#485156` | 8.12:1 (AAA) |
-| Menu hover / gradient ends | `#ffffff` on `#5c6f7e` | 5.21:1 |
-| Menu active | `#ffffff` on `#706f6f` | 5.01:1 |
+| Navbar resting (links 19px **bold** = WCAG large text, §5a) | `#ffffff` on `#ea5167` | 3.58:1 (AA **large text**, 1.4.3 asks 3:1) |
+| Menu hover / footer | `#ffffff` on `#485156` | 8.12:1 (AAA) |
+| Menu active / gradient end | `#ffffff` on `#5c6f7e` | 5.21:1 |
 | Body links | `#5c6f7e` on `#ffffff` | 5.21:1 |
 | Link hover / IG title/status | `#485156` on `#ffffff` | 8.12:1 |
 | Breadcrumb, table headers | `#485156` on `#ecedee` | 6.93:1 |
 | Narrative-table border | `#706f6f` on `#ffffff` / `#ecedee` | 5.01:1 / 4.27:1 |
 
-Derived conventions: coral and teal are decorative-only (they fail on text
-exactly like the MII accent greens); the site's own body-link coral
-(`a { color: #EA5167 }` in its stylesheet, 3.58:1) is **not** adopted — the
-slate-blue from the official combo-logo wordmark is the closest sourced value
-that holds AA.
+Derived conventions: the navbar carries the site's own nav coral since
+2026-08-14 (TF-KDS feedback: the grey menu did not complement the coral header
+stripe) — legitimate **only** because the navbar links render as WCAG large
+text (§5a), where 1.4.3 asks 3:1; `scripts/brand-switch.test.mjs` couples the
+relaxed navbar pair to that typography block. Everywhere else coral and teal
+stay decorative-only, and the site's own body-link coral
+(`a { color: #EA5167 }` in its stylesheet, 3.58:1) is still **not** adopted —
+the slate-blue from the official combo-logo wordmark is the closest sourced
+value that holds AA for normal-size text.
 
 ### NUM-DIZ logos: provenance and approval
 
@@ -370,13 +376,19 @@ that holds AA.
   NUM-DIZ website on 2026-08-13 (only a provenance comment was added).
 - `logo-num-diz-en.svg` — **derived, NOT an official asset**: NUM-DIZ
   publishes no English combination logo, so the file composes the German
-  combo's DIZ portion (copied byte-identical, original coordinates) with the
-  official English NUM logo, scaled by the exact factor (1.06277) at which
-  the German combo draws the shared NUM emblem artwork and aligned on the
-  combo's shared subtitle baseline (y = 287.19). The full derivation is in
-  the file's own header comment and the introducing PR; measured result: the
-  replaced portion keeps the original's width to 0.005 % and position
-  exactly, total canvas height grows 2.7 % (English descenders).
+  combo's DIZ portion with the official English NUM logo, scaled by the exact
+  factor (1.06277) at which the German combo draws the shared NUM emblem
+  artwork and aligned on the combo's shared subtitle baseline (y = 287.19).
+  Since 2026-08-14 (TF-KDS feedback) the DIZ portion's outlined **German text
+  is replaced by English SVG text**: "MEDICAL / INFORMATICS / INITIATIVE" and
+  the tri-color "DATA INTEGRATION CENTER" (the MII's official English terms) —
+  exactly the 51 German glyph elements were removed; DIZ wordmark, emblem and
+  NUM part are untouched, and baselines / center axis / cap heights / run
+  widths are measured from the removed German clusters (pinned via
+  `textLength`). The typeface is a system-sans approximation, as the original
+  condensed corporate face is licensed and cannot be embedded — the file is
+  therefore doubly unofficial (composition AND typeface). The full derivation
+  is in the file's own header comment and the introducing PRs.
 - **Approval status: pending — and urgent.** The NUM/NUM-DIZ logos are
   third-party brand assets fetched from the NUM website; shipping them
   requires NUM-DIZ consent, and the derived English combo additionally needs
