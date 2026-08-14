@@ -9,7 +9,7 @@
 </div></div></div>
   </text>
   <url value="https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview"/>
-  <version value="1.0.1"/>
+  <version value="1.1.0"/>
   <name value="MIIKDSTemplatePreview"/>
   <title value="MII KDS IG Template — Preview">
     <extension url="http://hl7.org/fhir/StructureDefinition/translation">
@@ -22,7 +22,7 @@
     </extension>
   </title>
   <status value="draft"/>
-  <date value="2026-08-14T07:41:45+00:00"/>
+  <date value="2026-08-14T09:31:44+00:00"/>
   <publisher value="NUM-DIZ">
     <extension url="http://hl7.org/fhir/StructureDefinition/translation">
       <extension url="lang">
@@ -73,7 +73,7 @@
         <valueString value="copyrightyear"/>
       </extension>
       <extension url="value">
-        <valueString value="2026+"/>
+        <valueString value="2027+"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
@@ -300,7 +300,7 @@
         <valueCode value="copyrightyear"/>
       </extension>
       <extension url="value">
-        <valueString value="2026+"/>
+        <valueString value="2027+"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">

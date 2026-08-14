@@ -7,11 +7,11 @@
     "div" : "<div xml:lang=\"de\" lang=\"de\"><hr/><p><b>German</b></p><hr/><p class=\"res-header-id\"><b>Generated Narrative: ImplementationGuide de.medizininformatikinitiative.template.preview</b></p><a name=\"de-de.medizininformatikinitiative.template.preview\"> </a><a name=\"de-hcde.medizininformatikinitiative.template.preview\"> </a><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Language: en</p></div><h2>MIIKDSTemplatePreview</h2><p>The official URL for this implementation guide is: </p><pre>https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview</pre><div><p>Minimal preview IG that builds the de.medizininformatikinitiative.template IG template standalone so its branding (header, footer, CSS, logo) is rendered and visually reviewable in English (default) and German. Not an MII KDS module.</p>\n</div></div>"
   },
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
-  "version" : "1.0.1",
+  "version" : "1.1.0",
   "name" : "MIIKDSTemplatePreview",
   "title" : "MII-KDS-IG-Vorlage — Vorschau",
   "status" : "draft",
-  "date" : "2026-08-14T07:41:45+00:00",
+  "date" : "2026-08-14T09:31:44+00:00",
   "publisher" : "NUM-DIZ",
   "contact" : [{
     "name" : "NUM-DIZ",
@@ -59,7 +59,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "2026+"
+        "valueString" : "2027+"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
@@ -371,7 +371,7 @@
       },
       {
         "url" : "value",
-        "valueString" : "2026+"
+        "valueString" : "2027+"
       }],
       "url" : "http://hl7.org/fhir/tools/StructureDefinition/ig-parameter"
     },
