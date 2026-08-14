@@ -8,12 +8,12 @@ easiest via the [dev container](first-build-in-devcontainer.md).
 
 ## Steps
 
-1. Open `content/assets/css/num-diz.css` (NUM-DIZ design, the default —
-   loaded on top of `mii.css` unless the IG
-   [switches the brand to MII](switch-brand-to-mii.md); a NUM-DIZ value must
-   be changed there) or `content/assets/css/mii.css` (MII design, and the
-   variable base both designs build on). Both override **only** CSS custom
-   properties (`--…`) — never full rules.
+1. Open `content/assets/css/num-diz.css` (NUM-DIZ design, the default) or
+   `content/assets/css/mii.css` (MII design, loaded instead of the NUM-DIZ
+   palette when the IG [switches the brand to MII](switch-brand-to-mii.md)).
+   Exactly ONE of the two is linked per build; both declare the same variable
+   set, and both set **only** CSS custom properties (`--…`) — never full
+   rules (those live in `template-base.css`).
 2. Find the variable for the surface you want. Examples (see the file's comments
    for the full list and the source of each value):
    - `--navbar-bg-color` — the top navigation bar background (currently the MII
