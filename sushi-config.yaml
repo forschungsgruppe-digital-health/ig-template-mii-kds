@@ -13,7 +13,8 @@ version: 1.1.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
-copyrightYear: 2026+
+# 2027 is the target release year of the template (TF-KDS decision).
+copyrightYear: 2027+
 publisher:
   name: NUM-DIZ
   url: https://www.netzwerk-universitaetsmedizin.de
