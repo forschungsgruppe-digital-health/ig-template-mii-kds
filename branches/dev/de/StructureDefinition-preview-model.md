@@ -65,7 +65,7 @@ Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-preview-mode
   "name" : "PreviewModel",
   "title" : "Preview Model",
   "status" : "draft",
-  "date" : "2026-08-14T02:21:10+00:00",
+  "date" : "2026-08-14T02:33:29+00:00",
   "publisher" : "Medical Informatics Initiative (MII)",
   "_publisher" : {
     "extension" : [{

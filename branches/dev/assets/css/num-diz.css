@@ -98,7 +98,7 @@
      grey fill, slate header text (6.93:1), site mid-grey border #706f6f
      (non-text contrast 5.01:1 on white, 4.27:1 on the header fill - both
      above the 3:1 of WCAG 1.4.11). */
-  --mii-table-header-bg-color: #ecedee;
-  --mii-table-border-color: #706f6f;
-  --mii-table-header-text-color: #485156;
+  --ig-table-header-bg-color: #ecedee;
+  --ig-table-border-color: #706f6f;
+  --ig-table-header-text-color: #485156;
 }

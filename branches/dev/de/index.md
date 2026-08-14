@@ -20,25 +20,25 @@ Was die Vorlage ist und wie ein Modul sie verwendet, steht in der `README.md` de
 
 ### Highlight-Boxen (Demo der Hintergrundfarben)
 
-Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben von Inhalten bereit (Klassen `mii-highlight` mit `-blue`, `-green`, `-orange`, `-red`, `-grey`). Es handelt sich um reines Styling — welche Bedeutung eine Farbe hat, entscheidet das jeweilige Modul; die übliche Lesart ist Orange = Warnung, Rot = Wichtig, Grau = Hinweis.
+Die Vorlage stellt wiederverwendbare, zweckneutrale CSS-Klassen zum Hervorheben von Inhalten bereit (Klassen `ig-highlight` mit `-blue`, `-green`, `-orange`, `-red`, `-grey`). Es handelt sich um reines Styling — welche Bedeutung eine Farbe hat, entscheidet das jeweilige Modul; die übliche Lesart ist Orange = Warnung, Rot = Wichtig, Grau = Hinweis.
 
 ##### Blaue Highlight-Box
 
-Beispiel für die blaue Hintergrund-Hervorhebung (`mii-highlight-blue`).
+Beispiel für die blaue Hintergrund-Hervorhebung (`ig-highlight-blue`).
 
 ##### Grüne Highlight-Box
 
-Beispiel für die grüne Hintergrund-Hervorhebung (`mii-highlight-green`).
+Beispiel für die grüne Hintergrund-Hervorhebung (`ig-highlight-green`).
 
 ##### Orange Highlight-Box (Warnung)
 
-Beispiel für die orange Hintergrund-Hervorhebung (`mii-highlight-orange`) — üblicherweise eine Warnung.
+Beispiel für die orange Hintergrund-Hervorhebung (`ig-highlight-orange`) — üblicherweise eine Warnung.
 
 ##### Rote Highlight-Box (Wichtig)
 
-Beispiel für die rote Hintergrund-Hervorhebung (`mii-highlight-red`) — üblicherweise ein wichtiger Hinweis.
+Beispiel für die rote Hintergrund-Hervorhebung (`ig-highlight-red`) — üblicherweise ein wichtiger Hinweis.
 
 ##### Graue Highlight-Box (Hinweis)
 
-Beispiel für die graue Hintergrund-Hervorhebung (`mii-highlight-grey`) — üblicherweise ein Hinweis oder eine Autorennotiz.
+Beispiel für die graue Hintergrund-Hervorhebung (`ig-highlight-grey`) — üblicherweise ein Hinweis oder eine Autorennotiz.
 

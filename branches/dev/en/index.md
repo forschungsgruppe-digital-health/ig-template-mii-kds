@@ -18,25 +18,25 @@ What the template is and how a module uses it is described in the repository's `
 
 ### Highlight boxes (background-colour demo)
 
-The template ships reusable, purpose-neutral CSS classes for calling out content (classes `mii-highlight` with `-blue`, `-green`, `-orange`, `-red`, `-grey`). These are styling only — a module decides what each colour means; the conventional reading is orange = warning, red = important, grey = hint.
+The template ships reusable, purpose-neutral CSS classes for calling out content (classes `ig-highlight` with `-blue`, `-green`, `-orange`, `-red`, `-grey`). These are styling only — a module decides what each colour means; the conventional reading is orange = warning, red = important, grey = hint.
 
 ##### Blue highlight box
 
-Example of the blue background highlight (`mii-highlight-blue`).
+Example of the blue background highlight (`ig-highlight-blue`).
 
 ##### Green highlight box
 
-Example of the green background highlight (`mii-highlight-green`).
+Example of the green background highlight (`ig-highlight-green`).
 
 ##### Orange highlight box (warning)
 
-Example of the orange background highlight (`mii-highlight-orange`) — conventionally a warning.
+Example of the orange background highlight (`ig-highlight-orange`) — conventionally a warning.
 
 ##### Red highlight box (important)
 
-Example of the red background highlight (`mii-highlight-red`) — conventionally an important notice.
+Example of the red background highlight (`ig-highlight-red`) — conventionally an important notice.
 
 ##### Grey highlight box (hint)
 
-Example of the grey background highlight (`mii-highlight-grey`) — conventionally a hint or authoring note.
+Example of the grey background highlight (`ig-highlight-grey`) — conventionally a hint or authoring note.
 
