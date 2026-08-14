@@ -25,14 +25,19 @@
   	<link href="assets/css/cqf.css" rel="stylesheet" />
     <!-- Branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
-     in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     Brand switch: when the consuming IG ships input/data/brand.json with
-     { "design": "num-diz" } (read as site.data.brand.design via the base's
-     input/data -> _data pre-process), num-diz.css is linked AFTER mii.css and
-     re-themes the guide by overriding the same CSS custom properties. An
-     unset or unknown value loads mii.css alone - the MII design is the safe
-     default. See docs/styleguide.md §10. -->
+     in <head> AFTER all base stylesheets, so the linked palettes win the
+     cascade).
+     Brand switch: NUM-DIZ is the DEFAULT design. num-diz.css is linked AFTER
+     mii.css - re-theming the guide by overriding the same CSS custom
+     properties - unless the consuming IG ships input/data/brand.json with
+     { "design": "mii" } (read as site.data.brand.design via the base's
+     input/data -> _data pre-process). Only the exact value 'mii' selects the
+     MII design; anything else - including no brand.json at all and unknown
+     values - renders NUM-DIZ. mii.css stays unconditionally linked as the
+     variable base the NUM-DIZ palette overrides. See docs/styleguide.md §10. -->
 <link href="assets/css/mii.css" rel="stylesheet"/>
+
+<link href="assets/css/num-diz.css" rel="stylesheet"/>
 
 
 
@@ -70,9 +75,9 @@
      strings are hard-coded.
      Brand handling: the project logo additionally switches on
      site.data.brand.design (input/data/brand.json in the consuming IG, see
-     docs/styleguide.md §10). Only the exact value 'num-diz' selects the
-     NUM-DIZ logos - anything else, including no brand.json at all, falls
-     through to the MII default.
+     docs/styleguide.md §10). Only the exact value 'mii' selects the MII
+     logos - anything else, including no brand.json at all, falls through to
+     the NUM-DIZ default.
      Two logos, mirroring kerndatensatz-basis: the HL7 FHIR logo (links to the
      FHIR spec) in #family-nav, and the project logo in #project-nav.
      fhir-logo-www.png is shipped by fhir2.base.template
@@ -85,9 +90,9 @@
 </div>
 <div id="project-nav">
 
-  <a id="project-logo" no-external="true" href="https://www.medizininformatik-initiative.de/">
+  <a id="project-logo" no-external="true" href="https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz">
 
-    <img height="50" alt="Medical Informatics Initiative (MII)" src="assets/images/logo-en.svg"/>
+    <img height="50" alt="NUM-DIZ (Network of University Medicine — Data Integration Center)" src="assets/images/logo-num-diz-en.svg"/>
 
   </a>
 
@@ -257,7 +262,7 @@
           
 
             as of 
-2026-08-13
+2026-08-14
 
           
         
@@ -314,7 +319,7 @@
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.7.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Generated <span title="Thu, Aug 13, 2026 19:49+0000">2026-08-13</span>
+          Generated <span title="Fri, Aug 14, 2026 02:21+0000">2026-08-14</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- Branding override for the fhir2.base.template footer fragment.

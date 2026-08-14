@@ -25,14 +25,19 @@
   	<link href="assets/css/cqf.css" rel="stylesheet" />
     <!-- Branding override for the fhir2.base.template CSS placeholder
      (base ships includes/fragment-css.html as a single comment; it is included
-     in <head> AFTER all base stylesheets, so mii.css wins the cascade).
-     Brand switch: when the consuming IG ships input/data/brand.json with
-     { "design": "num-diz" } (read as site.data.brand.design via the base's
-     input/data -> _data pre-process), num-diz.css is linked AFTER mii.css and
-     re-themes the guide by overriding the same CSS custom properties. An
-     unset or unknown value loads mii.css alone - the MII design is the safe
-     default. See docs/styleguide.md §10. -->
+     in <head> AFTER all base stylesheets, so the linked palettes win the
+     cascade).
+     Brand switch: NUM-DIZ is the DEFAULT design. num-diz.css is linked AFTER
+     mii.css - re-theming the guide by overriding the same CSS custom
+     properties - unless the consuming IG ships input/data/brand.json with
+     { "design": "mii" } (read as site.data.brand.design via the base's
+     input/data -> _data pre-process). Only the exact value 'mii' selects the
+     MII design; anything else - including no brand.json at all and unknown
+     values - renders NUM-DIZ. mii.css stays unconditionally linked as the
+     variable base the NUM-DIZ palette overrides. See docs/styleguide.md §10. -->
 <link href="assets/css/mii.css" rel="stylesheet"/>
+
+<link href="assets/css/num-diz.css" rel="stylesheet"/>
 
 
 
@@ -70,9 +75,9 @@
      strings are hard-coded.
      Brand handling: the project logo additionally switches on
      site.data.brand.design (input/data/brand.json in the consuming IG, see
-     docs/styleguide.md §10). Only the exact value 'num-diz' selects the
-     NUM-DIZ logos - anything else, including no brand.json at all, falls
-     through to the MII default.
+     docs/styleguide.md §10). Only the exact value 'mii' selects the MII
+     logos - anything else, including no brand.json at all, falls through to
+     the NUM-DIZ default.
      Two logos, mirroring kerndatensatz-basis: the HL7 FHIR logo (links to the
      FHIR spec) in #family-nav, and the project logo in #project-nav.
      fhir-logo-www.png is shipped by fhir2.base.template
@@ -85,9 +90,9 @@
 </div>
 <div id="project-nav">
 
-  <a id="project-logo" no-external="true" href="https://www.medizininformatik-initiative.de/">
+  <a id="project-logo" no-external="true" href="https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz">
 
-    <img height="50" alt="Medizininformatik-Initiative (MII)" src="assets/images/logo-de.svg"/>
+    <img height="50" alt="NUM-DIZ (Netzwerk Universitätsmedizin — Datenintegrationszentrum)" src="assets/images/logo-num-diz-de.svg"/>
 
   </a>
 
@@ -276,7 +281,7 @@ Preview Model
           
 
             Stand: 
-2026-08-13
+2026-08-14
 
           
         
@@ -367,7 +372,7 @@ Preview Model
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelK-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelK'), 'binding', document.getElementById('cbpreview-modelK-binding').checked, document.getElementById('pppreview-modelK'));
 document.getElementById('cbpreview-modelK-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -404,7 +409,7 @@ filterDesc(document.getElementById('preview-modelK'), 'obligation', document.get
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelD-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelD'), 'binding', document.getElementById('cbpreview-modelD-binding').checked, document.getElementById('pppreview-modelD'));
 document.getElementById('cbpreview-modelD-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -440,7 +445,7 @@ filterDesc(document.getElementById('preview-modelD'), 'obligation', document.get
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelS-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelS'), 'binding', document.getElementById('cbpreview-modelS-binding').checked, document.getElementById('pppreview-modelS'));
 document.getElementById('cbpreview-modelS-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -534,7 +539,7 @@ Summary
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelKA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelKA'), 'binding', document.getElementById('cbpreview-modelKA-binding').checked, document.getElementById('pppreview-modelKA'));
 document.getElementById('cbpreview-modelKA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -570,7 +575,7 @@ filterDesc(document.getElementById('preview-modelKA'), 'obligation', document.ge
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelDA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelDA'), 'binding', document.getElementById('cbpreview-modelDA-binding').checked, document.getElementById('pppreview-modelDA'));
 document.getElementById('cbpreview-modelDA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -603,7 +608,7 @@ filterDesc(document.getElementById('preview-modelDA'), 'obligation', document.ge
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"><a href="http://hl7.org/fhir/R4/datatypes.html#string">string</a></td>
 <td style="vertical-align: top; text-align : var(--ig-left,left); background-color: #F7F7F7; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">A single placeholder element.</td></tr>
-<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // caf05580-a671-4606-a15e-13ed8e7fad68
+<tr fhir="generated-heirarchy" data-fhir="generated-heirarchy"><td colspan="5" class="hierarchy"><br/><a href="https://build.fhir.org/ig/FHIR/ig-guidance/readingIgs.html#table-views" title="Legend for this format"><img src="https://hl7.org/fhir/R4/help16.png" alt="doco" style="background-color: inherit"/> Documentation for this format</a></td></tr><script type="text/javascript">  // dc448734-97f8-462b-bcf4-0131128f852c
 document.getElementById('cbpreview-modelSA-binding').checked = 'false' != localStorage.getItem('ht-table-states-binding');
 filterDesc(document.getElementById('preview-modelSA'), 'binding', document.getElementById('cbpreview-modelSA-binding').checked, document.getElementById('pppreview-modelSA'));
 document.getElementById('cbpreview-modelSA-constraint').checked = 'false' != localStorage.getItem('ht-table-states-constraint');
@@ -711,7 +716,7 @@ Summary
 
           IG © 2026+ <a style="color:var(--footer-hyperlink-text-color)" href="https://www.medizininformatik-initiative.de">Medical Informatics Initiative (MII)</a>.  
           Package de.medizininformatikinitiative.template.preview#0.7.0 basiert auf <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>.
-          Erstellt <span title="Thu, Aug 13, 2026 19:49+0000">2026-08-13</span>
+          Erstellt <span title="Fri, Aug 14, 2026 02:21+0000">2026-08-14</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)">
             <!-- Branding override for the fhir2.base.template footer fragment.
