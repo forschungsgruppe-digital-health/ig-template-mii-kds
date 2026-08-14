@@ -1,4 +1,4 @@
-# de.medizininformatikinitiative.template.preview#1.1.0: MII KDS IG Template — Preview(en)
+# de.medizininformatikinitiative.template.preview#1.2.0: MII KDS IG Template — Preview(en)
 
 ## Pages
 
