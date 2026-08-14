@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.7.0...v1.0.0) (2026-08-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **brand:** NUM-DIZ becomes the default design ([#81](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/81))
+
+### Features
+
+* **brand:** NUM-DIZ becomes the default design ([#81](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/81)) ([dabd218](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/dabd218b32684234b2b22aae6efcd595978f97e9))
+* **css:** rename the class prefix from mii-* to the brand-neutral ig-* ([#82](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/82)) ([f3782dc](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/f3782dc0a9d887b17ae674162aa9f88f08f3ff8c))
+
 ## [0.7.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.6.1...v0.7.0) (2026-08-13)
 
 
