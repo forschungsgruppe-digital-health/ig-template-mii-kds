@@ -2,10 +2,10 @@
 
 A proposed shared **IG template** for MII Kerndatensatz (KDS) module
 Implementation Guides — header, footer, colours, logo — so module guides could
-share one presentation. It carries **two switchable corporate designs**: MII
-(the default) and NUM-DIZ, for the takeover of IG maintenance by NUM-DIZ when
-MII funding ends end-2026 — see
-[switch the brand to NUM-DIZ](docs/recipes/switch-brand-to-num-diz.md). It is an
+share one presentation. It carries **two switchable corporate designs**:
+NUM-DIZ (the default, for the takeover of IG maintenance by NUM-DIZ when MII
+funding ends end-2026) and MII — see
+[switch the brand to MII](docs/recipes/switch-brand-to-mii.md). It is an
 [HL7 IG-Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation)
 template package (`de.medizininformatikinitiative.template`) built on the HL7 base
 template [`fhir2.base.template`](https://github.com/HL7/ig-template-base2).

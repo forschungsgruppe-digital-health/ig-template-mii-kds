@@ -79,7 +79,8 @@ The Medical Informatics Initiative (MII) maintains the **Kerndatensatz (KDS)** �
 core dataset split into modules (Person, Diagnose, Prozedur, …), each published as
 its own IG. Naming, terminology policy, the release workflow and the reusable CI
 are defined in the [MII meta wiki](https://github.com/medizininformatik-initiative/kerndatensatz-meta/wiki).
-This template proposes that those module IGs share one MII-branded presentation.
+This template proposes that those module IGs share one presentation (rendered
+in the NUM-DIZ design by default, with MII switchable — styleguide §10).
 When this document and the wiki disagree, **the wiki wins** — see
 [further-reading.md](further-reading.md) for the pages that matter.
 

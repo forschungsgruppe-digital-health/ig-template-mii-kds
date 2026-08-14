@@ -1,13 +1,14 @@
-// Guards the invariants of the MII / NUM-DIZ brand switch
+// Guards the invariants of the NUM-DIZ / MII brand switch
 // (docs/styleguide.md §10) that a rendered-build review can miss:
 //
 // 1. COMPLETE PALETTE — every CSS custom property the MII palette sets is
 //    also set by num-diz.css (base variables AND mii.css's own table
 //    variables). A missing override would not fail a build; it would silently
 //    render one MII-colored surface inside the NUM-DIZ design.
-// 2. SAFE DEFAULT — every brand branch in the fragments tests the exact
-//    string 'num-diz', and the MII assets live in the fall-through path, so
-//    a missing input/data/brand.json or an unknown value degrades to MII.
+// 2. NUM-DIZ DEFAULT — every brand branch in the fragments tests the exact
+//    string 'mii', and the NUM-DIZ assets live in the fall-through path, so
+//    a missing input/data/brand.json or an unknown value renders NUM-DIZ (the
+//    default) while exactly { "design": "mii" } restores the full MII design.
 // 3. ACCESSIBILITY — the documented NUM-DIZ text/background pairs hold
 //    WCAG 2.1 AA (>= 4.5:1), computed here from the shipped hex values, not
 //    from the styleguide's prose.
@@ -59,51 +60,73 @@ test("num-diz.css sets no property the MII palette does not (variables-only re-t
   }
 });
 
-const BRAND_GUARD = "{% if site.data.brand.design == 'num-diz' %}";
+// The two guard forms of the NUM-DIZ-default contract: the header picks the
+// MII branch with an exact `if == 'mii'`; the CSS fragment suppresses the
+// NUM-DIZ overlay with an exact `unless == 'mii'`. Both fall through to
+// NUM-DIZ for every other value, including no brand.json at all.
+const MII_IF_GUARD = "{% if site.data.brand.design == 'mii' %}";
+const MII_UNLESS_GUARD = "{% unless site.data.brand.design == 'mii' %}";
 
-test("fragment-css: mii.css unconditional, num-diz.css only behind the exact brand guard", () => {
+test("fragment-css: mii.css unconditional, num-diz.css default-on behind the unless-'mii' guard", () => {
   // Match the actual <link> hrefs, not the file names — the explanatory
   // comment at the top of the fragment mentions both names too.
   const miiLink = fragmentCss.indexOf("assets/css/mii.css");
   const numDizLink = fragmentCss.indexOf("assets/css/num-diz.css");
-  const guardAt = fragmentCss.indexOf(BRAND_GUARD);
+  const guardAt = fragmentCss.indexOf(MII_UNLESS_GUARD);
   assert.ok(miiLink > -1 && numDizLink > -1 && guardAt > -1);
-  assert.ok(miiLink < guardAt, "mii.css must be linked before (outside) the brand guard");
-  assert.ok(guardAt < numDizLink, "num-diz.css must be linked inside the brand guard");
+  assert.ok(
+    miiLink < guardAt,
+    "mii.css must be linked before (outside) the brand guard — it is the " +
+      "variable base in BOTH designs",
+  );
+  assert.ok(
+    guardAt < numDizLink,
+    "num-diz.css must be linked inside the unless-guard: rendered by default, " +
+      "suppressed only by the exact value 'mii'",
+  );
 });
 
-test("fragment-header: NUM-DIZ logos inside the guard, MII logos in the fall-through branch", () => {
-  const guardAt = fragmentHeader.indexOf(BRAND_GUARD);
-  // The brand-level {% else %} is the one right before the MII anchor (the
+test("fragment-header: MII logos inside the guard, NUM-DIZ logos in the fall-through branch", () => {
+  const guardAt = fragmentHeader.indexOf(MII_IF_GUARD);
+  // The brand-level {% else %} is the one right before the NUM-DIZ anchor (the
   // language switch nests its own {% else %} inside each brand branch).
-  const miiAnchorAt = fragmentHeader.indexOf(
-    'href="https://www.medizininformatik-initiative.de/"',
+  const numDizAnchorAt = fragmentHeader.indexOf(
+    'href="https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz"',
   );
-  assert.ok(guardAt > -1 && miiAnchorAt > guardAt, "brand guard with an MII fall-through");
-  const numDizBranch = fragmentHeader.slice(guardAt, miiAnchorAt);
-  const rest = fragmentHeader.slice(miiAnchorAt);
+  assert.ok(
+    guardAt > -1 && numDizAnchorAt > guardAt,
+    "brand guard with a NUM-DIZ fall-through",
+  );
+  const miiBranch = fragmentHeader.slice(guardAt, numDizAnchorAt);
+  const rest = fragmentHeader.slice(numDizAnchorAt);
   for (const lang of ["de", "en"]) {
-    assert.match(numDizBranch, new RegExp(`logo-num-diz-${lang}\\.svg`));
-    assert.match(rest, new RegExp(`logo-${lang}\\.svg`));
+    assert.match(miiBranch, new RegExp(`logo-${lang}\\.svg`));
+    assert.match(rest, new RegExp(`logo-num-diz-${lang}\\.svg`));
   }
   assert.ok(
-    !rest.includes("logo-num-diz-"),
-    "the fall-through (default) branch must reference only the MII logos",
+    !miiBranch.includes("logo-num-diz-"),
+    "the 'mii' branch must reference only the MII logos",
+  );
+  assert.ok(
+    !/logo-(?:de|en)\.svg/.test(rest),
+    "the fall-through (default) branch must reference only the NUM-DIZ logos",
   );
 });
 
-test("brand guards test the exact value — unknown values degrade to MII", () => {
+test("brand guards test the exact value 'mii' — unknown values render NUM-DIZ", () => {
   for (const [name, fragment] of [
     ["fragment-css.html", fragmentCss],
     ["fragment-header.html", fragmentHeader],
   ]) {
-    const guards = fragment.match(/\{%\s*if[^%]*site\.data\.brand[^%]*%\}/g) ?? [];
+    const guards =
+      fragment.match(/\{%\s*(?:if|unless)[^%]*site\.data\.brand[^%]*%\}/g) ?? [];
     assert.ok(guards.length > 0, `${name} carries a brand guard`);
     for (const guard of guards) {
       assert.match(
         guard,
-        /site\.data\.brand\.design\s*==\s*'num-diz'/,
-        `${name}: brand guard must be an exact equality against 'num-diz' (${guard})`,
+        /site\.data\.brand\.design\s*==\s*'mii'/,
+        `${name}: brand guard must be an exact equality against 'mii' — the ` +
+          `only tested value; everything else falls through to NUM-DIZ (${guard})`,
       );
     }
   }
