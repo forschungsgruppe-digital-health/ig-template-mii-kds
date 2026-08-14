@@ -30,12 +30,18 @@ const fragmentCss = read("includes/fragment-css.html");
 const fragmentHeader = read("includes/fragment-header.html");
 const fragmentFooter = read("includes/fragment-footer.html");
 
-const declaredProps = (css) =>
-  new Set(
-    [...css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/(--[\w-]+)\s*:/g)].map(
-      (m) => m[1],
-    ),
-  );
+// A property whose value is only a var(--…) reference is an ALIAS (the
+// deprecated --mii-* bridge): it is overridden through its target, so it is
+// excluded from the override-completeness surface rather than demanded twice.
+const declaredProps = (css) => {
+  const clean = css.replace(/\/\*[\s\S]*?\*\//g, "");
+  const out = new Set();
+  for (const m of clean.matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+    if (/^\s*var\(--[\w-]+\)\s*$/.test(m[2])) continue;
+    out.add(m[1]);
+  }
+  return out;
+};
 
 test("num-diz.css overrides every custom property the MII palette sets", () => {
   const mii = declaredProps(miiCss);
@@ -176,7 +182,7 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
     ["--ig-status-text-color", "--ig-header-container-color"],
     ["--link-color", "--ig-header-container-color"],
     ["--link-hover-color", "--ig-header-container-color"],
-    ["--mii-table-header-text-color", "--mii-table-header-bg-color"],
+    ["--ig-table-header-text-color", "--ig-table-header-bg-color"],
   ];
   for (const [fg, bg] of pairs) {
     assert.ok(v[fg] && v[bg], `${fg} / ${bg} present as plain hex`);

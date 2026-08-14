@@ -33,10 +33,10 @@ Schritt-für-Schritt-Anleitung steht im Repository unter
 > (`medizininformatik-initiative`) — und eine in einen älteren Build
 > eingebrannte URL würde veralten. Legen Sie das Issue im Repository an, aus
 > dem dieser Leitfaden gebaut wurde; Zulip bleibt unabhängig davon erreichbar.
-{: .mii-highlight .mii-highlight-grey}
+{: .ig-highlight .ig-highlight-grey}
 
 > **Geltungsbereich:** Dies ist die *Vorschau* der MII-IG-Vorlage
 > (`de.medizininformatikinitiative.template`) und kein MII-Kerndatensatz-Modul.
 > Sie dient nur dazu, das Branding vor einem Release in beiden Sprachen zu
 > prüfen. Ein Modul-IG bringt seine eigene Seite mit Übersetzungshinweisen mit.
-{: .mii-highlight .mii-highlight-grey}
+{: .ig-highlight .ig-highlight-grey}
