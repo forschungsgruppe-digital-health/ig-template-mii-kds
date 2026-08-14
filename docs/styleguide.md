@@ -2,10 +2,11 @@
 
 The layout and design conventions of this template: what the branding is, which
 rules keep it consistent and accessible, and which boundaries must not be
-crossed. The template carries **two switchable corporate designs** — **MII**
-(the default) and **NUM-DIZ** (for the takeover of IG development and
-maintenance when MII funding ends end-2026); §10 documents the switch and the
-NUM-DIZ design, §§2–8 the MII design and the rules both share. Every color and
+crossed. The template carries **two switchable corporate designs** — **NUM-DIZ**
+(the default — NUM-DIZ takes over IG development and maintenance when MII
+funding ends end-2026) and **MII** (selected by the explicit brand value
+`"mii"`); §10 documents the switch and the NUM-DIZ design, §§2–8 the MII
+design and the rules both share. Every color and
 asset traces to a file that MII, NUM-DIZ or HL7 publishes; the full
 source-by-source derivation (URLs, checksums, pixel analyses) is preserved in
 this repository's git history (`docs/design.md`, the styleguide's
@@ -28,8 +29,8 @@ language-aware base both MII reference repos use. The rules:
   `includes/structure-tabs.html` (an added authoring include with no base
   counterpart — [recipe](recipes/tab-an-artifact-structure.md)), two CSS files
   (`content/assets/css/mii.css`, always linked, and
-  `content/assets/css/num-diz.css`, linked after it only when the brand switch
-  selects NUM-DIZ — §10), the logo/favicon assets, the vendored German
+  `content/assets/css/num-diz.css`, linked after it by default — suppressed
+  only when the brand switch selects MII — §10), the logo/favicon assets, the vendored German
   UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
   > **The two same-path replacements are on borrowed time.**
   > `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png`
@@ -97,18 +98,22 @@ dragon, translation box.
 ## 3. Highlight boxes
 
 Five reusable classes for calling out content in narrative pages
-(`<div class="mii-highlight mii-highlight-<color>">` with an `<h5>` heading, or
-a kramdown attribute line `{: .mii-highlight .mii-highlight-<color>}` under a
+(`<div class="ig-highlight ig-highlight-<color>">` with an `<h5>` heading, or
+a kramdown attribute line `{: .ig-highlight .ig-highlight-<color>}` under a
 blockquote). Styling only — a module decides what each color means; the
 conventional reading:
 
 | Class | Conventional meaning |
 | --- | --- |
-| `mii-highlight-blue` | neutral call-out |
-| `mii-highlight-green` | positive/confirming note |
-| `mii-highlight-orange` | warning |
-| `mii-highlight-red` | important notice |
-| `mii-highlight-grey` | hint / authoring note (all `[TODO: …]` prompts use it) |
+| `ig-highlight-blue` | neutral call-out |
+> **Renamed 2026-08-14:** the class prefix is now the brand-neutral `ig-*` (formerly `mii-*`).
+> The old `.mii-highlight*` selectors and `--mii-table-*` variables remain as **deprecated
+> aliases** so existing module content keeps rendering; they will be removed in the next major.
+
+| `ig-highlight-green` | positive/confirming note |
+| `ig-highlight-orange` | warning |
+| `ig-highlight-red` | important notice |
+| `ig-highlight-grey` | hint / authoring note (all `[TODO: …]` prompts use it) |
 
 All heading-on-background pairs are ≥ 6.1:1 (AA); the orange/red/grey borders
 are ≥ 3.2:1 (WCAG 1.4.11). The inherited green border sits below the 3:1
@@ -131,9 +136,9 @@ compromise into new variants.
   overriding `input/includes/fragment-header.html` replaces the fragment
   wholesale and must re-add both logos if it wants them.
 - The **NUM-DIZ logo pair** (`logo-num-diz-de.svg`, `logo-num-diz-en.svg`)
-  follows the same per-language pattern and renders instead of the MII pair
-  when the brand switch selects NUM-DIZ; provenance and approval status are
-  documented in §10.
+  follows the same per-language pattern and renders **by default**; the MII
+  pair renders instead when the brand switch selects MII. Provenance and
+  approval status are documented in §10.
 - **Asset naming:** language-specific assets use `<name>-<lang>.<ext>`. Names
   dictated by other tools keep that tool's spelling: `favicon.png` (browser
   convention) and `deu.svg` — **never rename it**: the IG Publisher derives the
@@ -180,7 +185,7 @@ because a rule the base later changes will silently keep the value set here.
 
 | Block | Selectors | New or override | Why |
 | --- | --- | --- | --- |
-| Highlight boxes (§3) | `.mii-highlight`, `.mii-highlight-<color>` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — a module decides what each colour means |
+| Highlight boxes (§3) | `.ig-highlight`, `.ig-highlight-<color>` (+ their `h5`) | new classes | Reusable, purpose-neutral callouts for page authors, carried over from `kerndatensatz-basis`. Styling only — a module decides what each colour means |
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
@@ -273,46 +278,49 @@ white on navbar blue (5.03:1).
    needs to change. Re-check §8's/§10's ratios for any color you touch.
 4. When the change touches a brand-switched surface (CSS variables, header
    logo, footer), build **twice** — once without `input/data/brand.json`
-   (MII default) and once with `{ "design": "num-diz" }` — and review both;
-   `scripts/brand-switch.test.mjs` guards the switch's invariants offline.
+   (the NUM-DIZ default) and once with `{ "design": "mii" }` (the MII
+   design) — and review both; `scripts/brand-switch.test.mjs` guards the
+   switch's invariants offline.
 
 ## 10. The brand switch: NUM-DIZ corporate design
 
 NUM-DIZ (Netzwerk Universitätsmedizin — Datenintegrationszentren) takes over
 IG development and maintenance when MII funding ends (end-2026). The template
-therefore carries the NUM-DIZ corporate design as a second, switchable brand.
-**The default stays MII** — a module that does nothing renders exactly as
-before.
+therefore carries the NUM-DIZ corporate design — and renders it **by
+default**: a module that does nothing gets the NUM-DIZ design. The MII design
+stays fully available as the switchable second brand.
 
 ### The switch
 
-One file in the consuming IG, set once:
+The default needs no file at all. To render the **MII** design instead, one
+file in the consuming IG, set once:
 
 ```json
 // input/data/brand.json
-{ "design": "num-diz" }
+{ "design": "mii" }
 ```
 
 The base template's pre-process copies `input/data/` into Jekyll's `_data`
 (`fhir2.base.template` `config.json`, `pre-process` block), so the fragments
 read the value as `site.data.brand.design`. This is a **designed** module-side
 surface — no template file is overridden, and the doctrine of §1 is untouched.
-Degradation is safe by construction: every branch tests
-`site.data.brand.design == 'num-diz'` exactly, so a missing file, an empty
-file, or any unknown value falls through to the MII design. Recipe:
-[switch-brand-to-num-diz.md](recipes/switch-brand-to-num-diz.md).
+The switch keeps the exact-match doctrine, now anchored on `'mii'`: every
+branch tests `site.data.brand.design == 'mii'` exactly, and **only** that
+value selects the MII design — a missing file, an empty file, or any unknown
+value falls through to the NUM-DIZ default. Recipe:
+[switch-brand-to-mii.md](recipes/switch-brand-to-mii.md).
 
 The switch covers exactly three surfaces:
 
-| Surface | MII (default) | NUM-DIZ |
+| Surface | NUM-DIZ (default) | MII (`{ "design": "mii" }`) |
 | --- | --- | --- |
-| Palette | `mii.css` | `num-diz.css`, linked **after** `mii.css` by `fragment-css.html`, overrides the same variables |
-| Header logo (per language) | `logo-de.svg` / `logo-en.svg` → medizininformatik-initiative.de | `logo-num-diz-de.svg` / `logo-num-diz-en.svg` → the [NUM-DIZ page](https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz) |
-| Brand-named text | the logo `alt` texts (the only brand-named chrome text) | ditto, NUM-DIZ wording |
+| Palette | `num-diz.css`, linked **after** `mii.css` by `fragment-css.html`, overrides the same variables | `mii.css` alone |
+| Header logo (per language) | `logo-num-diz-de.svg` / `logo-num-diz-en.svg` → the [NUM-DIZ page](https://www.netzwerk-universitaetsmedizin.de/forschung/num-diz) | `logo-de.svg` / `logo-en.svg` → medizininformatik-initiative.de |
+| Brand-named text | the logo `alt` texts (the only brand-named chrome text) | ditto, MII wording |
 
 Deliberately **not** switched: the footer's link row (the NUM-DIZ link renders
 in both designs, the MII links stay — the modules remain MII content), the
-highlight-box class names and the `--mii-table-*` variable names (API names,
+highlight-box class names and the `--ig-table-*` variable names (API names,
 not display text), and the favicon (its `<link>` lives in the base's
 `fragment-pagebegin.html`, which §1 forbids overriding — a recorded limitation
 of the NUM-DIZ design).
@@ -369,8 +377,11 @@ that holds AA.
   the file's own header comment and the introducing PR; measured result: the
   replaced portion keeps the original's width to 0.005 % and position
   exactly, total canvas height grows 2.7 % (English descenders).
-- **Approval status: pending.** The NUM/NUM-DIZ logos are third-party brand
-  assets fetched from the NUM website; shipping them requires NUM-DIZ
-  consent, and the derived English combo additionally needs their approval as
-  a new brand asset. Tracked in [open-tasks.md](open-tasks.md); replace the
-  derived file the day an official English combo exists.
+- **Approval status: pending — and urgent.** The NUM/NUM-DIZ logos are
+  third-party brand assets fetched from the NUM website; shipping them
+  requires NUM-DIZ consent, and the derived English combo additionally needs
+  their approval as a new brand asset. Since NUM-DIZ became the **default**
+  design, every rendering that does not opt back to MII ships these logos —
+  the consent and approval are no longer gating an opt-in extra but the
+  out-of-the-box output. Tracked in [open-tasks.md](open-tasks.md); replace
+  the derived file the day an official English combo exists.

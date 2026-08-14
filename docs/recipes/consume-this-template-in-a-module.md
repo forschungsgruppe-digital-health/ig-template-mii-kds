@@ -38,7 +38,9 @@ Switch to **published** when that changes; see [open tasks](../open-tasks.md).
 
 ## Expected result
 
-The module IG renders with the MII header, footer, colours and logo.
+The module IG renders with the template's header, footer, colours and logo —
+the NUM-DIZ design by default; to render MII instead, see
+[switch the brand to MII](switch-brand-to-mii.md).
 
 ## Common errors & fixes
 

@@ -21,7 +21,7 @@ yet.
 | Recipe | Use it when |
 | --- | --- |
 | [consume this template in a module IG](consume-this-template-in-a-module.md) | You are wiring a module up to reference this template |
-| [switch the brand to NUM-DIZ](switch-brand-to-num-diz.md) | An IG should render in the NUM-DIZ corporate design instead of the MII default |
+| [switch the brand to MII](switch-brand-to-mii.md) | An IG should render in the MII corporate design instead of the NUM-DIZ default |
 | [show an artifact's structure as tabs in a page](tab-an-artifact-structure.md) | A narrative page should render one profile's structure inline, tabbed |
 
 ## Keeping it healthy

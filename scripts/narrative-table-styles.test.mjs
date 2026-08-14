@@ -93,12 +93,12 @@ test("the styling never reaches a publisher-generated table", () => {
 });
 
 test("a border and a header background are actually defined", () => {
-  assert.match(css, /--mii-table-border-color:\s*#[0-9a-f]{6}/i);
-  assert.match(css, /--mii-table-header-bg-color:\s*#[0-9a-f]{6}/i);
-  assert.match(css, /border:\s*1px solid var\(--mii-table-border-color\)/);
+  assert.match(css, /--ig-table-border-color:\s*#[0-9a-f]{6}/i);
+  assert.match(css, /--ig-table-header-bg-color:\s*#[0-9a-f]{6}/i);
+  assert.match(css, /border:\s*1px solid var\(--ig-table-border-color\)/);
   assert.match(
     css,
-    /background-color:\s*var\(--mii-table-header-bg-color\)/,
+    /background-color:\s*var\(--ig-table-header-bg-color\)/,
   );
 });
 
@@ -108,9 +108,9 @@ test("the table colours come from the documented MII palette", () => {
     "utf8",
   );
   for (const [name, value] of [
-    ["--mii-table-header-bg-color", "#ebedef"],
-    ["--mii-table-border-color", "#7a8495"],
-    ["--mii-table-header-text-color", "#333333"],
+    ["--ig-table-header-bg-color", "#ebedef"],
+    ["--ig-table-border-color", "#7a8495"],
+    ["--ig-table-header-text-color", "#333333"],
   ]) {
     assert.match(css, new RegExp(`${name}:\\s*${value}`, "i"));
     assert.ok(
