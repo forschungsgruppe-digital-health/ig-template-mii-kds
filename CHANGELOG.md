@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.1.0...v1.2.0) (2026-08-14)
+
+
+### Features
+
+* **css:** exactly one palette per build; default navbar typography; NUM-DIZ highlight boxes ([fba5a7b](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/fba5a7b618ba917276d46cf034259dfe58df78c6))
+
+
+### Bug Fixes
+
+* **footer:** copyright year 2027+; imprint points at the NUM-DIZ legal pages ([57977c3](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/57977c34d176e653b07fb8a13cba3efa18f20f8e))
+
 ## [1.1.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.0.1...v1.1.0) (2026-08-14)
 
 

@@ -9,11 +9,10 @@ description: >-
   and visually reviewable in English (default) and German. Not an MII KDS
   module.
 status: draft
-version: 1.1.0
+version: 1.2.0
 releaseLabel: ci-build
 fhirVersion: 4.0.1
 license: CC0-1.0
-# 2027 is the target release year of the template (TF-KDS decision).
 copyrightYear: 2027+
 publisher:
   name: NUM-DIZ
