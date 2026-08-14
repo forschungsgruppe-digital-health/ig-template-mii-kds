@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.0.0...v1.0.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **ci:** give the release demo its own concurrency lane and a push retry ([#85](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/85)) ([186c63f](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/186c63f0f77fe1fb75f994ceccb1875b55ca4376))
+
 ## [1.0.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v0.7.0...v1.0.0) (2026-08-14)
 
 
