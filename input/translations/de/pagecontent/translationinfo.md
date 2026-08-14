@@ -40,7 +40,7 @@ Schritt-für-Schritt-Anleitung steht im Repository unter
 > Repository-Weiterleitung von GitHub weiter.
 {: .ig-highlight .ig-highlight-grey}
 
-> **Geltungsbereich:** Dies ist die *Vorschau* der MII-IG-Vorlage
+> **Geltungsbereich:** Dies ist die *Vorschau* der KDS-IG-Vorlage
 > (`de.medizininformatikinitiative.template`) und kein MII-Kerndatensatz-Modul.
 > Sie dient nur dazu, das Branding vor einem Release in beiden Sprachen zu
 > prüfen. Ein Modul-IG bringt seine eigene Seite mit Übersetzungshinweisen mit.
