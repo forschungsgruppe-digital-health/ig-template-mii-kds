@@ -10,8 +10,10 @@
 //    a missing input/data/brand.json or an unknown value renders NUM-DIZ (the
 //    default) while exactly { "design": "mii" } restores the full MII design.
 // 3. ACCESSIBILITY — the documented NUM-DIZ text/background pairs hold
-//    WCAG 2.1 AA (>= 4.5:1), computed here from the shipped hex values, not
-//    from the styleguide's prose.
+//    WCAG 2.1 AA, computed here from the shipped hex values, not from the
+//    styleguide's prose. Normal-text pairs need >= 4.5:1; the navbar pair
+//    runs at the large-text bar (>= 3:1) and is coupled to the mii.css
+//    typography block that makes navbar links large text (19px bold).
 // 4. PROVENANCE — the derived English combo logo keeps its "not an official
 //    asset / pending approval" marker, and both NUM-DIZ logo files exist.
 //
@@ -138,10 +140,16 @@ test("brand guards test the exact value 'mii' — unknown values render NUM-DIZ"
   }
 });
 
-test("footer: NUM-DIZ link before the MII link, in both designs (no brand guard)", () => {
-  const numDiz = fragmentFooter.indexOf("netzwerk-universitaetsmedizin.de/forschung/num-diz");
-  const mii = fragmentFooter.indexOf('href="https://www.medizininformatik-initiative.de/"');
-  assert.ok(numDiz > -1, "footer links the NUM-DIZ page");
+test("footer: NUM-DIZ link before the MII link, aligned anchors, in both designs (no brand guard)", () => {
+  // Both website links are the SITE ROOT with the bare domain as anchor text
+  // (TF-KDS 2026-08-14) — asserting the full href+anchor pins the alignment.
+  const numDiz = fragmentFooter.indexOf(
+    'href="https://www.netzwerk-universitaetsmedizin.de/">netzwerk-universitaetsmedizin.de</a>',
+  );
+  const mii = fragmentFooter.indexOf(
+    'href="https://www.medizininformatik-initiative.de/">medizininformatik-initiative.de</a>',
+  );
+  assert.ok(numDiz > -1, "footer links the NUM-DIZ site root with the domain as anchor");
   assert.ok(mii > -1, "footer keeps the MII link (modules remain MII content)");
   assert.ok(numDiz < mii, "the NUM-DIZ link renders before the MII link");
   assert.ok(
@@ -170,28 +178,44 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
       m[2],
     ]),
   );
+  // Third element = the AA minimum for the pair. The navbar pair runs at the
+  // LARGE-TEXT bar (3:1, WCAG 1.4.3): the coral navbar (TF-KDS 2026-08-14)
+  // holds 3.58:1 under white, and mii.css renders the top-level navbar links
+  // 19px bold (>= 18.66px bold = large text). The test below this one pins
+  // that typography block — remove it and this relaxation becomes invalid.
   const pairs = [
-    ["--btn-text-color", "--navbar-bg-color"],
-    ["--btn-text-color", "--btn-hover-color"],
-    ["--btn-text-color", "--btn-active-color"],
-    ["--btn-text-color", "--btn-gradient-start-color"],
-    ["--btn-text-color", "--btn-gradient-end-color"],
-    ["--footer-hyperlink-text-color", "--footer-bg-color"],
-    ["--footer-highlight-text-color", "--footer-container-bg-color"],
-    ["--breadcrumb-text-color", "--breadcrumb-bg-color"],
-    ["--ig-status-text-color", "--ig-header-container-color"],
-    ["--link-color", "--ig-header-container-color"],
-    ["--link-hover-color", "--ig-header-container-color"],
-    ["--ig-table-header-text-color", "--ig-table-header-bg-color"],
+    ["--btn-text-color", "--navbar-bg-color", 3.0],
+    ["--btn-text-color", "--btn-hover-color", 4.5],
+    ["--btn-text-color", "--btn-active-color", 4.5],
+    ["--btn-text-color", "--btn-gradient-start-color", 4.5],
+    ["--btn-text-color", "--btn-gradient-end-color", 4.5],
+    ["--footer-hyperlink-text-color", "--footer-bg-color", 4.5],
+    ["--footer-highlight-text-color", "--footer-container-bg-color", 4.5],
+    ["--breadcrumb-text-color", "--breadcrumb-bg-color", 4.5],
+    ["--ig-status-text-color", "--ig-header-container-color", 4.5],
+    ["--link-color", "--ig-header-container-color", 4.5],
+    ["--link-hover-color", "--ig-header-container-color", 4.5],
+    ["--ig-table-header-text-color", "--ig-table-header-bg-color", 4.5],
   ];
-  for (const [fg, bg] of pairs) {
+  for (const [fg, bg, min] of pairs) {
     assert.ok(v[fg] && v[bg], `${fg} / ${bg} present as plain hex`);
     const ratio = contrast(v[fg], v[bg]);
     assert.ok(
-      ratio >= 4.5,
-      `${v[fg]} on ${v[bg]} (${fg} on ${bg}) is ${ratio.toFixed(2)}:1 — below AA`,
+      ratio >= min,
+      `${v[fg]} on ${v[bg]} (${fg} on ${bg}) is ${ratio.toFixed(2)}:1 — below the ${min}:1 bar`,
     );
   }
+});
+
+test("navbar links render as WCAG large text (the 3:1 navbar bar depends on it)", () => {
+  // mii.css's shared typography block makes top-level navbar links >= 18.66px
+  // bold; without it the navbar pair above would need 4.5:1 again.
+  const block = miiCss.match(
+    /#segment-navbar \.navbar-nav > li > a\s*\{[^}]*\}/,
+  );
+  assert.ok(block, "mii.css carries the navbar typography block");
+  assert.match(block[0], /font-size:\s*19px/, "navbar links are 19px");
+  assert.match(block[0], /font-weight:\s*700/, "navbar links are bold");
 });
 
 test("derived English combo keeps its provenance marker; both logo files exist", () => {
