@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.2.0...v1.2.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **pages:** time-robust MII wording + recorded naming policy ([d4cbfec](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/d4cbfec86c1bc63ca3598d0eaf3272aa687b8d74))
+
 ## [1.2.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.1.0...v1.2.0) (2026-08-14)
 
 
