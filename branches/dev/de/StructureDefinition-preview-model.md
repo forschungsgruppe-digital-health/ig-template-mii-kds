@@ -9,7 +9,7 @@
 | | |
 | :--- | :--- |
 | *Offizielle URL*:https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model | *Version*:1.2.1 |
-| Draft Stand: 2026-08-14 | *Maschinenlesbarer Name*:PreviewModel |
+| Draft Stand: 2026-08-15 | *Maschinenlesbarer Name*:PreviewModel |
 
  
 Minimal logical model that exists only so the template preview IG builds and its artifact layout renders; not an MII artifact. 
@@ -65,7 +65,7 @@ Weitere Repräsentationen des Profils: [CSV](../StructureDefinition-preview-mode
   "name" : "PreviewModel",
   "title" : "Preview Model",
   "status" : "draft",
-  "date" : "2026-08-14T11:01:32+00:00",
+  "date" : "2026-08-15T21:47:27+00:00",
   "publisher" : "NUM-DIZ",
   "_publisher" : {
     "extension" : [{
