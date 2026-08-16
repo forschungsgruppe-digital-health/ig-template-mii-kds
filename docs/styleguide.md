@@ -12,7 +12,9 @@ source-by-source derivation (URLs, checksums, pixel analyses) is preserved in
 this repository's git history (`docs/design.md`, the styleguide's
 predecessor). Follow-ups on the logo assets (an official SVG, trademark
 permission — for NUM-DIZ: pending brand-use consent, §10) are tracked in
-[open-tasks.md](open-tasks.md).
+the issue tracker ([#25](../../../issues/25), [#26](../../../issues/26),
+[#109](../../../issues/109), [#110](../../../issues/110),
+[#111](../../../issues/111)).
 
 ---
 
@@ -51,7 +53,7 @@ language-aware base both MII reference repos use. The rules:
   > `lang-redirects.js` carries the fix for a defect in the pinned base's
   > landing-page redirect and has a deletion condition attached — the reason is
   > written out in the file itself, the follow-up in
-  > [open-tasks.md](open-tasks.md).
+  > [issue #122](../../../issues/122).
 - **Never ship `config.json`, `layouts/`, `liquid/`, `scripts/` or a
   `translations/stringsBase.json`.** The IG Publisher *replaces* (does not
   merge) these per template directory — a copy forks the whole base and
@@ -274,7 +276,7 @@ recorded limitation, §7.)
   language's pages**: it is HL7's prescribed legal formula, not translatable
   UI text (rendered because the header shows the FHIR flame on every page —
   guard-tested in `scripts/brand-switch.test.mjs`; the community-use
-  permission request remains a maintainer action, [open-tasks](open-tasks.md)).
+  permission request remains a maintainer action, [issue #109](../../../issues/109)).
 
 ## 7. Recorded limitations (do not fix by workaround)
 
@@ -500,5 +502,5 @@ value that holds AA for normal-size text.
   their approval as a new brand asset. Since NUM-DIZ became the **default**
   design, every rendering that does not opt back to MII ships these logos —
   the consent and approval are no longer gating an opt-in extra but the
-  out-of-the-box output. Tracked in [open-tasks.md](open-tasks.md); replace
+  out-of-the-box output. Tracked in [#110](../../../issues/110)/[#111](../../../issues/111); replace
   the derived file the day an official English combo exists.

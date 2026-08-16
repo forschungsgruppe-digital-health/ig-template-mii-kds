@@ -9,7 +9,7 @@ There are two ways to reference the template. Today only **vendored** works: the
 package `de.medizininformatikinitiative.template` is not resolvable from a FHIR
 package registry. A GitHub release is not the trigger — this repository already
 cuts releases, but the IG Publisher cannot fetch a template it cannot resolve.
-Switch to **published** when that changes; see [open tasks](../open-tasks.md).
+Switch to **published** when that changes; see [issue #113](../../../../issues/113).
 
 ## Steps
 

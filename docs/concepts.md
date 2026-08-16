@@ -16,7 +16,7 @@ A module IG does not copy any layout files. In its `ig.ini` it writes one line â
 Publisher downloads and applies this package.
 
 That is the target state. The package is not on a registry yet
-([open-tasks.md](open-tasks.md)), so today a module *does* copy these files: it
+([issue #113](../../../issues/113)), so today a module *does* copy these files: it
 vendors this repository's `dev` branch into its own `ig-template/` folder and
 points `ig.ini` at that folder. Nobody pins a version, and a merge into `dev`
 here reaches modules without a release â€” the mechanics are in

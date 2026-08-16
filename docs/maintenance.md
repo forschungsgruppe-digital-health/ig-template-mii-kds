@@ -92,3 +92,68 @@ recorded here so the reasoning survives the alert.
 | Date | Finding (CVE/GHSA + artifact) | Why accepted | Review by |
 |---|---|---|---|
 | _none yet_ | | | |
+
+## Recorded limits and decisions
+
+<!-- Moved here from docs/open-tasks.md when the task board moved to the
+     issue tracker (2026-08-16). These are DECIDED records, not open tasks:
+     "was this forgotten, or decided?" — decided. -->
+
+- **A private address is in one commit message on `main`, and stays there.** The
+  squash-merge of the second verification round carries a
+  `Co-authored-by:` trailer with a personal mailbox. Removing it would mean
+  rewriting seven commits per repository, force-pushing two protected branches,
+  and invalidating the `v0.3.0` tag and its release — and it would **still not
+  remove the address**, because a force-push leaves the old commit reachable by
+  its URL until the forge purges unreferenced objects on request. The rewrite
+  therefore pays the full cost and does not achieve the goal. Decided:
+  leave it. The route that does work, if it is ever needed, is asking GitHub
+  Support to purge the unreferenced commit after a rewrite.
+  Prevented from recurring instead: commits are authored with the GitHub
+  noreply address, so no future squash merge generates the trailer.
+
+- **The build reports broken links; CI does not gate on the count.** The QA gate
+  is `Errors: 0`, which the preview meets. Broken links are reported separately
+  and are usually external URLs whose reachability depends on the network at
+  build time, so failing a build on them would make CI flaky. Read the count in
+  `qa.html` when you change page content: it was 2 for several builds because
+  the preview's `translationinfo` page linked to the target organisation's issue
+  tracker, which does not exist yet. Rendered page content therefore does not
+  hard-code a repository URL — see the note on that page.
+
+- **The publisher name in the © line cannot be branched per language.** The
+  pinned base emits it in `fragment-pageend.html:48` from the single-valued
+  `publisher` block in `sushi-config.yaml`, *before* `fragment-footer.html`
+  runs. Mitigated since the publisher became **NUM-DIZ** (2026-08-14): the
+  name is a language-neutral proper name and the link is the NUM site root.
+  Recorded in [styleguide](styleguide.md) §6/§7.
+- **The preview's "Directory of published versions" link is inert.** The publish
+  box derives it from the canonical, which for a template package is its GitHub
+  repository URL. Recorded in [design](styleguide.md).
+- **`scripts/check-language-model.sh` is curated, not exhaustive.** It matches
+  line by line, so a claim split across a line break passes — which is exactly
+  how the comment in `includes/fragment-footer.html` survived `ce3a914`,
+  "align the preview IG with the module template's language model": it read
+  "the German" / "(default) pages" across two lines. It was tested against 20
+  phrasings and catches every wording that has actually occurred here. If you
+  add a phrasing, add the pattern; do not weaken the existing ones.
+
+- **Nothing enforces the "list test files by name" convention.** `scripts/*.test.mjs`
+  is run by an explicit list in `dependency-check.yml` and `security-scan.yml`,
+  not a glob, so a new test file can be written and silently never run in CI.
+  The explicit form is deliberate (a glob in the sibling repo's publication gate
+  once aborted a release), so the trade is accepted: `scripts/README.md` and both
+  workflows say a new test must be added by hand.
+
+### Cross-repo consistency — decided, not pending
+
+No sync mechanism between this repository and the module scaffold is planned. A
+created module must be self-contained: replacing its copy of a shared page such
+as `glossary.md` or `maintenance.md` with a link back here would break the moment
+that module is developed independently, which is the whole point of a template.
+The two repositories share several documentation filenames, and the copies
+differ where the repositories differ — `project-status.md` because each names the
+other, `glossary.md` because the module scaffold defines terms this repository
+has no use for. Convergence is checked when a shared doc is edited, not enforced
+by tooling.
+

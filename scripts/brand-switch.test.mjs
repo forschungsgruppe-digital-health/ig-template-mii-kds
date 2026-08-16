@@ -176,7 +176,7 @@ test("footer: NUM-DIZ link before the MII link, aligned anchors, in both designs
   // asks for the attribution sentence in text wherever the mark is used.
   assert.match(fragmentFooter,
     /HL7®, FHIR® and the FHIR flame design are registered trademarks of Health Level Seven International/,
-    "the HL7 trademark attribution renders in the footer (see docs/open-tasks.md)");
+    "the HL7 trademark attribution renders in the footer (permission request: issue #109)");
   assert.match(fragmentHeader, /alt="HL7 FHIR"/,
     "the flame stays standalone + nominative in the header");
 });
