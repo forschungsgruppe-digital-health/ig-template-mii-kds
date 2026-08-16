@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.2.1...v1.3.0) (2026-08-16)
+
+
+### Features
+
+* **a11y:** A/A+/A++ font-size control (zoom-based, revertible); translate the Language label ([1f51168](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/1f511685755cb9a5fabf1fcfb37dc377625b01d1))
+* **a11y:** back-to-top button (one-viewport threshold, reduced-motion aware) ([7914c97](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/7914c97234b81650341fe0f3e7c044c8a38d2ed0))
+* **a11y:** vendor the Bootstrap-3 accessibility plugin (PayPal v1.0.7, pinned) ([e4a50b7](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/e4a50b7e198128774693603ee88694fdfce6cb33))
+
+
+### Bug Fixes
+
+* **a11y:** back-to-top visible over the footer; arrow actually centered ([f21dd99](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/f21dd9918ebcb37ab138e4ca9631848b13520843))
+* **a11y:** baseline-group the A buttons; middle-align the group; gap to the FHIR logo ([95cd76c](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/95cd76c0e18bb37ad6b10a3f5abedcf6bf224b56))
+* **a11y:** control on the header's middle line; breadcrumb + footer join the zoom ([209aeff](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/209aeffd30aa0e8d4bb4058b9e5c8f839dd06156))
+* **a11y:** font-size control polish - plain A labels, vertical centering, menu zooms too ([59228f3](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/59228f31f0e779555cc9013da9432489733b64e8))
+* **a11y:** one hover convention for both chrome controls (WCAG 3.2.4) ([7af0a8a](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/7af0a8a3037c096d97ad014c78ac81a80a5a6e4a))
+* **legal:** render the HL7 trademark attribution in the footer ([d871c5a](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/d871c5aa25d52dd61e6f4b573fb5db3ab31d48eb))
+
 ## [1.2.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.2.0...v1.2.1) (2026-08-14)
 
 
