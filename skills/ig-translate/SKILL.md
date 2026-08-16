@@ -105,7 +105,7 @@ toolchain treats it as a separate page, not a translation.
 > Read the catalog skill before acting on the row above; this copy is kept
 > because the rest of the file is template-owner scope, not because the row is
 > still correct. Reconciling it is
-> [open work for this repo's owner](../../docs/open-tasks.md), not something to
+> [open work for this repo's owner](../../../../issues/123), not something to
 > assume has happened.
 
 ## Configuration the scaffold pre-configures (and this template is verified against)

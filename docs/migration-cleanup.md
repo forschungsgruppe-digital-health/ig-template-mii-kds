@@ -11,7 +11,6 @@ delete this file last.** The module template repository carries its own copy
 | File | Why it can go |
 | --- | --- |
 | `docs/project-status.md` | The prototype/organisation status page. Its open questions dissolve at adoption + move; carry any surviving decision into the README or an ADR-style note before deleting. |
-| `docs/open-tasks.md` | The pre-move task board. Move rows still open into GitHub issues of the target repository, then delete. |
 | `docs/migration-cleanup.md` | This file — last, once every row is done. |
 
 ## Edit in one pass after migration (do not delete)
@@ -28,6 +27,6 @@ delete this file last.** The module template repository carries its own copy
 
 - Publishing `de.medizininformatikinitiative.template` to a FHIR package
   registry and registering it in `FHIR/ig-registry` — an explicit publication
-  decision (`docs/open-tasks.md`), not the org move.
+  decision ([#112](../../../issues/112)/[#113](../../../issues/113)), not the org move.
 - The preview IG (`input/`, `sushi-config.yaml`, `ig.ini`) — stays: the
   template needs its rendered preview wherever it lives.
