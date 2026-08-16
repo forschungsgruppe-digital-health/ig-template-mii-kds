@@ -317,6 +317,23 @@ decorative-only (they fail on text); `--btn-text-color` stays `#ffffff` (the
 base's `#e6e6e6` is 4.03:1 on the navbar blue); the language dropdown reads
 white on navbar blue (5.03:1).
 
+### Widget semantics — the vendored Bootstrap-3 accessibility patch
+
+The publisher's pages run on Bootstrap 3, whose components are semantically
+thin (tab-only dropdowns, no ARIA tabs pattern). The template vendors the
+**PayPal Bootstrap Accessibility Plugin v1.0.7** (pinned byte-exact by
+`scripts/bootstrap-accessibility.test.mjs`) as a runtime patch over the
+markup the publisher generates: navbar dropdowns gain ARIA menu semantics
+and arrow-key navigation, tab panels (the `structure-tabs` include) the full
+ARIA tabs pattern with arrow keys, alerts live-region announcements; the
+small CSS adds focus outlines and alert-contrast fixes and loads before
+`template-base.css` so the template can override. Upstream is
+feature-complete/minimally maintained — coherent against the frozen
+Bootstrap 3; the Swiss federal `admin-ch` fork was evaluated and rejected
+(151 commits behind upstream; its six own commits are site-specific tab
+tweaks). REMOVAL is one commit: both vendored assets, the `fragment-css`
+link and the `fragment-header` script tag.
+
 ### Text resize (WCAG 1.4.4)
 
 Browser zoom remains the primary resize mechanism (the layout is responsive
