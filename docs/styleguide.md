@@ -26,13 +26,23 @@ language-aware base both MII reference repos use. The rules:
   `includes/fragment-css.html` (the base's *designed* child extension points —
   empty placeholders), `includes/fragment-footer.html` (not a placeholder: the
   override preserves the base's link structure and appends to it),
+  `includes/fragment-language.html` (verbatim copy fixing ONE base defect: the
+  base hardcodes the literal "Language:" instead of reading its own
+  stringsBase catalog, so the label never translated — the override reads the
+  catalog with the English literal as fallback; delete it the day the pinned
+  base reads its catalog there),
   `includes/structure-tabs.html` (an added authoring include with no base
-  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), three CSS
-  files (`content/assets/css/template-base.css`, the brand-independent rule
+  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), four CSS
+  files (`content/assets/css/bootstrap-accessibility.css` — the vendored
+  Bootstrap-3 accessibility patch, §8 — then
+  `content/assets/css/template-base.css`, the brand-independent rule
   blocks, always linked; then exactly ONE palette file —
   `content/assets/css/num-diz.css` by default, `content/assets/css/mii.css`
   only when the brand switch selects MII — §10), the logo/favicon assets, the vendored German
-  UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
+  UI catalogs in `translations/`, and four JS assets:
+  `content/assets/js/lang-redirects.js`, `font-size-control.js` and
+  `back-to-top.js` (both §8), and the vendored
+  `bootstrap-accessibility.min.js` (pinned byte-exact, §8).
   > **The two same-path replacements are on borrowed time.**
   > `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png`
   > win only because a child template's file at the same path beats the base's.
@@ -196,9 +206,9 @@ inline `<style>` blocks):
 
 ## 5a. The rule blocks in `template-base.css`
 
-Colour is variables-only (§1) and lives in the palette files; the four rule
+Colour is variables-only (§1) and lives in the palette files; the six rule
 blocks that go beyond variables live in the brand-independent
-`template-base.css`. Three of them add *new* classes, which cannot collide
+`template-base.css`. Five of them add *new* classes, which cannot collide
 with the base; one deliberately overrides base rules. Anything added here has
 to earn its place, because a rule the base later changes will silently keep
 the value set here.
@@ -209,6 +219,8 @@ the value set here.
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
+| Font-size control (§8) | `.ig-fontsize`, `html[data-fontsize]` over the four reading regions | new classes | Reader-selectable A/A+/A++ levels (2026-08-15). Level A = NO rule — the default renders byte-identical to a build without the feature. Levels apply `zoom` to `#segment-content`, `#segment-navbar`, `#segment-breadcrumb` and `#segment-footer` as siblings (standardized in CSS Viewport; scales the publisher-generated tables' INLINE px font sizes too and reflows; only the header band keeps its fitted layout); print resets to 100 %. Colors are palette variables only; hover shares the chrome convention (§8). **REMOVAL is one commit:** this block, `assets/js/font-size-control.js`, and the `.ig-fontsize` block in `includes/fragment-header.html`. Guarded by `scripts/font-size-control.test.mjs` |
+| Back-to-top button (§8) | `.ig-back-to-top` | new classes | Fixed bottom-right jump-to-top after one viewport of scrolling (2026-08-16); solid light ground so it stays visible over the slate footer; reduced-motion-aware; outside the zoom regions. **REMOVAL is one commit:** this block, `assets/js/back-to-top.js` and the header markup block. Guarded by `scripts/back-to-top.test.mjs` |
 
 `template-base.css` is linked after the base stylesheets
 (`includes/fragment-css.html`), so none of these needs `!important`. The
@@ -258,6 +270,11 @@ recorded limitation, §7.)
   including "Table of Contents".
 - The only other literal texts allowed are bare URLs and `alt` texts quoting
   the proper name of the logo variant shown.
+- The HL7 trademark attribution in the footer stays **English on every
+  language's pages**: it is HL7's prescribed legal formula, not translatable
+  UI text (rendered because the header shows the FHIR flame on every page —
+  guard-tested in `scripts/brand-switch.test.mjs`; the community-use
+  permission request remains a maintainer action, [open-tasks](open-tasks.md)).
 
 ## 7. Recorded limitations (do not fix by workaround)
 
@@ -310,6 +327,49 @@ Conventions derived from the measurements: the accent greens and teal are
 decorative-only (they fail on text); `--btn-text-color` stays `#ffffff` (the
 base's `#e6e6e6` is 4.03:1 on the navbar blue); the language dropdown reads
 white on navbar blue (5.03:1).
+
+### Back-to-top button
+
+IG pages get very long; the fixed bottom-right button appears after about
+one viewport of scrolling and jumps back, moving focus to the page-top
+anchor so keyboard users land where they jumped. Written as an own asset
+(`assets/js/back-to-top.js`) instead of wiring the base's dormant
+`topofpage.js`, which fades in at 50px, fires a tooltip on load and ignores
+`prefers-reduced-motion` — ours scrolls smoothly only without that
+preference. Rendered inside `#segment-header`, outside the `data-fontsize`
+zoom regions, so it never scales with A+/A++. Colors are the font-size
+control's inactive pair on a SOLID light ground (`--ig-header-container-color`
+— white in both palettes — with slate border/glyph, slate fill on hover): a
+slate-filled button was the same variable value as the footer and vanished
+when the two crossed. **REMOVAL is one commit:** the js asset, the
+`template-base.css` block and the header markup block — guarded by
+`scripts/back-to-top.test.mjs`.
+
+### Widget semantics — the vendored Bootstrap-3 accessibility patch
+
+The publisher's pages run on Bootstrap 3, whose components are semantically
+thin (tab-only dropdowns, no ARIA tabs pattern). The template vendors the
+**PayPal Bootstrap Accessibility Plugin v1.0.7** (pinned byte-exact by
+`scripts/bootstrap-accessibility.test.mjs`) as a runtime patch over the
+markup the publisher generates: navbar dropdowns gain ARIA menu semantics
+and arrow-key navigation, tab panels (the `structure-tabs` include) the full
+ARIA tabs pattern with arrow keys, alerts live-region announcements; the
+small CSS adds focus outlines and alert-contrast fixes and loads before
+`template-base.css` so the template can override. Upstream is
+feature-complete/minimally maintained — coherent against the frozen
+Bootstrap 3; the Swiss federal `admin-ch` fork was evaluated and rejected
+(151 commits behind upstream; its six own commits are site-specific tab
+tweaks). REMOVAL is one commit: both vendored assets, the `fragment-css`
+link and the `fragment-header` script tag.
+
+### Text resize (WCAG 1.4.4)
+
+Browser zoom remains the primary resize mechanism (the layout is responsive
+to 200 %). The A/A+/A++ control (§5a) is an *additional* reader aid at +12.5 %
+and +25 % on the content region — chosen because the publisher-generated
+artifact tables carry inline `font-size: 11px` styles that user stylesheets
+and inherited font sizes cannot reach, while `zoom` scales them. Level A is
+always the untouched default.
 
 ## 9. How to review a branding change
 
