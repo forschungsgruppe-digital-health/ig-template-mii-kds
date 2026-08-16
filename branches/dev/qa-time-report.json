@@ -1,5 +1,5 @@
 {
-  "date" : "Sun, 16 Aug, 2026 11:42:03 +0000",
+  "date" : "Sun, 16 Aug, 2026 11:56:52 +0000",
   "doco" : "For each file: start is seconds after start activity occurred. Length = milliseconds activity took",
   "files" : [{
     "name" : "/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json",
@@ -7,51 +7,51 @@
     "processes" : [{
       "activity" : "load",
       "start" : 26,
-      "length" : 19
+      "length" : 18
     },
     {
       "activity" : "checkR4R4B",
-      "start" : 26,
+      "start" : 27,
       "length" : 14
     },
     {
       "activity" : "generateNarratives",
-      "start" : 26,
-      "length" : 237
+      "start" : 27,
+      "length" : 133
     },
     {
       "activity" : "validate",
       "start" : 29,
-      "length" : 4129
+      "length" : 5187
     },
     {
       "activity" : "scanForUsageStats",
-      "start" : 33,
+      "start" : 34,
       "length" : 1
     },
     {
       "activity" : "translate",
-      "start" : 33,
-      "length" : 8
+      "start" : 34,
+      "length" : 10
     },
     {
       "activity" : "generate1",
-      "start" : 33,
-      "length" : 124
+      "start" : 34,
+      "length" : 145
     },
     {
       "activity" : "generate2",
-      "start" : 36,
-      "length" : 248
+      "start" : 37,
+      "length" : 154
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 46,
+      "start" : 48,
       "length" : 3
     },
     {
       "activity" : "scanExamplesForR5",
-      "start" : 56,
+      "start" : 59,
       "length" : 2
     }]
   },
@@ -61,56 +61,61 @@
     "processes" : [{
       "activity" : "loadResources",
       "start" : 26,
-      "length" : 4
+      "length" : 3
     },
     {
       "activity" : "load",
       "start" : 26,
-      "length" : 6
+      "length" : 8
     },
     {
       "activity" : "generateSnapshots",
       "start" : 26,
-      "length" : 5
+      "length" : 6
     },
     {
       "activity" : "load-configure",
-      "start" : 26,
+      "start" : 27,
+      "length" : 1
+    },
+    {
+      "activity" : "loadDepInfo",
+      "start" : 27,
       "length" : 1
     },
     {
       "activity" : "generateNarratives",
       "start" : 27,
-      "length" : 608
+      "length" : 340
     },
     {
       "activity" : "validate",
       "start" : 27,
-      "length" : 1469
+      "length" : 1895
     },
     {
       "activity" : "translate",
-      "start" : 33,
+      "start" : 34,
       "length" : 1
     },
     {
       "activity" : "generate1",
-      "start" : 33,
-      "length" : 49
+      "start" : 35,
+      "length" : 48
     },
     {
       "activity" : "generate2",
-      "start" : 36,
-      "length" : 652
+      "start" : 38,
+      "length" : 636
     },
     {
       "activity" : "generate2",
-      "start" : 36,
-      "length" : 1557
+      "start" : 38,
+      "length" : 1036
     },
     {
       "activity" : "generateValidationPack",
-      "start" : 46,
+      "start" : 48,
       "length" : 2
     }]
   },
@@ -119,7 +124,7 @@
     "size" : 602,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 36,
+      "start" : 38,
       "length" : 1
     }]
   },
@@ -132,7 +137,7 @@
     "size" : 106,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 36,
+      "start" : 38,
       "length" : 1
     }]
   },
@@ -145,7 +150,7 @@
     "size" : 3041,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 36,
+      "start" : 38,
       "length" : 1
     }]
   },
@@ -162,7 +167,7 @@
     "size" : 1675,
     "processes" : [{
       "activity" : "generate2",
-      "start" : 36,
+      "start" : 38,
       "length" : 1
     }]
   }]
