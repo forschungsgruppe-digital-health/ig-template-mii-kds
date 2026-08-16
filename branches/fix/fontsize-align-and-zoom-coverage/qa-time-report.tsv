@@ -1,0 +1,11 @@
+Source File	Size	loadResources	load	generateSnapshots	load-configure	scan	loadDepInfo	loadInfo	checkR4R4B	generateNarratives	validate	loadLists	checkConformanceResources	checkConformanceResources2	checkConformanceResources3	generateLogicalMaps	validateExpressions	scanForUsageStats	checkURLsUnique	processProvenanceDetails	translate	generate1	generate2	generateLogicals	makeDependencies	generateExampleZip	generateValidationPack	scanProfilesForR5	scanExamplesForR5
+/fsh-generated/resources/ImplementationGuide-de.medizininformatikinitiative.template.preview.json	2354	-	0	0	0	0	0	0	11	273	0	0	0	0	0	0	0	0	0	0	9	144	140	0	0	0	2	0	3
+fsh-generated/resources/StructureDefinition-preview-model.json	1332	4	0	6	1	0	1	0	0	641	0	0	1	0	0	0	0	0	0	0	1	61	653	0	0	0	1	0	0
+/input/includes/menu.xml	602	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	0	0
+/fsh-generated/includes/fsh-link-references.md	54	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/input/data/repo.json	106	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+/input/pagecontent/index.md	1987	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/input/pagecontent/translationinfo.md	3041	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+/template/config	0	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/template/config/_config.yml	140	-	-	-	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+/temp/pages/_includes/artifacts.xml	1675	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	1	0	0	0	0	0	0
