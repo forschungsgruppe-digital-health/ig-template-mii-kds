@@ -38,6 +38,8 @@ test("palette variables only; both language aria labels; outside the zoom region
   assert.match(block, /background:\s*var\(--ig-header-container-color\)/,
     "SOLID light ground - the slate fill matched the footer variable value and vanished on overlap");
   assert.match(block, /padding:\s*0/, "UA button padding reset (glyph centering)");
+  assert.match(block, /:hover\s*\{[^}]*var\(--btn-hover-color\)/,
+    "hover fills with the same variable as the font-size control (WCAG 3.2.4 consistency)");
   for (const l of ["Zurück zum Seitenanfang", "Back to top"]) {
     assert.ok(header.includes(`aria-label="${l}"`), l);
   }
