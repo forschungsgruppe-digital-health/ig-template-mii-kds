@@ -42,13 +42,17 @@ test("level A is the untouched default (per-reader revert)", () => {
     "level A removes the attribute rather than setting a zero level");
 });
 
-test("zoom levels: exactly two, scoped to #segment-content, print resets", () => {
-  const rules = [...css.matchAll(/html\[data-fontsize="(\d)"\]\s+([^\s{]+)\s*\{\s*zoom:\s*([\d.]+)/g)];
-  assert.equal(rules.length, 2, "exactly the two non-default levels");
-  assert.deepEqual(rules.map((r) => [r[1], r[2], r[3]]),
-    [["1", "#segment-content", "1.125"], ["2", "#segment-content", "1.25"]]);
-  assert.match(css, /@media print[\s\S]*?#segment-content\s*\{\s*zoom:\s*1\s*!important/,
-    "print renders at 100 %");
+test("zoom levels: two levels, content AND menu, print resets both", () => {
+  const rules = [...css.matchAll(/html\[data-fontsize="(\d)"\][^{]*\{\s*zoom:\s*([\d.]+)/g)];
+  assert.deepEqual(rules.map((r) => [r[1], r[2]]), [["1", "1.125"], ["2", "1.25"]],
+    "exactly the two non-default levels");
+  for (const lv of ["1", "2"]) {
+    const sel = css.match(new RegExp(`html\\[data-fontsize="${lv}"\\][^{]*\\{`))[0];
+    assert.ok(sel.includes("#segment-content") && sel.includes("#segment-navbar"),
+      `level ${lv} scales the content and the menu (sibling regions, no factor multiplication)`);
+  }
+  assert.match(css, /@media print[\s\S]*?#segment-content,\s*#segment-navbar\s*\{\s*zoom:\s*1\s*!important/,
+    "print renders both regions at 100 %");
 });
 
 test("the control styles from palette variables only (both brands inherit)", () => {
@@ -67,6 +71,9 @@ test("header: three buttons per language branch, defer-loaded script", () => {
   }
   assert.equal((header.match(/data-level="0"/g) || []).length, 2, "level 0 in both branches");
   assert.equal((header.match(/data-level="[12]"/g) || []).length, 4, "levels 1+2 in both branches");
+  assert.equal((header.match(/>A</g) || []).length, 6,
+    "all buttons read plain A — the button's own size shows the level");
+  assert.ok(!/>A\+/.test(header), "no + suffixes on the labels");
   assert.match(header, /font-size-control\.js" defer/, "script loads deferred");
 });
 
