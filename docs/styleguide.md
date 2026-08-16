@@ -317,6 +317,20 @@ decorative-only (they fail on text); `--btn-text-color` stays `#ffffff` (the
 base's `#e6e6e6` is 4.03:1 on the navbar blue); the language dropdown reads
 white on navbar blue (5.03:1).
 
+### Back-to-top button
+
+IG pages get very long; the fixed bottom-right button appears after about
+one viewport of scrolling and jumps back, moving focus to the page-top
+anchor so keyboard users land where they jumped. Written as an own asset
+(`assets/js/back-to-top.js`) instead of wiring the base's dormant
+`topofpage.js`, which fades in at 50px, fires a tooltip on load and ignores
+`prefers-reduced-motion` — ours scrolls smoothly only without that
+preference. Rendered inside `#segment-header`, outside the `data-fontsize`
+zoom regions, so it never scales with A+/A++. Colors are the same palette
+pair as the font-size control. **REMOVAL is one commit:** the js asset, the
+`template-base.css` block and the header markup block — guarded by
+`scripts/back-to-top.test.mjs`.
+
 ### Widget semantics — the vendored Bootstrap-3 accessibility patch
 
 The publisher's pages run on Bootstrap 3, whose components are semantically
