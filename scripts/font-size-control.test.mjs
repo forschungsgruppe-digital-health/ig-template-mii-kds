@@ -62,6 +62,17 @@ test("zoom levels: two levels over the four reading regions, print resets all", 
   assert.match(print_, /zoom:\s*1\s*!important/, "print renders at 100 %");
 });
 
+test("hover matches the back-to-top convention (WCAG 3.2.4 consistency)", () => {
+  const block = css.slice(css.indexOf("Font-size control"), css.indexOf("DEPRECATED aliases"));
+  const hoverAt = block.indexOf("button:hover");
+  const pressedAt = block.indexOf('[aria-pressed="true"]');
+  assert.ok(hoverAt > -1, "hover rule present");
+  assert.ok(block.slice(hoverAt, block.indexOf("}", hoverAt)).includes("var(--btn-hover-color)"),
+    "hover fills with the palette menu-hover color - the SAME variable as .ig-back-to-top:hover");
+  assert.ok(hoverAt < pressedAt,
+    "hover declared before aria-pressed so the pressed fill wins while hovered");
+});
+
 test("the control styles from palette variables only (both brands inherit)", () => {
   const block = css.slice(css.indexOf("Font-size control"), css.indexOf("DEPRECATED aliases"));
   assert.ok(block.length > 0, "block found before the deprecated aliases");
