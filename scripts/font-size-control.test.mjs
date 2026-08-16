@@ -42,17 +42,24 @@ test("level A is the untouched default (per-reader revert)", () => {
     "level A removes the attribute rather than setting a zero level");
 });
 
-test("zoom levels: two levels, content AND menu, print resets both", () => {
+test("zoom levels: two levels over the four reading regions, print resets all", () => {
   const rules = [...css.matchAll(/html\[data-fontsize="(\d)"\][^{]*\{\s*zoom:\s*([\d.]+)/g)];
   assert.deepEqual(rules.map((r) => [r[1], r[2]]), [["1", "1.125"], ["2", "1.25"]],
     "exactly the two non-default levels");
+  const REGIONS = ["#segment-content", "#segment-navbar", "#segment-breadcrumb", "#segment-footer"];
   for (const lv of ["1", "2"]) {
     const sel = css.match(new RegExp(`html\\[data-fontsize="${lv}"\\][^{]*\\{`))[0];
-    assert.ok(sel.includes("#segment-content") && sel.includes("#segment-navbar"),
-      `level ${lv} scales the content and the menu (sibling regions, no factor multiplication)`);
+    for (const r of REGIONS) {
+      assert.ok(sel.includes(r),
+        `level ${lv} scales ${r} (sibling regions, no factor multiplication)`);
+    }
   }
-  assert.match(css, /@media print[\s\S]*?#segment-content,\s*#segment-navbar\s*\{\s*zoom:\s*1\s*!important/,
-    "print renders both regions at 100 %");
+  const print_ = css.slice(css.indexOf("@media print"));
+  for (const r of REGIONS) {
+    assert.ok(print_.slice(0, print_.indexOf("}")).includes(r) || print_.includes(r),
+      `print resets ${r}`);
+  }
+  assert.match(print_, /zoom:\s*1\s*!important/, "print renders at 100 %");
 });
 
 test("the control styles from palette variables only (both brands inherit)", () => {
