@@ -32,12 +32,17 @@ language-aware base both MII reference repos use. The rules:
   catalog with the English literal as fallback; delete it the day the pinned
   base reads its catalog there),
   `includes/structure-tabs.html` (an added authoring include with no base
-  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), three CSS
-  files (`content/assets/css/template-base.css`, the brand-independent rule
+  counterpart — [recipe](recipes/tab-an-artifact-structure.md)), four CSS
+  files (`content/assets/css/bootstrap-accessibility.css` — the vendored
+  Bootstrap-3 accessibility patch, §8 — then
+  `content/assets/css/template-base.css`, the brand-independent rule
   blocks, always linked; then exactly ONE palette file —
   `content/assets/css/num-diz.css` by default, `content/assets/css/mii.css`
   only when the brand switch selects MII — §10), the logo/favicon assets, the vendored German
-  UI catalogs in `translations/`, and `content/assets/js/lang-redirects.js`.
+  UI catalogs in `translations/`, and four JS assets:
+  `content/assets/js/lang-redirects.js`, `font-size-control.js` and
+  `back-to-top.js` (both §8), and the vendored
+  `bootstrap-accessibility.min.js` (pinned byte-exact, §8).
   > **The two same-path replacements are on borrowed time.**
   > `content/assets/js/lang-redirects.js` and `content/assets/ico/favicon.png`
   > win only because a child template's file at the same path beats the base's.
@@ -201,9 +206,9 @@ inline `<style>` blocks):
 
 ## 5a. The rule blocks in `template-base.css`
 
-Colour is variables-only (§1) and lives in the palette files; the four rule
+Colour is variables-only (§1) and lives in the palette files; the six rule
 blocks that go beyond variables live in the brand-independent
-`template-base.css`. Three of them add *new* classes, which cannot collide
+`template-base.css`. Five of them add *new* classes, which cannot collide
 with the base; one deliberately overrides base rules. Anything added here has
 to earn its place, because a rule the base later changes will silently keep
 the value set here.
@@ -214,7 +219,8 @@ the value set here.
 | Narrative tables (§5) | `table:not([class]):not([style]):not([border]):not([data-fhir])` and its `th`/`td` | new rules on markdown tables the base leaves unstyled | Detailed in §5, including why the obvious short selector is wrong |
 | Content images | `#segment-content p > img:not(.float)`, `#segment-content img` | **overrides base rules** | The base floats every `p > img` and caps no width, so a diagram wraps body text beside it and a wide one overflows the column. Content images are block-centred and width-capped instead; a small inline image opts back into the base behaviour with `class="float"` |
 | Structure tabs | `.structure-tabs`, `.structure-tabs .tab-content` | new classes | Spacing and a scroll container for `includes/structure-tabs.html` — [recipe](recipes/tab-an-artifact-structure.md) |
-| Font-size control | `.ig-fontsize`, `html[data-fontsize] #segment-content` | new classes | Reader-selectable A/A+/A++ levels (2026-08-15). Level A = NO rule — the default renders byte-identical to a build without the feature. Levels use `zoom` on `#segment-content` (standardized in CSS Viewport; scales the publisher-generated tables' INLINE px font sizes too and reflows; chrome layout untouched); print resets to 100 %. Colors are palette variables only. **REMOVAL is one commit:** this block, `assets/js/font-size-control.js`, and the `.ig-fontsize` block in `includes/fragment-header.html`. Guarded by `scripts/font-size-control.test.mjs` |
+| Font-size control (§8) | `.ig-fontsize`, `html[data-fontsize]` over the four reading regions | new classes | Reader-selectable A/A+/A++ levels (2026-08-15). Level A = NO rule — the default renders byte-identical to a build without the feature. Levels apply `zoom` to `#segment-content`, `#segment-navbar`, `#segment-breadcrumb` and `#segment-footer` as siblings (standardized in CSS Viewport; scales the publisher-generated tables' INLINE px font sizes too and reflows; only the header band keeps its fitted layout); print resets to 100 %. Colors are palette variables only; hover shares the chrome convention (§8). **REMOVAL is one commit:** this block, `assets/js/font-size-control.js`, and the `.ig-fontsize` block in `includes/fragment-header.html`. Guarded by `scripts/font-size-control.test.mjs` |
+| Back-to-top button (§8) | `.ig-back-to-top` | new classes | Fixed bottom-right jump-to-top after one viewport of scrolling (2026-08-16); solid light ground so it stays visible over the slate footer; reduced-motion-aware; outside the zoom regions. **REMOVAL is one commit:** this block, `assets/js/back-to-top.js` and the header markup block. Guarded by `scripts/back-to-top.test.mjs` |
 
 `template-base.css` is linked after the base stylesheets
 (`includes/fragment-css.html`), so none of these needs `!important`. The
