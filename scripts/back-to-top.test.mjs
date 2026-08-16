@@ -35,6 +35,9 @@ test("appears after one viewport, hidden state leaves the tab order", () => {
 test("palette variables only; both language aria labels; outside the zoom regions", () => {
   const block = css.slice(css.indexOf("Back-to-top button"), css.indexOf("DEPRECATED aliases"));
   assert.ok(!/#[0-9a-fA-F]{3,6}\b/.test(block.replace(/\/\*[\s\S]*?\*\//g, "")), "no raw hex");
+  assert.match(block, /background:\s*var\(--ig-header-container-color\)/,
+    "SOLID light ground - the slate fill matched the footer variable value and vanished on overlap");
+  assert.match(block, /padding:\s*0/, "UA button padding reset (glyph centering)");
   for (const l of ["Zurück zum Seitenanfang", "Back to top"]) {
     assert.ok(header.includes(`aria-label="${l}"`), l);
   }

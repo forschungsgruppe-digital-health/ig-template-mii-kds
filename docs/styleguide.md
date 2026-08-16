@@ -326,8 +326,11 @@ anchor so keyboard users land where they jumped. Written as an own asset
 `topofpage.js`, which fades in at 50px, fires a tooltip on load and ignores
 `prefers-reduced-motion` — ours scrolls smoothly only without that
 preference. Rendered inside `#segment-header`, outside the `data-fontsize`
-zoom regions, so it never scales with A+/A++. Colors are the same palette
-pair as the font-size control. **REMOVAL is one commit:** the js asset, the
+zoom regions, so it never scales with A+/A++. Colors are the font-size
+control's inactive pair on a SOLID light ground (`--ig-header-container-color`
+— white in both palettes — with slate border/glyph, slate fill on hover): a
+slate-filled button was the same variable value as the footer and vanished
+when the two crossed. **REMOVAL is one commit:** the js asset, the
 `template-base.css` block and the header markup block — guarded by
 `scripts/back-to-top.test.mjs`.
 
