@@ -107,7 +107,7 @@ pinned version in its `ig.ini` (or `sushi-config.yaml` dependency), e.g.
 version from the [releases page](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/releases)), then rebuilding. See
 [recipes/consume-this-template-in-a-module.md](recipes/consume-this-template-in-a-module.md).
 
-**It is not published yet** ([open-tasks.md](open-tasks.md)), so no module pins a
+**It is not published yet** ([issue #113](../../../issues/113)), so no module pins a
 release today. Modules vendor this repository's `dev` branch instead:
 
 - `mii-kds-module-template` copies `package/`, `includes/`, `content/` and

@@ -54,6 +54,6 @@ The header shows your logo in both languages; the browser tab shows your favicon
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII
 > logos). Confirm redistribution rights before a release. The NUM-DIZ logos are
 > third-party brand assets too, and their use — plus the derived English combo —
-> is **pending NUM-DIZ consent** (`docs/styleguide.md` §10, `docs/open-tasks.md`);
+> is **pending NUM-DIZ consent** (`docs/styleguide.md` §10, [issue #110](../../../../issues/110));
 > as the default design they now ship in every out-of-the-box rendering, which
 > raises that task's urgency.

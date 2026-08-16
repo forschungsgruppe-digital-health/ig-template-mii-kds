@@ -85,4 +85,4 @@ Pages settings do not travel with a transfer in every case, and the site URL
 changes with the owner. Re-check step 2 after any move, and expect the
 `https://<owner>.github.io/...` prefix in documentation and in
 `sushi-config.yaml` to need updating — see
-[open tasks](../open-tasks.md).
+[issue #114](../../../../issues/114) (the organisation move).
