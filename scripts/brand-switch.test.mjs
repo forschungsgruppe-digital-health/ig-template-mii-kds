@@ -172,6 +172,13 @@ test("footer: NUM-DIZ link before the MII link, aligned anchors, in both designs
     !fragmentFooter.includes("site.data.brand"),
     "the footer link row is identical in both brand designs",
   );
+  // The header renders the FHIR flame on every page; HL7's trademark policy
+  // asks for the attribution sentence in text wherever the mark is used.
+  assert.match(fragmentFooter,
+    /HL7®, FHIR® and the FHIR flame design are registered trademarks of Health Level Seven International/,
+    "the HL7 trademark attribution renders in the footer (see docs/open-tasks.md)");
+  assert.match(fragmentHeader, /alt="HL7 FHIR"/,
+    "the flame stays standalone + nominative in the header");
 });
 
 // WCAG 2.1 relative luminance / contrast ratio.

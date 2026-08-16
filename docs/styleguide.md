@@ -270,6 +270,11 @@ recorded limitation, §7.)
   including "Table of Contents".
 - The only other literal texts allowed are bare URLs and `alt` texts quoting
   the proper name of the logo variant shown.
+- The HL7 trademark attribution in the footer stays **English on every
+  language's pages**: it is HL7's prescribed legal formula, not translatable
+  UI text (rendered because the header shows the FHIR flame on every page —
+  guard-tested in `scripts/brand-switch.test.mjs`; the community-use
+  permission request remains a maintainer action, [open-tasks](open-tasks.md)).
 
 ## 7. Recorded limitations (do not fix by workaround)
 
