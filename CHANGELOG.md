@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.3.0...v1.3.1) (2026-08-17)
+
+
+### Bug Fixes
+
+* **assets:** replace the derived English NUM-DIZ logo with a vectorization of the official asset ([#127](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/127)) ([2545c0f](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/2545c0f91eb0c2f418a66a33bff7356eb6d8f3bd))
+* promote dev to main (official English NUM-DIZ logo) ([76cb8cb](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/76cb8cb42b82c5a928ab52826ca9817f09667d21))
+
 ## [1.3.0](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.2.1...v1.3.0) (2026-08-16)
 
 
