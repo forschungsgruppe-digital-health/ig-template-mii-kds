@@ -17,8 +17,9 @@
 //    styleguide's prose. Normal-text pairs need >= 4.5:1; the navbar pair
 //    runs at the large-text bar (>= 3:1) and is coupled to the mii.css
 //    typography block that makes navbar links large text (19px bold).
-// 4. PROVENANCE — the derived English combo logo keeps its "not an official
-//    asset / pending approval" marker, and both NUM-DIZ logo files exist.
+// 4. PROVENANCE — the English combo logo keeps its vectorized-from-the-
+//    official-raster provenance (incl. the sha256 pin of the source asset),
+//    and both NUM-DIZ logo files exist.
 //
 // Run with:  node --test scripts/brand-switch.test.mjs
 import { test } from "node:test";
@@ -245,14 +246,20 @@ test("NUM-DIZ text/background pairs hold WCAG AA (docs/styleguide.md §10)", () 
   }
 });
 
-test("derived English combo keeps its provenance marker; both logo files exist", () => {
+test("English combo keeps its official-asset provenance; both logo files exist", () => {
   for (const f of [
     "content/assets/images/logo-num-diz-de.svg",
     "content/assets/images/logo-num-diz-en.svg",
   ]) {
     assert.ok(existsSync(repo(f)), `${f} exists`);
   }
-  const derived = read("content/assets/images/logo-num-diz-en.svg");
-  assert.match(derived, /DERIVED FILE - NOT AN OFFICIAL NUM\/NUM-DIZ ASSET/);
-  assert.match(derived, /PENDING NUM-DIZ APPROVAL/);
+  const en = read("content/assets/images/logo-num-diz-en.svg");
+  assert.match(en, /vectorized on 2026-08-17 from the official/,
+    "provenance names the official-raster vectorization");
+  assert.match(en, /sha256 6baaee90eb201583c34405854582c49a/,
+    "the source asset's checksum stays pinned");
+  assert.match(en, /issue #110/,
+    "the brand-use consent issue stays referenced");
+  assert.ok(!/PENDING NUM-DIZ APPROVAL/.test(en),
+    "the old derived-file approval marker is gone");
 });
