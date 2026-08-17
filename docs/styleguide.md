@@ -13,8 +13,7 @@ this repository's git history (`docs/design.md`, the styleguide's
 predecessor). Follow-ups on the logo assets (an official SVG, trademark
 permission — for NUM-DIZ: pending brand-use consent, §10) are tracked in
 the issue tracker ([#25](../../../issues/25), [#26](../../../issues/26),
-[#109](../../../issues/109), [#110](../../../issues/110),
-[#111](../../../issues/111)).
+[#109](../../../issues/109), [#110](../../../issues/110)).
 
 ---
 
@@ -481,26 +480,22 @@ value that holds AA for normal-size text.
 - `logo-num-diz-de.svg` — the official German combination logo
   (`NUM-DIZ-Kombilogo-POS-RGB.svg`), vendored **byte-identical** from the
   NUM-DIZ website on 2026-08-13 (only a provenance comment was added).
-- `logo-num-diz-en.svg` — **derived, NOT an official asset**: NUM-DIZ
-  publishes no English combination logo, so the file composes the German
-  combo's DIZ portion with the official English NUM logo, scaled by the exact
-  factor (1.06277) at which the German combo draws the shared NUM emblem
-  artwork and aligned on the combo's shared subtitle baseline (y = 287.19).
-  Since 2026-08-14 (TF-KDS feedback) the DIZ portion's outlined **German text
-  is replaced by English SVG text**: "MEDICAL / INFORMATICS / INITIATIVE" and
-  the tri-color "DATA INTEGRATION CENTER" (the MII's official English terms) —
-  exactly the 51 German glyph elements were removed; DIZ wordmark, emblem and
-  NUM part are untouched, and baselines / center axis / cap heights / run
-  widths are measured from the removed German clusters (pinned via
-  `textLength`). The typeface is a system-sans approximation, as the original
-  condensed corporate face is licensed and cannot be embedded — the file is
-  therefore doubly unofficial (composition AND typeface). The full derivation
-  is in the file's own header comment and the introducing PRs.
-- **Approval status: pending — and urgent.** The NUM/NUM-DIZ logos are
-  third-party brand assets fetched from the NUM website; shipping them
-  requires NUM-DIZ consent, and the derived English combo additionally needs
-  their approval as a new brand asset. Since NUM-DIZ became the **default**
-  design, every rendering that does not opt back to MII ships these logos —
-  the consent and approval are no longer gating an opt-in extra but the
-  out-of-the-box output. Tracked in [#110](../../../issues/110)/[#111](../../../issues/111); replace
-  the derived file the day an official English combo exists.
+- `logo-num-diz-en.svg` — vectorized on 2026-08-17 from the **official
+  English combination logo** (`NUM-DIZ-Kombilogo-POS-RGB_EN.png`, 5423 x 1198
+  px at 300 dpi, provided by NUM-DIZ; sha256 pinned in the file's header
+  comment). The DIC portion (wordmark, network emblem, both text bands) is a
+  color-separated potrace vectorization of that raster; its five flat inks
+  are snapped to the exact fill values the official German vector uses for
+  the same artwork (`#1e6fa8`/`#94c119`/`#6ea460`/`#428997`/`#5c6f7e`). The
+  NUM portion (star emblem with its gradients, NUM wordmark, subtitle) is the
+  official English NUM vector logo, registered onto the raster by a landmark
+  fit over the star's red/yellow balls (residual < 0.1 canvas units). The
+  canvas equals the German combo's frame (1301.318 x 287.5), so both language
+  versions render with identical proportions at any given height. This file
+  replaced the earlier unofficial derivation (issue #111, closed); the full
+  method is in the file's own header comment.
+- **Approval status: brand-use consent pending.** The NUM/NUM-DIZ logos are
+  third-party brand assets; shipping them requires NUM-DIZ consent. Since
+  NUM-DIZ became the **default** design, every rendering that does not opt
+  back to MII ships these logos — the consent is not gating an opt-in extra
+  but the out-of-the-box output. Tracked in [#110](../../../issues/110).

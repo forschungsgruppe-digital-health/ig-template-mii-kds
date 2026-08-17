@@ -13,8 +13,9 @@ preview.
    - `logo-num-diz-en.svg` / `logo-num-diz-de.svg` — the same pair for the
      NUM-DIZ brand, the **default** design (MII renders only after the
      [switch to MII](switch-brand-to-mii.md)); the German
-     file is the official combo vendored byte-identical, the English file is
-     **derived** (provenance in its header comment and `../styleguide.md` §10).
+     file is the official combo vendored byte-identical, the English file is a
+     vectorization of the official English raster asset (provenance in its
+     header comment and `../styleguide.md` §10).
    The favicon is `content/assets/ico/favicon.png`.
 2. Replace the file(s) **keeping the same file names**, or, if you use new names,
    update the `<img src="…">` in `includes/fragment-header.html` to match.
@@ -53,7 +54,7 @@ The header shows your logo in both languages; the browser tab shows your favicon
 > **Licensing note:** the MII logo is a trademark. Shipping it in this CC0 repo
 > relies on MII permission (there is precedent — `kerndatensatz-basis` ships MII
 > logos). Confirm redistribution rights before a release. The NUM-DIZ logos are
-> third-party brand assets too, and their use — plus the derived English combo —
-> is **pending NUM-DIZ consent** (`docs/styleguide.md` §10, [issue #110](../../../../issues/110));
+> third-party brand assets too, and their use is **pending NUM-DIZ consent**
+> (`docs/styleguide.md` §10, [issue #110](../../../../issues/110));
 > as the default design they now ship in every out-of-the-box rendering, which
 > raises that task's urgency.
