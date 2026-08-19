@@ -24,6 +24,11 @@ granted only to entities in Germany (request it from the SU-TermServ).
 
 ### What kind of certificate is required
 
+The build workflows pass `-fhir-settings .github/fhir-settings.json` to the
+IG Publisher: it allowlists the proxy's plain-HTTP private-network address
+(`http://127.0.0.1:8090/fhir`), which the publisher's SSRF hardening (2.3.1+)
+would otherwise refuse. The file has no effect on the `tx.fhir.org` fallback.
+
 SU-TermServ authenticates clients with **mutual TLS**. Verified against the live
 server on 2026-07-26 (`openssl s_client` to `ontoserver.mii-termserv.de:443`):
 

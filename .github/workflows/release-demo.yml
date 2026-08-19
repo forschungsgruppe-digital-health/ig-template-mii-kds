@@ -96,11 +96,11 @@ concurrency:
 # The names are also read VERBATIM by scripts/check-updates.mjs
 # (parseWorkflowEnvPin), so the scheduled dependency monitor stays in sync.
 env:
-  PUBLISHER_VERSION: "2.3.0"
+  PUBLISHER_VERSION: "2.3.2"
   # SHA-256 of publisher.jar for PUBLISHER_VERSION. ALWAYS bump this together
   # with PUBLISHER_VERSION — never one without the other.
-  PUBLISHER_SHA256: "e842f2186117d9e41be457949e6a13e69a8d8590a680b6f3cf48a20f87bdabbd"
-  SUSHI_VERSION: "3.20.0"
+  PUBLISHER_SHA256: "07c576024df917cc1f879b6b5a64147cd0222d5b4129688e8f0ad9ccce58b1d5"
+  SUSHI_VERSION: "3.20.1"
   JEKYLL_VERSION: "4.4.1"
 
 jobs:
@@ -279,7 +279,13 @@ jobs:
             "https://github.com/HL7/fhir-ig-publisher/releases/download/${PUBLISHER_VERSION}/publisher.jar"
           # Fail hard if the downloaded jar is not the pinned, verified artifact.
           echo "${PUBLISHER_SHA256}  publisher.jar" | sha256sum --check
-          java -Xmx6g -jar publisher.jar -ig ig.ini -tx "${TX}"
+          # -fhir-settings allowlists the local SU-TermServ nginx proxy
+          # (http://127.0.0.1:8090) for the publisher's terminology access:
+          # publisher 2.3.1+ SSRF hardening can refuse plain-HTTP/private-
+          # network -tx targets without it (basis idiom, kerndatensatz-basis
+          # @190a3a18). Inert on the tx.fhir.org fallback path.
+          java -Xmx6g -jar publisher.jar -ig ig.ini -tx "${TX}" \
+            -fhir-settings "${GITHUB_WORKSPACE}/.github/fhir-settings.json"
 
       - name: Enforce QA gate (errors must be 0) and verify the rendered version
         if: ${{ steps.tag.outputs.skip != 'true' }}

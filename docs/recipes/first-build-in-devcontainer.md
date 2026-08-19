@@ -61,7 +61,7 @@ access (the first build downloads the base image and tools):
    ```sh
    java -version     # OpenJDK 17.x
    node --version    # v22.23.1
-   sushi --version   # SUSHI v3.20.0
+   sushi --version   # SUSHI v3.20.1
    ruby --version    # ruby 3.3.12
    jekyll --version  # jekyll 4.4.1
    dot -V            # graphviz version ...
@@ -76,8 +76,8 @@ access (the first build downloads the base image and tools):
    ```sh
    sushi .
    curl -L -o publisher.jar \
-     https://github.com/HL7/fhir-ig-publisher/releases/download/2.3.0/publisher.jar
-   echo "e842f2186117d9e41be457949e6a13e69a8d8590a680b6f3cf48a20f87bdabbd  publisher.jar" \
+     https://github.com/HL7/fhir-ig-publisher/releases/download/2.3.2/publisher.jar
+   echo "07c576024df917cc1f879b6b5a64147cd0222d5b4129688e8f0ad9ccce58b1d5  publisher.jar" \
      | sha256sum --check
    java -Xmx6g -jar publisher.jar -ig ig.ini -tx https://tx.fhir.org
    ```
