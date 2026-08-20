@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.2](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.3.1...v1.3.2) (2026-08-20)
+
+
+### Bug Fixes
+
+* **header:** let #ig-status grow with long titles; footer attribution inherits font size ([#133](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/issues/133)) ([e924d29](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/e924d295ca0a1f599513b232e74ab63cda98f14d))
+* promote dev to main (long-title header, footer attribution) ([7ab6431](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/commit/7ab6431f3b300bfb1cb07d5891331467af81cf1e))
+
 ## [1.3.1](https://github.com/forschungsgruppe-digital-health/ig-template-mii-kds/compare/v1.3.0...v1.3.1) (2026-08-17)
 
 
