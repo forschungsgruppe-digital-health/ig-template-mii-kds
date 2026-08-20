@@ -2,13 +2,13 @@
   "id" : "de.medizininformatikinitiative.template.preview",
   "type" : "ImplementationGuide",
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/ImplementationGuide/de.medizininformatikinitiative.template.preview",
-  "version" : "1.3.1",
+  "version" : "1.3.2",
   "name" : "MIIKDSTemplatePreview"
 },
 {
   "id" : "preview-model",
   "type" : "StructureDefinition",
   "url" : "https://github.com/medizininformatik-initiative/ig-template-mii-kds/StructureDefinition/preview-model",
-  "version" : "1.3.1",
+  "version" : "1.3.2",
   "name" : "PreviewModel"
 }]
